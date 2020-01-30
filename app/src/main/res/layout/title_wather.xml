@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="right|center_vertical|center_horizontal"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="城市"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_wind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="风向"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_temp_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="最高温最低温"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_last_updatetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="最后更新时间"
+        android:textSize="14sp" />
+
+</LinearLayout>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lv_name_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shaper_desk_top_show"
+        android:gravity="center_vertical|center_horizontal|left"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:text="昵称设置" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lv_desktop_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shaper_desk_top_show"
+        android:gravity="center_vertical|center_horizontal|left"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:text="壁纸设置" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lv_update_applist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shaper_desk_top_show"
+        android:gravity="center_vertical|center_horizontal|left"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:text="更新应用列表" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lv_get_systeminfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shaper_desk_top_show"
+        android:gravity="center_vertical|center_horizontal|left"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:text="获取设备信息" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lv_open_dksetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shaper_desk_top_show"
+        android:gravity="center_vertical|center_horizontal|left"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:text="打开多看设置" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lv_open_dk_window"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shaper_desk_top_show"
+        android:gravity="center_vertical|center_horizontal|left"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:text="打开悬浮球（请先安装）" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lv_clean_happynewyear_window"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shaper_desk_top_show"
+        android:gravity="center_vertical|center_horizontal|left"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:text="清空新年祝福计次\n祝福只会显示一次，大年初一请手动重置" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lv_shuoming_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shaper_desk_top_show"
+        android:gravity="center_vertical|center_horizontal|left"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:text="部分说明" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lv_about_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shaper_desk_top_show"
+        android:gravity="center_vertical|center_horizontal|left"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:text="关于" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shaper_desk_top_show"
+        android:gravity="center_vertical|center_horizontal|left"
+        android:orientation="vertical">
+
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/ra_chose_chahua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="插画" />
+
+            <RadioButton
+                android:id="@+id/ra_chose_erji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="耳机" />
+
+            <RadioButton
+                android:id="@+id/ra_chose_qinglv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="情侣" />
+
+            <RadioButton
+                android:id="@+id/ra_chose_meizi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="妹子" />
+
+            <RadioButton
+                android:id="@+id/ra_chose_applist_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="应用列表" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:clickable="false"
+                android:enabled="false"
+                android:focusable="false"
+                android:text="新桌面（正在做了--0%）" />
+
+
+        </RadioGroup>
+
+    </LinearLayout>
+</LinearLayout>

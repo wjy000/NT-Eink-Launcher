@@ -1,0 +1,183 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    tools:context="com.etang.nt_eink_launcher.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_below="@+id/tv_user_id"
+        android:layout_alignLeft="@+id/linearLayout2"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp">
+
+            <TextView
+                android:id="@+id/tv_time_min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_time_hour"
+                android:layout_alignBottom="@+id/tv_time_hour"
+                android:layout_marginLeft="5sp"
+                android:layout_toRightOf="@+id/tv_time_hour"
+                android:text="59"
+                android:textColor="#353535"
+                android:textSize="50sp" />
+
+
+            <TextView
+                android:id="@+id/tv_time_hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5sp"
+                android:text="23"
+                android:textColor="#353535"
+                android:textSize="70sp" />
+
+            <CheckBox
+                android:id="@+id/cb_light_mode"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="39dp"
+                android:background="@drawable/select_light_state"
+                android:button="@null"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/line_wather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="21dp"
+                android:orientation="vertical">
+
+                <include layout="@layout/title_wather" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10sp"
+            android:background="@drawable/shaper_desk_top_show">
+
+            <include layout="@layout/list_all_apps" />
+
+            <ImageView
+                android:id="@+id/iv_index_back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                app:srcCompat="@drawable/mi_haole" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical|center_horizontal"
+            android:orientation="horizontal">
+
+            <com.etang.nt_eink_launcher.view.MyCircleView
+                android:id="@+id/circle"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_margin="5dp"></com.etang.nt_eink_launcher.view.MyCircleView>
+
+            <TextView
+                android:id="@+id/tv_battery_show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5sp"
+                android:text="100 %"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <ToggleButton
+                android:id="@+id/tg_apps_state"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:background="@drawable/select_apps_state"
+                android:textOff=""
+                android:textOn="" />
+
+            <ImageView
+                android:id="@+id/iv_setting_button"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_margin="5sp"
+                android:src="@drawable/menu_setting" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_alignBottom="@+id/linearLayout1"
+        android:layout_alignParentLeft="true"
+        android:background="#000" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:layout_alignParentTop="true"
+        android:background="#000" />
+
+    <View
+        android:layout_width="2sp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="#000" />
+
+    <View
+        android:layout_width="2sp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#000" />
+
+    <TextView
+        android:id="@+id/tv_user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5sp"
+        android:text="我的多看电纸书"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tv_desk_top_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5sp"
+        android:text="2019年12月13日"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>
