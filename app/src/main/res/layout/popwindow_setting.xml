@@ -98,22 +98,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/lv_clean_happynewyear_window"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shaper_desk_top_show"
-        android:gravity="center_vertical|center_horizontal|left"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5sp"
-            android:text="清空新年祝福计次\n祝福只会显示一次，大年初一请手动重置" />
-
-    </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/lv_shuoming_activity"

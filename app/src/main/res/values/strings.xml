@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">NT-Launcher</string>
-    <string name="title">"桌面"正在后台运行中</string>
+    <string name="app_name">NT Launcher</string>
     <string name="title_activity_wather">WatherActivity</string>
 </resources>

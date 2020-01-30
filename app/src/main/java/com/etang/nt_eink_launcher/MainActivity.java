@@ -2,9 +2,6 @@ package com.etang.nt_eink_launcher;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -18,7 +15,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -39,8 +35,6 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import androidx.core.app.NotificationCompat;
-
 import com.etang.nt_eink_launcher.adapter.DeskTopGridViewBaseAdapter;
 import com.etang.nt_eink_launcher.adapter.GetApps;
 import com.etang.nt_eink_launcher.mysql.MyDataBaseHelper;
@@ -60,7 +54,6 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * @author Administrator
@@ -667,8 +660,6 @@ public class MainActivity extends Activity implements OnClickListener {
                 window.setGravity(Gravity.BOTTOM); // 底部位置
                 window.setContentView(window_view);//设置View
                 //绑定
-                LinearLayout lv_clean_happynewyear_window = (LinearLayout) alertDialog
-                        .findViewById(R.id.lv_clean_happynewyear_window);
                 LinearLayout lv_open_dk_window = (LinearLayout) alertDialog
                         .findViewById(R.id.lv_open_dk_window);
                 LinearLayout lv_open_dksetting = (LinearLayout) alertDialog
@@ -696,16 +687,6 @@ public class MainActivity extends Activity implements OnClickListener {
                     lv_open_dksetting.setVisibility(View.GONE);
                     lv_open_dk_window.setVisibility(View.GONE);
                 }
-                //清空新年祝福
-                lv_clean_happynewyear_window.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
-                        editor.putBoolean("happy_new_year_state", false);
-                        editor.apply();
-                        alertDialog.dismiss();
-                    }
-                });
                 //打开多看悬浮球设置
                 lv_open_dk_window.setOnClickListener(new OnClickListener() {
                     @Override
