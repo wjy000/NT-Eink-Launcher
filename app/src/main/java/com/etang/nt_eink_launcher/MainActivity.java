@@ -12,10 +12,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.ColorDrawable;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -90,19 +92,19 @@ public class MainActivity extends Activity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //全屏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);//全屏
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.
                 FLAG_KEEP_SCREEN_ON);//应用运行时，保持屏幕高亮，不锁屏
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.activity_main);
+        //绑定各类
         initView();// 绑定控件
         new_time_Thread();// 启用更新时间进程
         rember_name();// 记住昵称
         initAppList(this);// 获取应用列表
         monitorBatteryState();// 监听电池信息
-
-
         /**
          * 隐藏未完成功能
          */
@@ -115,9 +117,11 @@ public class MainActivity extends Activity implements OnClickListener {
              * 填充预设数据
              */
             SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
-            editor.putString("images_info", "applist");
+            editor.putString("images_info", "ej");
             editor.putString("images_app_listifo", "true");
             editor.apply();
+            //更新桌面信息
+            images_upgrade();
         } else {//有过使用信息
             images_upgrade();//更新图像信息
         }
@@ -184,6 +188,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 }
             }
         });
+        //长按弹出菜单选择城市
         line_wather.setOnLongClickListener(new OnLongClickListener() {
 
             @Override
@@ -230,6 +235,26 @@ public class MainActivity extends Activity implements OnClickListener {
         }
         if (images_mode.equals("ch")) {
             iv_index_back.setImageResource(R.mipmap.mi_chahua);
+            iv_index_back.setVisibility(View.VISIBLE);
+            mListView.setVisibility(View.INVISIBLE);
+        }
+        if (images_mode.equals("ll")) {
+            iv_index_back.setImageResource(R.mipmap.mi_luoli);
+            iv_index_back.setVisibility(View.VISIBLE);
+            mListView.setVisibility(View.INVISIBLE);
+        }
+        if (images_mode.equals("yl")) {
+            iv_index_back.setImageResource(R.mipmap.mi_yali);
+            iv_index_back.setVisibility(View.VISIBLE);
+            mListView.setVisibility(View.INVISIBLE);
+        }
+        if (images_mode.equals("pb")) {
+            iv_index_back.setImageResource(R.mipmap.mi_pinbo);
+            iv_index_back.setVisibility(View.VISIBLE);
+            mListView.setVisibility(View.INVISIBLE);
+        }
+        if (images_mode.equals("zy")) {
+            iv_index_back.setImageResource(R.mipmap.mi_zhiyu);
             iv_index_back.setVisibility(View.VISIBLE);
             mListView.setVisibility(View.INVISIBLE);
         }
@@ -342,7 +367,8 @@ public class MainActivity extends Activity implements OnClickListener {
                         .format(new java.util.Date()));
                 tv_time_min.setText(simpleDateFormat_min
                         .format(new java.util.Date()));
-                handler.postDelayed(runnable, 500);
+                handler.postDelayed(runnable, 1000);
+                Log.e("Test", "handleMessage: Handler is Runnaing");
             }
         };
         runnable = new Runnable() {
@@ -416,11 +442,11 @@ public class MainActivity extends Activity implements OnClickListener {
                         } else {
                             DiyToast.showToast(getApplicationContext(), "请选择天气城市");
                         }
-                        tv_wind.setText(fengxiang + "  " + fengli);
+                        tv_wind.setText(fengxiang);
                         tv_temp_state.setText(high + "  " + low);
-                        tv_last_updatetime.setText("最后更新时间：" + date
+                        tv_last_updatetime.setText("于"
                                 + tv_time_hour.getText().toString() + ":"
-                                + tv_time_min.getText().toString());
+                                + tv_time_min.getText().toString() + "更新");
                     } catch (Exception e) {
                         // TODO: handle exception
                     }
@@ -638,8 +664,6 @@ public class MainActivity extends Activity implements OnClickListener {
     }
 
 
-
-
     /**
      * 桌面左下角设置 点击事件监听
      */
@@ -743,7 +767,6 @@ public class MainActivity extends Activity implements OnClickListener {
                         alertDialog.dismiss();
                     }
                 });
-
                 break;
             default:
                 break;

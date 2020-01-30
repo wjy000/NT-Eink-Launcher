@@ -44,6 +44,34 @@
                 android:text="妹子" />
 
             <RadioButton
+                android:id="@+id/ra_chose_luoli"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="萝莉" />
+
+            <RadioButton
+                android:id="@+id/ra_chose_pinbo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="拼搏" />
+
+            <RadioButton
+                android:id="@+id/ra_chose_yali"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="压力" />
+
+            <RadioButton
+                android:id="@+id/ra_chose_zhiyu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="知遇" />
+
+            <RadioButton
                 android:id="@+id/ra_chose_applist_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
