@@ -63,6 +63,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="null" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="设备主板名" />
+
+            <TextView
+                android:id="@+id/tv_system_deviceboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="null" />
         </LinearLayout>
     </ScrollView>
 

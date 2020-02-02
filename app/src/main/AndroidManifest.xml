@@ -32,6 +32,7 @@
         <activity
             android:name="com.etang.nt_eink_launcher.SystemStringInfo"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name="com.etang.nt_eink_launcher.AboutActivity"></activity>
         <activity
             android:name="com.etang.nt_eink_launcher.ChoseImagesActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />

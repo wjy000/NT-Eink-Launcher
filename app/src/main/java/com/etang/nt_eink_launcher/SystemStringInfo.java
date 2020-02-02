@@ -40,5 +40,7 @@ public class SystemStringInfo extends AppCompatActivity {
         ((TextView) findViewById(R.id.tv_system_deviceproduct)).setText(String.valueOf(SystemInFo.getDeviceManufacturer()));
         //设备品牌
         ((TextView) findViewById(R.id.tv_system_devicebrand)).setText(String.valueOf(SystemInFo.getDeviceManufacturer()));
+        //设备主板名
+        ((TextView) findViewById(R.id.tv_system_deviceboard)).setText(String.valueOf(SystemInFo.getDeviceBoard()));
     }
 }

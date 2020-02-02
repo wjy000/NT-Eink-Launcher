@@ -686,8 +686,6 @@ public class MainActivity extends Activity implements OnClickListener {
                         .findViewById(R.id.lv_open_dk_window);
                 LinearLayout lv_open_dksetting = (LinearLayout) alertDialog
                         .findViewById(R.id.lv_open_dksetting);
-                LinearLayout lv_get_systeminfo = (LinearLayout) alertDialog
-                        .findViewById(R.id.lv_get_systeminfo);
                 LinearLayout lv_desktop_setting = (LinearLayout) alertDialog
                         .findViewById(R.id.lv_desktop_setting);
                 LinearLayout lv_name_setting = (LinearLayout) alertDialog
@@ -699,7 +697,6 @@ public class MainActivity extends Activity implements OnClickListener {
                 LinearLayout lv_shuoming_activity = (LinearLayout) alertDialog
                         .findViewById(R.id.lv_shuoming_activity);
                 //隐藏暂时无用的选项
-                lv_about_activity.setVisibility(View.GONE);//关于
                 lv_shuoming_activity.setVisibility(View.GONE);//说明
 
                 if (SystemInFo.getDeviceManufacturer().toString().equals("Allwinner")) {
@@ -709,6 +706,14 @@ public class MainActivity extends Activity implements OnClickListener {
                     lv_open_dksetting.setVisibility(View.GONE);
                     lv_open_dk_window.setVisibility(View.GONE);
                 }
+                //打开关于界面
+                lv_about_activity.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, AboutActivity.class));
+                        alertDialog.dismiss();
+                    }
+                });
                 //打开多看悬浮球设置
                 lv_open_dk_window.setOnClickListener(new OnClickListener() {
                     @Override
@@ -740,14 +745,6 @@ public class MainActivity extends Activity implements OnClickListener {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(MainActivity.this, ChoseImagesActivity.class));
-                        alertDialog.dismiss();
-                    }
-                });
-                //获取设备信息
-                lv_get_systeminfo.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(MainActivity.this, SystemStringInfo.class));
                         alertDialog.dismiss();
                     }
                 });
