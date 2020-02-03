@@ -73,8 +73,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10sp"
-            android:background="@drawable/shaper_desk_top_show">
+            android:layout_margin="10sp">
 
             <include layout="@layout/list_all_apps" />
 

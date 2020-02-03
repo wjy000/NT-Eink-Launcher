@@ -681,6 +681,10 @@ public class MainActivity extends Activity implements OnClickListener {
                 alertDialog.getWindow();//设置window
                 window.setGravity(Gravity.BOTTOM); // 底部位置
                 window.setContentView(window_view);//设置View
+
+//                @drawable/shaper_desk_top_show
+
+
                 //绑定
                 LinearLayout lv_open_dk_window = (LinearLayout) alertDialog
                         .findViewById(R.id.lv_open_dk_window);
