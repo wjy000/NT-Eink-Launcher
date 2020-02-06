@@ -7,8 +7,8 @@ android {
         applicationId "com.etang.nt_launcher"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 186
-        versionName "1.8.6"
+        versionCode 188
+        versionName "1.8.8"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -20,7 +20,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.xiaomi.account:oauth-android:latest.release' // 总是依赖最新版本
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'ru.alexbykov:nopermission:1.1.2'

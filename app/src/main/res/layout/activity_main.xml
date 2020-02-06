@@ -72,8 +72,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10sp">
+            android:layout_height="match_parent">
 
             <include layout="@layout/list_all_apps" />
 
@@ -81,8 +80,8 @@
                 android:id="@+id/iv_index_back"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="1dp"
                 app:srcCompat="@mipmap/mi_erji" />
+
         </RelativeLayout>
     </LinearLayout>
 
@@ -91,6 +90,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
         android:gravity="center_vertical|center_horizontal"
         android:orientation="horizontal">
 
@@ -111,24 +111,24 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="right|center_vertical|center_horizontal"
+            android:gravity="center_vertical|center_horizontal"
             android:orientation="horizontal">
 
             <com.etang.nt_eink_launcher.view.MyCircleView
                 android:id="@+id/circle"
-                android:layout_width="30sp"
-                android:layout_height="30sp"
-                android:layout_margin="5dp"></com.etang.nt_eink_launcher.view.MyCircleView>
-
-            <TextView
-                android:id="@+id/tv_battery_show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5sp"
-                android:text="100 %"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:layout_gravity="center_horizontal|center_vertical"></com.etang.nt_eink_launcher.view.MyCircleView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical|center_horizontal"
+            android:orientation="horizontal">
 
             <ToggleButton
                 android:id="@+id/tg_apps_state"

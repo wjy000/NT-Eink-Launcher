@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher;
+package com.etang.nt_eink_launcher.settingsactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,9 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.etang.nt_eink_launcher.util.SystemInFo;
 import com.etang.nt_launcher.R;
 
 public class SystemStringInfo extends AppCompatActivity {
@@ -16,22 +17,22 @@ public class SystemStringInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //全屏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.
-                FLAG_KEEP_SCREEN_ON);   //应用运行时，保持屏幕高亮，不锁屏
+                FLAG_KEEP_SCREEN_ON);//应用运行时，保持屏幕高亮，不锁屏
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.activity_system_string_info);
-        /**
-         * 设置 title bar 信息
-         */
         //返回按钮（整个顶栏LinearLayout）
-        ((LinearLayout) findViewById(R.id.lv_back)).setOnClickListener(new View.OnClickListener() {
+        ((ImageView) findViewById(R.id.iv_title_back)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
         //标题
-        ((TextView) findViewById(R.id.tv_back_title)).setText("设备信息");
+        ((TextView) findViewById(R.id.tv_title_text)).setText("设备信息");
         //设备SDK版本
         ((TextView) findViewById(R.id.tv_system_sdkinfo)).setText(String.valueOf(SystemInFo.getDeviceSDK()));
         //设备厂商

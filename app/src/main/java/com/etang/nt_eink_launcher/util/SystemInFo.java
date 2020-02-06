@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher;
+package com.etang.nt_eink_launcher.util;
 
 import android.util.Log;
 

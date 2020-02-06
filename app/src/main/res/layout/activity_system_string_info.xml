@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.etang.nt_eink_launcher.SystemStringInfo">
+    tools:context="com.etang.nt_eink_launcher.settingsactivity.SystemStringInfo">
 
     <include layout="@layout/in_back"></include>
 

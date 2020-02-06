@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher;
+package com.etang.nt_eink_launcher.settingsactivity;
 
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;

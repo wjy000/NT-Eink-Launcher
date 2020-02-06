@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.etang.nt_launcher">
-    <!-- 程序自启动权限 -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!-- 网络状态权限汇总 -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="com.xiaomi.permission.AUTH_SERVICE" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <!-- 读取手机IMEI的设备权限 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
 
     <application
         android:allowBackup="true"
@@ -25,12 +12,18 @@
         android:supportsRtl="true"
         android:testOnly="false"
         android:theme="@style/AppTheme">
+        <activity android:name="com.etang.nt_eink_launcher.settingsactivity.ChoseAppListActivity"></activity>
         <activity
-            android:name="com.etang.nt_eink_launcher.SystemStringInfo"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name="com.etang.nt_eink_launcher.AboutActivity"></activity>
+            android:name="com.etang.nt_eink_launcher.settingsactivity.SystemStringInfo"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.etang.nt_eink_launcher.ChoseImagesActivity"
+            android:name="com.etang.nt_eink_launcher.settingsactivity.SettingActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name="com.etang.nt_eink_launcher.settingsactivity.AboutActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name="com.etang.nt_eink_launcher.settingsactivity.ChoseImagesActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
             android:name="com.etang.nt_eink_launcher.MainActivity"
@@ -46,11 +39,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.etang.nt_eink_launcher.UnInstallActivity"
+            android:name="com.etang.nt_eink_launcher.settingsactivity.UnInstallActivity"
             android:label=""
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar.MinWidth" />
         <activity
-            android:name="com.etang.nt_eink_launcher.WatherActivity"
+            android:name="com.etang.nt_eink_launcher.settingsactivity.WatherActivity"
             android:label=""
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar.MinWidth" />
     </application>

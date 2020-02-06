@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher;
+package com.etang.nt_eink_launcher.settingsactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 
+import com.etang.nt_eink_launcher.MainActivity;
 import com.etang.nt_eink_launcher.toast.DiyToast;
 import com.etang.nt_launcher.R;
 
@@ -154,7 +155,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
             }
         });
         //压力
-        ra_qinglv.setOnClickListener(new View.OnClickListener() {
+        ra_yali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();

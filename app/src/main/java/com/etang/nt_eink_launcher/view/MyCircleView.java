@@ -19,13 +19,15 @@ public class MyCircleView extends View {
     private Paint rectPaint;
     private Paint txtPaint;
     public int progress;
+    private boolean isChanger = false;
 
     public float getProgress() {
         return progress;
     }
 
-    public void setProgress(int progress) {
+    public void setProgress(int progress, boolean isChanger) {
         this.progress = progress;
+        this.isChanger = isChanger;
         //重新绘制
         invalidate();
     }
@@ -47,12 +49,10 @@ public class MyCircleView extends View {
     private void init() {
         paint = new Paint();
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
-
         //抗锯齿
         paint.setAntiAlias(true);
         //设置线宽
         paint.setStrokeWidth(1);
-
         rectPaint = new Paint();
         rectPaint.setStyle(Paint.Style.FILL);
         int rectColor = Color.parseColor("#FF14A903");
@@ -66,7 +66,7 @@ public class MyCircleView extends View {
         txtPaint.setStyle(Paint.Style.FILL);
         txtPaint.setTextAlign(Paint.Align.CENTER);
         txtPaint.setTextSize(15);
-        int txtColor = Color.parseColor("#ff0000");
+        int txtColor = Color.parseColor("#000000");
         txtPaint.setColor(txtColor);
         //抗锯齿
         txtPaint.setAntiAlias(true);
@@ -96,7 +96,6 @@ public class MyCircleView extends View {
         int height = getHeight() - getPaddingTop() - getPaddingBottom();
         //取半径为长和宽中最小的那个的(1/2)
         int radius = Math.min(width, height) / 2;
-
         //计算圆心(横坐标)
         int cx = getPaddingLeft() + width / 2;
         //计算圆心(纵坐标)
@@ -121,7 +120,7 @@ public class MyCircleView extends View {
      * @param paint
      */
     private void drawCircle(Canvas canvas, int cx, int cy, int radius, Paint paint) {
-        int color = Color.parseColor("#FF196FF9");
+        int color = Color.parseColor("#CDCDCD");
         paint.setColor(color);
         canvas.drawCircle(cx, cy, radius, paint);
     }
@@ -175,7 +174,11 @@ public class MyCircleView extends View {
         Paint.FontMetrics fontMetrics = txtPaint.getFontMetrics();
         float distance = (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom;
         float baseline = cy + distance;
-        canvas.drawText(progress + "%", cx, baseline, txtPaint);
+        if (isChanger) {
+            canvas.drawText("" + progress + "+", cx, baseline, txtPaint);
+        } else {
+            canvas.drawText("" + progress + "", cx, baseline, txtPaint);
+        }
     }
 
 
