@@ -95,12 +95,11 @@ public class SettingActivity extends Activity {
                 finish();
             }
         });
-        //壁纸设置
-        lv_desktop_setting.setOnClickListener(new OnClickListener() {
+        //桌面应用列表设置
+        lv_applist_setting.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SettingActivity.this, ChoseImagesActivity.class));
-                finish();
+                startActivity(new Intent(SettingActivity.this, DeskTopSettingActivity.class));
             }
         });
     }

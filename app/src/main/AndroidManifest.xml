@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:testOnly="false"
         android:theme="@style/AppTheme">
-        <activity android:name="com.etang.nt_eink_launcher.settingsactivity.ChoseAppListActivity"></activity>
+        <activity
+            android:name="com.etang.nt_eink_launcher.settingsactivity.DeskTopSettingActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name="com.etang.nt_eink_launcher.settingsactivity.ChoseAppListActivity" />
         <activity
             android:name="com.etang.nt_eink_launcher.settingsactivity.SystemStringInfo"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

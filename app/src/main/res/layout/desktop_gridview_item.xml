@@ -8,11 +8,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5sp"
         android:gravity="center_vertical|center_horizontal"
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/line_appinfo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -31,6 +31,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:gravity="center_vertical|center_horizontal"
                 android:singleLine="false"
                 android:text="TextView"
