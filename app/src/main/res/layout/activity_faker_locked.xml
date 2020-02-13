@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.etang.nt_eink_launcher.locked.FakerLockedActivity">
+
+    <ImageView
+        android:id="@+id/iv_lock_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/shaper_apks_window_show" />
+
+    <ImageView
+        android:id="@+id/iv_lock_back_logo"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_lock_back"
+        app:layout_constraintEnd_toEndOf="@+id/iv_lock_back"
+        app:layout_constraintStart_toStartOf="@+id/iv_lock_back"
+        app:layout_constraintTop_toTopOf="@+id/iv_lock_back"
+        app:srcCompat="@drawable/ic_back" />
+
+    <ImageView
+        android:id="@+id/iv_lock_setting"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="15dp"
+        app:layout_constraintStart_toEndOf="@+id/iv_lock_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/shaper_apks_window_show" />
+
+    <ImageView
+        android:id="@+id/iv_lock_setting_logo"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_lock_setting"
+        app:layout_constraintEnd_toEndOf="@+id/iv_lock_setting"
+        app:layout_constraintStart_toStartOf="@+id/iv_lock_setting"
+        app:layout_constraintTop_toTopOf="@+id/iv_lock_setting"
+        app:srcCompat="@drawable/menu_setting" />
+
+    <ImageView
+        android:id="@+id/iv_lock_rundate"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="15dp"
+        app:layout_constraintStart_toEndOf="@+id/iv_lock_setting"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/shaper_apks_window_show" />
+
+    <TextView
+        android:id="@+id/iv_lock_rundate_text"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="70%"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_lock_rundate"
+        app:layout_constraintEnd_toEndOf="@+id/iv_lock_rundate"
+        app:layout_constraintStart_toStartOf="@+id/iv_lock_rundate"
+        app:layout_constraintTop_toTopOf="@+id/iv_lock_rundate" />
+
+    <TextView
+        android:id="@+id/tv_lock_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="愿风指引着你的道路，愿你的刀刃永远锋利。"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lock_time" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

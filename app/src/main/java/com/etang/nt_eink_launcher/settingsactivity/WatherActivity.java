@@ -24,7 +24,6 @@ public class WatherActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wather);
         initView();
-
         btn_wather_con.setOnClickListener(new OnClickListener() {
 
             @Override

@@ -23,6 +23,7 @@ public class SettingActivity extends Activity {
     LinearLayout lv_about_activity;
     LinearLayout lv_shuoming_activity;
     LinearLayout lv_applist_setting;
+    LinearLayout lv_weather_gone_setting;
     private TextView tv_title_text;
     private ImageView iv_title_back;
 
@@ -102,6 +103,13 @@ public class SettingActivity extends Activity {
                 startActivity(new Intent(SettingActivity.this, DeskTopSettingActivity.class));
             }
         });
+        //天气设置
+        lv_weather_gone_setting.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingActivity.this, WeatherSettingActivity.class));
+            }
+        });
     }
 
     private void initView() {
@@ -114,5 +122,6 @@ public class SettingActivity extends Activity {
         lv_shuoming_activity = (LinearLayout) findViewById(R.id.lv_shuoming_activity);
         lv_about_activity = (LinearLayout) findViewById(R.id.lv_about_activity);
         lv_applist_setting = (LinearLayout) findViewById(R.id.lv_applist_setting);
+        lv_weather_gone_setting = (LinearLayout) findViewById(R.id.lv_weather_gone_setting);
     }
 }

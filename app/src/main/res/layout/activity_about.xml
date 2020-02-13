@@ -42,48 +42,43 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="by 奶油话梅糖"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
         android:id="@+id/tv_system_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="点击查看系统参数"
-        android:textColor="#339966"
+        android:textColor="#CDCDCD"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/tv_system_fucher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="未来更新计划："
+        android:text="点击查看未来更新计划"
+        android:textColor="#CDCDCD"
+        app:layout_constraintStart_toStartOf="@+id/tv_system_info"
+        app:layout_constraintTop_toBottomOf="@+id/tv_system_qcode" />
+
+    <TextView
+        android:id="@+id/tv_system_qcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="点击查看酷安二维码"
+        android:textColor="#CDCDCD"
         app:layout_constraintStart_toStartOf="@+id/tv_system_info"
         app:layout_constraintTop_toBottomOf="@+id/tv_system_info" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="(一部分将在1.9.0到来)"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_launcher" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="隐藏APP \n 音量调节 \n 更优秀的天气 \n 隐藏/显示APP名称（1.8.9） \n 多设备适配 \n 更换掉目前使用的GridView组件 \n 软件报错反馈 \n 自定义壁纸 \n 内置悬浮球 \n 自定义APP列表数 \n 自定义图标（未知） "
-        app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 </androidx.constraintlayout.widget.ConstraintLayout>

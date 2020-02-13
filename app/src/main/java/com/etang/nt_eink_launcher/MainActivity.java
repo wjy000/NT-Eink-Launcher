@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -38,6 +40,7 @@ import android.widget.ToggleButton;
 
 import com.etang.nt_eink_launcher.adapter.DeskTopGridViewBaseAdapter;
 import com.etang.nt_eink_launcher.adapter.GetApps;
+import com.etang.nt_eink_launcher.locked.FakerLockedActivity;
 import com.etang.nt_eink_launcher.mysql.MyDataBaseHelper;
 import com.etang.nt_eink_launcher.settingsactivity.SettingActivity;
 import com.etang.nt_eink_launcher.settingsactivity.UnInstallActivity;
@@ -51,6 +54,7 @@ import com.etang.nt_launcher.R;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -78,15 +82,14 @@ public class MainActivity extends Activity implements OnClickListener {
             tv_last_updatetime;
     private MyDataBaseHelper dbHelper;
     private SQLiteDatabase db;
-    private ImageView iv_setting_button;
-    private LinearLayout line_wather;
+    private ImageView iv_setting_button, iv_setting_yinliang, iv_setting_lock;
     private MyCircleView circleView;
     public static ToggleButton tg_apps_state;
+    public static LinearLayout line_wather;
     public static String string_app_info = "";
     public static ImageView iv_index_back;
     public static GridView mListView;
     public static List<AppInfo> appInfos = new ArrayList<AppInfo>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,8 +107,6 @@ public class MainActivity extends Activity implements OnClickListener {
         rember_name();// 记住昵称
         initAppList(this);// 获取应用列表
         monitorBatteryState();// 监听电池信息
-        setNotification();//显示常驻通知
-        setFLAG_NO_CLEAR_Notification();
         /**
          * 更新天气信息
          */
@@ -214,6 +215,33 @@ public class MainActivity extends Activity implements OnClickListener {
             public boolean onLongClick(View v) {
                 show_name_dialog();
                 return true;
+            }
+        });
+        /**
+         * 唤醒系统音量控制
+         */
+        iv_setting_yinliang.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //解决华为，魅族等等手机扩音播放失败的bug
+                try {
+                    String keyCommand = "input keyevent " + KeyEvent.KEYCODE_VOLUME_UP;
+                    Runtime runtime = Runtime.getRuntime();
+                    Process proc = runtime.exec(keyCommand);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+        /**
+         * 跳转到模拟锁屏
+         */
+        iv_setting_lock.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, FakerLockedActivity.class));
+                finish();//这一次要结束当前Activity，但是要确保用户返回的时候不会出错（屏蔽返回按键）
             }
         });
     }
@@ -442,7 +470,9 @@ public class MainActivity extends Activity implements OnClickListener {
         tv_user_id = (TextView) findViewById(R.id.tv_user_id);
         tv_desk_top_time = (TextView) findViewById(R.id.tv_desk_top_time);
         line_wather = (LinearLayout) findViewById(R.id.line_wather);
+        iv_setting_lock = (ImageView) findViewById(R.id.iv_setting_lock);
         tv_city = (TextView) findViewById(R.id.tv_city);
+        iv_setting_yinliang = (ImageView) findViewById(R.id.iv_setting_yinliang);
         tv_wind = (TextView) findViewById(R.id.tv_wind);
         iv_index_back = (ImageView) findViewById(R.id.iv_index_back);
         tv_temp_state = (TextView) findViewById(R.id.tv_temp_state);
@@ -460,6 +490,23 @@ public class MainActivity extends Activity implements OnClickListener {
         tv_wind.setText(sharedPreferences.getString("wather_info_wind", null));
         tv_temp_state.setText(sharedPreferences.getString("wather_info_temp", null));
         tv_last_updatetime.setText(sharedPreferences.getString("wather_info_updatetime", null));
+        /**
+         * 判断设置是不是隐藏天气布局
+         */
+        check_weather_view(sharedPreferences);
+    }
+
+    private void check_weather_view(SharedPreferences sharedPreferences) {
+        if (sharedPreferences.getBoolean("isHind_weather", false) == true) {
+            Log.e("TAG", "1111");
+            line_wather.setVisibility(View.INVISIBLE);
+        } else if (sharedPreferences.getBoolean("isHind_weather", false) == false) {
+            Log.e("TAG", "2222");
+            line_wather.setVisibility(View.VISIBLE);
+        } else {
+            Log.e("TAG", "3333");
+            line_wather.setVisibility(View.VISIBLE);
+        }
     }
 
     private Handler mHandler = new Handler() {
@@ -501,6 +548,8 @@ public class MainActivity extends Activity implements OnClickListener {
                                 + tv_time_hour.getText().toString() + ":"
                                 + tv_time_min.getText().toString() + "更新");
                         editor.apply();
+
+                        Log.e("TAG", "更新成功");
                         /**
                          * 更新天气信息
                          */
@@ -738,29 +787,5 @@ public class MainActivity extends Activity implements OnClickListener {
             default:
                 break;
         }
-    }
-
-    public void setFLAG_NO_CLEAR_Notification() {
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        long when = System.currentTimeMillis();
-        Notification notification = new Notification.Builder(MainActivity.this).setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle("").setContentText("常驻通知已开启").setTicker("").setWhen(when)
-                .setAutoCancel(true).setDefaults(Notification.DEFAULT_SOUND)
-                .setContentIntent(null).build();
-        //<span style="color: rgb(34, 34, 34); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 22.1px;">使得服务能挂在通知栏</span>
-        notification.flags = Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
-        notificationManager.notify(1, notification);
-
-    }
-
-    // 添加常驻通知
-    private void setNotification() {
-
-    }
-
-    // 取消通知
-    private void cancelNotification() {
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.cancel(R.string.app_name);
     }
 }

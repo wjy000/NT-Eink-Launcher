@@ -98,6 +98,23 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lv_weather_gone_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/shaper_apks_button_window_show"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5sp"
+                    android:text="天气设置" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/lv_about_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -141,6 +158,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="点击两次右下角打开关闭应用列表即可" />
+
+            <TextView
+                android:id="@+id/textView10091"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="多看官方群：759073050" />
+
+            <TextView
+                android:id="@+id/textView10092"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="本人博客：naiyouhuameitang.club" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
