@@ -1,17 +1,18 @@
 package com.etang.nt_eink_launcher.locked;
 
-import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
 import android.os.BatteryManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
-import android.text.format.Formatter;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,28 +20,36 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.etang.nt_eink_launcher.MainActivity;
 import com.etang.nt_eink_launcher.receive.ScreenListener;
 import com.etang.nt_eink_launcher.toast.DiyToast;
+import com.etang.nt_eink_launcher.util.GetUtils;
+import com.etang.nt_eink_launcher.util.JsonService;
 import com.etang.nt_launcher.R;
+import com.google.gson.Gson;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class FakerLockedActivity extends AppCompatActivity {
     private ImageView iv_lock_back, iv_lock_back_logo, iv_lock_setting_logo, iv_lock_setting;
     public static final int FLAG_HOMEKEY_DISPATCHED = 0x80000000; //需要自己定义标志
-    private TextView tv_time_lock, iv_lock_rundate_text;
+    private TextView tv_time_lock, iv_lock_rundate_text, tv_one_text;
     private ScreenListener screenListener;
     private BroadcastReceiver batteryLevelRcvr;
     private IntentFilter batteryLevelFilter;
+    static String url = "https://v1.hitokoto.cn/";
+    String string = "";
+    String Hitokoto = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +63,7 @@ public class FakerLockedActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.activity_faker_locked);
         initView();
+        countTime_ontText();
         monitorBatteryState();//电量监听
 //        iv_lock_rundate_text.setText(RunTimeDate.getUsedPercentValue(FakerLockedActivity.this));
         iv_lock_back.setOnClickListener(new View.OnClickListener() {
@@ -73,14 +83,45 @@ public class FakerLockedActivity extends AppCompatActivity {
         iv_lock_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendKeyCode1(223);
+                if (isOpenNetwork()) {
+                    GET("https://v1.hitokoto.cn/");
+                    CountDownTimer countDownTimer = new CountDownTimer(1000, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            tv_one_text.setText(Hitokoto);
+                        }
+                    }.start();
+                } else {
+                    open_wifi();
+                }
             }
         });
 
         iv_lock_setting_logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendKeyCode1(223);
+//                sendKeyCode1(223);
+                if (isOpenNetwork()) {
+                    GET("https://v1.hitokoto.cn/");
+                    CountDownTimer countDownTimer = new CountDownTimer(1000, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            tv_one_text.setText(Hitokoto);
+                        }
+                    }.start();
+                } else {
+                    open_wifi();
+                }
             }
         });
         screenListener = new ScreenListener(FakerLockedActivity.this);
@@ -107,6 +148,37 @@ public class FakerLockedActivity extends AppCompatActivity {
         handler.post(runnable);
     }
 
+    private void countTime_ontText() {
+        CountDownTimer timer = new CountDownTimer(600000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                GET("https://v1.hitokoto.cn/");
+                countTime_ontText_get();
+            }
+        }.start();
+    }
+
+    private void countTime_ontText_get() {
+        CountDownTimer timer = new CountDownTimer(2000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                tv_one_text.setText(Hitokoto);
+                countTime_ontText();
+            }
+        }.start();
+    }
+
+
     private void sendKeyCode1(int keyCode) {
         try {
             String keyCommand = "input keyevent " + keyCode;
@@ -130,6 +202,7 @@ public class FakerLockedActivity extends AppCompatActivity {
         iv_lock_setting_logo = (ImageView) findViewById(R.id.iv_lock_setting_logo);
         tv_time_lock = (TextView) findViewById(R.id.tv_lock_time);
         iv_lock_rundate_text = (TextView) findViewById(R.id.iv_lock_rundate_text);
+        tv_one_text = (TextView) findViewById(R.id.tv_one_text);
     }
 
 
@@ -231,5 +304,101 @@ public class FakerLockedActivity extends AppCompatActivity {
         };
         batteryLevelFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         registerReceiver(batteryLevelRcvr, batteryLevelFilter);
+    }
+
+    private void open_wifi() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(FakerLockedActivity.this);
+        builder.setTitle("没有可用的网络").setMessage("请打开WIFI或数据流量");
+
+        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = null;
+
+                try {
+                    String sdkVersion = android.os.Build.VERSION.SDK;
+                    if (Integer.valueOf(sdkVersion) > 10) {
+                        intent = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
+                    } else {
+                        intent = new Intent();
+                        ComponentName comp2 = new ComponentName("com.android.settings", Settings.ACTION_WIFI_SETTINGS);
+
+                        ComponentName comp = new ComponentName("com.android.settings", "com.android.settings.WirelessSettings");
+                        intent.setComponent(comp2);
+                        intent.setAction("android.intent.action.VIEW");
+                    }
+                    FakerLockedActivity.this.startActivity(intent);
+                } catch (Exception e) {
+                    Log.e("TAG", "open network settings failed, please check...");
+                    e.printStackTrace();
+                }
+            }
+        }).setNegativeButton("否", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                finish();
+            }
+        }).show();
+    }
+
+    /**
+     * 对网络连接状态进行判断
+     *
+     * @return true, 可用； false， 不可用
+     */
+    private boolean isOpenNetwork() {
+        ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connManager.getActiveNetworkInfo() != null) {
+            return connManager.getActiveNetworkInfo().isAvailable();
+        }
+        return false;
+    }
+
+    /**
+     * okhttp封装
+     *
+     * @param url
+     */
+    public void GET(String url) {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        final Request request = new Request.Builder()
+                .url(url)
+                .build();
+        final Call call = okHttpClient.newCall(request);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Response response = call.execute();
+                    string = response.body().string();
+                    getJson(string);
+                    Log.e("GET", string);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e("ERROE", e.toString());
+                    if (e.toString().equals("java.net.UnknownHostException: Unable to resolve host \"v1.hitokoto.cn\": No address associated with hostname")) {
+                        Log.e("错误", "无网络");
+                    }
+                }
+            }
+        }).start();
+    }
+
+    /**
+     * 获取返回的Json内容
+     *
+     * @param res
+     * @return
+     */
+    public JsonService getJson(String res) {
+        Gson gson = new Gson();
+        JsonService json = gson.fromJson(res, JsonService.class);
+        Hitokoto = json.getHitokoto();
+        Log.e("getHitokoto", json.getHitokoto());
+        Log.e("getId", String.valueOf(json.getId()));
+        Log.e("getFrom", json.getFrom());
+        Log.e("getFrom_who", String.valueOf(json.getFrom_who()));
+        return json;
     }
 }

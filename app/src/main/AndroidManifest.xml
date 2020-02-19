@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +15,17 @@
         android:supportsRtl="true"
         android:testOnly="false"
         android:theme="@style/AppTheme">
+        <activity
+            android:name="com.etang.nt_eink_launcher.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.etang.nt_eink_launcher.locked.FakerLockedActivity"
             android:screenOrientation="landscape"
@@ -31,9 +43,6 @@
             android:name="com.etang.nt_eink_launcher.settingsactivity.DeskTopSettingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.etang.nt_eink_launcher.settingsactivity.SystemStringInfo"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
             android:name="com.etang.nt_eink_launcher.settingsactivity.SettingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -42,19 +51,6 @@
         <activity
             android:name="com.etang.nt_eink_launcher.settingsactivity.ChoseImagesActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
-        <activity
-            android:name="com.etang.nt_eink_launcher.MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.MONKEY" />
-                <category android:name="android.intent.category.LAUNCHER_APP" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.HOME" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name="com.etang.nt_eink_launcher.settingsactivity.UnInstallActivity"
             android:label=""

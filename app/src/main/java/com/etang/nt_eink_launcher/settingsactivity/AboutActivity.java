@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.etang.nt_launcher.R;
 
 public class AboutActivity extends AppCompatActivity {
-    TextView tv_system_info, tv_system_coolapk, tv_system_fucher;
+    TextView tv_system_coolapk, tv_system_fucher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +31,11 @@ public class AboutActivity extends AppCompatActivity {
         /**
          * 增加下划线
          */
-        tv_system_info.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
-        tv_system_info.getPaint().setAntiAlias(true);//抗锯齿
         tv_system_coolapk.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
         tv_system_coolapk.getPaint().setAntiAlias(true);//抗锯齿
         tv_system_fucher.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
         tv_system_fucher.getPaint().setAntiAlias(true);//抗锯齿
 
-        tv_system_info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AboutActivity.this, SystemStringInfo.class));
-            }
-        });
         tv_system_coolapk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +60,6 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tv_system_info = (TextView) findViewById(R.id.tv_system_info);
         tv_system_coolapk = (TextView) findViewById(R.id.tv_system_qcode);
         tv_system_fucher = (TextView) findViewById(R.id.tv_system_fucher);
     }

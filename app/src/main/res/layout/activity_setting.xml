@@ -42,7 +42,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="应用列表设置" />
+                    android:text="列表设置" />
             </LinearLayout>
 
             <LinearLayout
@@ -58,24 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
-                    android:text="打开多看设置" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lv_open_dk_window"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/shaper_apks_button_window_show"
-                android:gravity="center_vertical|center_horizontal"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5sp"
-                    android:text="打开悬浮球（请先安装）" />
+                    android:text="系统设置" />
 
             </LinearLayout>
 
@@ -158,13 +141,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="点击两次右下角打开关闭应用列表即可" />
-
-            <TextView
-                android:id="@+id/textView10091"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="多看官方群：759073050" />
 
             <TextView
                 android:id="@+id/textView10092"

@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
-    tools:context="com.etang.nt_eink_launcher.MainActivity">
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -105,29 +104,15 @@
                 android:id="@+id/iv_setting_button"
                 android:layout_width="30sp"
                 android:layout_height="30sp"
-                android:layout_margin="5sp"
+                android:layout_margin="5dp"
                 android:src="@drawable/menu_setting" />
 
             <ImageView
                 android:id="@+id/iv_setting_lock"
                 android:layout_width="30sp"
                 android:layout_height="30sp"
-                android:layout_margin="5sp"
-                android:src="@drawable/menu_lock" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="horizontal">
-
-            <com.etang.nt_eink_launcher.view.MyCircleView
-                android:id="@+id/circle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"></com.etang.nt_eink_launcher.view.MyCircleView>
+                android:layout_margin="5dp"
+                android:src="@mipmap/menu_lock" />
         </LinearLayout>
 
         <LinearLayout
@@ -141,14 +126,14 @@
                 android:id="@+id/iv_setting_yinliang"
                 android:layout_width="30sp"
                 android:layout_height="30sp"
-                android:layout_margin="5sp"
-                android:src="@drawable/menu_yinliang" />
+                android:layout_margin="5dp"
+                android:src="@mipmap/menu_yinliang" />
 
             <ToggleButton
                 android:id="@+id/tg_apps_state"
                 android:layout_width="30sp"
                 android:layout_height="30sp"
-                android:layout_margin="5sp"
+                android:layout_margin="5dp"
                 android:background="@drawable/select_apps_state"
                 android:textOff=""
                 android:textOn="" />
@@ -194,7 +179,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/tv_desk_top_time"
+        android:id="@+id/tv_main_batterystate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

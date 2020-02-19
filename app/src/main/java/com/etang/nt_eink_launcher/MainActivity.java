@@ -2,9 +2,6 @@ package com.etang.nt_eink_launcher;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,12 +10,12 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +38,7 @@ import android.widget.ToggleButton;
 import com.etang.nt_eink_launcher.adapter.DeskTopGridViewBaseAdapter;
 import com.etang.nt_eink_launcher.adapter.GetApps;
 import com.etang.nt_eink_launcher.locked.FakerLockedActivity;
+import com.etang.nt_eink_launcher.mysql.MyAppHindSQLite;
 import com.etang.nt_eink_launcher.mysql.MyDataBaseHelper;
 import com.etang.nt_eink_launcher.settingsactivity.SettingActivity;
 import com.etang.nt_eink_launcher.settingsactivity.UnInstallActivity;
@@ -48,7 +46,6 @@ import com.etang.nt_eink_launcher.settingsactivity.WatherActivity;
 import com.etang.nt_eink_launcher.toast.DiyToast;
 import com.etang.nt_eink_launcher.util.AppInfo;
 import com.etang.nt_eink_launcher.util.StreamTool;
-import com.etang.nt_eink_launcher.view.MyCircleView;
 import com.etang.nt_launcher.R;
 
 import org.json.JSONArray;
@@ -78,12 +75,12 @@ public class MainActivity extends Activity implements OnClickListener {
     private Handler handler;
     private Runnable runnable;
     private TextView tv_user_id, tv_time_hour, tv_time_min,
-            tv_desk_top_time, tv_city, tv_wind, tv_temp_state,
+            tv_main_batterystate, tv_city, tv_wind, tv_temp_state,
             tv_last_updatetime;
-    private MyDataBaseHelper dbHelper;
+    private MyDataBaseHelper dbHelper_name_sql;
+    private MyAppHindSQLite dbHelper_app_hind;
     private SQLiteDatabase db;
     private ImageView iv_setting_button, iv_setting_yinliang, iv_setting_lock;
-    private MyCircleView circleView;
     public static ToggleButton tg_apps_state;
     public static LinearLayout line_wather;
     public static String string_app_info = "";
@@ -129,7 +126,6 @@ public class MainActivity extends Activity implements OnClickListener {
             images_upgrade();
         }
         images_upgrade();//更新图像信息
-
         // 长按弹出APP信息
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -138,6 +134,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 string_app_info = appInfos.get(position).getPackageName();
                 Intent intent = new Intent(MainActivity.this, UnInstallActivity.class);
                 startActivity(intent);
+                Log.e("CHOSE ID", String.valueOf(id));
                 return true;
             }
         });
@@ -155,6 +152,7 @@ public class MainActivity extends Activity implements OnClickListener {
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 }
+                Log.e("CHOSE ID", String.valueOf(id));
             }
         });
         // 默认抽屉显示状态
@@ -178,26 +176,6 @@ public class MainActivity extends Activity implements OnClickListener {
                 }
             }
         });
-        // 点击更新天气
-        line_wather.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Cursor cursor = db.rawQuery("select * from wather_city", null);
-                if (cursor.getCount() != 0) {
-                    cursor.moveToFirst();
-                    update_wather(MainActivity.this,
-                            cursor.getString(cursor.getColumnIndex("city")));
-                    /**
-                     * 更新天气信息
-                     */
-                    SharedPreferences sharedPreferences;
-                    sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-                    update_wathers(sharedPreferences);
-                }
-            }
-        });
         //长按弹出菜单选择城市
         line_wather.setOnLongClickListener(new OnLongClickListener() {
 
@@ -215,33 +193,6 @@ public class MainActivity extends Activity implements OnClickListener {
             public boolean onLongClick(View v) {
                 show_name_dialog();
                 return true;
-            }
-        });
-        /**
-         * 唤醒系统音量控制
-         */
-        iv_setting_yinliang.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //解决华为，魅族等等手机扩音播放失败的bug
-                try {
-                    String keyCommand = "input keyevent " + KeyEvent.KEYCODE_VOLUME_UP;
-                    Runtime runtime = Runtime.getRuntime();
-                    Process proc = runtime.exec(keyCommand);
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
-        /**
-         * 跳转到模拟锁屏
-         */
-        iv_setting_lock.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, FakerLockedActivity.class));
-                finish();//这一次要结束当前Activity，但是要确保用户返回的时候不会出错（屏蔽返回按键）
             }
         });
     }
@@ -398,10 +349,43 @@ public class MainActivity extends Activity implements OnClickListener {
      * @param context
      */
     public static void initAppList(Context context) {
-        appInfos = GetApps.GetAppList1(context);
-        DeskTopGridViewBaseAdapter deskTopGridViewBaseAdapter = new DeskTopGridViewBaseAdapter(appInfos,
-                context);
-        mListView.setAdapter(deskTopGridViewBaseAdapter);
+        try {
+            appInfos = GetApps.GetAppList1(context);
+            SharedPreferences sharedPreferences;
+            sharedPreferences = context.getSharedPreferences("info", MODE_PRIVATE);
+            String images_mode = sharedPreferences.getString("app_hind_info", null);
+//            String[] APP_HIND_INFO = {images_mode};
+//            String[] APP_HIND_INFO = {};
+            ArrayList<String> arrayList = new ArrayList<>();
+            if (Build.BRAND.equals("Allwinner")) {
+                arrayList.clear();
+                arrayList.add("com.android.settings");
+                arrayList.add("com.android.mgs.pinyin");
+                arrayList.add("com.duokan.einkreader");
+                arrayList.add("com.mgs.factorytest");
+                arrayList.add("com.softwinner.explore");
+                Log.e("ARRAYLIST", arrayList.toString());
+            }
+            for (int j = 0; j < arrayList.size(); j++) {
+                for (int i = 0; i < appInfos.size(); i++) {
+                    if (arrayList.get(j).equals(appInfos.get(i).getPackageName())) {
+                        Log.e("APPDATA-------", appInfos.get(i).getPackageName());
+                        appInfos.remove(i);
+                        continue;
+                    }
+                }
+            }
+            DeskTopGridViewBaseAdapter deskTopGridViewBaseAdapter = new DeskTopGridViewBaseAdapter(appInfos,
+                    context);
+            mListView.setAdapter(deskTopGridViewBaseAdapter);
+        } catch (Exception e) {
+            /**
+             * 填充预设数据
+             */
+            SharedPreferences.Editor editor = context.getSharedPreferences("info", MODE_PRIVATE).edit();
+            editor.putString("app_hind_info", "");
+            editor.apply();
+        }
     }
 
     /**
@@ -435,10 +419,6 @@ public class MainActivity extends Activity implements OnClickListener {
                         "HH");
                 SimpleDateFormat simpleDateFormat_min = new SimpleDateFormat(
                         "mm");
-                SimpleDateFormat simpleDateFormat_year = new SimpleDateFormat(
-                        "yyyy年MM月dd日");
-                tv_desk_top_time.setText(simpleDateFormat_year
-                        .format(new java.util.Date()));
                 tv_time_hour.setText(simpleDateFormat_hour
                         .format(new java.util.Date()));
                 tv_time_min.setText(simpleDateFormat_min
@@ -468,7 +448,7 @@ public class MainActivity extends Activity implements OnClickListener {
         tg_apps_state = (ToggleButton) findViewById(R.id.tg_apps_state);
         tv_time_min = (TextView) findViewById(R.id.tv_time_min);
         tv_user_id = (TextView) findViewById(R.id.tv_user_id);
-        tv_desk_top_time = (TextView) findViewById(R.id.tv_desk_top_time);
+        tv_main_batterystate = (TextView) findViewById(R.id.tv_main_batterystate);
         line_wather = (LinearLayout) findViewById(R.id.line_wather);
         iv_setting_lock = (ImageView) findViewById(R.id.iv_setting_lock);
         tv_city = (TextView) findViewById(R.id.tv_city);
@@ -477,13 +457,14 @@ public class MainActivity extends Activity implements OnClickListener {
         iv_index_back = (ImageView) findViewById(R.id.iv_index_back);
         tv_temp_state = (TextView) findViewById(R.id.tv_temp_state);
         tv_last_updatetime = (TextView) findViewById(R.id.tv_last_updatetime);
-        circleView = (MyCircleView) findViewById(R.id.circle);
-        circleView.setProgress(0, false);//默认0进度，清空
-        tv_user_id.setOnClickListener(this);
         iv_setting_button.setOnClickListener(this);
-        dbHelper = new MyDataBaseHelper(getApplicationContext(), "info.db",
+        line_wather.setOnClickListener(this);
+        iv_setting_yinliang.setOnClickListener(this);
+        iv_setting_lock.setOnClickListener(this);
+        dbHelper_name_sql = new MyDataBaseHelper(getApplicationContext(), "info.db",
                 null, 2);
-        db = dbHelper.getWritableDatabase();
+        dbHelper_app_hind = new MyAppHindSQLite(getApplicationContext(), "info_app_hind.db", null, 2);
+        db = dbHelper_name_sql.getWritableDatabase();
     }
 
     private void update_wathers(SharedPreferences sharedPreferences) {
@@ -674,19 +655,19 @@ public class MainActivity extends Activity implements OnClickListener {
                 } else {
                     if (status == BatteryManager.BATTERY_STATUS_FULL) {//充电完成
                         sb.append(String.valueOf(level) + "% " + " 充电完成 ");
-                        circleView.setProgress(level, false);
+                        tv_main_batterystate.setText(sb.toString());
                     }
                     if (status == BatteryManager.BATTERY_STATUS_CHARGING) {//充电
                         sb.append(String.valueOf(level) + "% " + " 正在充电 ");
-                        circleView.setProgress(level, true);
+                        tv_main_batterystate.setText(sb.toString());
                     }
                     if (status == BatteryManager.BATTERY_STATUS_DISCHARGING) {//放电
                         sb.append(String.valueOf(level) + "% " + " 使用中 ");
-                        circleView.setProgress(level, false);
+                        tv_main_batterystate.setText(sb.toString());
                     }
                     if (status == BatteryManager.BATTERY_STATUS_NOT_CHARGING) {//未在充电
                         sb.append(String.valueOf(level) + "% " + " 使用中 ");
-                        circleView.setProgress(level, false);
+                        tv_main_batterystate.setText(sb.toString());
                     }
                 }
                 sb.append(' ');
@@ -702,10 +683,10 @@ public class MainActivity extends Activity implements OnClickListener {
         View view = LayoutInflater.from(MainActivity.this).inflate(
                 R.layout.dialog_name_show, null, false);
         builder.setView(view);
-        Window window = builder.getWindow();
-        builder.getWindow();
-        window.setGravity(Gravity.CENTER); // 底部位置
-        window.setContentView(view);
+//        Window window = builder.getWindow();
+//        builder.getWindow();
+//        window.setGravity(Gravity.CENTER); // 底部位置
+//        window.setContentView(view);
         final EditText et_name_get = (EditText) view
                 .findViewById(R.id.et_title_name);
         final RadioButton ra_0 = (RadioButton) view
@@ -783,6 +764,35 @@ public class MainActivity extends Activity implements OnClickListener {
         switch (v.getId()) {
             case R.id.iv_setting_button:
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                break;
+            case R.id.line_wather:
+                Cursor cursor = db.rawQuery("select * from wather_city", null);
+                if (cursor.getCount() != 0) {
+                    cursor.moveToFirst();
+                    update_wather(MainActivity.this,
+                            cursor.getString(cursor.getColumnIndex("city")));
+                    /**
+                     * 更新天气信息
+                     */
+                    SharedPreferences sharedPreferences;
+                    sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+                    update_wathers(sharedPreferences);
+                }
+                break;
+            case R.id.iv_setting_yinliang:
+                //解决华为，魅族等等手机扩音播放失败的bug
+                try {
+                    String keyCommand = "input keyevent " + KeyEvent.KEYCODE_VOLUME_UP;
+                    Runtime runtime = Runtime.getRuntime();
+                    Process proc = runtime.exec(keyCommand);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                break;
+            case R.id.iv_setting_lock:
+                startActivity(new Intent(MainActivity.this, FakerLockedActivity.class));
+                finish();//这一次要结束当前Activity，但是要确保用户返回的时候不会出错（屏蔽返回按键）
                 break;
             default:
                 break;

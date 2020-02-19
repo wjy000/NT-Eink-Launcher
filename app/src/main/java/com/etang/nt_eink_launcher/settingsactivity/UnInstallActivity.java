@@ -2,6 +2,7 @@ package com.etang.nt_eink_launcher.settingsactivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,8 +26,7 @@ import com.etang.nt_launcher.R;
 public class UnInstallActivity extends Activity {
 
     private TextView tv_pack_name;
-    private Button btn_uninstall_con;
-    private Button btn_uninstall_cls;
+    private Button btn_uninstall_con, btn_uninstall_cls, btn_hind_con;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,16 @@ public class UnInstallActivity extends Activity {
             @Override
             public void onClick(View v) {
                 UninstallApk();
+            }
+        });
+        // 隐藏按钮
+        btn_hind_con.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
+                editor.putString("app_hind_info", MainActivity.string_app_info);
+                editor.apply();
+                finish();
             }
         });
         // 关闭按钮
@@ -64,6 +74,7 @@ public class UnInstallActivity extends Activity {
         // TODO Auto-generated method stub
         btn_uninstall_con = (Button) findViewById(R.id.btn_uninstall_con);
         btn_uninstall_cls = (Button) findViewById(R.id.btn_uninstall_cls);
+        btn_hind_con = (Button) findViewById(R.id.btn_hind_con);
         tv_pack_name = (TextView) findViewById(R.id.tv_pack_name);
     }
 

@@ -42,23 +42,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/tv_system_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="点击查看系统参数"
-        android:textColor="#CDCDCD"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
         android:id="@+id/tv_system_fucher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="点击查看未来更新计划"
         android:textColor="#CDCDCD"
-        app:layout_constraintStart_toStartOf="@+id/tv_system_info"
+        app:layout_constraintStart_toStartOf="@+id/tv_system_qcode"
         app:layout_constraintTop_toBottomOf="@+id/tv_system_qcode" />
 
     <TextView
@@ -68,8 +58,8 @@
         android:layout_marginTop="8dp"
         android:text="点击查看酷安二维码"
         android:textColor="#CDCDCD"
-        app:layout_constraintStart_toStartOf="@+id/tv_system_info"
-        app:layout_constraintTop_toBottomOf="@+id/tv_system_info" />
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <ImageView
         android:id="@+id/imageView2"

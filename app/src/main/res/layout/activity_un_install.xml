@@ -58,6 +58,15 @@
                     android:text="卸载" />
 
                 <Button
+                    android:id="@+id/btn_hind_con"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shaper_apks_button_window_show"
+                    android:text="隐藏" />
+
+                <Button
                     android:id="@+id/btn_uninstall_cls"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
