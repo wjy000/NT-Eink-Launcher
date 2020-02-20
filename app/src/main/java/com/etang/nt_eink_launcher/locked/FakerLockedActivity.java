@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.net.ConnectivityManager;
 import android.os.BatteryManager;
 import android.os.Bundle;
@@ -54,7 +55,6 @@ public class FakerLockedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //全屏
         this.getWindow().setFlags(FLAG_HOMEKEY_DISPATCHED, FLAG_HOMEKEY_DISPATCHED);//关键代码
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -124,6 +124,9 @@ public class FakerLockedActivity extends AppCompatActivity {
                 }
             }
         });
+        /**
+         * 屏幕监听
+         */
         screenListener = new ScreenListener(FakerLockedActivity.this);
         screenListener.begin(new ScreenListener.ScreenStateListener() {
             @Override

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="400dp"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/et_dialog_applist_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="手动输入任何数字，可能会导致BUG"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请滑动："
+        android:textSize="15dp" />
+
+    <SeekBar
+        android:id="@+id/seekBar_listnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="5" />
+
+    <TextView
+        android:id="@+id/tv_listnumber_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="1列"
+        android:textSize="15dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btn_dialog_listnumber_con"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shaper_apks_button_window_show"
+            android:text="确定" />
+
+        <Button
+            android:id="@+id/btn_dialog_listnumber_auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shaper_apks_button_window_show"
+            android:text="自动" />
+
+        <Button
+            android:id="@+id/btn_dialog_listnumber_cls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shaper_apks_button_window_show"
+            android:text="关闭" />
+    </LinearLayout>
+</LinearLayout>

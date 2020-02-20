@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher.adapter;
+package com.etang.nt_eink_launcher.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,7 +9,7 @@ public class SaveArrayListUtil {
     /**
      * 将arrayList的内容保存到sp里
      */
-    public void saveArrayList(Context context, ArrayList searchList, String content) {
+    public static void saveArrayList(Context context, ArrayList searchList, String content) {
         //searchList里“无数据”
         if (searchList.size() == 0) {
             //直接存
@@ -44,7 +44,7 @@ public class SaveArrayListUtil {
     /**
      * 读取sp里的数组
      */
-    public ArrayList<String> getSearchArrayList(Context context) {
+    public static ArrayList<String> getSearchArrayList(Context context) {
         //先定位到文件
         SharedPreferences preferDataList = context.getSharedPreferences(
                 "SearchDataList", context.MODE_PRIVATE);

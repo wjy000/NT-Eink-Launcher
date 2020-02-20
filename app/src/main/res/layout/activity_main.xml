@@ -11,7 +11,14 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/linearLayout2"
         android:layout_below="@+id/tv_user_id"
-        android:layout_alignLeft="@+id/linearLayout2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -79,6 +86,8 @@
                 android:id="@+id/iv_index_back"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 app:srcCompat="@mipmap/mi_erji" />
 
         </RelativeLayout>
@@ -146,26 +155,6 @@
         android:layout_height="1sp"
         android:layout_alignBottom="@+id/linearLayout1"
         android:layout_alignParentLeft="true"
-        android:background="#000" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2sp"
-        android:layout_alignParentTop="true"
-        android:background="#000" />
-
-    <View
-        android:layout_width="2sp"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:background="#000" />
-
-    <View
-        android:layout_width="2sp"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:background="#000" />
 
     <TextView

@@ -12,7 +12,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.etang.nt_eink_launcher.MainActivity;
+import com.etang.nt_eink_launcher.util.SaveArrayListUtil;
 import com.etang.nt_launcher.R;
+
+import java.util.ArrayList;
 
 /**
  * @author Administrator
@@ -27,12 +30,15 @@ public class UnInstallActivity extends Activity {
 
     private TextView tv_pack_name;
     private Button btn_uninstall_con, btn_uninstall_cls, btn_hind_con;
+    ArrayList<String> arrayList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_un_install);
         initView();
+        //开启卸载界面的时候获取存储在本地的包名
+        arrayList = SaveArrayListUtil.getSearchArrayList(UnInstallActivity.this);
         // 卸载按钮
         btn_uninstall_con.setOnClickListener(new OnClickListener() {
             @Override
@@ -44,9 +50,11 @@ public class UnInstallActivity extends Activity {
         btn_hind_con.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
-                editor.putString("app_hind_info", MainActivity.string_app_info);
-                editor.apply();
+                arrayList.clear();
+                arrayList = SaveArrayListUtil.getSearchArrayList(UnInstallActivity.this);
+                arrayList.add(MainActivity.string_app_info);
+                Log.e("UnInstall_arrayList", arrayList.toString());
+                SaveArrayListUtil.saveArrayList(UnInstallActivity.this, arrayList, "start");//存储在本地
                 finish();
             }
         });
@@ -58,12 +66,12 @@ public class UnInstallActivity extends Activity {
                 // TODO Auto-generated method stub
                 MainActivity.initAppList(getApplicationContext());// 刷新应用列表
                 finish();// 结束当前活动
-                try {
-                    //虚拟返回按钮
-                    Runtime.getRuntime().exec("input keyevent 4");
-                } catch (Exception e) {
-                    Log.e("runtime", "error");
-                }
+//                try {
+//                    //虚拟返回按钮
+//                    Runtime.getRuntime().exec("input keyevent 4");
+//                } catch (Exception e) {
+//                    Log.e("runtime", "error");
+//                }
             }
         });
         // 设置显示包名

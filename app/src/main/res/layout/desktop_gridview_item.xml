@@ -14,8 +14,7 @@
         <LinearLayout
             android:id="@+id/line_appinfo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical">
 
@@ -24,6 +23,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_margin="10dp"
                 android:src="@drawable/ic_launcher" />
 
             <TextView
@@ -33,6 +33,7 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
                 android:gravity="center_vertical|center_horizontal"
                 android:singleLine="false"
                 android:text="TextView"

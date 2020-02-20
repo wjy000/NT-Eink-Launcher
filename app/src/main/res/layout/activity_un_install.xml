@@ -75,6 +75,13 @@
                     android:background="@drawable/shaper_apks_button_window_show"
                     android:text="关闭" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="隐藏是单次的，即点击隐藏后，除非卸载重装或清空数据，否则无法恢复，且藏且珍惜" />
         </LinearLayout>
     </LinearLayout>
 

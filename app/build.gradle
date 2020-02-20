@@ -7,8 +7,8 @@ android {
         applicationId "com.etang.nt_launcher"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 1912
-        versionName "1.9.1 beta2"
+        versionCode 1920
+        versionName "1.9.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

@@ -20,7 +20,6 @@ public class SettingActivity extends Activity {
 
     LinearLayout lv_desktop_setting;
     LinearLayout lv_about_activity;
-    LinearLayout lv_shuoming_activity;
     LinearLayout lv_applist_setting;
     LinearLayout lv_weather_gone_setting;
     private TextView tv_title_text;
@@ -48,7 +47,6 @@ public class SettingActivity extends Activity {
         //隐藏暂时无用的选项
         if (!Build.BRAND.toString().equals("Allwinner")) {
         }
-        lv_shuoming_activity.setVisibility(View.GONE);//说明
         //打开关于界面
         lv_about_activity.setOnClickListener(new OnClickListener() {
             @Override
@@ -98,7 +96,6 @@ public class SettingActivity extends Activity {
         tv_title_text = (TextView) findViewById(R.id.tv_title_text);
         iv_title_back = (ImageView) findViewById(R.id.iv_title_back);
         lv_desktop_setting = (LinearLayout) findViewById(R.id.lv_desktop_setting);
-        lv_shuoming_activity = (LinearLayout) findViewById(R.id.lv_shuoming_activity);
         lv_about_activity = (LinearLayout) findViewById(R.id.lv_about_activity);
         lv_applist_setting = (LinearLayout) findViewById(R.id.lv_applist_setting);
         lv_weather_gone_setting = (LinearLayout) findViewById(R.id.lv_weather_gone_setting);

@@ -8,6 +8,7 @@
         android:id="@+id/mListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:columnWidth="90dp"
         android:fadingEdge="none"
         android:horizontalSpacing="10dp"

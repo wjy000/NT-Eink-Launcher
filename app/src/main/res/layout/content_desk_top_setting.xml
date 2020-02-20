@@ -15,83 +15,103 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></include>
 
-    <RadioGroup
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include2">
 
-        <RadioButton
-            android:id="@+id/ra_appname_one"
+
+        <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="仅显示单行应用名称" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include2">
 
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="APP名称会被限制为单行，当应用名称超过显示范围的时候，应用名称后半部分会被虚化隐藏无法显示"
-            android:textSize="12dp" />
+            <RadioButton
+                android:id="@+id/ra_appname_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="仅显示单行应用名称" />
 
-        <RadioButton
-            android:id="@+id/ra_appname_hind"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="隐藏全部应用名称" />
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="APP名称会被限制为单行，当应用名称超过显示范围的时候，应用名称后半部分会被虚化隐藏无法显示"
+                android:textSize="12dp" />
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="隐藏APP名称"
-            android:textSize="12dp" />
+            <RadioButton
+                android:id="@+id/ra_appname_hind"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="隐藏全部应用名称" />
 
-        <RadioButton
-            android:id="@+id/ra_appname_nope"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="默认全部显示应用名称" />
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="隐藏APP名称"
+                android:textSize="12dp" />
 
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="APP名称没有任何限制，但可能会造成APP间隙过大或APP图标错位"
-            android:textSize="12dp" />
+            <RadioButton
+                android:id="@+id/ra_appname_nope"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="默认全部显示应用名称" />
 
-        <RadioButton
-            android:id="@+id/ra_app_show_blok"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="显示方框" />
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="APP名称没有任何限制，但可能会造成APP间隙过大或APP图标错位"
+                android:textSize="12dp" />
 
-        <TextView
-            android:id="@+id/textView321"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="将会在APP周围显示黑色方框"
-            android:textSize="12dp" />
+            <RadioButton
+                android:id="@+id/ra_app_show_blok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="显示方框" />
 
-        <RadioButton
-            android:id="@+id/ra_app_hind_blok"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="隐藏方框" />
+            <TextView
+                android:id="@+id/textView321"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="将会在APP周围显示黑色方框"
+                android:textSize="12dp" />
 
-        <TextView
-            android:id="@+id/textView123"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="将会在APP周围隐藏黑色方框"
-            android:textSize="12dp" />
+            <RadioButton
+                android:id="@+id/ra_app_hind_blok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="隐藏方框" />
 
-    </RadioGroup>
+            <TextView
+                android:id="@+id/textView123"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="将会在APP周围隐藏黑色方框"
+                android:textSize="12dp" />
 
+            <TextView
+                android:id="@+id/tv_gridlist_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:text="设置应用列表列数"
+                android:textColor="#000"
+                android:textSize="20dp" />
+
+        </RadioGroup>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

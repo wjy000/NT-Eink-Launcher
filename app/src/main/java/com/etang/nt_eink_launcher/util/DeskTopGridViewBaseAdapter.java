@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher.adapter;
+package com.etang.nt_eink_launcher.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

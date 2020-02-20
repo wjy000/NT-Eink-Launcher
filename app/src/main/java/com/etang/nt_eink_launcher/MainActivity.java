@@ -14,7 +14,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -43,8 +42,6 @@ import android.widget.ToggleButton;
 
 import androidx.core.app.NotificationCompat;
 
-import com.etang.nt_eink_launcher.adapter.DeskTopGridViewBaseAdapter;
-import com.etang.nt_eink_launcher.adapter.GetApps;
 import com.etang.nt_eink_launcher.locked.FakerLockedActivity;
 import com.etang.nt_eink_launcher.mysql.MyAppHindSQLite;
 import com.etang.nt_eink_launcher.mysql.MyDataBaseHelper;
@@ -53,6 +50,9 @@ import com.etang.nt_eink_launcher.settingsactivity.UnInstallActivity;
 import com.etang.nt_eink_launcher.settingsactivity.WatherActivity;
 import com.etang.nt_eink_launcher.toast.DiyToast;
 import com.etang.nt_eink_launcher.util.AppInfo;
+import com.etang.nt_eink_launcher.util.DeskTopGridViewBaseAdapter;
+import com.etang.nt_eink_launcher.util.GetApps;
+import com.etang.nt_eink_launcher.util.SaveArrayListUtil;
 import com.etang.nt_eink_launcher.util.StreamTool;
 import com.etang.nt_launcher.R;
 
@@ -112,6 +112,7 @@ public class MainActivity extends Activity implements OnClickListener {
         rember_name();// 记住昵称
         initAppList(this);// 获取应用列表
         monitorBatteryState();// 监听电池信息
+        mListView.setNumColumns(1);
         /**
          * 更新天气信息
          */
@@ -129,10 +130,21 @@ public class MainActivity extends Activity implements OnClickListener {
             editor.putString("images_info", "ql");
             editor.putString("images_app_listifo", "true");
             editor.putString("appname_state", "nope");
+            editor.putString("applist_number", "5");
             editor.apply();
             //更新桌面信息
             images_upgrade();
+            //填充预设隐藏应用包名
+            ArrayList<String> arrayList = new ArrayList<String>();
+            arrayList.add("com.android.settings");
+            arrayList.add("com.android.mgs.pinyin");
+            arrayList.add("com.duokan.einkreader");
+            arrayList.add("com.mgs.factorytest");
+            arrayList.add("com.softwinner.explore");
+            SaveArrayListUtil.saveArrayList(MainActivity.this, arrayList, "start");//存储在本地
+
         }
+        get_applist_number();//获取设定的应用列表列数
         images_upgrade();//更新图像信息
         // 长按弹出APP信息
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -177,10 +189,12 @@ public class MainActivity extends Activity implements OnClickListener {
                     mListView.setVisibility(View.VISIBLE);
                     iv_index_back.setVisibility(View.GONE);
                     initAppList(MainActivity.this);
+                    get_applist_number();
                 } else {
                     mListView.setVisibility(View.GONE);
                     iv_index_back.setVisibility(View.VISIBLE);
                     initAppList(MainActivity.this);
+                    get_applist_number();
                 }
             }
         });
@@ -212,6 +226,26 @@ public class MainActivity extends Activity implements OnClickListener {
                 setNotification();
             }
         }, 2000);
+    }
+
+    private void get_applist_number() {
+        try {
+            SharedPreferences sharedPreferences;
+            sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+            String applist_number = sharedPreferences.getString("applist_number", null);
+            Log.e("APPLIST_NUMBER", applist_number);
+            if (applist_number.equals("auto")) {
+                mListView.setNumColumns(GridView.AUTO_FIT);
+            }
+            if (!applist_number.equals("auto")) {
+                mListView.setNumColumns(Integer.valueOf(applist_number));
+            }
+        } catch (Exception e) {
+            SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
+            editor.putString("applist_number", "auto");
+            editor.apply();
+            mListView.setNumColumns(GridView.AUTO_FIT);
+        }
     }
 
     public boolean isFirstStart(Context context) {
@@ -361,28 +395,24 @@ public class MainActivity extends Activity implements OnClickListener {
     }
 
     /**
-     * +获取应用列表
+     * +获取应用列表、隐藏应用
      *
      * @param context
      */
     public static void initAppList(Context context) {
         try {
             appInfos = GetApps.GetAppList1(context);
-            SharedPreferences sharedPreferences;
-            sharedPreferences = context.getSharedPreferences("info", MODE_PRIVATE);
-            String images_mode = sharedPreferences.getString("app_hind_info", null);
-//            String[] APP_HIND_INFO = {images_mode};
-//            String[] APP_HIND_INFO = {};
-            ArrayList<String> arrayList = new ArrayList<>();
+            ArrayList<String> arrayList = new ArrayList<String>();
+            arrayList.clear();
+            arrayList = SaveArrayListUtil.getSearchArrayList(context);
             if (Build.BRAND.equals("Allwinner")) {
-                arrayList.clear();
                 arrayList.add("com.android.settings");
                 arrayList.add("com.android.mgs.pinyin");
                 arrayList.add("com.duokan.einkreader");
                 arrayList.add("com.mgs.factorytest");
                 arrayList.add("com.softwinner.explore");
-                Log.e("ARRAYLIST", arrayList.toString());
             }
+            Log.e("DATA_OJBK", arrayList.toString());
             for (int j = 0; j < arrayList.size(); j++) {
                 for (int i = 0; i < appInfos.size(); i++) {
                     if (arrayList.get(j).equals(appInfos.get(i).getPackageName())) {
@@ -829,7 +859,11 @@ public class MainActivity extends Activity implements OnClickListener {
         } else {
             builder = new NotificationCompat.Builder(this);
         }
-        Intent intent = new Intent(this, MainActivity.class);
+//        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent();// 创建Intent对象
+        intent.setAction(Intent.ACTION_MAIN);// 设置Intent动作
+        intent.addCategory(Intent.CATEGORY_HOME);// 设置Intent种类
+//        startActivity(intent);// 将Intent传递给Activity
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
         builder.setContentTitle("点击回到桌面")//指定通知栏的标题内容
                 .setContentText("后台运行中")//通知的正文内容

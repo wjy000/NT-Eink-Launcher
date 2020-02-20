@@ -28,7 +28,6 @@
         </activity>
         <activity
             android:name="com.etang.nt_eink_launcher.locked.FakerLockedActivity"
-            android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name="com.etang.nt_eink_launcher.settingsactivity.CoolApkActivity"
