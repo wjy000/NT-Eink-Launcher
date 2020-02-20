@@ -2,6 +2,10 @@ package com.etang.nt_eink_launcher;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +13,8 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,6 +40,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import androidx.core.app.NotificationCompat;
 
 import com.etang.nt_eink_launcher.adapter.DeskTopGridViewBaseAdapter;
 import com.etang.nt_eink_launcher.adapter.GetApps;
@@ -195,6 +203,15 @@ public class MainActivity extends Activity implements OnClickListener {
                 return true;
             }
         });
+        /**
+         * 开启常驻通知
+         */
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setNotification();
+            }
+        }, 2000);
     }
 
     public boolean isFirstStart(Context context) {
@@ -797,5 +814,34 @@ public class MainActivity extends Activity implements OnClickListener {
             default:
                 break;
         }
+    }
+
+    // 添加常驻通知
+    private void setNotification() {
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationCompat.Builder builder;
+        int channelId = 1;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {    //Android 8.0以上适配
+            NotificationChannel channel = new NotificationChannel(String.valueOf(channelId), "channel_name",
+                    NotificationManager.IMPORTANCE_HIGH);
+            manager.createNotificationChannel(channel);
+            builder = new NotificationCompat.Builder(this, String.valueOf(channelId));
+        } else {
+            builder = new NotificationCompat.Builder(this);
+        }
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
+        builder.setContentTitle("点击回到桌面")//指定通知栏的标题内容
+                .setContentText("后台运行中")//通知的正文内容
+                .setWhen(0)//通知创建的时间
+                .setAutoCancel(false)//点击通知后，自动取消
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(""))
+                .setSmallIcon(R.drawable.title_back_alpha)//通知显示的小图标，只能用alpha图层的图片进行设置
+                .setPriority(NotificationCompat.PRIORITY_MAX)//通知重要程度
+                .setContentIntent(pi)//点击跳转
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher));
+        Notification notification = builder.build();
+        notification.flags |= Notification.FLAG_ONGOING_EVENT;
+        manager.notify(channelId, notification);
     }
 }
