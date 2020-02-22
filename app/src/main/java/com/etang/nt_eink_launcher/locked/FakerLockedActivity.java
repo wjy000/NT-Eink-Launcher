@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.ActivityInfo;
 import android.net.ConnectivityManager;
 import android.os.BatteryManager;
 import android.os.Bundle;
@@ -28,7 +27,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.etang.nt_eink_launcher.MainActivity;
 import com.etang.nt_eink_launcher.receive.ScreenListener;
 import com.etang.nt_eink_launcher.toast.DiyToast;
-import com.etang.nt_eink_launcher.util.GetUtils;
 import com.etang.nt_eink_launcher.util.JsonService;
 import com.etang.nt_launcher.R;
 import com.google.gson.Gson;
@@ -48,7 +46,6 @@ public class FakerLockedActivity extends AppCompatActivity {
     private ScreenListener screenListener;
     private BroadcastReceiver batteryLevelRcvr;
     private IntentFilter batteryLevelFilter;
-    static String url = "https://v1.hitokoto.cn/";
     String string = "";
     String Hitokoto = "";
 

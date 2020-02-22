@@ -43,7 +43,6 @@ import android.widget.ToggleButton;
 import androidx.core.app.NotificationCompat;
 
 import com.etang.nt_eink_launcher.locked.FakerLockedActivity;
-import com.etang.nt_eink_launcher.mysql.MyAppHindSQLite;
 import com.etang.nt_eink_launcher.mysql.MyDataBaseHelper;
 import com.etang.nt_eink_launcher.settingsactivity.SettingActivity;
 import com.etang.nt_eink_launcher.settingsactivity.UnInstallActivity;
@@ -86,7 +85,6 @@ public class MainActivity extends Activity implements OnClickListener {
             tv_main_batterystate, tv_city, tv_wind, tv_temp_state,
             tv_last_updatetime;
     private MyDataBaseHelper dbHelper_name_sql;
-    private MyAppHindSQLite dbHelper_app_hind;
     private SQLiteDatabase db;
     private ImageView iv_setting_button, iv_setting_yinliang, iv_setting_lock;
     public static ToggleButton tg_apps_state;
@@ -406,7 +404,6 @@ public class MainActivity extends Activity implements OnClickListener {
             arrayList.clear();
             arrayList = SaveArrayListUtil.getSearchArrayList(context);
             if (Build.BRAND.equals("Allwinner")) {
-                arrayList.add("com.android.settings");
                 arrayList.add("com.android.mgs.pinyin");
                 arrayList.add("com.duokan.einkreader");
                 arrayList.add("com.mgs.factorytest");
@@ -510,7 +507,6 @@ public class MainActivity extends Activity implements OnClickListener {
         iv_setting_lock.setOnClickListener(this);
         dbHelper_name_sql = new MyDataBaseHelper(getApplicationContext(), "info.db",
                 null, 2);
-        dbHelper_app_hind = new MyAppHindSQLite(getApplicationContext(), "info_app_hind.db", null, 2);
         db = dbHelper_name_sql.getWritableDatabase();
     }
 
@@ -599,7 +595,6 @@ public class MainActivity extends Activity implements OnClickListener {
     };
 
     public void update_wather(Context context, final String city) {
-
         if (TextUtils.isEmpty(city)) {
             DiyToast.showToast(context, "城市错误，不在数据库中");
             return;
@@ -609,6 +604,7 @@ public class MainActivity extends Activity implements OnClickListener {
             public void run() {
                 // TODO Auto-generated method stub
                 super.run();
+                Log.e("weather", city);
                 try {
                     URL url = new URL(
                             "http://wthrcdn.etouch.cn/weather_mini?city="
@@ -619,6 +615,7 @@ public class MainActivity extends Activity implements OnClickListener {
                     conn.setRequestMethod("GET");
                     int code = conn.getResponseCode();
                     if (code == 200) {
+                        Log.e("weather", "连接网络成功");
                         // 连接网络成功
                         InputStream in = conn.getInputStream();
                         String data = StreamTool.decodeStream(in);
@@ -627,6 +624,7 @@ public class MainActivity extends Activity implements OnClickListener {
                         // 获得desc的值
                         String result = jsonObj.getString("desc");
                         if ("OK".equals(result)) {
+                            Log.e("weather", "城市有效");
                             // 城市有效，返回了需要的数据
                             JSONObject dataObj = jsonObj.getJSONObject("data");
                             JSONArray jsonArray = dataObj
@@ -637,6 +635,7 @@ public class MainActivity extends Activity implements OnClickListener {
                             msg.what = 0;
                             mHandler.sendMessage(msg);
                         } else {
+                            Log.e("weather", "城市无效");
                             // 城市无效
                             Message msg = Message.obtain();
                             msg.what = 1;
@@ -646,6 +645,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 } catch (Exception e) {
                     // TODO: handle exception
                     e.printStackTrace();
+                    Log.e("weather", "异常：" + e.toString());
                     Message msg = Message.obtain();
                     msg.what = 2;
                     mHandler.sendMessage(msg);
