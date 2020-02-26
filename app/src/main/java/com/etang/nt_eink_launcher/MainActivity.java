@@ -19,8 +19,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -65,6 +68,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -86,6 +90,7 @@ public class MainActivity extends Activity implements OnClickListener {
             tv_last_updatetime;
     private MyDataBaseHelper dbHelper_name_sql;
     private SQLiteDatabase db;
+    private Calendar calendar = Calendar.getInstance();
     private ImageView iv_setting_button, iv_setting_yinliang, iv_setting_lock;
     public static ToggleButton tg_apps_state;
     public static LinearLayout line_wather;
@@ -93,6 +98,7 @@ public class MainActivity extends Activity implements OnClickListener {
     public static ImageView iv_index_back;
     public static GridView mListView;
     public static List<AppInfo> appInfos = new ArrayList<AppInfo>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +116,7 @@ public class MainActivity extends Activity implements OnClickListener {
         rember_name();// 记住昵称
         initAppList(this);// 获取应用列表
         monitorBatteryState();// 监听电池信息
-        mListView.setNumColumns(1);
+        mListView.setNumColumns(GridView.AUTO_FIT);
         /**
          * 更新天气信息
          */
@@ -258,7 +264,9 @@ public class MainActivity extends Activity implements OnClickListener {
         }
     }
 
-
+    /**
+     * 检查图片
+     */
     private void images_upgrade() {
         SharedPreferences sharedPreferences;
         sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
@@ -449,16 +457,16 @@ public class MainActivity extends Activity implements OnClickListener {
         }
     }
 
-
     /**
      * 更新时间
      */
     private void new_time_Thread() {
-        handler = new Handler() {
+        handler = new Handler();
+        runnable = new Runnable() {
+
             @Override
-            public void handleMessage(Message msg) {
+            public void run() {
                 // TODO Auto-generated method stub
-                super.handleMessage(msg);
                 SimpleDateFormat simpleDateFormat_hour = new SimpleDateFormat(
                         "HH");
                 SimpleDateFormat simpleDateFormat_min = new SimpleDateFormat(
@@ -468,15 +476,6 @@ public class MainActivity extends Activity implements OnClickListener {
                 tv_time_min.setText(simpleDateFormat_min
                         .format(new java.util.Date()));
                 handler.postDelayed(runnable, 1000);
-            }
-        };
-        runnable = new Runnable() {
-
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                Message msg = handler.obtainMessage();
-                handler.sendMessage(msg);
             }
         };
         handler.post(runnable);
@@ -730,10 +729,10 @@ public class MainActivity extends Activity implements OnClickListener {
         View view = LayoutInflater.from(MainActivity.this).inflate(
                 R.layout.dialog_name_show, null, false);
         builder.setView(view);
-//        Window window = builder.getWindow();
-//        builder.getWindow();
-//        window.setGravity(Gravity.CENTER); // 底部位置
-//        window.setContentView(view);
+        Window window = builder.getWindow();
+        builder.getWindow();
+        window.setGravity(Gravity.CENTER); // 底部位置
+        window.setContentView(view);
         final EditText et_name_get = (EditText) view
                 .findViewById(R.id.et_title_name);
         final RadioButton ra_0 = (RadioButton) view

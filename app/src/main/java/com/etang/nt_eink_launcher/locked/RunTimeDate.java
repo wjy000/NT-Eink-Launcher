@@ -1,11 +1,7 @@
 package com.etang.nt_eink_launcher.locked;
 
 import android.app.ActivityManager;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.BatteryManager;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
