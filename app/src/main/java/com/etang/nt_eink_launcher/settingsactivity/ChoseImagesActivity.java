@@ -49,7 +49,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                 editor.putString("images_info", "ch");
                 editor.apply();
-                MainActivity.iv_index_back.setImageResource(R.mipmap.mi_chahua);
+                MainActivity.iv_index_back.setImageResource(R.drawable.mi_chahua);
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
@@ -63,7 +63,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                 editor.putString("images_info", "ej");
                 editor.apply();
-                MainActivity.iv_index_back.setImageResource(R.mipmap.mi_erji);
+                MainActivity.iv_index_back.setImageResource(R.drawable.mi_erji);
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
@@ -77,7 +77,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                 editor.putString("images_info", "mz");
                 editor.apply();
-                MainActivity.iv_index_back.setImageResource(R.mipmap.mi_meizi);
+                MainActivity.iv_index_back.setImageResource(R.drawable.mi_meizi);
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
@@ -91,7 +91,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                 editor.putString("images_info", "ql");
                 editor.apply();
-                MainActivity.iv_index_back.setImageResource(R.mipmap.mi_haole);
+                MainActivity.iv_index_back.setImageResource(R.drawable.mi_haole);
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
@@ -105,7 +105,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                 editor.putString("images_info", "yl");
                 editor.apply();
-                MainActivity.iv_index_back.setImageResource(R.mipmap.mi_yali);
+                MainActivity.iv_index_back.setImageResource(R.drawable.mi_yali);
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
@@ -119,7 +119,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                 editor.putString("images_info", "ll");
                 editor.apply();
-                MainActivity.iv_index_back.setImageResource(R.mipmap.mi_luoli);
+                MainActivity.iv_index_back.setImageResource(R.drawable.mi_luoli);
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
@@ -133,7 +133,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                 editor.putString("images_info", "pb");
                 editor.apply();
-                MainActivity.iv_index_back.setImageResource(R.mipmap.mi_pinbo);
+                MainActivity.iv_index_back.setImageResource(R.drawable.mi_pinbo);
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
@@ -147,7 +147,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                 editor.putString("images_info", "zy");
                 editor.apply();
-                MainActivity.iv_index_back.setImageResource(R.mipmap.mi_zhiyu);
+                MainActivity.iv_index_back.setImageResource(R.drawable.mi_zhiyu);
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
@@ -161,7 +161,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                 editor.putString("images_info", "yl");
                 editor.apply();
-                MainActivity.iv_index_back.setImageResource(R.mipmap.mi_yali);
+                MainActivity.iv_index_back.setImageResource(R.drawable.mi_yali);
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);

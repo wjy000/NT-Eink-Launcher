@@ -203,6 +203,8 @@ public class FakerLockedActivity extends AppCompatActivity {
         tv_time_lock = (TextView) findViewById(R.id.tv_lock_time);
         iv_lock_rundate_text = (TextView) findViewById(R.id.iv_lock_rundate_text);
         tv_one_text = (TextView) findViewById(R.id.tv_one_text);
+        GET("https://v1.hitokoto.cn/");
+        tv_one_text.setText(Hitokoto);
     }
 
 

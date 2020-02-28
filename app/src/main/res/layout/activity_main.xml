@@ -88,7 +88,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                app:srcCompat="@mipmap/mi_erji" />
+                app:srcCompat="@drawable/mi_erji" />
 
         </RelativeLayout>
     </LinearLayout>
@@ -121,7 +121,7 @@
                 android:layout_width="30sp"
                 android:layout_height="30sp"
                 android:layout_margin="5dp"
-                android:src="@mipmap/menu_lock" />
+                android:src="@drawable/menu_lock" />
         </LinearLayout>
 
         <LinearLayout
@@ -136,7 +136,7 @@
                 android:layout_width="30sp"
                 android:layout_height="30sp"
                 android:layout_margin="5dp"
-                android:src="@mipmap/menu_yinliang" />
+                android:src="@drawable/menu_yinliang" />
 
             <ToggleButton
                 android:id="@+id/tg_apps_state"

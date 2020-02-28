@@ -272,52 +272,52 @@ public class MainActivity extends Activity implements OnClickListener {
         sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
         String images_mode = sharedPreferences.getString("images_info", null);
         if (images_mode.equals("ql")) {
-            iv_index_back.setImageResource(R.mipmap.mi_haole);
+            iv_index_back.setImageResource(R.drawable.mi_haole);
             iv_index_back.setVisibility(View.VISIBLE);
             mListView.setVisibility(View.INVISIBLE);
         }
         if (images_mode.equals("ej")) {
-            iv_index_back.setImageResource(R.mipmap.mi_erji);
+            iv_index_back.setImageResource(R.drawable.mi_erji);
             iv_index_back.setVisibility(View.VISIBLE);
             mListView.setVisibility(View.INVISIBLE);
         }
         if (images_mode.equals("mz")) {
-            iv_index_back.setImageResource(R.mipmap.mi_meizi);
+            iv_index_back.setImageResource(R.drawable.mi_meizi);
             iv_index_back.setVisibility(View.VISIBLE);
             mListView.setVisibility(View.INVISIBLE);
         }
         if (images_mode.equals("ch")) {
-            iv_index_back.setImageResource(R.mipmap.mi_chahua);
+            iv_index_back.setImageResource(R.drawable.mi_chahua);
             iv_index_back.setVisibility(View.VISIBLE);
             mListView.setVisibility(View.INVISIBLE);
         }
         if (images_mode.equals("ll")) {
-            iv_index_back.setImageResource(R.mipmap.mi_luoli);
+            iv_index_back.setImageResource(R.drawable.mi_luoli);
             iv_index_back.setVisibility(View.VISIBLE);
             mListView.setVisibility(View.INVISIBLE);
         }
         if (images_mode.equals("yl")) {
-            iv_index_back.setImageResource(R.mipmap.mi_yali);
+            iv_index_back.setImageResource(R.drawable.mi_yali);
             iv_index_back.setVisibility(View.VISIBLE);
             mListView.setVisibility(View.INVISIBLE);
         }
         if (images_mode.equals("pb")) {
-            iv_index_back.setImageResource(R.mipmap.mi_pinbo);
+            iv_index_back.setImageResource(R.drawable.mi_pinbo);
             iv_index_back.setVisibility(View.VISIBLE);
             mListView.setVisibility(View.INVISIBLE);
         }
         if (images_mode.equals("zy")) {
-            iv_index_back.setImageResource(R.mipmap.mi_zhiyu);
+            iv_index_back.setImageResource(R.drawable.mi_zhiyu);
             iv_index_back.setVisibility(View.VISIBLE);
             mListView.setVisibility(View.INVISIBLE);
         }
         if (images_mode.equals("applist")) {
-            iv_index_back.setImageResource(R.mipmap.mi_haole);
+            iv_index_back.setImageResource(R.drawable.mi_haole);
             iv_index_back.setVisibility(View.INVISIBLE);
             mListView.setVisibility(View.VISIBLE);
         }
         if (images_mode.equals("")) {
-            iv_index_back.setImageResource(R.mipmap.mi_haole);
+            iv_index_back.setImageResource(R.drawable.mi_haole);
             iv_index_back.setVisibility(View.INVISIBLE);
             mListView.setVisibility(View.VISIBLE);
             DiyToast.showToast(this, "请选择壁纸或者应用列表（设置-壁纸设置）");
