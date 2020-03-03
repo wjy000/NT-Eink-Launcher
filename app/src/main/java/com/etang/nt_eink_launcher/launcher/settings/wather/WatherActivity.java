@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher.settingsactivity;
+package com.etang.nt_eink_launcher.launcher.settings.wather;
 
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,8 +8,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.etang.nt_eink_launcher.mysql.MyDataBaseHelper;
-import com.etang.nt_eink_launcher.toast.DiyToast;
+import com.etang.nt_eink_launcher.tool.sql.MyDataBaseHelper;
+import com.etang.nt_eink_launcher.tool.toast.DiyToast;
 import com.etang.nt_launcher.R;
 
 

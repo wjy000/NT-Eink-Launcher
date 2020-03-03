@@ -1,17 +1,14 @@
-package com.etang.nt_eink_launcher.settingsactivity;
+package com.etang.nt_eink_launcher.launcher.settings.desktopsetting;
 
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 
-import com.etang.nt_eink_launcher.MainActivity;
-import com.etang.nt_eink_launcher.toast.DiyToast;
+import com.etang.nt_eink_launcher.tool.toast.DiyToast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.LayoutInflater;

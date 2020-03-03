@@ -6,18 +6,18 @@
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="奶糖桌面"
-        android:roundIcon="@drawable/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="false"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.etang.nt_eink_launcher.MainActivity"
+            android:name="com.etang.nt_eink_launcher.launcher.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,32 +31,32 @@
             android:name="com.etang.nt_eink_launcher.locked.FakerLockedActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.etang.nt_eink_launcher.settingsactivity.CoolApkActivity"
+            android:name="com.etang.nt_eink_launcher.launcher.settings.about.CoolApkActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.etang.nt_eink_launcher.settingsactivity.FucherActivity"
+            android:name="com.etang.nt_eink_launcher.launcher.settings.about.FucherActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.etang.nt_eink_launcher.settingsactivity.WeatherSettingActivity"
+            android:name="com.etang.nt_eink_launcher.launcher.settings.wather.WeatherSettingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.etang.nt_eink_launcher.settingsactivity.DeskTopSettingActivity"
+            android:name="com.etang.nt_eink_launcher.launcher.settings.desktopsetting.DeskTopSettingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.etang.nt_eink_launcher.settingsactivity.SettingActivity"
+            android:name="com.etang.nt_eink_launcher.launcher.settings.SettingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.etang.nt_eink_launcher.settingsactivity.AboutActivity"
+            android:name="com.etang.nt_eink_launcher.launcher.settings.about.AboutActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.etang.nt_eink_launcher.settingsactivity.ChoseImagesActivity"
+            android:name="com.etang.nt_eink_launcher.launcher.settings.launcherimage.ChoseImagesActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
-            android:name="com.etang.nt_eink_launcher.settingsactivity.UnInstallActivity"
+            android:name="com.etang.nt_eink_launcher.launcher.settings.uninstallapk.UnInstallActivity"
             android:label=""
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar.MinWidth" />
         <activity
-            android:name="com.etang.nt_eink_launcher.settingsactivity.WatherActivity"
+            android:name="com.etang.nt_eink_launcher.launcher.settings.wather.WatherActivity"
             android:label=""
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar.MinWidth" />
     </application>

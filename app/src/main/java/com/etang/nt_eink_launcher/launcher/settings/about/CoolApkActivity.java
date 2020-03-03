@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher.settingsactivity;
+package com.etang.nt_eink_launcher.launcher.settings.about;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.etang.nt_launcher.R;
 
-public class FucherActivity extends AppCompatActivity {
+public class CoolApkActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class FucherActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.
                 FLAG_KEEP_SCREEN_ON);//应用运行时，保持屏幕高亮，不锁屏
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
-        setContentView(R.layout.activity_fucher);
+        setContentView(R.layout.activity_cool_apk);
         //返回按钮（整个顶栏LinearLayout）
         ((ImageView) findViewById(R.id.iv_title_back)).setOnClickListener(new View.OnClickListener() {
             @Override

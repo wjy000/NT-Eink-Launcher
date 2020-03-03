@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher.locked;
+package com.etang.nt_eink_launcher.tool.killer;
 
 import android.app.ActivityManager;
 import android.content.Context;

@@ -1,11 +1,9 @@
-package com.etang.nt_eink_launcher.settingsactivity;
+package com.etang.nt_eink_launcher.launcher.settings;
 
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -14,6 +12,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.etang.nt_eink_launcher.launcher.settings.about.AboutActivity;
+import com.etang.nt_eink_launcher.launcher.settings.desktopsetting.DeskTopSettingActivity;
+import com.etang.nt_eink_launcher.launcher.settings.launcherimage.ChoseImagesActivity;
+import com.etang.nt_eink_launcher.launcher.settings.wather.WeatherSettingActivity;
 import com.etang.nt_launcher.R;
 
 public class SettingActivity extends Activity {

@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher.settingsactivity;
+package com.etang.nt_eink_launcher.launcher.settings.about;
 
 import android.content.Intent;
 import android.graphics.Paint;

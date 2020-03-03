@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher.receive;
+package com.etang.nt_eink_launcher.tool.server;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.content.IntentFilter;
 import android.os.PowerManager;
 
 /**
- * Created by ${zyj} on 2016/6/21.
+ * 屏幕状态检测
  */
 public class ScreenListener {
 

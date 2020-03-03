@@ -24,9 +24,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.etang.nt_eink_launcher.MainActivity;
-import com.etang.nt_eink_launcher.receive.ScreenListener;
-import com.etang.nt_eink_launcher.toast.DiyToast;
+import com.etang.nt_eink_launcher.launcher.MainActivity;
+import com.etang.nt_eink_launcher.tool.server.ScreenListener;
+import com.etang.nt_eink_launcher.tool.toast.DiyToast;
+import com.etang.nt_eink_launcher.tool.killer.KillerHelper;
 import com.etang.nt_eink_launcher.util.JsonService;
 import com.etang.nt_launcher.R;
 import com.google.gson.Gson;
@@ -59,9 +60,10 @@ public class FakerLockedActivity extends AppCompatActivity {
                 FLAG_KEEP_SCREEN_ON);//应用运行时，保持屏幕高亮，不锁屏
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.activity_faker_locked);
-        initView();
-        countTime_ontText();
+        initView();//绑定控件
+        countTime_ontText();//开始计时
         monitorBatteryState();//电量监听
+        KillerHelper.CleaningOperation(FakerLockedActivity.this);//杀后台
 //        iv_lock_rundate_text.setText(RunTimeDate.getUsedPercentValue(FakerLockedActivity.this));
         iv_lock_back.setOnClickListener(new View.OnClickListener() {
             @Override

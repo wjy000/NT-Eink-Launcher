@@ -86,7 +86,7 @@
                 android:clickable="false"
                 android:enabled="false"
                 android:focusable="false"
-                android:text="新桌面（正在做了--0%）" />
+                android:text="新桌面（正在做了--10%）" />
 
 
         </RadioGroup>

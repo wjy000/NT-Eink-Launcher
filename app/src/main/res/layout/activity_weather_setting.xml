@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.etang.nt_eink_launcher.settingsactivity.WeatherSettingActivity">
+    tools:context="com.etang.nt_eink_launcher.launcher.settings.wather.WeatherSettingActivity">
 
     <include
         android:id="@+id/include3"

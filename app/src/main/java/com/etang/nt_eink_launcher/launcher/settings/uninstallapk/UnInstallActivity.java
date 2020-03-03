@@ -1,8 +1,7 @@
-package com.etang.nt_eink_launcher.settingsactivity;
+package com.etang.nt_eink_launcher.launcher.settings.uninstallapk;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +10,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.etang.nt_eink_launcher.MainActivity;
-import com.etang.nt_eink_launcher.util.SaveArrayListUtil;
+import com.etang.nt_eink_launcher.launcher.MainActivity;
+import com.etang.nt_eink_launcher.tool.savearrayutil.SaveArrayListUtil;
 import com.etang.nt_launcher.R;
 
 import java.util.ArrayList;

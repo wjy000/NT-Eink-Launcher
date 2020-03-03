@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher.mysql;
+package com.etang.nt_eink_launcher.tool.sql;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

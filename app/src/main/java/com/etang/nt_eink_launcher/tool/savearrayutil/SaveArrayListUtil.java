@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher.util;
+package com.etang.nt_eink_launcher.tool.savearrayutil;
 
 import android.content.Context;
 import android.content.SharedPreferences;

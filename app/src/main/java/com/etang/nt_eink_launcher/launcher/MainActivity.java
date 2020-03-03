@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher;
+package com.etang.nt_eink_launcher.launcher;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,7 +19,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Layout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -38,7 +37,6 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -46,15 +44,15 @@ import android.widget.ToggleButton;
 import androidx.core.app.NotificationCompat;
 
 import com.etang.nt_eink_launcher.locked.FakerLockedActivity;
-import com.etang.nt_eink_launcher.mysql.MyDataBaseHelper;
-import com.etang.nt_eink_launcher.settingsactivity.SettingActivity;
-import com.etang.nt_eink_launcher.settingsactivity.UnInstallActivity;
-import com.etang.nt_eink_launcher.settingsactivity.WatherActivity;
-import com.etang.nt_eink_launcher.toast.DiyToast;
+import com.etang.nt_eink_launcher.tool.sql.MyDataBaseHelper;
+import com.etang.nt_eink_launcher.launcher.settings.SettingActivity;
+import com.etang.nt_eink_launcher.launcher.settings.uninstallapk.UnInstallActivity;
+import com.etang.nt_eink_launcher.launcher.settings.wather.WatherActivity;
+import com.etang.nt_eink_launcher.tool.toast.DiyToast;
 import com.etang.nt_eink_launcher.util.AppInfo;
 import com.etang.nt_eink_launcher.util.DeskTopGridViewBaseAdapter;
 import com.etang.nt_eink_launcher.util.GetApps;
-import com.etang.nt_eink_launcher.util.SaveArrayListUtil;
+import com.etang.nt_eink_launcher.tool.savearrayutil.SaveArrayListUtil;
 import com.etang.nt_eink_launcher.util.StreamTool;
 import com.etang.nt_launcher.R;
 
@@ -412,10 +410,10 @@ public class MainActivity extends Activity implements OnClickListener {
             arrayList.clear();
             arrayList = SaveArrayListUtil.getSearchArrayList(context);
             if (Build.BRAND.equals("Allwinner")) {
-                arrayList.add("com.android.mgs.pinyin");
-                arrayList.add("com.duokan.einkreader");
-                arrayList.add("com.mgs.factorytest");
-                arrayList.add("com.softwinner.explore");
+//                arrayList.add("com.android.mgs.pinyin");
+//                arrayList.add("com.duokan.einkreader");
+//                arrayList.add("com.mgs.factorytest");
+//                arrayList.add("com.softwinner.explore");
             }
             Log.e("DATA_OJBK", arrayList.toString());
             for (int j = 0; j < arrayList.size(); j++) {

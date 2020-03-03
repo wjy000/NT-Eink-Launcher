@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher.toast;
+package com.etang.nt_eink_launcher.tool.toast;
 
 import android.content.Context;
 import android.widget.Toast;

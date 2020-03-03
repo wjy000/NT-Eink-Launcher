@@ -11,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.etang.nt_eink_launcher.MainActivity;
-import com.etang.nt_eink_launcher.util.AppInfo;
 import com.etang.nt_launcher.R;
 
 import java.util.ArrayList;

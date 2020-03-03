@@ -1,4 +1,4 @@
-package com.etang.nt_eink_launcher.settingsactivity;
+package com.etang.nt_eink_launcher.launcher.settings.launcherimage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,8 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 
-import com.etang.nt_eink_launcher.MainActivity;
-import com.etang.nt_eink_launcher.toast.DiyToast;
+import com.etang.nt_eink_launcher.launcher.MainActivity;
 import com.etang.nt_launcher.R;
 
 public class ChoseImagesActivity extends AppCompatActivity {
