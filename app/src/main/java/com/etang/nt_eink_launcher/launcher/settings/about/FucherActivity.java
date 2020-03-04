@@ -22,7 +22,7 @@ public class FucherActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.
                 FLAG_KEEP_SCREEN_ON);//应用运行时，保持屏幕高亮，不锁屏
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
-        setContentView(R.layout.activity_fucher);
+        setContentView(R.layout.setting_fucher);
         //返回按钮（整个顶栏LinearLayout）
         ((ImageView) findViewById(R.id.iv_title_back)).setOnClickListener(new View.OnClickListener() {
             @Override

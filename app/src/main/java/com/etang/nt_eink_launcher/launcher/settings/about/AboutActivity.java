@@ -25,7 +25,7 @@ public class AboutActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.
                 FLAG_KEEP_SCREEN_ON);//应用运行时，保持屏幕高亮，不锁屏
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.setting_about);
         setTitle("关于");
         initView();
         /**

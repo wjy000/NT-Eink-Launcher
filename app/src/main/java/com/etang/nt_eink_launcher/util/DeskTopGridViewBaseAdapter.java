@@ -46,7 +46,7 @@ public class DeskTopGridViewBaseAdapter extends BaseAdapter {
         Holder holder = null;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(
-                    R.layout.desktop_gridview_item, null);
+                    R.layout.gridview_item, null);
             holder = new Holder();
             holder.ico = (ImageView) convertView.findViewById(R.id.iv);
             holder.Name = (TextView) convertView.findViewById(R.id.tv);

@@ -22,7 +22,7 @@ public class WatherActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wather);
+        setContentView(R.layout.dialog_setting_wather);
         initView();
         btn_wather_con.setOnClickListener(new OnClickListener() {
 

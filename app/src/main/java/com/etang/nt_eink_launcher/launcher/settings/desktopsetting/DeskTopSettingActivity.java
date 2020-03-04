@@ -42,7 +42,7 @@ public class DeskTopSettingActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.
                 FLAG_KEEP_SCREEN_ON);//应用运行时，保持屏幕高亮，不锁屏
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
-        setContentView(R.layout.activity_desk_top_setting);
+        setContentView(R.layout.setting_activity_desk_top_setting);
         initView();//绑定控件
         tv_gridlist_setting.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
         tv_gridlist_setting.getPaint().setAntiAlias(true);//抗锯齿

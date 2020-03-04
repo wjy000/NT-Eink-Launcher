@@ -16,6 +16,6 @@
         app:srcCompat="@android:drawable/ic_media_play" />
 
 
-    <include layout="@layout/content_desk_top_setting" />
+    <include layout="@layout/setting_content_desk_top_setting" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

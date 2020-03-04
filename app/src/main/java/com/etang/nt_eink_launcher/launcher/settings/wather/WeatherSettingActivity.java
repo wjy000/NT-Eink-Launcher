@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -27,7 +26,7 @@ public class WeatherSettingActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.
                 FLAG_KEEP_SCREEN_ON);//应用运行时，保持屏幕高亮，不锁屏
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
-        setContentView(R.layout.activity_weather_setting);
+        setContentView(R.layout.setting_weather_setting);
         initView();
         tv_title_text.setText("桌面设置");
         iv_title_back.setOnClickListener(new View.OnClickListener() {

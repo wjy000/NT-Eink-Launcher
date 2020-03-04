@@ -34,7 +34,7 @@ public class UnInstallActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_un_install);
+        setContentView(R.layout.dialog_uninstall);
         initView();
         //开启卸载界面的时候获取存储在本地的包名
         arrayList = SaveArrayListUtil.getSearchArrayList(UnInstallActivity.this);
