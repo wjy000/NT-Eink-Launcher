@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.etang.nt_eink_launcher.launcher.settings.desktopsetting.DeskTopSettingActivity"
+    tools:context="com.etang.nt_launcher.launcher.settings.desktopsetting.DeskTopSettingActivity"
     tools:showIn="@layout/setting_activity_desk_top_setting">
 
     <include

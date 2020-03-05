@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.etang.nt_eink_launcher.launcher.settings.desktopsetting.DeskTopSettingActivity">
+    tools:context="com.etang.nt_launcher.launcher.settings.desktopsetting.DeskTopSettingActivity">
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
