@@ -184,13 +184,9 @@ public class MainActivity extends Activity implements OnClickListener {
                 if (isChecked) {
                     mListView.setVisibility(View.VISIBLE);
                     iv_index_back.setVisibility(View.GONE);
-                    initAppList(MainActivity.this);
-                    get_applist_number();
                 } else {
                     mListView.setVisibility(View.GONE);
                     iv_index_back.setVisibility(View.VISIBLE);
-                    initAppList(MainActivity.this);
-                    get_applist_number();
                 }
             }
         });
@@ -221,7 +217,7 @@ public class MainActivity extends Activity implements OnClickListener {
             public void run() {
                 setNotification();
             }
-        }, 2000);
+        }, 50);
     }
 
     private void get_applist_number() {
@@ -317,66 +313,9 @@ public class MainActivity extends Activity implements OnClickListener {
     }
 
     @Override
-    protected void onStart() {
-        // TODO Auto-generated method stub
-        super.onStart();
-        Cursor cursor = db.rawQuery("select * from wather_city", null);
-        if (cursor.getCount() != 0) {
-            cursor.moveToFirst();
-            update_wather(MainActivity.this,
-                    cursor.getString(cursor.getColumnIndex("city")));
-        }
-        /**
-         * 更新天气信息
-         */
-        SharedPreferences sharedPreferences;
-        sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-        update_wathers(sharedPreferences);
-        initAppList(MainActivity.this);
-    }
-
-    @Override
-    protected void onRestart() {
-        // TODO Auto-generated method stub
-        super.onRestart();
-        Cursor cursor = db.rawQuery("select * from wather_city", null);
-        if (cursor.getCount() != 0) {
-            cursor.moveToFirst();
-            update_wather(MainActivity.this,
-                    cursor.getString(cursor.getColumnIndex("city")));
-        }
-        /**
-         * 更新天气信息
-         */
-        SharedPreferences sharedPreferences;
-        sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-        update_wathers(sharedPreferences);
-        initAppList(MainActivity.this);
-    }
-
-    @Override
     protected void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
-        Cursor cursor = db.rawQuery("select * from wather_city", null);
-        if (cursor.getCount() != 0) {
-            cursor.moveToFirst();
-            update_wather(MainActivity.this,
-                    cursor.getString(cursor.getColumnIndex("city")));
-        }
-        /**
-         * 更新天气信息
-         */
-        SharedPreferences sharedPreferences;
-        sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-        update_wathers(sharedPreferences);
-        initAppList(MainActivity.this);
-    }
-
-    @Override
-    protected void onPause() {
-        // TODO Auto-generated method stub
-        super.onPause();
         Cursor cursor = db.rawQuery("select * from wather_city", null);
         if (cursor.getCount() != 0) {
             cursor.moveToFirst();
