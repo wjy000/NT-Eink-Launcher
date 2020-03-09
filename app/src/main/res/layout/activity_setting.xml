@@ -64,6 +64,23 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lv_textsize_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/shaper_apks_button_window_show"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5sp"
+                    android:text="文本设置" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/lv_about_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

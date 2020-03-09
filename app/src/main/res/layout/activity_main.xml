@@ -52,17 +52,6 @@
                 android:textColor="#353535"
                 android:textSize="70sp" />
 
-            <CheckBox
-                android:id="@+id/cb_light_mode"
-                android:layout_width="40sp"
-                android:layout_height="40sp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="39dp"
-                android:background="@drawable/select_light_state"
-                android:button="@null"
-                android:visibility="gone" />
-
             <LinearLayout
                 android:id="@+id/line_wather"
                 android:layout_width="wrap_content"

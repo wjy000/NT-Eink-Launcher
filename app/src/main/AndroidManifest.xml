@@ -65,6 +65,10 @@
             android:name=".launcher.settings.wather.WatherActivity"
             android:label=""
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar.MinWidth" />
+        <activity
+            android:name=".launcher.settings.textsizesetting.TextSizeSetting"
+            android:label=""
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

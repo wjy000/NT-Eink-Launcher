@@ -15,15 +15,13 @@ import android.widget.TextView;
 import com.etang.nt_launcher.launcher.settings.about.AboutActivity;
 import com.etang.nt_launcher.launcher.settings.desktopsetting.DeskTopSettingActivity;
 import com.etang.nt_launcher.launcher.settings.launcherimage.ChoseImagesActivity;
+import com.etang.nt_launcher.launcher.settings.textsizesetting.TextSizeSetting;
 import com.etang.nt_launcher.launcher.settings.wather.WeatherSettingActivity;
 import com.etang.nt_launcher.R;
 
 public class SettingActivity extends Activity {
 
-    LinearLayout lv_desktop_setting;
-    LinearLayout lv_about_activity;
-    LinearLayout lv_applist_setting;
-    LinearLayout lv_weather_gone_setting;
+    LinearLayout lv_weather_gone_setting, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting;
     private TextView tv_title_text;
     private ImageView iv_title_back;
 
@@ -39,7 +37,7 @@ public class SettingActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.activity_setting);
         initView();
-        tv_title_text.setText("桌面设置");
+        tv_title_text.setText("桌面设置（v2.5）");
         iv_title_back.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,10 +89,18 @@ public class SettingActivity extends Activity {
                 startActivity(new Intent(SettingActivity.this, WeatherSettingActivity.class));
             }
         });
+        //文本大小设置
+        lv_textsize_setting.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingActivity.this, TextSizeSetting.class));
+            }
+        });
     }
 
     private void initView() {
         // TODO Auto-generated method stub
+        lv_textsize_setting = (LinearLayout) findViewById(R.id.lv_textsize_setting);
         tv_title_text = (TextView) findViewById(R.id.tv_title_text);
         iv_title_back = (ImageView) findViewById(R.id.iv_title_back);
         lv_desktop_setting = (LinearLayout) findViewById(R.id.lv_desktop_setting);

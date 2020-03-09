@@ -85,7 +85,7 @@ public class MainActivity extends Activity implements OnClickListener {
     private IntentFilter batteryLevelFilter;
     private Handler handler;
     private Runnable runnable;
-    private TextView tv_user_id, tv_time_hour, tv_time_min,
+    public static TextView tv_user_id, tv_time_hour, tv_time_min,
             tv_main_batterystate, tv_city, tv_wind, tv_temp_state,
             tv_last_updatetime;
     private MyDataBaseHelper dbHelper_name_sql;
@@ -136,6 +136,11 @@ public class MainActivity extends Activity implements OnClickListener {
             editor.putString("images_app_listifo", "true");
             editor.putString("appname_state", "nope");
             editor.putString("applist_number", "5");
+            editor.putString("timetext_min_size", "50");
+            editor.putString("timetext_hour_size", "70");
+            editor.putString("nametext_size", "16");//昵称文本大小
+            editor.putString("dianchitext_size", "16");//电池文本大小
+            editor.putString("datetext_size", "16");//日期文本大小
             editor.apply();
             //更新桌面信息
             images_upgrade();
@@ -147,6 +152,7 @@ public class MainActivity extends Activity implements OnClickListener {
         }
         get_applist_number();//获取设定的应用列表列数
         images_upgrade();//更新图像信息
+        check_text_size(MainActivity.this);
         // 长按弹出APP信息
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -635,10 +641,6 @@ public class MainActivity extends Activity implements OnClickListener {
         View view = LayoutInflater.from(MainActivity.this).inflate(
                 R.layout.dialog_name_show, null, false);
         builder.setView(view);
-        Window window = builder.getWindow();
-        builder.getWindow();
-        window.setGravity(Gravity.CENTER); // 底部位置
-        window.setContentView(view);
         final EditText et_name_get = (EditText) view
                 .findViewById(R.id.et_title_name);
         final RadioButton ra_0 = (RadioButton) view
@@ -803,6 +805,28 @@ public class MainActivity extends Activity implements OnClickListener {
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         102);
             }
+        }
+    }
+
+    public static void check_text_size(Context context) {
+        try {
+            SharedPreferences sharedPreferences = context.getSharedPreferences("info", MODE_PRIVATE);
+            MainActivity.tv_time_hour.setTextSize(Integer.valueOf(sharedPreferences.getString("timetext_hour_size", null)));
+            MainActivity.tv_time_min.setTextSize(Integer.valueOf(sharedPreferences.getString("timetext_min_size", null)));
+            MainActivity.tv_user_id.setTextSize(Integer.valueOf(sharedPreferences.getString("nametext_size", null)));
+            MainActivity.tv_main_batterystate.setTextSize(Integer.valueOf(sharedPreferences.getString("dianchitext_size", null)));
+        } catch (Exception e) {
+            SharedPreferences.Editor editor = context.getSharedPreferences("info", MODE_PRIVATE).edit();
+            /**
+             * 设定文本大小预填充
+             */
+            editor.putString("timetext_min_size", "50");
+            editor.putString("timetext_hour_size", "70");
+            editor.putString("nametext_size", "16");//昵称文本大小
+            editor.putString("dianchitext_size", "16");//电池文本大小
+            editor.putString("datetext_size", "16");//日期文本大小
+            editor.apply();
+            check_text_size(context);
         }
     }
 }
