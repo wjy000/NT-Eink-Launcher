@@ -2,16 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.etang.nt_launcher">
     <!-- 网络连接权限 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 本人猜测指允许接收当用户出现，即检测屏幕点亮广播的权限 -->
-    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-    <!-- 关闭进程权限 -->
-    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
-    <!-- 检查网络连接权限 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 检查无线网络连接权限 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!--读取本地文件-->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 本人猜测指允许接收当用户出现，即检测屏幕点亮广播的权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" /> <!-- 关闭进程权限 -->
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" /> <!-- 检查网络连接权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 检查无线网络连接权限 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 读取本地文件 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -33,6 +28,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".launcher.settings.hindapp.HindAppSetting"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".locked.FakerLockedActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

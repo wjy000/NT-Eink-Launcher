@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.etang.nt_launcher.launcher.settings.about.AboutActivity;
 import com.etang.nt_launcher.launcher.settings.desktopsetting.DeskTopSettingActivity;
+import com.etang.nt_launcher.launcher.settings.hindapp.HindAppSetting;
 import com.etang.nt_launcher.launcher.settings.launcherimage.ChoseImagesActivity;
 import com.etang.nt_launcher.launcher.settings.textsizesetting.TextSizeSetting;
 import com.etang.nt_launcher.launcher.settings.wather.WeatherSettingActivity;
@@ -21,7 +22,7 @@ import com.etang.nt_launcher.R;
 
 public class SettingActivity extends Activity {
 
-    LinearLayout lv_weather_gone_setting, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting;
+    LinearLayout lv_weather_gone_setting, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting, lv_hindapp_setting;
     private TextView tv_title_text;
     private ImageView iv_title_back;
 
@@ -37,7 +38,7 @@ public class SettingActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.activity_setting);
         initView();
-        tv_title_text.setText("桌面设置（v2.5）");
+        tv_title_text.setText("桌面设置（v2.6）");
         iv_title_back.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,10 +97,18 @@ public class SettingActivity extends Activity {
                 startActivity(new Intent(SettingActivity.this, TextSizeSetting.class));
             }
         });
+        //应用管理设置
+        lv_hindapp_setting.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingActivity.this, HindAppSetting.class));
+            }
+        });
     }
 
     private void initView() {
         // TODO Auto-generated method stub
+        lv_hindapp_setting = (LinearLayout) findViewById(R.id.lv_hindapp_setting);
         lv_textsize_setting = (LinearLayout) findViewById(R.id.lv_textsize_setting);
         tv_title_text = (TextView) findViewById(R.id.tv_title_text);
         iv_title_back = (ImageView) findViewById(R.id.iv_title_back);

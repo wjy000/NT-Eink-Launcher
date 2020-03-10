@@ -23,7 +23,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +45,7 @@ import android.widget.ToggleButton;
 import androidx.core.app.NotificationCompat;
 
 import com.etang.nt_launcher.locked.FakerLockedActivity;
+import com.etang.nt_launcher.tool.dialog.DeBugDialog;
 import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;
 import com.etang.nt_launcher.launcher.settings.SettingActivity;
 import com.etang.nt_launcher.launcher.settings.uninstallapk.UnInstallActivity;
@@ -148,7 +148,6 @@ public class MainActivity extends Activity implements OnClickListener {
             ArrayList<String> arrayList = new ArrayList<String>();
             arrayList.add("frist");
             SaveArrayListUtil.saveArrayList(MainActivity.this, arrayList, "start");//存储在本地
-
         }
         get_applist_number();//获取设定的应用列表列数
         images_upgrade();//更新图像信息
@@ -158,9 +157,13 @@ public class MainActivity extends Activity implements OnClickListener {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
-                string_app_info = appInfos.get(position).getPackageName();
-                Intent intent = new Intent(MainActivity.this, UnInstallActivity.class);
-                startActivity(intent);
+                try {
+                    string_app_info = appInfos.get(position).getPackageName();
+                    Intent intent = new Intent(MainActivity.this, UnInstallActivity.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    DeBugDialog.debug_show_dialog(MainActivity.this, e.toString());//显示错误信息
+                }
                 return true;
             }
         });
@@ -169,14 +172,18 @@ public class MainActivity extends Activity implements OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                // Intent intent=appInfos.get(position).getIntent();
-                // startActivity(intent);
-                Intent intent = getPackageManager().getLaunchIntentForPackage(
-                        appInfos.get(position).getPackageName());
-                if (intent != null) {
-                    intent.putExtra("type", "110");
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+                try {
+                    // Intent intent=appInfos.get(position).getIntent();
+                    // startActivity(intent);
+                    Intent intent = getPackageManager().getLaunchIntentForPackage(
+                            appInfos.get(position).getPackageName());
+                    if (intent != null) {
+                        intent.putExtra("type", "110");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                } catch (Exception e) {
+                    DeBugDialog.debug_show_dialog(MainActivity.this, e.toString());//显示错误信息
                 }
             }
         });
@@ -406,7 +413,7 @@ public class MainActivity extends Activity implements OnClickListener {
      * 绑定控件
      */
     private void initView() {
-        mListView = (GridView) findViewById(R.id.mListView);
+        mListView = (GridView) findViewById(R.id.mAppGridView);
         iv_setting_button = (ImageView) findViewById(R.id.iv_setting_button);
         tv_time_hour = (TextView) findViewById(R.id.tv_time_hour);
         tg_apps_state = (ToggleButton) findViewById(R.id.tg_apps_state);
