@@ -23,29 +23,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10sp"
                 android:gravity="center_vertical|center_horizontal"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="应用包名："
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <TextView
-                    android:id="@+id/tv_pack_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:text="Medium Text"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10sp"
-                android:gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal">
 
                 <Button
@@ -99,7 +76,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="隐藏是单次的，即点击隐藏后，除非卸载重装或清空数据，否则无法恢复，且藏且珍惜" />
+                android:text="隐藏后的应用可以在桌面设置-应用管理中恢复"
+                android:textSize="12dp" />
         </LinearLayout>
     </LinearLayout>
 
