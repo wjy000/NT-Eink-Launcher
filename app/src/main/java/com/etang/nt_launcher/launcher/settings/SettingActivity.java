@@ -17,12 +17,14 @@ import com.etang.nt_launcher.launcher.settings.desktopsetting.DeskTopSettingActi
 import com.etang.nt_launcher.launcher.settings.hindapp.HindAppSetting;
 import com.etang.nt_launcher.launcher.settings.launcherimage.ChoseImagesActivity;
 import com.etang.nt_launcher.launcher.settings.textsizesetting.TextSizeSetting;
+import com.etang.nt_launcher.launcher.settings.uirefresh.BlackActivity;
 import com.etang.nt_launcher.launcher.settings.wather.WeatherSettingActivity;
 import com.etang.nt_launcher.R;
+import com.etang.nt_launcher.tool.toast.DiyToast;
 
 public class SettingActivity extends Activity {
 
-    LinearLayout lv_weather_gone_setting, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting, lv_hindapp_setting;
+    LinearLayout lv_weather_gone_setting, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting, lv_hindapp_setting, lv_refresh_setting;
     private TextView tv_title_text;
     private ImageView iv_title_back;
 
@@ -104,10 +106,20 @@ public class SettingActivity extends Activity {
                 startActivity(new Intent(SettingActivity.this, HindAppSetting.class));
             }
         });
+        //全刷一次屏幕
+        lv_refresh_setting.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingActivity.this, BlackActivity.class));
+                finish();//结束屏幕
+                DiyToast.showToast(SettingActivity.this, "请暂时不要操控设备");
+            }
+        });
     }
 
     private void initView() {
         // TODO Auto-generated method stub
+        lv_refresh_setting = (LinearLayout) findViewById(R.id.lv_refresh_activity);
         lv_hindapp_setting = (LinearLayout) findViewById(R.id.lv_hindapp_setting);
         lv_textsize_setting = (LinearLayout) findViewById(R.id.lv_textsize_setting);
         tv_title_text = (TextView) findViewById(R.id.tv_title_text);

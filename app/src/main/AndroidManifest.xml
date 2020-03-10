@@ -29,8 +29,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".launcher.settings.uirefresh.WhiteActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".launcher.settings.uirefresh.BlackActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
             android:name=".launcher.settings.hindapp.HindAppSetting"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".locked.FakerLockedActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
