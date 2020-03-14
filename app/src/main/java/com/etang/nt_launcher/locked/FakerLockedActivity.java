@@ -27,7 +27,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.etang.nt_launcher.launcher.MainActivity;
 import com.etang.nt_launcher.tool.server.ScreenListener;
 import com.etang.nt_launcher.tool.toast.DiyToast;
-import com.etang.nt_launcher.tool.killer.KillerHelper;
 import com.etang.nt_launcher.util.JsonService;
 import com.etang.nt_launcher.R;
 import com.google.gson.Gson;
@@ -63,7 +62,6 @@ public class FakerLockedActivity extends AppCompatActivity {
         initView();//绑定控件
         countTime_ontText();//开始计时
         monitorBatteryState();//电量监听
-        KillerHelper.CleaningOperation(FakerLockedActivity.this);//杀后台
 //        iv_lock_rundate_text.setText(RunTimeDate.getUsedPercentValue(FakerLockedActivity.this));
         iv_lock_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,7 +149,7 @@ public class FakerLockedActivity extends AppCompatActivity {
     }
 
     private void countTime_ontText() {
-        CountDownTimer timer = new CountDownTimer(600000, 1000) {
+        CountDownTimer timer = new CountDownTimer(60000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -160,26 +158,10 @@ public class FakerLockedActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 GET("https://v1.hitokoto.cn/");
-                countTime_ontText_get();
-            }
-        }.start();
-    }
-
-    private void countTime_ontText_get() {
-        CountDownTimer timer = new CountDownTimer(2000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                tv_one_text.setText(Hitokoto);
                 countTime_ontText();
             }
         }.start();
     }
-
 
     private void sendKeyCode1(int keyCode) {
         try {
@@ -206,7 +188,6 @@ public class FakerLockedActivity extends AppCompatActivity {
         iv_lock_rundate_text = (TextView) findViewById(R.id.iv_lock_rundate_text);
         tv_one_text = (TextView) findViewById(R.id.tv_one_text);
         GET("https://v1.hitokoto.cn/");
-        tv_one_text.setText(Hitokoto);
     }
 
 
@@ -313,37 +294,37 @@ public class FakerLockedActivity extends AppCompatActivity {
     private void open_wifi() {
         AlertDialog.Builder builder = new AlertDialog.Builder(FakerLockedActivity.this);
         builder.setTitle("没有可用的网络").setMessage("请打开WIFI或数据流量");
-
-        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = null;
-
-                try {
-                    String sdkVersion = android.os.Build.VERSION.SDK;
-                    if (Integer.valueOf(sdkVersion) > 10) {
-                        intent = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
-                    } else {
-                        intent = new Intent();
-                        ComponentName comp2 = new ComponentName("com.android.settings", Settings.ACTION_WIFI_SETTINGS);
-
-                        ComponentName comp = new ComponentName("com.android.settings", "com.android.settings.WirelessSettings");
-                        intent.setComponent(comp2);
-                        intent.setAction("android.intent.action.VIEW");
-                    }
-                    FakerLockedActivity.this.startActivity(intent);
-                } catch (Exception e) {
-                    Log.e("TAG", "open network settings failed, please check...");
-                    e.printStackTrace();
-                }
-            }
-        }).setNegativeButton("否", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-                finish();
-            }
-        }).show();
+        builder.setPositiveButton("确定", null);
+        builder.show();
+//        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Intent intent = null;
+//                try {
+//                    String sdkVersion = android.os.Build.VERSION.SDK;
+//                    if (Integer.valueOf(sdkVersion) > 10) {
+//                        intent = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
+//                    } else {
+//                        intent = new Intent();
+//                        ComponentName comp2 = new ComponentName("com.android.settings", Settings.ACTION_WIFI_SETTINGS);
+//
+//                        ComponentName comp = new ComponentName("com.android.settings", "com.android.settings.WirelessSettings");
+//                        intent.setComponent(comp2);
+//                        intent.setAction("android.intent.action.VIEW");
+//                    }
+//                    FakerLockedActivity.this.startActivity(intent);
+//                } catch (Exception e) {
+//                    Log.e("TAG", "open network settings failed, please check...");
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).setNegativeButton("否", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//                finish();
+//            }
+//        }).show();
     }
 
     /**
@@ -403,6 +384,12 @@ public class FakerLockedActivity extends AppCompatActivity {
         Log.e("getId", String.valueOf(json.getId()));
         Log.e("getFrom", json.getFrom());
         Log.e("getFrom_who", String.valueOf(json.getFrom_who()));
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                tv_one_text.setText(Hitokoto);
+            }
+        });
         return json;
     }
 }

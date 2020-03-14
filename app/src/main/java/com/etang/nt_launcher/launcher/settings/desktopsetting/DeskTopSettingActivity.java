@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 import com.etang.nt_launcher.R;
 
-public class DeskTopSettingActivity extends AppCompatActivity {
+public class DeskTopSettingActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tv_title_text, tv_gridlist_setting;
     private ImageView iv_title_back;
     private RadioButton ra_appname_hind;
@@ -44,17 +44,9 @@ public class DeskTopSettingActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.setting_activity_desk_top_setting);
         initView();//绑定控件
+        check_app_list();
         tv_gridlist_setting.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
         tv_gridlist_setting.getPaint().setAntiAlias(true);//抗锯齿
-        /**
-         * 设置列数文本点击事件
-         */
-        tv_gridlist_setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                show_gridlist_setting();
-            }
-        });
         /**
          * 设置title
          */
@@ -65,58 +57,49 @@ public class DeskTopSettingActivity extends AppCompatActivity {
                 finish();
             }
         });
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (ra_appname_hind.isChecked()) {
-                    SharedPreferences.Editor editor = getSharedPreferences("info_app_list_state", MODE_PRIVATE).edit();
-                    editor.putString("appname_state", "hind");
-                    editor.apply();
-                    finish();
-                    Log.e("APP_SETTING", "存储hind");
-                }
-                if (ra_appname_nope.isChecked()) {
-                    SharedPreferences.Editor editor = getSharedPreferences("info_app_list_state", MODE_PRIVATE).edit();
-                    editor.putString("appname_state", "nope");
-                    editor.apply();
-                    finish();
-                    Log.e("APP_SETTING", "存储nope");
-                }
-                if (ra_appname_one.isChecked()) {
-                    SharedPreferences.Editor editor = getSharedPreferences("info_app_list_state", MODE_PRIVATE).edit();
-                    editor.putString("appname_state", "one");
-                    editor.apply();
-                    finish();
-                    Log.e("APP_SETTING", "存储one");
-                }
-                if (ra_app_hind_blok.isChecked()) {
-                    SharedPreferences.Editor editor = getSharedPreferences("info_app_list_state", MODE_PRIVATE).edit();
-                    editor.putString("appblok_state", "hind_blok");
-                    editor.apply();
-                    finish();
-                    Log.e("APP_SETTING", "存储隐藏");
-                }
-                if (ra_app_show_blok.isChecked()) {
-                    SharedPreferences.Editor editor = getSharedPreferences("info_app_list_state", MODE_PRIVATE).edit();
-                    editor.putString("appblok_state", "show_blok");
-                    editor.apply();
-                    finish();
-                    Log.e("APP_SETTING", "存储显示");
-                }
-            }
-        });
+    }
+
+    private void check_app_list() {
+        SharedPreferences sharedPreferences;
+        sharedPreferences = getSharedPreferences("info_app_list_state", MODE_PRIVATE);
+        String appname_state = sharedPreferences.getString("appname_state", null);
+        String appblok_state = sharedPreferences.getString("appblok_state", null);
+        switch (appname_state) {
+            case "one":
+                ra_appname_one.setChecked(true);
+                break;
+            case "hind":
+                ra_appname_hind.setChecked(true);
+                break;
+            case "nope":
+                ra_appname_nope.setChecked(true);
+                break;
+        }
+        switch (appblok_state) {
+            case "hind_blok":
+                ra_app_hind_blok.setChecked(true);
+                break;
+            case "show_blok":
+                ra_app_show_blok.setChecked(true);
+                break;
+        }
     }
 
     private void initView() {
         tv_title_text = (TextView) findViewById(R.id.tv_title_text);
         iv_title_back = (ImageView) findViewById(R.id.iv_title_back);
         ra_appname_hind = (RadioButton) findViewById(R.id.ra_appname_hind);
+        ra_appname_hind.setOnClickListener(this);
         ra_appname_one = (RadioButton) findViewById(R.id.ra_appname_one);
+        ra_appname_one.setOnClickListener(this);
         ra_appname_nope = (RadioButton) findViewById(R.id.ra_appname_nope);
+        ra_appname_nope.setOnClickListener(this);
         ra_app_show_blok = (RadioButton) findViewById(R.id.ra_app_show_blok);
+        ra_app_show_blok.setOnClickListener(this);
         ra_app_hind_blok = (RadioButton) findViewById(R.id.ra_app_hind_blok);
+        ra_app_hind_blok.setOnClickListener(this);
         tv_gridlist_setting = (TextView) findViewById(R.id.tv_gridlist_setting);
+        tv_gridlist_setting.setOnClickListener(this);
     }
 
     public void show_gridlist_setting() {
@@ -205,6 +188,36 @@ public class DeskTopSettingActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
             editor.putString("applist_number", String.valueOf(number));
             editor.apply();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        SharedPreferences.Editor editor = getSharedPreferences("info_app_list_state", MODE_PRIVATE).edit();
+        switch (v.getId()) {
+            case R.id.tv_gridlist_setting:
+                show_gridlist_setting();
+                break;
+            case R.id.ra_app_hind_blok:
+                editor.putString("appblok_state", "hind_blok");
+                editor.apply();
+                break;
+            case R.id.ra_app_show_blok:
+                editor.putString("appblok_state", "show_blok");
+                editor.apply();
+                break;
+            case R.id.ra_appname_one:
+                editor.putString("appname_state", "one");
+                editor.apply();
+                break;
+            case R.id.ra_appname_nope:
+                editor.putString("appname_state", "nope");
+                editor.apply();
+                break;
+            case R.id.ra_appname_hind:
+                editor.putString("appname_state", "hind");
+                editor.apply();
+                break;
         }
     }
 }

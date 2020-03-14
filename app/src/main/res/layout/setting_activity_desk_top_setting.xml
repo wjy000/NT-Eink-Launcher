@@ -1,21 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.etang.nt_launcher.launcher.settings.desktopsetting.DeskTopSettingActivity">
+    android:orientation="vertical">
+
+    <include layout="@layout/in_back"></include>
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_media_play" />
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="应用名称显隐设置"
+            android:textColor="#000" />
 
-    <include layout="@layout/setting_content_desk_top_setting" />
+        <RadioButton
+            android:id="@+id/ra_appname_hind"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="隐藏"
+            android:textColor="#90000000" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <RadioButton
+            android:id="@+id/ra_appname_nope"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="显示"
+            android:textColor="#90000000" />
+
+        <RadioButton
+            android:id="@+id/ra_appname_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="限制为一行"
+            android:textColor="#90000000" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="应用列表边框设置"
+            android:textColor="#000" />
+
+        <RadioButton
+            android:id="@+id/ra_app_show_blok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="显示"
+            android:textColor="#90000000" />
+
+        <RadioButton
+            android:id="@+id/ra_app_hind_blok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="隐藏"
+            android:textColor="#90000000" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_gridlist_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="应用列表数量设置"
+        android:textColor="#000000" />
+
+</LinearLayout>

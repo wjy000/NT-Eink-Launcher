@@ -132,12 +132,12 @@ public class MainActivity extends Activity implements OnClickListener {
              * 填充预设数据
              */
             SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
-            editor.putString("images_info", "applist");
+            editor.putString("images_info", "applist");//默认显示内容
             editor.putString("images_app_listifo", "true");
-            editor.putString("appname_state", "nope");
-            editor.putString("applist_number", "5");
-            editor.putString("timetext_min_size", "50");
-            editor.putString("timetext_hour_size", "70");
+            editor.putString("appname_state", "nope");//是否显示APP名称
+            editor.putString("applist_number", "auto");//默认APP列表大小
+            editor.putString("timetext_min_size", "50");//分钟时间大小
+            editor.putString("timetext_hour_size", "70");//小时时间大小
             editor.putString("nametext_size", "16");//昵称文本大小
             editor.putString("dianchitext_size", "16");//电池文本大小
             editor.putString("datetext_size", "16");//日期文本大小
@@ -440,6 +440,7 @@ public class MainActivity extends Activity implements OnClickListener {
         tv_wind.setText(sharedPreferences.getString("wather_info_wind", null));
         tv_temp_state.setText(sharedPreferences.getString("wather_info_temp", null));
         tv_last_updatetime.setText(sharedPreferences.getString("wather_info_updatetime", null));
+        tv_city.setText(sharedPreferences.getString("wather_info_citytype", null));
         /**
          * 判断设置是不是隐藏天气布局
          */
@@ -489,6 +490,8 @@ public class MainActivity extends Activity implements OnClickListener {
                             DiyToast.showToast(getApplicationContext(), "请选择天气城市");
                         }
                         SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
+                        editor.putString("wather_info_citytype", cursor.getString(cursor
+                                .getColumnIndex("city")) + "  " + type);
                         editor.putString("wather_info_wind", fengxiang);
                         editor.putString("wather_info_temp", high + "  " + low);
                         editor.putString("wather_info_updatetime", "于"
@@ -506,8 +509,19 @@ public class MainActivity extends Activity implements OnClickListener {
                     }
                     break;
                 case 1:
+                    DiyToast.showToast(getApplicationContext(), "城市无效（已重置为北京）");
+                    db.execSQL("update wather_city set city = ? ",
+                            new String[]{"北京"});
                     break;
                 case 2:
+                    SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
+                    editor.putString("wather_info_updatetime", "于"
+                            + tv_time_hour.getText().toString() + ":"
+                            + tv_time_min.getText().toString() + "更新（离线状态）");
+                    editor.apply();
+                    SharedPreferences sharedPreferences;
+                    sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+                    update_wathers(sharedPreferences);
                     break;
                 default:
                     break;
@@ -558,6 +572,11 @@ public class MainActivity extends Activity implements OnClickListener {
                             msg.what = 1;
                             mHandler.sendMessage(msg);
                         }
+                    } else {
+                        // 联网失败
+                        Message msg = Message.obtain();
+                        msg.what = 2;
+                        mHandler.sendMessage(msg);
                     }
                 } catch (Exception e) {
                     // TODO: handle exception
