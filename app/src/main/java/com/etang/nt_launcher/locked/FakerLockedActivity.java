@@ -25,7 +25,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.etang.nt_launcher.launcher.MainActivity;
-import com.etang.nt_launcher.tool.server.ScreenListener;
+import com.etang.nt_launcher.tool.dialog.DeBugDialog;
 import com.etang.nt_launcher.tool.toast.DiyToast;
 import com.etang.nt_launcher.util.JsonService;
 import com.etang.nt_launcher.R;
@@ -41,18 +41,15 @@ import okhttp3.Response;
 
 public class FakerLockedActivity extends AppCompatActivity {
     private ImageView iv_lock_back, iv_lock_back_logo, iv_lock_setting_logo, iv_lock_setting;
-    public static final int FLAG_HOMEKEY_DISPATCHED = 0x80000000; //需要自己定义标志
     private TextView tv_time_lock, iv_lock_rundate_text, tv_one_text;
-    private ScreenListener screenListener;
     private BroadcastReceiver batteryLevelRcvr;
     private IntentFilter batteryLevelFilter;
-    String string = "";
-    String Hitokoto = "";
+//    String string = "";
+//    String Hitokoto = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getWindow().setFlags(FLAG_HOMEKEY_DISPATCHED, FLAG_HOMEKEY_DISPATCHED);//关键代码
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.
@@ -60,7 +57,7 @@ public class FakerLockedActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.activity_faker_locked);
         initView();//绑定控件
-        countTime_ontText();//开始计时
+//        countTime_ontText();//开始计时
         monitorBatteryState();//电量监听
 //        iv_lock_rundate_text.setText(RunTimeDate.getUsedPercentValue(FakerLockedActivity.this));
         iv_lock_back.setOnClickListener(new View.OnClickListener() {
@@ -77,73 +74,53 @@ public class FakerLockedActivity extends AppCompatActivity {
                 finish();
             }
         });
-        iv_lock_setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isOpenNetwork()) {
-                    GET("https://v1.hitokoto.cn/");
-                    CountDownTimer countDownTimer = new CountDownTimer(1000, 1000) {
-                        @Override
-                        public void onTick(long millisUntilFinished) {
+        iv_lock_setting_logo.setVisibility(View.GONE);
+        iv_lock_setting.setVisibility(View.GONE);
+        tv_one_text.setVisibility(View.GONE);
+//        iv_lock_setting.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isOpenNetwork()) {
+//                    GET("https://v1.hitokoto.cn/");
+//                    CountDownTimer countDownTimer = new CountDownTimer(1000, 1000) {
+//                        @Override
+//                        public void onTick(long millisUntilFinished) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onFinish() {
+//                            tv_one_text.setText(Hitokoto);
+//                        }
+//                    }.start();
+//                } else {
+//                    open_wifi();
+//                }
+//            }
+//        });
 
-                        }
-
-                        @Override
-                        public void onFinish() {
-                            tv_one_text.setText(Hitokoto);
-                        }
-                    }.start();
-                } else {
-                    open_wifi();
-                }
-            }
-        });
-
-        iv_lock_setting_logo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//        iv_lock_setting_logo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
 //                sendKeyCode1(223);
-                if (isOpenNetwork()) {
-                    GET("https://v1.hitokoto.cn/");
-                    CountDownTimer countDownTimer = new CountDownTimer(1000, 1000) {
-                        @Override
-                        public void onTick(long millisUntilFinished) {
-
-                        }
-
-                        @Override
-                        public void onFinish() {
-                            tv_one_text.setText(Hitokoto);
-                        }
-                    }.start();
-                } else {
-                    open_wifi();
-                }
-            }
-        });
-        /**
-         * 屏幕监听
-         */
-        screenListener = new ScreenListener(FakerLockedActivity.this);
-        screenListener.begin(new ScreenListener.ScreenStateListener() {
-            @Override
-            public void onScreenOn() {
-//                Toast.makeText(FakerLockedActivity.this, "屏幕打开了", Toast.LENGTH_SHORT).show();
-//                Log.e("LOCK", "屏幕打开了");
-            }
-
-            @Override
-            public void onScreenOff() {
-//                Toast.makeText(FakerLockedActivity.this, "屏幕关闭了", Toast.LENGTH_SHORT).show();
-//                Log.e("LOCK", "屏幕关闭了");
-            }
-
-            @Override
-            public void onUserPresent() {
-//                Toast.makeText(FakerLockedActivity.this, "解锁了", Toast.LENGTH_SHORT).show();
-//                Log.e("LOCK", "解锁了");
-            }
-        });
+//                if (isOpenNetwork()) {
+//                    GET("https://v1.hitokoto.cn/");
+//                    CountDownTimer countDownTimer = new CountDownTimer(1000, 1000) {
+//                        @Override
+//                        public void onTick(long millisUntilFinished) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onFinish() {
+//                            tv_one_text.setText(Hitokoto);
+//                        }
+//                    }.start();
+//                } else {
+//                    open_wifi();
+//                }
+//            }
+//        });
         //更新进程
         handler.post(runnable);
     }
@@ -157,21 +134,12 @@ public class FakerLockedActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                GET("https://v1.hitokoto.cn/");
+//                GET("https://v1.hitokoto.cn/");
                 countTime_ontText();
             }
         }.start();
     }
 
-    private void sendKeyCode1(int keyCode) {
-        try {
-            String keyCommand = "input keyevent " + keyCode;
-            // 调用Runtime模拟按键操作
-            Runtime.getRuntime().exec(keyCommand);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 //    // 设置为横屏模式  
 //    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 //    // 设置为竖屏模式  
@@ -187,7 +155,7 @@ public class FakerLockedActivity extends AppCompatActivity {
         tv_time_lock = (TextView) findViewById(R.id.tv_lock_time);
         iv_lock_rundate_text = (TextView) findViewById(R.id.iv_lock_rundate_text);
         tv_one_text = (TextView) findViewById(R.id.tv_one_text);
-        GET("https://v1.hitokoto.cn/");
+//        GET("https://v1.hitokoto.cn/");
     }
 
 
@@ -291,11 +259,11 @@ public class FakerLockedActivity extends AppCompatActivity {
         registerReceiver(batteryLevelRcvr, batteryLevelFilter);
     }
 
-    private void open_wifi() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(FakerLockedActivity.this);
-        builder.setTitle("没有可用的网络").setMessage("请打开WIFI或数据流量");
-        builder.setPositiveButton("确定", null);
-        builder.show();
+//    private void open_wifi() {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(FakerLockedActivity.this);
+//        builder.setTitle("没有可用的网络").setMessage("请打开WIFI或数据流量");
+//        builder.setPositiveButton("确定", null);
+//        builder.show();
 //        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
 //            @Override
 //            public void onClick(DialogInterface dialog, int which) {
@@ -325,71 +293,72 @@ public class FakerLockedActivity extends AppCompatActivity {
 //                finish();
 //            }
 //        }).show();
-    }
-
-    /**
-     * 对网络连接状态进行判断
-     *
-     * @return true, 可用； false， 不可用
-     */
-    private boolean isOpenNetwork() {
-        ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connManager.getActiveNetworkInfo() != null) {
-            return connManager.getActiveNetworkInfo().isAvailable();
-        }
-        return false;
-    }
-
-    /**
-     * okhttp封装
-     *
-     * @param url
-     */
-    public void GET(String url) {
-        OkHttpClient okHttpClient = new OkHttpClient();
-        final Request request = new Request.Builder()
-                .url(url)
-                .build();
-        final Call call = okHttpClient.newCall(request);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Response response = call.execute();
-                    string = response.body().string();
-                    getJson(string);
-                    Log.e("GET", string);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Log.e("ERROE", e.toString());
-                    if (e.toString().equals("java.net.UnknownHostException: Unable to resolve host \"v1.hitokoto.cn\": No address associated with hostname")) {
-                        Log.e("错误", "无网络");
-                    }
-                }
-            }
-        }).start();
-    }
-
-    /**
-     * 获取返回的Json内容
-     *
-     * @param res
-     * @return
-     */
-    public JsonService getJson(String res) {
-        Gson gson = new Gson();
-        JsonService json = gson.fromJson(res, JsonService.class);
-        Hitokoto = json.getHitokoto();
-        Log.e("getHitokoto", json.getHitokoto());
-        Log.e("getId", String.valueOf(json.getId()));
-        Log.e("getFrom", json.getFrom());
-        Log.e("getFrom_who", String.valueOf(json.getFrom_who()));
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                tv_one_text.setText(Hitokoto);
-            }
-        });
-        return json;
-    }
+//    }
+//
+//    /**
+//     * 对网络连接状态进行判断
+//     *
+//     * @return true, 可用； false， 不可用
+//     */
+//    private boolean isOpenNetwork() {
+//        ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//        if (connManager.getActiveNetworkInfo() != null) {
+//            return connManager.getActiveNetworkInfo().isAvailable();
+//        }
+//        return false;
+//    }
+//
+//    /**
+//     * okhttp封装
+//     *
+//     * @param url
+//     */
+//    public void GET(String url) {
+//        OkHttpClient okHttpClient = new OkHttpClient();
+//        final Request request = new Request.Builder()
+//                .url(url)
+//                .build();
+//        final Call call = okHttpClient.newCall(request);
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Response response = call.execute();
+//                    string = response.body().string();
+//                    getJson(string);
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            tv_one_text.setText(Hitokoto);
+//                        }
+//                    });
+//                    Log.e("GET", string);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    Log.e("ERROE", e.toString());
+//                    if (e.toString().equals("java.net.UnknownHostException: Unable to resolve host \"v1.hitokoto.cn\": No address associated with hostname")) {
+//                        Log.e("错误", "无网络");
+//                        DiyToast.showToast(FakerLockedActivity.this, "无网络");
+//                    }
+//                }
+//            }
+//        }).start();
+//    }
+//
+//    /**
+//     * 获取返回的Json内容
+//     *
+//     * @param res
+//     * @return
+//     */
+//    public JsonService getJson(String res) {
+//        Gson gson = new Gson();
+//        JsonService json = gson.fromJson(res, JsonService.class);
+//        Hitokoto = json.getHitokoto();
+//        Log.e("getHitokoto", json.getHitokoto());
+//        Log.e("getId", String.valueOf(json.getId()));
+//        Log.e("getFrom", json.getFrom());
+//        Log.e("getFrom_who", String.valueOf(json.getFrom_who()));
+//        return json;
+//    }
 }

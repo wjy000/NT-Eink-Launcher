@@ -85,13 +85,13 @@ public class MainActivity extends Activity implements OnClickListener {
     private IntentFilter batteryLevelFilter;
     private Handler handler;
     private Runnable runnable;
+    public static View view_buttom;
     public static TextView tv_user_id, tv_time_hour, tv_time_min,
             tv_main_batterystate, tv_city, tv_wind, tv_temp_state,
             tv_last_updatetime;
     private MyDataBaseHelper dbHelper_name_sql;
-    private SQLiteDatabase db;
-    private Calendar calendar = Calendar.getInstance();
-    private ImageView iv_setting_button, iv_setting_yinliang, iv_setting_lock;
+    private static SQLiteDatabase db;
+    public static ImageView iv_setting_button, iv_setting_yinliang, iv_setting_lock;
     public static ToggleButton tg_apps_state;
     public static LinearLayout line_wather;
     public static String string_app_info = "";
@@ -114,7 +114,7 @@ public class MainActivity extends Activity implements OnClickListener {
         initView();// 绑定控件
         checkPermission();//存取权限
         new_time_Thread();// 启用更新时间进程
-        rember_name();// 记住昵称
+        rember_name(MainActivity.this);// 记住昵称
         initAppList(this);// 获取应用列表
         monitorBatteryState();// 监听电池信息
         mListView.setNumColumns(GridView.AUTO_FIT);
@@ -141,6 +141,7 @@ public class MainActivity extends Activity implements OnClickListener {
             editor.putString("nametext_size", "16");//昵称文本大小
             editor.putString("dianchitext_size", "16");//电池文本大小
             editor.putString("datetext_size", "16");//日期文本大小
+            editor.putString("setting_ico_hind", "false");//隐藏底栏
             editor.apply();
             //更新桌面信息
             images_upgrade();
@@ -152,7 +153,9 @@ public class MainActivity extends Activity implements OnClickListener {
         get_applist_number();//获取设定的应用列表列数
         images_upgrade();//更新图像信息
         check_text_size(MainActivity.this);
+        check_view_hind(MainActivity.this, sharedPreferences);
         // 长按弹出APP信息
+
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -213,11 +216,10 @@ public class MainActivity extends Activity implements OnClickListener {
                 return true;
             }
         });
-        //长按弹出昵称设置
-        tv_user_id.setOnLongClickListener(new OnLongClickListener() {
+        tv_time_hour.setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                show_name_dialog();
+                startActivity(new Intent(MainActivity.this, SettingActivity.class));
                 return true;
             }
         });
@@ -230,6 +232,29 @@ public class MainActivity extends Activity implements OnClickListener {
                 setNotification();
             }
         }, 50);
+    }
+
+    public static void check_view_hind(Context context, SharedPreferences sharedPreferences) {
+        String ico_info = sharedPreferences.getString("setting_ico_hind", null);
+        try {
+            if (ico_info.equals("true")) {
+                MainActivity.iv_setting_button.setVisibility(View.GONE);
+                iv_setting_lock.setVisibility(View.GONE);
+                iv_setting_yinliang.setVisibility(View.GONE);
+                tg_apps_state.setVisibility(View.GONE);
+                view_buttom.setVisibility(View.INVISIBLE);
+            } else {
+                iv_setting_button.setVisibility(View.VISIBLE);
+                iv_setting_lock.setVisibility(View.VISIBLE);
+                iv_setting_yinliang.setVisibility(View.VISIBLE);
+                tg_apps_state.setVisibility(View.VISIBLE);
+                view_buttom.setVisibility(View.VISIBLE);
+            }
+        } catch (Exception e) {
+            SharedPreferences.Editor editor = context.getSharedPreferences("info", context.MODE_PRIVATE).edit();
+            editor.putString("setting_ico_hind", "false");//日期文本大小
+            editor.apply();
+        }
     }
 
     private void get_applist_number() {
@@ -358,7 +383,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 if (hind_apparrayList.get(j).equals(appInfos.get(i).getPackageName())) {
                     Log.e("APPDATA-------", appInfos.get(i).getPackageName());
                     appInfos.remove(i);
-                    continue;
+//                    continue;
                 }
             }
         }
@@ -372,14 +397,16 @@ public class MainActivity extends Activity implements OnClickListener {
      * <p>
      * SQLite
      */
-    private void rember_name() {
-        Cursor cursor = db.rawQuery("select * from name", null);
+    public static void rember_name(Context context) {
+        Cursor cursor = MainActivity.db.rawQuery("select * from name", null);
         if (cursor.getCount() != 0) {
             cursor.moveToFirst();
-            tv_user_id.setText(cursor.getString(cursor
+            MainActivity.tv_user_id.setText(cursor.getString(cursor
                     .getColumnIndex("username")));
-            if (tv_user_id.getText().toString().isEmpty()) {
-                tv_user_id.setText("请设置昵称（长按此处）");
+            if (MainActivity.tv_user_id.getText().toString().isEmpty()) {
+                MainActivity.tv_user_id.setText("请设置昵称（长按此处）");
+            } else if (MainActivity.tv_user_id.getText().toString().equals("")) {
+                MainActivity.tv_user_id.setText("请设置昵称（长按此处）");
             }
         }
     }
@@ -412,6 +439,7 @@ public class MainActivity extends Activity implements OnClickListener {
      * 绑定控件
      */
     private void initView() {
+        view_buttom = (View) findViewById(R.id.view_buttom);
         mListView = (GridView) findViewById(R.id.mAppGridView);
         iv_setting_button = (ImageView) findViewById(R.id.iv_setting_button);
         tv_time_hour = (TextView) findViewById(R.id.tv_time_hour);
@@ -659,80 +687,6 @@ public class MainActivity extends Activity implements OnClickListener {
         batteryLevelFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         registerReceiver(batteryLevelRcvr, batteryLevelFilter);
     }
-
-    public void show_name_dialog() {
-        final AlertDialog builder = new AlertDialog.Builder(
-                MainActivity.this).create();
-        View view = LayoutInflater.from(MainActivity.this).inflate(
-                R.layout.dialog_name_show, null, false);
-        builder.setView(view);
-        final EditText et_name_get = (EditText) view
-                .findViewById(R.id.et_title_name);
-        final RadioButton ra_0 = (RadioButton) view
-                .findViewById(R.id.radio0);
-        final RadioButton ra_1 = (RadioButton) view
-                .findViewById(R.id.radio1);
-        final RadioButton ra_2 = (RadioButton) view
-                .findViewById(R.id.radio2);
-        final RadioButton ra_3 = (RadioButton) view
-                .findViewById(R.id.radio3);
-        final Button btn_con = (Button) view.findViewById(R.id.btn_dialog_rename_con);
-        final Button btn_cls = (Button) view.findViewById(R.id.btn_dialog_rename_cls);
-        builder.setTitle("请输入你的要显示的内容");
-        btn_cls.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                builder.dismiss();
-            }
-        });
-        btn_con.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (et_name_get.getText().toString().isEmpty()
-                        && !ra_0.isChecked() && !ra_2.isChecked()
-                        && !ra_3.isChecked() && !ra_1.isChecked()) {
-                    db.execSQL("update name set username = ?",
-                            new String[]{""});
-                } else {
-                    if (ra_0.isChecked() || ra_1.isChecked()
-                            || ra_2.isChecked() || ra_3.isChecked()) {
-                        if (ra_0.isChecked()) {
-                            db.execSQL(
-                                    "update name set username = ?",
-                                    new String[]{ra_0.getText()
-                                            .toString() + "多看电纸书"});
-                        }
-                        if (ra_1.isChecked()) {
-                            db.execSQL(
-                                    "update name set username = ?",
-                                    new String[]{ra_1.getText()
-                                            .toString() + "多看电纸书"});
-                        }
-                        if (ra_2.isChecked()) {
-                            db.execSQL(
-                                    "update name set username = ?",
-                                    new String[]{ra_2.getText()
-                                            .toString() + "多看电纸书"});
-                        }
-                        if (ra_3.isChecked()) {
-                            db.execSQL(
-                                    "update name set username = ?",
-                                    new String[]{ra_3.getText()
-                                            .toString() + "多看电纸书"});
-                        }
-                    } else {
-                        db.execSQL("update name set username = ?",
-                                new String[]{et_name_get
-                                        .getText().toString()});
-                    }
-                }
-                builder.dismiss();
-                rember_name();
-            }
-        });
-        builder.show();
-    }
-
 
     /**
      * 桌面左下角设置 点击事件监听

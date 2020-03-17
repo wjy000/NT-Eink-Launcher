@@ -140,6 +140,7 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/view_buttom"
         android:layout_width="match_parent"
         android:layout_height="1sp"
         android:layout_alignBottom="@+id/linearLayout1"

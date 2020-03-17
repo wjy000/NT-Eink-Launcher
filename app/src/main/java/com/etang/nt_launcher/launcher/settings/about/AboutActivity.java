@@ -27,27 +27,6 @@ public class AboutActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.setting_about);
         setTitle("关于");
-        initView();
-        /**
-         * 增加下划线
-         */
-        tv_system_coolapk.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
-        tv_system_coolapk.getPaint().setAntiAlias(true);//抗锯齿
-        tv_system_fucher.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
-        tv_system_fucher.getPaint().setAntiAlias(true);//抗锯齿
-
-        tv_system_coolapk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AboutActivity.this, CoolApkActivity.class));
-            }
-        });
-        tv_system_fucher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AboutActivity.this, FucherActivity.class));
-            }
-        });
         //返回按钮（整个顶栏LinearLayout）
         ((ImageView) findViewById(R.id.iv_title_back)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,10 +36,5 @@ public class AboutActivity extends AppCompatActivity {
         });
         //标题
         ((TextView) findViewById(R.id.tv_title_text)).setText("关于");
-    }
-
-    private void initView() {
-        tv_system_coolapk = (TextView) findViewById(R.id.tv_system_qcode);
-        tv_system_fucher = (TextView) findViewById(R.id.tv_system_fucher);
     }
 }

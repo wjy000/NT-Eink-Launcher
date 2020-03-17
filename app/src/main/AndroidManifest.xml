@@ -41,12 +41,6 @@
             android:name=".locked.FakerLockedActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".launcher.settings.about.CoolApkActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".launcher.settings.about.FucherActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
             android:name=".launcher.settings.wather.WeatherSettingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -60,11 +54,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".launcher.settings.launcherimage.ChoseImagesActivity"
-            android:theme="@style/Theme.AppCompat.Light.Dialog" />
-        <activity
-            android:name=".launcher.settings.uninstallapk.UnInstallActivity"
-            android:label=""
-            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar.MinWidth" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".launcher.settings.wather.WatherActivity"
             android:label=""
