@@ -180,9 +180,10 @@ public class MainActivity extends Activity implements OnClickListener {
                     Intent intent = getPackageManager().getLaunchIntentForPackage(
                             appInfos.get(position).getPackageName());
                     if (intent != null) {
-                        intent.putExtra("type", "110");
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        intent.putExtra("type", "110");
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
+                        finish();
                     }
                 } catch (Exception e) {
                     DeBugDialog.debug_show_dialog(MainActivity.this, e.toString());//显示错误信息
