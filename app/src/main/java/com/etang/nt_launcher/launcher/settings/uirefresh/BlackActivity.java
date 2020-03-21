@@ -24,7 +24,8 @@ public class BlackActivity extends AppCompatActivity {
                 FLAG_KEEP_SCREEN_ON);//应用运行时，保持屏幕高亮，不锁屏
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.activity_black);
-        CountDownTimer timer = new CountDownTimer(2000, 1000) {
+        DiyToast.showToast(BlackActivity.this, "请暂时不要操控设备");
+        CountDownTimer timer = new CountDownTimer(1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -34,7 +35,6 @@ public class BlackActivity extends AppCompatActivity {
             public void onFinish() {
                 startActivity(new Intent(BlackActivity.this, WhiteActivity.class));
                 finish();
-                DiyToast.showToast(BlackActivity.this, "请暂时不要操控设备");
             }
         }.start();
     }

@@ -106,11 +106,18 @@
                 android:src="@drawable/menu_setting" />
 
             <ImageView
-                android:id="@+id/iv_setting_lock"
+                android:id="@+id/iv_setting_refresh"
                 android:layout_width="30sp"
                 android:layout_height="30sp"
                 android:layout_margin="5dp"
-                android:src="@drawable/menu_lock" />
+                android:src="@drawable/menu_update" />
+
+            <ImageView
+                android:id="@+id/iv_setting_rss"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_margin="5dp"
+                android:src="@drawable/menu_rss" />
         </LinearLayout>
 
         <LinearLayout
@@ -126,6 +133,14 @@
                 android:layout_height="30sp"
                 android:layout_margin="5dp"
                 android:src="@drawable/menu_yinliang" />
+
+            <ImageView
+                android:id="@+id/iv_setting_lock"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_margin="5dp"
+                android:paddingBottom="3dp"
+                android:src="@drawable/menu_lock" />
 
             <ToggleButton
                 android:id="@+id/tg_apps_state"

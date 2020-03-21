@@ -114,23 +114,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lv_refresh_activity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/shaper_apks_button_window_show"
-                android:gravity="center_vertical|center_horizontal"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5sp"
-                    android:text="全刷桌面" />
-
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/lv_about_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -149,6 +132,12 @@
 
             <CheckBox
                 android:id="@+id/cb_hind_setting_ico"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="在主界面隐藏“设置”图标" />
+
+            <CheckBox
+                android:id="@+id/cb_setting_offlinemode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="在主界面隐藏“设置”图标" />
@@ -183,5 +172,5 @@
         android:layout_height="60dp"
         android:layout_weight="1"
         android:gravity="center_horizontal|center_vertical|top"
-        android:text="ver 4.1" />
+        android:text="ver 4.2" />
 </LinearLayout>

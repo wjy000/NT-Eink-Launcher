@@ -35,9 +35,9 @@ import com.etang.nt_launcher.tool.toast.DiyToast;
 
 public class SettingActivity extends Activity {
 
-    LinearLayout lv_weather_gone_setting, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting, lv_hindapp_setting, lv_refresh_setting, lv_name_setting;
+    LinearLayout lv_weather_gone_setting, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting, lv_hindapp_setting, lv_name_setting;
     private TextView tv_title_text;
-    private CheckBox cb_hind_setting_ico;
+    private CheckBox cb_hind_setting_ico, cb_setting_offlinemode;
     private ImageView iv_title_back;
     private MyDataBaseHelper dbHelper_name_sql;
     private SQLiteDatabase db;
@@ -119,15 +119,6 @@ public class SettingActivity extends Activity {
                 startActivity(new Intent(SettingActivity.this, HindAppSetting.class));
             }
         });
-        //全刷一次屏幕
-        lv_refresh_setting.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SettingActivity.this, BlackActivity.class));
-                finish();//结束屏幕
-                DiyToast.showToast(SettingActivity.this, "请暂时不要操控设备");
-            }
-        });
         //昵称设置
         lv_name_setting.setOnClickListener(new OnClickListener() {
             @Override
@@ -138,6 +129,7 @@ public class SettingActivity extends Activity {
         SharedPreferences sharedPreferences;
         sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
         String ico_info = sharedPreferences.getString("setting_ico_hind", null);
+        String offline_info = sharedPreferences.getString("offline", null);
         try {
             if (ico_info.equals("true")) {
                 cb_hind_setting_ico.setChecked(true);
@@ -145,6 +137,11 @@ public class SettingActivity extends Activity {
             } else {
                 cb_hind_setting_ico.setChecked(false);
                 MainActivity.check_view_hind(SettingActivity.this, sharedPreferences);
+            }
+            if (offline_info.equals("true")) {
+                cb_setting_offlinemode.setChecked(true);
+            } else {
+                cb_setting_offlinemode.setChecked(false);
             }
         } catch (Exception e) {
             SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
@@ -162,6 +159,21 @@ public class SettingActivity extends Activity {
                 } else {
                     SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                     editor.putString("setting_ico_hind", "false");//日期文本大小
+                    editor.apply();
+                }
+            }
+        });
+        cb_setting_offlinemode.setText("离线模式");
+        cb_setting_offlinemode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
+                    editor.putString("offline", "true");//日期文本大小
+                    editor.apply();
+                } else {
+                    SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
+                    editor.putString("offline", "false");//日期文本大小
                     editor.apply();
                 }
             }
@@ -243,9 +255,9 @@ public class SettingActivity extends Activity {
 
     private void initView() {
         // TODO Auto-generated method stub
+        cb_setting_offlinemode = (CheckBox) findViewById(R.id.cb_setting_offlinemode);
         cb_hind_setting_ico = (CheckBox) findViewById(R.id.cb_hind_setting_ico);
         lv_name_setting = (LinearLayout) findViewById(R.id.lv_name_setting);
-        lv_refresh_setting = (LinearLayout) findViewById(R.id.lv_refresh_activity);
         lv_hindapp_setting = (LinearLayout) findViewById(R.id.lv_hindapp_setting);
         lv_textsize_setting = (LinearLayout) findViewById(R.id.lv_textsize_setting);
         tv_title_text = (TextView) findViewById(R.id.tv_title_text);

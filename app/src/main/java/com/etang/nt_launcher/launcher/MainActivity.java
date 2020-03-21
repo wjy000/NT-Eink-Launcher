@@ -2,7 +2,6 @@ package com.etang.nt_launcher.launcher;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -24,26 +23,23 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.core.app.NotificationCompat;
 
+import com.etang.nt_launcher.launcher.settings.uirefresh.BlackActivity;
 import com.etang.nt_launcher.locked.FakerLockedActivity;
 import com.etang.nt_launcher.tool.dialog.DeBugDialog;
 import com.etang.nt_launcher.tool.dialog.UnInstallDialog;
@@ -68,7 +64,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -91,13 +86,14 @@ public class MainActivity extends Activity implements OnClickListener {
             tv_last_updatetime;
     private MyDataBaseHelper dbHelper_name_sql;
     private static SQLiteDatabase db;
-    public static ImageView iv_setting_button, iv_setting_yinliang, iv_setting_lock;
+    public static ImageView iv_setting_button, iv_setting_yinliang, iv_setting_lock, iv_setting_refresh, iv_setting_rss;
     public static ToggleButton tg_apps_state;
     public static LinearLayout line_wather;
     public static String string_app_info = "";
     public static ImageView iv_index_back;
     public static GridView mListView;
     public static List<AppInfo> appInfos = new ArrayList<AppInfo>();
+    public static boolean offline_mode = false;
 
 
     @Override
@@ -119,12 +115,6 @@ public class MainActivity extends Activity implements OnClickListener {
         monitorBatteryState();// 监听电池信息
         mListView.setNumColumns(GridView.AUTO_FIT);
         /**
-         * 更新天气信息
-         */
-        SharedPreferences sharedPreferences;
-        sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-        update_wathers(sharedPreferences);
-        /**
          * 判断是不是第一次使用
          */
         if (isFirstStart(MainActivity.this)) {//第一次
@@ -142,6 +132,7 @@ public class MainActivity extends Activity implements OnClickListener {
             editor.putString("dianchitext_size", "16");//电池文本大小
             editor.putString("datetext_size", "16");//日期文本大小
             editor.putString("setting_ico_hind", "false");//隐藏底栏
+            editor.putString("offline", "false");//离线模式
             editor.apply();
             //更新桌面信息
             images_upgrade();
@@ -150,12 +141,15 @@ public class MainActivity extends Activity implements OnClickListener {
             arrayList.add("frist");
             SaveArrayListUtil.saveArrayList(MainActivity.this, arrayList, "start");//存储在本地
         }
+        SharedPreferences sharedPreferences;
+        sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
         get_applist_number();//获取设定的应用列表列数
         images_upgrade();//更新图像信息
         check_text_size(MainActivity.this);
         check_view_hind(MainActivity.this, sharedPreferences);
+        check_offline_mode(MainActivity.this, sharedPreferences);
+        update_wathers(sharedPreferences);//更新天气
         // 长按弹出APP信息
-
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -217,11 +211,28 @@ public class MainActivity extends Activity implements OnClickListener {
                 return true;
             }
         });
+        //长按“小时”进入设置
         tv_time_hour.setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
                 return true;
+            }
+        });
+        //“刷新桌面”
+        iv_setting_refresh.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, BlackActivity.class));
+                finish();
+            }
+        });
+        //RSS订阅
+        iv_setting_rss.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DiyToast.showToast(MainActivity.this, "调试中的功能");
+//                startActivity(new Intent(MainActivity.this, MyRssReader.class));
             }
         });
         /**
@@ -235,9 +246,24 @@ public class MainActivity extends Activity implements OnClickListener {
         }, 50);
     }
 
-    public static void check_view_hind(Context context, SharedPreferences sharedPreferences) {
-        String ico_info = sharedPreferences.getString("setting_ico_hind", null);
+    public static void check_offline_mode(Context context, SharedPreferences sharedPreferences) {
         try {
+            String offline = sharedPreferences.getString("offline", null);
+            if (offline.equals("true")) {
+                offline_mode = true;
+            } else {
+                offline_mode = false;
+            }
+        } catch (Exception e) {
+            SharedPreferences.Editor editor = context.getSharedPreferences("info", context.MODE_PRIVATE).edit();
+            editor.putString("offline", "false");//日期文本大小
+            editor.apply();
+        }
+    }
+
+    public static void check_view_hind(Context context, SharedPreferences sharedPreferences) {
+        try {
+            String ico_info = sharedPreferences.getString("setting_ico_hind", null);
             if (ico_info.equals("true")) {
                 MainActivity.iv_setting_button.setVisibility(View.GONE);
                 iv_setting_lock.setVisibility(View.GONE);
@@ -354,18 +380,22 @@ public class MainActivity extends Activity implements OnClickListener {
     protected void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
-        Cursor cursor = db.rawQuery("select * from wather_city", null);
-        if (cursor.getCount() != 0) {
-            cursor.moveToFirst();
-            update_wather(MainActivity.this,
-                    cursor.getString(cursor.getColumnIndex("city")));
-        }
         /**
          * 更新天气信息
          */
-        SharedPreferences sharedPreferences;
-        sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-        update_wathers(sharedPreferences);
+        if (!offline_mode) {
+            Cursor cursor = db.rawQuery("select * from wather_city", null);
+            if (cursor.getCount() != 0) {
+                cursor.moveToFirst();
+                update_wather(MainActivity.this,
+                        cursor.getString(cursor.getColumnIndex("city")));
+            }
+            SharedPreferences sharedPreferences;
+            sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+            update_wathers(sharedPreferences);
+        } else {
+            line_wather.setVisibility(View.INVISIBLE);
+        }
         initAppList(MainActivity.this);
     }
 
@@ -405,9 +435,9 @@ public class MainActivity extends Activity implements OnClickListener {
             MainActivity.tv_user_id.setText(cursor.getString(cursor
                     .getColumnIndex("username")));
             if (MainActivity.tv_user_id.getText().toString().isEmpty()) {
-                MainActivity.tv_user_id.setText("请设置昵称（长按此处）");
+                MainActivity.tv_user_id.setText("请设置昵称（桌面设置中）");
             } else if (MainActivity.tv_user_id.getText().toString().equals("")) {
-                MainActivity.tv_user_id.setText("请设置昵称（长按此处）");
+                MainActivity.tv_user_id.setText("请设置昵称（桌面设置中）");
             }
         }
     }
@@ -440,6 +470,8 @@ public class MainActivity extends Activity implements OnClickListener {
      * 绑定控件
      */
     private void initView() {
+        iv_setting_rss = (ImageView) findViewById(R.id.iv_setting_rss);
+        iv_setting_refresh = (ImageView) findViewById(R.id.iv_setting_refresh);
         view_buttom = (View) findViewById(R.id.view_buttom);
         mListView = (GridView) findViewById(R.id.mAppGridView);
         iv_setting_button = (ImageView) findViewById(R.id.iv_setting_button);
@@ -466,14 +498,18 @@ public class MainActivity extends Activity implements OnClickListener {
     }
 
     private void update_wathers(SharedPreferences sharedPreferences) {
-        tv_wind.setText(sharedPreferences.getString("wather_info_wind", null));
-        tv_temp_state.setText(sharedPreferences.getString("wather_info_temp", null));
-        tv_last_updatetime.setText(sharedPreferences.getString("wather_info_updatetime", null));
-        tv_city.setText(sharedPreferences.getString("wather_info_citytype", null));
-        /**
-         * 判断设置是不是隐藏天气布局
-         */
-        check_weather_view(sharedPreferences);
+        if (!offline_mode) {
+            tv_wind.setText(sharedPreferences.getString("wather_info_wind", null));
+            tv_temp_state.setText(sharedPreferences.getString("wather_info_temp", null));
+            tv_last_updatetime.setText(sharedPreferences.getString("wather_info_updatetime", null));
+            tv_city.setText(sharedPreferences.getString("wather_info_citytype", null));
+            /**
+             * 判断设置是不是隐藏天气布局
+             */
+            check_weather_view(sharedPreferences);
+        } else {
+            line_wather.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void check_weather_view(SharedPreferences sharedPreferences) {
@@ -701,16 +737,18 @@ public class MainActivity extends Activity implements OnClickListener {
                 break;
             case R.id.line_wather:
                 Cursor cursor = db.rawQuery("select * from wather_city", null);
-                if (cursor.getCount() != 0) {
-                    cursor.moveToFirst();
-                    update_wather(MainActivity.this,
-                            cursor.getString(cursor.getColumnIndex("city")));
-                    /**
-                     * 更新天气信息
-                     */
-                    SharedPreferences sharedPreferences;
-                    sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-                    update_wathers(sharedPreferences);
+                if (!offline_mode) {
+                    if (cursor.getCount() != 0) {
+                        cursor.moveToFirst();
+                        update_wather(MainActivity.this,
+                                cursor.getString(cursor.getColumnIndex("city")));
+                        /**
+                         * 更新天气信息
+                         */
+                        SharedPreferences sharedPreferences;
+                        sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+                        update_wathers(sharedPreferences);
+                    }
                 }
                 break;
             case R.id.iv_setting_yinliang:
