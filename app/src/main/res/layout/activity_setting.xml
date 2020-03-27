@@ -172,5 +172,5 @@
         android:layout_height="60dp"
         android:layout_weight="1"
         android:gravity="center_horizontal|center_vertical|top"
-        android:text="ver 4.2" />
+        android:text="Beta 4.3" />
 </LinearLayout>
