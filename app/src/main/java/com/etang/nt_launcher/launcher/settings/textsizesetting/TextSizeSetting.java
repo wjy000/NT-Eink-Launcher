@@ -85,12 +85,13 @@ public class TextSizeSetting extends AppCompatActivity {
                 editor.putString("dianchitext_size", "16");//电池文本大小
                 editor.putString("datetext_size", "16");//日期文本大小
                 editor.apply();
-                DiyToast.showToast(TextSizeSetting.this, "重置成功");
+                DiyToast.showToast(TextSizeSetting.this, "重置成功", true);
             }
         });
     }
 
     private void show_size_dialog(final String name) {
+        String setting_number = "";
         AlertDialog.Builder builder = new AlertDialog.Builder(TextSizeSetting.this);
         View view = LayoutInflater.from(TextSizeSetting.this).inflate(R.layout.dialog_seekbar_and_edittext, null);
         switch (name) {

@@ -27,11 +27,9 @@ import com.etang.nt_launcher.launcher.settings.desktopsetting.DeskTopSettingActi
 import com.etang.nt_launcher.launcher.settings.hindapp.HindAppSetting;
 import com.etang.nt_launcher.launcher.settings.launcherimage.ChoseImagesActivity;
 import com.etang.nt_launcher.launcher.settings.textsizesetting.TextSizeSetting;
-import com.etang.nt_launcher.launcher.settings.uirefresh.BlackActivity;
 import com.etang.nt_launcher.launcher.settings.wather.WeatherSettingActivity;
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;
-import com.etang.nt_launcher.tool.toast.DiyToast;
 
 public class SettingActivity extends Activity {
 
@@ -148,7 +146,6 @@ public class SettingActivity extends Activity {
             editor.putString("setting_ico_hind", "false");//日期文本大小
             editor.apply();
         }
-        cb_hind_setting_ico.setText("隐藏所有“底栏”内容\n你还可以通过长按时间的“小时”部分打开桌面设置，推荐将桌面设置为“仅显示应用列表”后再隐藏");
         cb_hind_setting_ico.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -163,7 +160,6 @@ public class SettingActivity extends Activity {
                 }
             }
         });
-        cb_setting_offlinemode.setText("离线模式");
         cb_setting_offlinemode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

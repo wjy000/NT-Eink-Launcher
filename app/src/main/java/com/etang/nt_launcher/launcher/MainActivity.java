@@ -39,20 +39,20 @@ import android.widget.ToggleButton;
 
 import androidx.core.app.NotificationCompat;
 
-import com.etang.nt_launcher.launcher.settings.uirefresh.BlackActivity;
+import com.etang.nt_launcher.R;
+import com.etang.nt_launcher.launcher.settings.SettingActivity;
+import com.etang.nt_launcher.launcher.settings.uirefresh.UireFreshActivity;
 import com.etang.nt_launcher.locked.FakerLockedActivity;
 import com.etang.nt_launcher.tool.dialog.DeBugDialog;
 import com.etang.nt_launcher.tool.dialog.UnInstallDialog;
+import com.etang.nt_launcher.tool.dialog.WeatherDialog;
+import com.etang.nt_launcher.tool.savearrayutil.SaveArrayListUtil;
 import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;
-import com.etang.nt_launcher.launcher.settings.SettingActivity;
-import com.etang.nt_launcher.launcher.settings.wather.WatherActivity;
 import com.etang.nt_launcher.tool.toast.DiyToast;
 import com.etang.nt_launcher.util.AppInfo;
 import com.etang.nt_launcher.util.DeskTopGridViewBaseAdapter;
 import com.etang.nt_launcher.util.GetApps;
-import com.etang.nt_launcher.tool.savearrayutil.SaveArrayListUtil;
 import com.etang.nt_launcher.util.StreamTool;
-import com.etang.nt_launcher.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -80,12 +80,12 @@ public class MainActivity extends Activity implements OnClickListener {
     private IntentFilter batteryLevelFilter;
     private Handler handler;
     private Runnable runnable;
+    private static MyDataBaseHelper dbHelper_name_sql;
+    private static SQLiteDatabase db;
     public static View view_buttom;
     public static TextView tv_user_id, tv_time_hour, tv_time_min,
             tv_main_batterystate, tv_city, tv_wind, tv_temp_state,
             tv_last_updatetime;
-    private MyDataBaseHelper dbHelper_name_sql;
-    private static SQLiteDatabase db;
     public static ImageView iv_setting_button, iv_setting_yinliang, iv_setting_lock, iv_setting_refresh, iv_setting_rss;
     public static ToggleButton tg_apps_state;
     public static LinearLayout line_wather;
@@ -106,49 +106,22 @@ public class MainActivity extends Activity implements OnClickListener {
                 FLAG_KEEP_SCREEN_ON);//应用运行时，保持屏幕高亮，不锁屏
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.activity_main);
+        SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
         //绑定各类
         initView();// 绑定控件
-        checkPermission();//存取权限
+        check_first_user();//检查是不是第一次使用
+        check_save_permission();//存取权限
         new_time_Thread();// 启用更新时间进程
-        rember_name(MainActivity.this);// 记住昵称
+        rember_name(MainActivity.this);// 读取昵称
         initAppList(this);// 获取应用列表
         monitorBatteryState();// 监听电池信息
-        mListView.setNumColumns(GridView.AUTO_FIT);
-        /**
-         * 判断是不是第一次使用
-         */
-        if (isFirstStart(MainActivity.this)) {//第一次
-            /**
-             * 填充预设数据
-             */
-            SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
-            editor.putString("images_info", "applist");//默认显示内容
-            editor.putString("images_app_listifo", "true");
-            editor.putString("appname_state", "nope");//是否显示APP名称
-            editor.putString("applist_number", "auto");//默认APP列表大小
-            editor.putString("timetext_min_size", "50");//分钟时间大小
-            editor.putString("timetext_hour_size", "70");//小时时间大小
-            editor.putString("nametext_size", "16");//昵称文本大小
-            editor.putString("dianchitext_size", "16");//电池文本大小
-            editor.putString("datetext_size", "16");//日期文本大小
-            editor.putString("setting_ico_hind", "false");//隐藏底栏
-            editor.putString("offline", "false");//离线模式
-            editor.apply();
-            //更新桌面信息
-            images_upgrade();
-            //填充预设隐藏应用包名
-            ArrayList<String> arrayList = new ArrayList<String>();
-            arrayList.add("frist");
-            SaveArrayListUtil.saveArrayList(MainActivity.this, arrayList, "start");//存储在本地
-        }
-        SharedPreferences sharedPreferences;
-        sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-        get_applist_number();//获取设定的应用列表列数
+
         images_upgrade();//更新图像信息
-        check_text_size(MainActivity.this);
-        check_view_hind(MainActivity.this, sharedPreferences);
-        check_offline_mode(MainActivity.this, sharedPreferences);
+        check_text_size(MainActivity.this);//检查文本大小
+        check_view_hind(MainActivity.this, sharedPreferences);//检查底栏是否隐藏
+        check_offline_mode(MainActivity.this, sharedPreferences);//检查离线模式是否打开
         update_wathers(sharedPreferences);//更新天气
+        get_applist_number();//获取设定的应用列表列数
         // 长按弹出APP信息
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -206,8 +179,7 @@ public class MainActivity extends Activity implements OnClickListener {
             @Override
             public boolean onLongClick(View v) {
                 // TODO Auto-generated method stub
-                startActivity(new Intent(getApplicationContext(),
-                        WatherActivity.class));
+                WeatherDialog.weather_setting(MainActivity.this);
                 return true;
             }
         });
@@ -219,24 +191,8 @@ public class MainActivity extends Activity implements OnClickListener {
                 return true;
             }
         });
-        //“刷新桌面”
-        iv_setting_refresh.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, BlackActivity.class));
-                finish();
-            }
-        });
-        //RSS订阅
-        iv_setting_rss.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DiyToast.showToast(MainActivity.this, "调试中的功能");
-//                startActivity(new Intent(MainActivity.this, MyRssReader.class));
-            }
-        });
         /**
-         * 开启常驻通知
+         * 每次回到桌面开启常驻通知
          */
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -244,6 +200,33 @@ public class MainActivity extends Activity implements OnClickListener {
                 setNotification();
             }
         }, 50);
+    }
+
+    private void check_first_user() {
+        if (isFirstStart(MainActivity.this)) {//第一次
+            /**
+             * 填充预设数据
+             */
+            SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
+            editor.putString("images_info", "applist");//默认显示内容
+            editor.putString("images_app_listifo", "true");
+            editor.putString("appname_state", "nope");//是否显示APP名称
+            editor.putString("applist_number", "auto");//默认APP列表大小
+            editor.putString("timetext_min_size", "50");//分钟时间大小
+            editor.putString("timetext_hour_size", "70");//小时时间大小
+            editor.putString("nametext_size", "16");//昵称文本大小
+            editor.putString("dianchitext_size", "16");//电池文本大小
+            editor.putString("datetext_size", "16");//日期文本大小
+            editor.putString("setting_ico_hind", "false");//隐藏底栏
+            editor.putString("offline", "false");//离线模式
+            editor.apply();
+            //更新桌面信息
+            images_upgrade();
+            //填充预设隐藏应用包名
+            ArrayList<String> arrayList = new ArrayList<String>();
+            arrayList.add("frist");
+            SaveArrayListUtil.saveArrayList(MainActivity.this, arrayList, "start");//存储在本地
+        }
     }
 
     public static void check_offline_mode(Context context, SharedPreferences sharedPreferences) {
@@ -372,7 +355,7 @@ public class MainActivity extends Activity implements OnClickListener {
             iv_index_back.setImageResource(R.drawable.mi_haole);
             iv_index_back.setVisibility(View.INVISIBLE);
             mListView.setVisibility(View.VISIBLE);
-            DiyToast.showToast(this, "请选择壁纸或者应用列表（设置-壁纸设置）");
+            DiyToast.showToast(this, "请选择壁纸或者应用列表（设置-壁纸设置）", false);
         }
     }
 
@@ -492,6 +475,8 @@ public class MainActivity extends Activity implements OnClickListener {
         line_wather.setOnClickListener(this);
         iv_setting_yinliang.setOnClickListener(this);
         iv_setting_lock.setOnClickListener(this);
+        iv_setting_rss.setOnClickListener(this);
+        iv_setting_refresh.setOnClickListener(this);
         dbHelper_name_sql = new MyDataBaseHelper(getApplicationContext(), "info.db",
                 null, 2);
         db = dbHelper_name_sql.getWritableDatabase();
@@ -552,7 +537,7 @@ public class MainActivity extends Activity implements OnClickListener {
                             tv_city.setText(cursor.getString(cursor
                                     .getColumnIndex("city")) + "  " + type);
                         } else {
-                            DiyToast.showToast(getApplicationContext(), "请选择天气城市");
+                            DiyToast.showToast(getApplicationContext(), "请设置城市", true);
                         }
                         SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                         editor.putString("wather_info_citytype", cursor.getString(cursor
@@ -574,7 +559,7 @@ public class MainActivity extends Activity implements OnClickListener {
                     }
                     break;
                 case 1:
-                    DiyToast.showToast(getApplicationContext(), "城市无效（已重置为北京）");
+                    DiyToast.showToast(getApplicationContext(), "城市无效（已重置为北京）", true);
                     db.execSQL("update wather_city set city = ? ",
                             new String[]{"北京"});
                     break;
@@ -596,7 +581,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
     public void update_wather(Context context, final String city) {
         if (TextUtils.isEmpty(city)) {
-            DiyToast.showToast(context, "城市错误，不在数据库中");
+            DiyToast.showToast(context, "城市错误，不在数据库中", true);
             return;
         }
         new Thread() {
@@ -726,15 +711,17 @@ public class MainActivity extends Activity implements OnClickListener {
     }
 
     /**
-     * 桌面左下角设置 点击事件监听
+     * 桌面底栏功能 点击事件监听
      */
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
         switch (v.getId()) {
+            //设置
             case R.id.iv_setting_button:
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
                 break;
+            //天气
             case R.id.line_wather:
                 Cursor cursor = db.rawQuery("select * from wather_city", null);
                 if (!offline_mode) {
@@ -751,6 +738,7 @@ public class MainActivity extends Activity implements OnClickListener {
                     }
                 }
                 break;
+            //音量
             case R.id.iv_setting_yinliang:
                 //解决华为，魅族等等手机扩音播放失败的bug
                 try {
@@ -762,9 +750,18 @@ public class MainActivity extends Activity implements OnClickListener {
                     e.printStackTrace();
                 }
                 break;
+            //锁屏
             case R.id.iv_setting_lock:
                 startActivity(new Intent(MainActivity.this, FakerLockedActivity.class));
                 finish();//这一次要结束当前Activity，但是要确保用户返回的时候不会出错（屏蔽返回按键）
+                break;
+            //RSS订阅
+            case R.id.iv_setting_rss:
+                DiyToast.showToast(MainActivity.this, "调试中的功能", false);
+                break;
+            //刷新
+            case R.id.iv_setting_refresh:
+                startActivity(new Intent(MainActivity.this, UireFreshActivity.class));
                 break;
             default:
                 break;
@@ -804,7 +801,10 @@ public class MainActivity extends Activity implements OnClickListener {
         manager.notify(channelId, notification);
     }
 
-    public void checkPermission() {
+    /**
+     * 检查是否拥有存储权限
+     */
+    public void check_save_permission() {
         boolean isGranted = true;
         if (android.os.Build.VERSION.SDK_INT >= 23) {
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -826,6 +826,11 @@ public class MainActivity extends Activity implements OnClickListener {
         }
     }
 
+    /**
+     * 检查文本大小并设置
+     *
+     * @param context
+     */
     public static void check_text_size(Context context) {
         try {
             SharedPreferences sharedPreferences = context.getSharedPreferences("info", MODE_PRIVATE);

@@ -27,10 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".launcher.settings.uirefresh.WhiteActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".launcher.settings.uirefresh.BlackActivity"
+            android:name=".launcher.settings.uirefresh.UireFreshActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".launcher.settings.hindapp.HindAppSetting"

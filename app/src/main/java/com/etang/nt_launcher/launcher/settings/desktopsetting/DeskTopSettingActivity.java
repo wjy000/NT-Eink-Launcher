@@ -173,7 +173,7 @@ public class DeskTopSettingActivity extends AppCompatActivity implements View.On
 
     private void mode_edittext(int number) {
         if (number == 0) {
-            DiyToast.showToast(getApplicationContext(), "不能为“0”");
+            DiyToast.showToast(getApplicationContext(), "不能为“0”",true);
         } else {
             SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
             editor.putString("applist_number", String.valueOf(number));
@@ -183,7 +183,7 @@ public class DeskTopSettingActivity extends AppCompatActivity implements View.On
 
     private void mode_seekbar(int number) {
         if (number == 0) {
-            DiyToast.showToast(getApplicationContext(), "不能为“0”");
+            DiyToast.showToast(getApplicationContext(), "不能为“0”",true);
         } else {
             SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
             editor.putString("applist_number", String.valueOf(number));

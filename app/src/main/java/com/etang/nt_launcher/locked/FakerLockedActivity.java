@@ -162,18 +162,18 @@ public class FakerLockedActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             //返回
-            DiyToast.showToast(getApplicationContext(), "锁屏状态无法通过按键返回，请手动点击左上角关闭按钮");
+            DiyToast.showToast(getApplicationContext(), "锁屏状态无法通过按键返回，请手动点击左上角关闭按钮",true);
             return true;
         } else if (keyCode == KeyEvent.KEYCODE_MENU) {
             //菜单
-            DiyToast.showToast(getApplicationContext(), "锁屏状态无法通过按键返回，请手动点击左上角关闭按钮");
+            DiyToast.showToast(getApplicationContext(), "锁屏状态无法通过按键返回，请手动点击左上角关闭按钮",true);
             return true;
         } else if (keyCode == KeyEvent.KEYCODE_HOME) {
             // 由于Home键为系统键，此处不能捕获，需要重写onAttachedToWindow()
-            DiyToast.showToast(getApplicationContext(), "锁屏状态无法通过按键返回，请手动点击左上角关闭按钮");
+            DiyToast.showToast(getApplicationContext(), "锁屏状态无法通过按键返回，请手动点击左上角关闭按钮",true);
             return true;
         } else if (keyCode == KeyEvent.KEYCODE_POWER) {
-            DiyToast.showToast(getApplicationContext(), "锁屏状态无法通过按键返回，请手动点击左上角关闭按钮");
+            DiyToast.showToast(getApplicationContext(), "锁屏状态无法通过按键返回，请手动点击左上角关闭按钮",true);
             return true;
         }
         return super.onKeyDown(keyCode, event);

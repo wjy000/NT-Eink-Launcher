@@ -34,7 +34,6 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 FLAG_KEEP_SCREEN_ON);//应用运行时，保持屏幕高亮，不锁屏
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.setting_chose_images);
-        setTitle("请选择");//设置title标题
         initView();//绑定控件
         check_image();
         //APP列表
@@ -47,7 +46,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 MainActivity.tg_apps_state.setChecked(true);
                 MainActivity.iv_index_back.setVisibility(View.INVISIBLE);
                 MainActivity.mListView.setVisibility(View.VISIBLE);
-                DiyToast.showToast(ChoseImagesActivity.this, "已更换：应用列表");
+                DiyToast.showToast(ChoseImagesActivity.this, "已更换：应用列表", true);
             }
         });
         //插画
@@ -61,7 +60,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
-                DiyToast.showToast(ChoseImagesActivity.this, "已更换：插画");
+                DiyToast.showToast(ChoseImagesActivity.this, "已更换：插画", true);
             }
         });
         //耳机
@@ -75,7 +74,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
-                DiyToast.showToast(ChoseImagesActivity.this, "已更换：耳机");
+                DiyToast.showToast(ChoseImagesActivity.this, "已更换：耳机", true);
             }
         });
         //妹子
@@ -89,7 +88,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
-                DiyToast.showToast(ChoseImagesActivity.this, "已更换：妹子");
+                DiyToast.showToast(ChoseImagesActivity.this, "已更换：妹子", true);
             }
         });
         //情侣
@@ -103,7 +102,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
-                DiyToast.showToast(ChoseImagesActivity.this, "已更换：情侣");
+                DiyToast.showToast(ChoseImagesActivity.this, "已更换：情侣", true);
             }
         });
         //压力
@@ -117,7 +116,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
-                DiyToast.showToast(ChoseImagesActivity.this, "已更换：压力");
+                DiyToast.showToast(ChoseImagesActivity.this, "已更换：压力", true);
             }
         });
         //萝莉
@@ -131,7 +130,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
-                DiyToast.showToast(ChoseImagesActivity.this, "已更换：萝莉");
+                DiyToast.showToast(ChoseImagesActivity.this, "已更换：萝莉", true);
             }
         });
         //拼搏
@@ -145,7 +144,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
-                DiyToast.showToast(ChoseImagesActivity.this, "已更换：拼搏");
+                DiyToast.showToast(ChoseImagesActivity.this, "已更换：拼搏", true);
             }
         });
         //知遇
@@ -159,7 +158,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
-                DiyToast.showToast(ChoseImagesActivity.this, "已更换：知遇");
+                DiyToast.showToast(ChoseImagesActivity.this, "已更换：知遇", true);
             }
         });
         //压力
@@ -173,7 +172,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 MainActivity.tg_apps_state.setChecked(false);
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
-                DiyToast.showToast(ChoseImagesActivity.this, "已更换：压力");
+                DiyToast.showToast(ChoseImagesActivity.this, "已更换：压力", true);
             }
         });
         iv_back.setOnClickListener(new View.OnClickListener() {
@@ -219,10 +218,10 @@ public class ChoseImagesActivity extends AppCompatActivity {
                     iv_see_image.setImageResource(R.drawable.mi_zhiyu);
                 }
                 if (images_mode.equals("applist")) {
-                    DiyToast.showToast(ChoseImagesActivity.this, "应用列表");
+                    iv_see_image.setImageResource(R.drawable.menu_setting);
                 }
                 if (images_mode.equals("")) {
-                    DiyToast.showToast(ChoseImagesActivity.this, "请选择壁纸或者应用列表（设置-壁纸设置）");
+                    DiyToast.showToast(ChoseImagesActivity.this, "请选择壁纸或者应用列表", true);
                 }
                 builder.setTitle("图片预览：" + images_mode);
                 builder.setPositiveButton("关闭", null);
@@ -261,10 +260,9 @@ public class ChoseImagesActivity extends AppCompatActivity {
         }
         if (images_mode.equals("applist")) {
             ra_applist.setChecked(true);
-            DiyToast.showToast(this, "应用列表");
         }
         if (images_mode.equals("")) {
-            DiyToast.showToast(this, "请选择壁纸或者应用列表（设置-壁纸设置）");
+            DiyToast.showToast(this, "请选择壁纸或者应用列表", true);
         }
     }
 

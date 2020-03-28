@@ -100,7 +100,7 @@ public class UnInstallDialog {
                 public void onClick(DialogInterface dialog, int which) {
                     if (et_load_ico_uri.getText().toString().isEmpty()) {
                         show_ico_dialog(context);
-                        DiyToast.showToast(context, "请输入文件名");
+                        DiyToast.showToast(context, "请输入文件名",true);
                     } else {
                         ArrayList<String> arrayList = new ArrayList<>();
                         arrayList = SaveArrayImageUtil.getSearchArrayList(context);

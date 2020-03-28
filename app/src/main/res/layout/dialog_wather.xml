@@ -44,15 +44,32 @@
             <requestFocus />
         </EditText>
 
-        <Button
-            android:id="@+id/btn_wather_con"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/et_city_get"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/shaper_apks_button_window_show"
-            android:text="确定"
-            android:textColor="#000" />
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_wather_con"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_city_get"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/shaper_apks_button_window_show"
+                android:text="确定"
+                android:textColor="#000" />
+
+            <Button
+                android:id="@+id/btn_wather_cls"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_city_get"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/shaper_apks_button_window_show"
+                android:text="关闭"
+                android:textColor="#000" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

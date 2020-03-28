@@ -134,20 +134,13 @@
                 android:id="@+id/cb_hind_setting_ico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="在主界面隐藏“设置”图标" />
+                android:text="在主界面隐藏底栏" />
 
             <CheckBox
                 android:id="@+id/cb_setting_offlinemode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="在主界面隐藏“设置”图标" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="天气设置：长按天气部分" />
+                android:text="离线模式" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -172,5 +165,5 @@
         android:layout_height="60dp"
         android:layout_weight="1"
         android:gravity="center_horizontal|center_vertical|top"
-        android:text="Beta 4.3" />
+        android:text="Beta 4.4" />
 </LinearLayout>

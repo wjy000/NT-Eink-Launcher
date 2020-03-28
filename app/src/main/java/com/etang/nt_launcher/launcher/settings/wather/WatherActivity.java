@@ -22,7 +22,7 @@ public class WatherActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_setting_wather);
+        setContentView(R.layout.dialog_wather);
         initView();
         btn_wather_con.setOnClickListener(new OnClickListener() {
 
@@ -30,7 +30,7 @@ public class WatherActivity extends Activity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 if (et_city_get.getText().toString().isEmpty()) {
-                    DiyToast.showToast(getApplicationContext(), "请输入城市");
+                    DiyToast.showToast(getApplicationContext(), "请输入城市", true);
                 } else {
                     db.execSQL("update wather_city set city = ? ",
                             new String[]{et_city_get.getText().toString()});
