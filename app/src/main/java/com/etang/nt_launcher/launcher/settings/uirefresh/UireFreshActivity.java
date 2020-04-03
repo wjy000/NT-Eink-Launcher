@@ -50,7 +50,7 @@ public class UireFreshActivity extends AppCompatActivity {
             number++;
             Message message = handler.obtainMessage();
             message.arg1 = number;
-            if (number < 10) {
+            if (number < 4) {
                 handler.sendMessage(message);
             } else {
                 handler.removeCallbacks(timeRunnable);

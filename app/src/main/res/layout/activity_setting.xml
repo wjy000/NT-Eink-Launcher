@@ -147,14 +147,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="如果安装APP后应用列表没有刷新：" />
+                android:text="如果安装APP后应用列表没有刷新："
+                android:textSize="13dp" />
 
             <TextView
                 android:id="@+id/textView10097"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="点击两次右下角打开关闭应用列表即可" />
+                android:text="点击两次右下角打开关闭应用列表即可"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/textView10098"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="长按“小时”可以打开设置"
+                android:textSize="13dp" />
 
         </LinearLayout>
     </ScrollView>

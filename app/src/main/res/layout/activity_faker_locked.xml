@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="@+id/iv_lock_setting"
         app:layout_constraintStart_toStartOf="@+id/iv_lock_setting"
         app:layout_constraintTop_toTopOf="@+id/iv_lock_setting"
-        app:srcCompat="@drawable/menu_update" />
+        app:srcCompat="@drawable/ic_update" />
 
     <ImageView
         android:id="@+id/iv_lock_rundate"

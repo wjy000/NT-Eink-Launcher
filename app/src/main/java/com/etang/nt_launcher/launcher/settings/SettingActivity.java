@@ -30,6 +30,7 @@ import com.etang.nt_launcher.launcher.settings.textsizesetting.TextSizeSetting;
 import com.etang.nt_launcher.launcher.settings.wather.WeatherSettingActivity;
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;
+import com.etang.nt_launcher.tool.toast.DiyToast;
 
 public class SettingActivity extends Activity {
 
@@ -153,10 +154,12 @@ public class SettingActivity extends Activity {
                     SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                     editor.putString("setting_ico_hind", "true");//日期文本大小
                     editor.apply();
+                    DiyToast.showToast(SettingActivity.this, "有时需要重启设备以应用更改，点击桌面中的“小时”可以打开设置", true);
                 } else {
                     SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                     editor.putString("setting_ico_hind", "false");//日期文本大小
                     editor.apply();
+                    DiyToast.showToast(SettingActivity.this, "有时需要重启设备以应用更改，点击桌面中的“小时”可以打开设置", true);
                 }
             }
         });
@@ -167,10 +170,12 @@ public class SettingActivity extends Activity {
                     SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                     editor.putString("offline", "true");//日期文本大小
                     editor.apply();
+                    DiyToast.showToast(SettingActivity.this, "有时需要重启设备以应用更改", true);
                 } else {
                     SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                     editor.putString("offline", "false");//日期文本大小
                     editor.apply();
+                    DiyToast.showToast(SettingActivity.this, "有时需要重启设备以应用更改", true);
                 }
             }
         });

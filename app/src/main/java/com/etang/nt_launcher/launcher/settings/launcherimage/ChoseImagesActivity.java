@@ -218,7 +218,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
                     iv_see_image.setImageResource(R.drawable.mi_zhiyu);
                 }
                 if (images_mode.equals("applist")) {
-                    iv_see_image.setImageResource(R.drawable.menu_setting);
+                    iv_see_image.setImageResource(R.drawable.ic_setting);
                 }
                 if (images_mode.equals("")) {
                     DiyToast.showToast(ChoseImagesActivity.this, "请选择壁纸或者应用列表", true);

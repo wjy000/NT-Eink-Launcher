@@ -18,12 +18,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingLeft="20dp"
-            android:paddingTop="5dp"
-            android:paddingRight="20dp"
-            android:paddingBottom="5dp"
+            android:paddingLeft="25dp"
+            android:paddingTop="10dp"
+            android:paddingRight="25dp"
+            android:paddingBottom="10dp"
             android:text="qrewwwwwwwwwwwwwwwwe4873914r854f185249147t185fe41723591gv859614185 b8931249854851296374t459219q465f1etg592137495qeftg923"
-            android:textColor="#FFF" />
+            android:textColor="#000" />
     </LinearLayout>
 
 </LinearLayout>

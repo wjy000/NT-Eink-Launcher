@@ -761,7 +761,12 @@ public class MainActivity extends Activity implements OnClickListener {
                 break;
             //刷新
             case R.id.iv_setting_refresh:
-                startActivity(new Intent(MainActivity.this, UireFreshActivity.class));
+                if (Build.BOARD.equals("Allwinner")) {
+
+                } else {
+                    startActivity(new Intent(MainActivity.this, UireFreshActivity.class));
+                }
+                Log.e("MainActivity", "onClick: " + Build.BRAND);
                 break;
             default:
                 break;
