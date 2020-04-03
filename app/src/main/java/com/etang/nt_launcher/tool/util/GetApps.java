@@ -1,4 +1,4 @@
-package com.etang.nt_launcher.util;
+package com.etang.nt_launcher.tool.util;
 
 import android.content.ComponentName;
 import android.content.Context;

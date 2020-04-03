@@ -49,10 +49,10 @@ import com.etang.nt_launcher.tool.dialog.WeatherDialog;
 import com.etang.nt_launcher.tool.savearrayutil.SaveArrayListUtil;
 import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;
 import com.etang.nt_launcher.tool.toast.DiyToast;
-import com.etang.nt_launcher.util.AppInfo;
-import com.etang.nt_launcher.util.DeskTopGridViewBaseAdapter;
-import com.etang.nt_launcher.util.GetApps;
-import com.etang.nt_launcher.util.StreamTool;
+import com.etang.nt_launcher.tool.util.AppInfo;
+import com.etang.nt_launcher.tool.util.DeskTopGridViewBaseAdapter;
+import com.etang.nt_launcher.tool.util.GetApps;
+import com.etang.nt_launcher.tool.util.StreamTool;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -115,7 +115,6 @@ public class MainActivity extends Activity implements OnClickListener {
         rember_name(MainActivity.this);// 读取昵称
         initAppList(this);// 获取应用列表
         monitorBatteryState();// 监听电池信息
-
         images_upgrade();//更新图像信息
         check_text_size(MainActivity.this);//检查文本大小
         check_view_hind(MainActivity.this, sharedPreferences);//检查底栏是否隐藏

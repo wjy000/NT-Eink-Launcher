@@ -3,7 +3,6 @@ package com.etang.nt_launcher.launcher.settings.hindapp;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,9 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.tool.savearrayutil.SaveArrayListUtil;
-import com.etang.nt_launcher.util.AppInfo;
-import com.etang.nt_launcher.util.DeskTopGridViewBaseAdapter;
-import com.etang.nt_launcher.util.GetApps;
+import com.etang.nt_launcher.tool.util.AppInfo;
+import com.etang.nt_launcher.tool.util.DeskTopGridViewBaseAdapter;
+import com.etang.nt_launcher.tool.util.GetApps;
 
 import java.util.ArrayList;
 import java.util.List;

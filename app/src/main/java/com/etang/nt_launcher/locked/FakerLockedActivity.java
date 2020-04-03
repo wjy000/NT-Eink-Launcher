@@ -1,18 +1,14 @@
 package com.etang.nt_launcher.locked;
 
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,23 +17,13 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.etang.nt_launcher.launcher.MainActivity;
-import com.etang.nt_launcher.tool.dialog.DeBugDialog;
 import com.etang.nt_launcher.tool.toast.DiyToast;
-import com.etang.nt_launcher.util.JsonService;
 import com.etang.nt_launcher.R;
-import com.google.gson.Gson;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-
-import okhttp3.Call;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class FakerLockedActivity extends AppCompatActivity {
     private ImageView iv_lock_back, iv_lock_back_logo, iv_lock_setting_logo, iv_lock_setting;

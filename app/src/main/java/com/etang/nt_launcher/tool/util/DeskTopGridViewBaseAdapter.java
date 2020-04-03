@@ -1,11 +1,8 @@
-package com.etang.nt_launcher.util;
+package com.etang.nt_launcher.tool.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.etang.nt_launcher.R;
-import com.etang.nt_launcher.launcher.settings.desktopsetting.DeskTopSettingActivity;
 import com.etang.nt_launcher.tool.savearrayutil.SaveArrayImageUtil;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 

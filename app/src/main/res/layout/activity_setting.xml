@@ -17,6 +17,40 @@
             <include layout="@layout/in_back"></include>
 
             <LinearLayout
+                android:id="@+id/lv_uninstall_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/shaper_apks_button_window_show"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5sp"
+                    android:text="卸载“奶糖桌面”" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lv_exit_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/shaper_apks_button_window_show"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5sp"
+                    android:text="退出“奶糖桌面”" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/lv_desktop_setting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -168,12 +202,4 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_weight="1"
-        android:gravity="center_horizontal|center_vertical|top"
-        android:text="Beta 4.4" />
 </LinearLayout>

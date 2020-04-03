@@ -29,12 +29,13 @@ import com.etang.nt_launcher.launcher.settings.launcherimage.ChoseImagesActivity
 import com.etang.nt_launcher.launcher.settings.textsizesetting.TextSizeSetting;
 import com.etang.nt_launcher.launcher.settings.wather.WeatherSettingActivity;
 import com.etang.nt_launcher.R;
+import com.etang.nt_launcher.tool.dialog.UnInstallDialog;
 import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;
 import com.etang.nt_launcher.tool.toast.DiyToast;
 
 public class SettingActivity extends Activity {
 
-    LinearLayout lv_weather_gone_setting, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting, lv_hindapp_setting, lv_name_setting;
+    LinearLayout lv_weather_gone_setting, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting, lv_exit_setting, lv_hindapp_setting, lv_name_setting, lv_uninstall_setting;
     private TextView tv_title_text;
     private CheckBox cb_hind_setting_ico, cb_setting_offlinemode;
     private ImageView iv_title_back;
@@ -118,6 +119,21 @@ public class SettingActivity extends Activity {
                 startActivity(new Intent(SettingActivity.this, HindAppSetting.class));
             }
         });
+        //退出“奶糖桌面”
+        lv_exit_setting.setVisibility(View.GONE);
+        lv_exit_setting.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.exit(0);
+            }
+        });
+        //卸载“奶糖桌面”
+        lv_uninstall_setting.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UnInstallDialog.UninstallApk(SettingActivity.this, SettingActivity.this, "com.etang.nt_launcher");
+            }
+        });
         //昵称设置
         lv_name_setting.setOnClickListener(new OnClickListener() {
             @Override
@@ -154,7 +170,7 @@ public class SettingActivity extends Activity {
                     SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                     editor.putString("setting_ico_hind", "true");//日期文本大小
                     editor.apply();
-                    DiyToast.showToast(SettingActivity.this, "有时需要重启设备以应用更改，点击桌面中的“小时”可以打开设置", true);
+                    DiyToast.showToast(SettingActivity.this, "有时需要重启设备以应用更改，长按桌面中的“小时”可以打开设置", true);
                 } else {
                     SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                     editor.putString("setting_ico_hind", "false");//日期文本大小
@@ -259,7 +275,9 @@ public class SettingActivity extends Activity {
         cb_setting_offlinemode = (CheckBox) findViewById(R.id.cb_setting_offlinemode);
         cb_hind_setting_ico = (CheckBox) findViewById(R.id.cb_hind_setting_ico);
         lv_name_setting = (LinearLayout) findViewById(R.id.lv_name_setting);
+        lv_uninstall_setting = (LinearLayout) findViewById(R.id.lv_uninstall_setting);
         lv_hindapp_setting = (LinearLayout) findViewById(R.id.lv_hindapp_setting);
+        lv_exit_setting = (LinearLayout) findViewById(R.id.lv_exit_setting);
         lv_textsize_setting = (LinearLayout) findViewById(R.id.lv_textsize_setting);
         tv_title_text = (TextView) findViewById(R.id.tv_title_text);
         iv_title_back = (ImageView) findViewById(R.id.iv_title_back);

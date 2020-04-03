@@ -77,7 +77,7 @@ public class UnInstallDialog {
     /**
      * 唤起系统的卸载apk功能
      */
-    private static void UninstallApk(Context context, Activity activity, String pakename) {
+    public static void UninstallApk(Context context, Activity activity, String pakename) {
         try {
             Uri packageURI = Uri.parse("package:" + pakename);
             Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);

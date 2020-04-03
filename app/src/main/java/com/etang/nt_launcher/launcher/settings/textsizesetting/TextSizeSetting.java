@@ -23,6 +23,7 @@ public class TextSizeSetting extends AppCompatActivity {
     private TextView tv_title_text;
     private ImageView iv_title_back;
     private Button btn_timetext_hour_size, btn_timetext_min_size, btn_datetext_size, btn_nametext_size, btn_dianchitext_size, btn_textsize_resert;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class TextSizeSetting extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.setting_textsize);
         initView();
+        sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
         tv_title_text.setText("文本设置");
         iv_title_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,31 +47,31 @@ public class TextSizeSetting extends AppCompatActivity {
         btn_timetext_min_size.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                show_size_dialog("timetext_min_size");
+                show_size_dialog("timetext_min_size", sharedPreferences.getString("timetext_hour_size", null));
             }
         });
         btn_timetext_hour_size.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                show_size_dialog("timetext_hour_size");
+                show_size_dialog("timetext_hour_size", sharedPreferences.getString("timetext_hour_size", null));
             }
         });
         btn_nametext_size.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                show_size_dialog("nametext_size");
+                show_size_dialog("nametext_size", sharedPreferences.getString("nametext_size", null));
             }
         });
         btn_dianchitext_size.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                show_size_dialog("dianchitext_size");
+                show_size_dialog("dianchitext_size", sharedPreferences.getString("dianchitext_size", null));
             }
         });
         btn_datetext_size.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                show_size_dialog("datetext_size");
+                show_size_dialog("datetext_size", sharedPreferences.getString("datetext_size", null));
             }
         });
         btn_textsize_resert.setOnClickListener(new View.OnClickListener() {
@@ -90,31 +92,32 @@ public class TextSizeSetting extends AppCompatActivity {
         });
     }
 
-    private void show_size_dialog(final String name) {
+    private void show_size_dialog(final String name, String textSize) {
         String setting_number = "";
         AlertDialog.Builder builder = new AlertDialog.Builder(TextSizeSetting.this);
         View view = LayoutInflater.from(TextSizeSetting.this).inflate(R.layout.dialog_seekbar_and_edittext, null);
         switch (name) {
             case "timetext_min_size":
-                builder.setTitle("时间文本大小设置（分钟）");
+                builder.setTitle("时间文本大小设置（分钟\n当前值：" + textSize);
                 break;
             case "timetext_hour_size":
-                builder.setTitle("时间文本大小设置（小时）");
+                builder.setTitle("时间文本大小设置（小时\n当前值：" + textSize);
                 break;
             case "nametext_size":
-                builder.setTitle("昵称文本大小设置");
+                builder.setTitle("昵称文本大小设置\n当前值：" + textSize);
                 break;
             case "dianchitext_size":
-                builder.setTitle("电池文本大小设置");
+                builder.setTitle("电池文本大小设置\n当前值：" + textSize);
                 break;
             case "datetext_size":
-                builder.setTitle("日期文本大小设置");
+                builder.setTitle("日期文本大小设置\n当前值：" + textSize);
                 break;
         }
         builder.setView(view);
         final int[] number = {0};
         final SeekBar dialog_seekbar = (SeekBar) view.findViewById(R.id.dialog_seekbar);
         final TextView dialog_textview = (TextView) view.findViewById(R.id.dialog_textview);
+        dialog_seekbar.setProgress(Integer.valueOf(textSize));
         dialog_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

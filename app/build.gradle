@@ -7,8 +7,8 @@ android {
         applicationId "com.etang.nt_launcher"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 45000
-        versionName "GAOLIZHI Beta 4.5"
+        versionCode 47000
+        versionName "GAOLIZHI Beta 4.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {

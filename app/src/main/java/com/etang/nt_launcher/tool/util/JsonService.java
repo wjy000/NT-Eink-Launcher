@@ -1,7 +1,7 @@
 /**
  * Copyright 2020 bejson.com
  */
-package com.etang.nt_launcher.util;
+package com.etang.nt_launcher.tool.util;
 
 /**
  * Auto-generated: 2020-02-14 15:37:24
