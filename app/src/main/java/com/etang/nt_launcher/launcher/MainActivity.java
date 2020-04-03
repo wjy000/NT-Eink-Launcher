@@ -249,13 +249,15 @@ public class MainActivity extends Activity implements OnClickListener {
             if (ico_info.equals("true")) {
                 MainActivity.iv_setting_button.setVisibility(View.GONE);
                 iv_setting_lock.setVisibility(View.GONE);
-                iv_setting_yinliang.setVisibility(View.GONE);
+//                iv_setting_yinliang.setVisibility(View.GONE);
                 tg_apps_state.setVisibility(View.GONE);
+//                iv_setting_rss.setVisibility(View.GONE);
                 view_buttom.setVisibility(View.INVISIBLE);
             } else {
                 iv_setting_button.setVisibility(View.VISIBLE);
                 iv_setting_lock.setVisibility(View.VISIBLE);
-                iv_setting_yinliang.setVisibility(View.VISIBLE);
+//                iv_setting_rss.setVisibility(View.VISIBLE);
+//                iv_setting_yinliang.setVisibility(View.VISIBLE);
                 tg_apps_state.setVisibility(View.VISIBLE);
                 view_buttom.setVisibility(View.VISIBLE);
             }

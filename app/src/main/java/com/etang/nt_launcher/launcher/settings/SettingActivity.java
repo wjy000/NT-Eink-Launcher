@@ -88,7 +88,6 @@ public class SettingActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SettingActivity.this, ChoseImagesActivity.class));
-                finish();
             }
         });
         //桌面应用列表设置

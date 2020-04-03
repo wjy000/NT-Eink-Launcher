@@ -56,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/et_city_get"
                 android:layout_alignParentLeft="true"
+                android:layout_marginRight="2dp"
                 android:background="@drawable/shaper_apks_button_window_show"
                 android:text="确定"
                 android:textColor="#000" />
@@ -66,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/et_city_get"
                 android:layout_alignParentLeft="true"
+                android:layout_marginLeft="2dp"
                 android:background="@drawable/shaper_apks_button_window_show"
                 android:text="关闭"
                 android:textColor="#000" />
