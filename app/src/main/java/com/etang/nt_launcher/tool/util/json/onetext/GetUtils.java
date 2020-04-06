@@ -1,4 +1,4 @@
-package com.etang.nt_launcher.tool.util;
+package com.etang.nt_launcher.tool.util.json.onetext;
 
 import android.util.Log;
 

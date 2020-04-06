@@ -2,6 +2,7 @@ package com.etang.nt_launcher.launcher;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -52,7 +53,7 @@ import com.etang.nt_launcher.tool.toast.DiyToast;
 import com.etang.nt_launcher.tool.util.AppInfo;
 import com.etang.nt_launcher.tool.util.DeskTopGridViewBaseAdapter;
 import com.etang.nt_launcher.tool.util.GetApps;
-import com.etang.nt_launcher.tool.util.StreamTool;
+import com.etang.nt_launcher.tool.util.json.weather.StreamTool;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -225,6 +226,11 @@ public class MainActivity extends Activity implements OnClickListener {
             ArrayList<String> arrayList = new ArrayList<String>();
             arrayList.add("frist");
             SaveArrayListUtil.saveArrayList(MainActivity.this, arrayList, "start");//存储在本地
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("提示");
+            builder.setMessage("说明书 QwQ ：\n    设置中可设置“离线模式”和“关闭底栏”，长按时间部分的“小时”可以打开桌面设置，可以通过长按“天气”部分更换天气地区，更多说明持续补充中");
+            builder.setPositiveButton("确定", null);
+            builder.show();
         }
     }
 
@@ -762,10 +768,14 @@ public class MainActivity extends Activity implements OnClickListener {
                 break;
             //刷新
             case R.id.iv_setting_refresh:
-                if (Build.BOARD.equals("Allwinner")) {
-
+                String s = Build.BRAND;
+                if (s.equals("Allwinner")) {
+                    Intent intent = new Intent("android.eink.force.refresh");
+                    sendBroadcast(intent);
+                    Log.e("MainActivity", "onClick: 1");
                 } else {
                     startActivity(new Intent(MainActivity.this, UireFreshActivity.class));
+                    Log.e("MainActivity", "onClick: 2");
                 }
                 Log.e("MainActivity", "onClick: " + Build.BRAND);
                 break;

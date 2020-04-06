@@ -159,7 +159,7 @@
     <View
         android:id="@+id/view_buttom"
         android:layout_width="match_parent"
-        android:layout_height="1sp"
+        android:layout_height="1dp"
         android:layout_alignBottom="@+id/linearLayout1"
         android:layout_alignParentLeft="true"
         android:background="#000" />

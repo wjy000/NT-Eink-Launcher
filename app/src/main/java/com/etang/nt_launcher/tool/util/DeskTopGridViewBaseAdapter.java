@@ -3,6 +3,7 @@ package com.etang.nt_launcher.tool.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,7 @@ public class DeskTopGridViewBaseAdapter extends BaseAdapter {
         Holder holder = null;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(
-                    R.layout.gridview_item, null);
+                    R.layout.list_gridview_item, null);
             holder = new Holder();
             holder.ico = (ImageView) convertView.findViewById(R.id.iv);
             holder.Name = (TextView) convertView.findViewById(R.id.tv);

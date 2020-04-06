@@ -1,4 +1,4 @@
-package com.etang.nt_launcher.tool.util;
+package com.etang.nt_launcher.tool.util.json.weather;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
