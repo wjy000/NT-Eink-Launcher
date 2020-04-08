@@ -6,11 +6,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.launcher.MainActivity;
@@ -27,10 +29,29 @@ public class UnInstallDialog {
             builder.setTitle("包名：" + "\n" + pakename);
             View view = LayoutInflater.from(context).inflate(R.layout.dialog_uninstall, null);
             builder.setView(view);
+            TextView tv_uninstall_appinfo = (TextView) view.findViewById(R.id.tv_uninstall_appinfo);
             Button btn_uninstall = (Button) view.findViewById(R.id.btn_uninstall_con);
             Button btn_cls = (Button) view.findViewById(R.id.btn_uninstall_cls);
             Button btn_hind = (Button) view.findViewById(R.id.btn_hind_con);
             Button btn_ico = (Button) view.findViewById(R.id.btn_load_ico);
+            tv_uninstall_appinfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Intent intent = new Intent();
+                        intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                        intent.setData(Uri.parse("package:" + pakename));
+                        context.startActivity(intent);
+                    } catch (Exception e) {
+                        String s = Build.BRAND;
+                        if (s.equals("Allwinner")) {
+                            DeBugDialog.debug_show_dialog(context, "此功能不适用多看电纸书，请到酷安下载多看版");
+                        } else {
+                            DeBugDialog.debug_show_dialog(context, e.toString());
+                        }
+                    }
+                }
+            });
             btn_hind.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -100,7 +121,7 @@ public class UnInstallDialog {
                 public void onClick(DialogInterface dialog, int which) {
                     if (et_load_ico_uri.getText().toString().isEmpty()) {
                         show_ico_dialog(context);
-                        DiyToast.showToast(context, "请输入文件名",true);
+                        DiyToast.showToast(context, "请输入文件名", true);
                     } else {
                         ArrayList<String> arrayList = new ArrayList<>();
                         arrayList = SaveArrayImageUtil.getSearchArrayList(context);

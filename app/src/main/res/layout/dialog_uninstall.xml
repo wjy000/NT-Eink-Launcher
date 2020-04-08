@@ -72,6 +72,15 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_uninstall_appinfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="※ 点击此处打开APP详情 ※"
+                android:textSize="12dp" />
+
+            <TextView
                 android:id="@+id/textView10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

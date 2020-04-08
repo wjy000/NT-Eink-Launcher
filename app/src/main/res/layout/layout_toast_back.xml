@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/shaper_toast_back"
+        android:background="@drawable/shaper_desk_top_show"
         android:gravity="center_horizontal|center_vertical"
         android:orientation="vertical">
 
@@ -17,12 +17,9 @@
             android:id="@+id/tv_toast_show"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:layout_weight="1"
-            android:paddingLeft="25dp"
-            android:paddingTop="10dp"
-            android:paddingRight="25dp"
-            android:paddingBottom="10dp"
-            android:text="qrewwwwwwwwwwwwwwwwe4873914r854f185249147t185fe41723591gv859614185 b8931249854851296374t459219q465f1etg592137495qeftg923"
+            android:text="你好"
             android:textColor="#000" />
     </LinearLayout>
 

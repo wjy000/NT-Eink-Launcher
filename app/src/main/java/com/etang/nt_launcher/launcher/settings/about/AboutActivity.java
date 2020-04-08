@@ -1,5 +1,6 @@
 package com.etang.nt_launcher.launcher.settings.about;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -12,9 +13,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.etang.nt_launcher.R;
+import com.etang.nt_launcher.tool.dialog.CheckUpdateDialog;
 
 public class AboutActivity extends AppCompatActivity {
-    TextView tv_system_coolapk, tv_system_fucher;
+    private ImageView iv_about_logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,5 +38,16 @@ public class AboutActivity extends AppCompatActivity {
         });
         //标题
         ((TextView) findViewById(R.id.tv_title_text)).setText("关于");
+        iv_about_logo = (ImageView) findViewById(R.id.iv_about_logo);
+        iv_about_logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProgressDialog progressDialog = new ProgressDialog(AboutActivity.this);
+                progressDialog.setTitle("加载中，请稍后");
+                progressDialog.setMessage("正在从“naiyouhuameitang.club”获取最新版本信息");
+                progressDialog.show();
+                CheckUpdateDialog.check_update(AboutActivity.this, progressDialog);
+            }
+        });
     }
 }

@@ -1,6 +1,7 @@
 package com.etang.nt_launcher.tool.toast;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class DiyToast {
         }
         toast.setView(view);
         tv.setText(s);
+        toast.setGravity(Gravity.BOTTOM, 0, 0);
         toast.show();
     }
 }
