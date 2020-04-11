@@ -6,4 +6,5 @@
     <color name="colorBlack">#000000</color>
     <color name="colorWrith">#FFFFFF</color>
     <color name="colorBlue">#3399FF</color>
+    <color name="hint_text_color">#3399FF</color>
 </resources>

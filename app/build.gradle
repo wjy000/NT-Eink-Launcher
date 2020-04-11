@@ -7,8 +7,8 @@ android {
         applicationId "com.etang.nt_launcher"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 53000
-        versionName "beta 5.3"
+        versionCode 53001
+        versionName "beta 5.3 t1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {

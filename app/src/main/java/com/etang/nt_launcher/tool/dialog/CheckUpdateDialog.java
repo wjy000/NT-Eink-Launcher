@@ -4,10 +4,13 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.etang.nt_launcher.BuildConfig;
 import com.etang.nt_launcher.tool.toast.DiyToast;
@@ -15,6 +18,14 @@ import com.etang.nt_launcher.tool.toast.DiyToast;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class CheckUpdateDialog {
@@ -110,11 +121,17 @@ public class CheckUpdateDialog {
         if (!version.equals(version_web)) {
             builder.setMessage("当前版本：" + "\n" + version + "\n" + "现有版本：" + "\n" + version_web + "\n" + "有更新，请到“酷安”进行更新，或登录博客在电脑端或者浏览器内下载后自行安装，软件内更新功能即将上线");
             DiyToast.showToast(context, "有更新，请到“酷安”进行更新，或登录博客在电脑端或者浏览器内下载后自行安装，软件内更新功能即将上线", true);
+            builder.setNeutralButton("下载", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    downLoadFile("http://naiyouhuameitang.club/apk/Launcher_project/NaiTang/update.apk",context);
+                }
+            });
         } else {
             builder.setMessage("当前版本：" + "\n" + version + "\n" + "现有版本：" + "\n" + version_web + "\n" + "你已经是最新版本了");
             DiyToast.showToast(context, "你已经是最新版本了", true);
         }
-        builder.setPositiveButton("显示博客地址", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("博客地址", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 DiyToast.showToast(context, "https://naiyouhuameitang.club/nt_launcher.html", true);
@@ -129,5 +146,67 @@ public class CheckUpdateDialog {
         builder.setMessage("在浏览器内输入：\n https://naiyouhuameitang.club/nt_launcher.html");
         builder.setPositiveButton("关闭", null);
         builder.show();
+    }
+
+    protected static File downLoadFile(String httpUrl, Context context) {
+        // TODO Auto-generated method stub
+        final String fileName = "updata.apk";
+        File tmpFile = new File("/sdcard/");
+        if (!tmpFile.exists()) {
+            tmpFile.mkdir();
+        }
+        final File file = new File("/sdcard/" + fileName);
+        try {
+            URL url = new URL(httpUrl);
+            try {
+                HttpURLConnection conn = (HttpURLConnection) url
+                        .openConnection();
+                InputStream is = conn.getInputStream();
+                FileOutputStream fos = new FileOutputStream(file);
+                byte[] buf = new byte[256];
+                conn.connect();
+                double count = 0;
+                if (conn.getResponseCode() >= 400) {
+                    DiyToast.showToast(context, "连接超时", true);
+                } else {
+                    while (count <= 100) {
+                        if (is != null) {
+                            int numRead = is.read(buf);
+                            if (numRead <= 0) {
+                                break;
+                            } else {
+                                fos.write(buf, 0, numRead);
+                            }
+                        } else {
+                            break;
+                        }
+                    }
+                }
+                conn.disconnect();
+                fos.close();
+                is.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+
+                e.printStackTrace();
+            }
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+
+            e.printStackTrace();
+        }
+        return file;
+    }
+//打开APK程序代码
+
+    private void openFile(File file, Context context) {
+        // TODO Auto-generated method stub
+        Log.e("OpenFile", file.getName());
+        Intent intent = new Intent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setAction(android.content.Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(file),
+                "application/vnd.android.package-archive");
+        context.startActivity(intent);
     }
 }

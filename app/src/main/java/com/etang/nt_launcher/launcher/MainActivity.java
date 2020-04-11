@@ -228,8 +228,8 @@ public class MainActivity extends Activity implements OnClickListener {
             arrayList.add("frist");
             SaveArrayListUtil.saveArrayList(MainActivity.this, arrayList, "start");//存储在本地
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setTitle("提示");
-            builder.setMessage("说明书 QwQ ：\n    设置中可设置“离线模式”和“关闭底栏”，\n长按时间部分的“小时”可以打开桌面设置，\n可以通过长按“天气”部分更换天气地区，\n出现图标、文本错位问题，请在列表设置中，设置为“仅显示一行”\n更多说明持续补充中");
+            builder.setTitle("说明书 QwQ ");
+            builder.setMessage("设置中可设置“离线模式”和“关闭底栏”，\n长按时间部分的“小时”可以打开桌面设置，\n可以通过长按“天气”部分更换天气地区，\n出现图标、文本错位问题，请在列表设置中，设置为“仅显示一行”\n更多说明持续补充中");
             builder.setPositiveButton("确定", null);
             builder.show();
             initAppList(MainActivity.this);
