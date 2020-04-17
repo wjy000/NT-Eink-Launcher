@@ -41,8 +41,10 @@ import android.widget.ToggleButton;
 import androidx.core.app.NotificationCompat;
 
 import com.etang.nt_launcher.R;
+import com.etang.nt_launcher.launcher.diary.DiaryActivity;
 import com.etang.nt_launcher.launcher.settings.SettingActivity;
 import com.etang.nt_launcher.launcher.settings.uirefresh.UireFreshActivity;
+import com.etang.nt_launcher.launcher.settings.weather.WeatherActivity;
 import com.etang.nt_launcher.locked.FakerLockedActivity;
 import com.etang.nt_launcher.tool.dialog.DeBugDialog;
 import com.etang.nt_launcher.tool.dialog.UnInstallDialog;
@@ -147,14 +149,21 @@ public class MainActivity extends Activity implements OnClickListener {
                     // startActivity(intent);
                     Intent intent = getPackageManager().getLaunchIntentForPackage(
                             appInfos.get(position).getPackageName());
-                    if (intent != null) {
-//                        intent.putExtra("type", "110");
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    if (intent != null) {//点击的APP无异常
+                        intent.putExtra("type", "110");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
-                        finish();
+                    } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".diary")) {//点击了“日记”
+                        intent = new Intent(MainActivity.this, DiaryActivity.class);
+                        startActivity(intent);
+                    } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".weather")) {//点击了“天气”
+                        intent = new Intent(MainActivity.this, WeatherActivity.class);
+                        startActivity(intent);
+                    } else {//出现异常
+                        DeBugDialog.debug_show_dialog(MainActivity.this, "启动APP时出现“Intent”为空的情况");
                     }
                 } catch (Exception e) {
-                    DeBugDialog.debug_show_dialog(MainActivity.this, e.toString());//显示错误信息
+                    DeBugDialog.debug_show_dialog(MainActivity.this, e.toString());
                 }
             }
         });
@@ -174,16 +183,16 @@ public class MainActivity extends Activity implements OnClickListener {
                 }
             }
         });
-        //长按弹出菜单选择城市
-        line_wather.setOnLongClickListener(new OnLongClickListener() {
-
-            @Override
-            public boolean onLongClick(View v) {
-                // TODO Auto-generated method stub
-                WeatherDialog.weather_setting(MainActivity.this);
-                return true;
-            }
-        });
+//        //长按弹出菜单选择城市
+//        line_wather.setOnLongClickListener(new OnLongClickListener() {
+//
+//            @Override
+//            public boolean onLongClick(View v) {
+//                // TODO Auto-generated method stub
+//                WeatherDialog.weather_setting(MainActivity.this);
+//                return true;
+//            }
+//        });
         //长按“小时”进入设置
         tv_time_hour.setOnLongClickListener(new OnLongClickListener() {
             @Override

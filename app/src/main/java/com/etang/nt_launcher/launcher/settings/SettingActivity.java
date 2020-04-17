@@ -27,7 +27,7 @@ import com.etang.nt_launcher.launcher.settings.desktopsetting.DeskTopSettingActi
 import com.etang.nt_launcher.launcher.settings.hindapp.HindAppSetting;
 import com.etang.nt_launcher.launcher.settings.launcherimage.ChoseImagesActivity;
 import com.etang.nt_launcher.launcher.settings.textsizesetting.TextSizeSetting;
-import com.etang.nt_launcher.launcher.settings.wather.WeatherSettingActivity;
+import com.etang.nt_launcher.launcher.settings.weather.WeatherSettingActivity;
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.tool.dialog.UnInstallDialog;
 import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;

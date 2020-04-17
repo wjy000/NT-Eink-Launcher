@@ -1,4 +1,4 @@
-package com.etang.nt_launcher.launcher.settings.wather;
+package com.etang.nt_launcher.launcher.settings.weather;
 
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,8 +13,8 @@ import com.etang.nt_launcher.tool.toast.DiyToast;
 import com.etang.nt_launcher.R;
 
 
-public class WatherActivity extends Activity {
-    private Button btn_wather_con;
+public class WeatherActivity extends Activity {
+    private Button btn_wather_con,btn_wather_cls;
     private EditText et_city_get;
     private MyDataBaseHelper dbHelper;
     private SQLiteDatabase db;
@@ -38,10 +38,17 @@ public class WatherActivity extends Activity {
                 }
             }
         });
+        btn_wather_cls.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void initView() {
         // TODO Auto-generated method stub
+        btn_wather_cls = (Button) findViewById(R.id.btn_wather_cls);
         btn_wather_con = (Button) findViewById(R.id.btn_wather_con);
         et_city_get = (EditText) findViewById(R.id.et_city_get);
         dbHelper = new MyDataBaseHelper(getApplicationContext(), "info.db",

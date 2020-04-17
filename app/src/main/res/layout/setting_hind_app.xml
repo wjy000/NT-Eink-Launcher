@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".launcher.settings.hindapp.HindAppSetting">
 
-    <include layout="@layout/in_back"></include>
+    <include layout="@layout/layout_in_back"></include>
 
     <TextView
         android:id="@+id/textView16"

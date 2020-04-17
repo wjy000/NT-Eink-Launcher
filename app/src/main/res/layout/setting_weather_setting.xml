@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.etang.nt_launcher.launcher.settings.wather.WeatherSettingActivity">
+    tools:context="com.etang.nt_launcher.launcher.settings.weather.WeatherSettingActivity">
 
     <include
         android:id="@+id/include3"
-        layout="@layout/in_back"
+        layout="@layout/layout_in_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></include>

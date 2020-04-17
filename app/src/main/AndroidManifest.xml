@@ -38,7 +38,9 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-
+        <activity
+            android:name=".launcher.diary.DiaryActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".launcher.settings.uirefresh.UireFreshActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -49,7 +51,7 @@
             android:name=".locked.FakerLockedActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".launcher.settings.wather.WeatherSettingActivity"
+            android:name=".launcher.settings.weather.WeatherSettingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".launcher.settings.desktopsetting.DeskTopSettingActivity"
@@ -64,7 +66,7 @@
             android:name=".launcher.settings.launcherimage.ChoseImagesActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".launcher.settings.wather.WatherActivity"
+            android:name=".launcher.settings.weather.WeatherActivity"
             android:label=""
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar.MinWidth" />
         <activity
