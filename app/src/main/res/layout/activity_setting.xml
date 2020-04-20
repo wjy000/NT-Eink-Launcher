@@ -164,6 +164,23 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/lv_reward_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/shaper_apks_button_window_show"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5sp"
+                    android:text="打赏" />
+
+            </LinearLayout>
+
             <CheckBox
                 android:id="@+id/cb_hind_setting_ico"
                 android:layout_width="match_parent"

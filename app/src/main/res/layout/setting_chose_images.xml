@@ -82,6 +82,20 @@
                 android:text="应用列表" />
 
             <RadioButton
+                android:id="@+id/ra_wallpaper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="显示当前设置的系统壁纸" />
+
+            <RadioButton
+                android:id="@+id/ra_wallpaper_and_applist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="显示系统壁纸和应用列表" />
+
+            <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -90,15 +104,13 @@
                 android:enabled="false"
                 android:focusable="false"
                 android:text="新桌面（正在做了--10%）" />
-
-
         </RadioGroup>
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_see_image"
+        android:id="@+id/btn_set_wallpaperimage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="点击查看图片详情" />
+        android:text="设置系统壁纸" />
 </LinearLayout>

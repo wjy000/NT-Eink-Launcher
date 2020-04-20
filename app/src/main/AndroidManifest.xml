@@ -4,10 +4,15 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -28,6 +33,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <receiver android:name=".tool.server.AppInstallServer">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
@@ -38,6 +44,11 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".launcher.settings.instructions.InstructionsActivity"></activity>
+        <activity
+            android:name=".launcher.settings.reward.RewardActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".launcher.diary.DiaryActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

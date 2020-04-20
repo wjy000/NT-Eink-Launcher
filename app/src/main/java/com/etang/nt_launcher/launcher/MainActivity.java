@@ -7,15 +7,23 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -43,12 +51,14 @@ import androidx.core.app.NotificationCompat;
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.launcher.diary.DiaryActivity;
 import com.etang.nt_launcher.launcher.settings.SettingActivity;
+import com.etang.nt_launcher.launcher.settings.instructions.InstructionsActivity;
 import com.etang.nt_launcher.launcher.settings.uirefresh.UireFreshActivity;
 import com.etang.nt_launcher.launcher.settings.weather.WeatherActivity;
 import com.etang.nt_launcher.locked.FakerLockedActivity;
 import com.etang.nt_launcher.tool.dialog.DeBugDialog;
 import com.etang.nt_launcher.tool.dialog.UnInstallDialog;
 import com.etang.nt_launcher.tool.dialog.WeatherDialog;
+import com.etang.nt_launcher.tool.permission.SavePermission;
 import com.etang.nt_launcher.tool.savearrayutil.SaveArrayListUtil;
 import com.etang.nt_launcher.tool.server.AppInstallServer;
 import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;
@@ -89,7 +99,7 @@ public class MainActivity extends Activity implements OnClickListener {
     public static View view_buttom;
     public static TextView tv_user_id, tv_time_hour, tv_time_min,
             tv_main_batterystate, tv_city, tv_wind, tv_temp_state,
-            tv_last_updatetime;
+            tv_last_updatetime, tv_main_nowdate;
     public static ImageView iv_setting_button, iv_setting_yinliang, iv_setting_lock, iv_setting_refresh, iv_setting_rss;
     public static ToggleButton tg_apps_state;
     public static LinearLayout line_wather;
@@ -114,17 +124,18 @@ public class MainActivity extends Activity implements OnClickListener {
         //绑定各类
         initView();// 绑定控件
         check_first_user();//检查是不是第一次使用
-        check_save_permission();//存取权限
+        SavePermission.check_save_permission(MainActivity.this, MainActivity.this);//检查存取权限
         new_time_Thread();// 启用更新时间进程
         rember_name(MainActivity.this);// 读取昵称
         initAppList(this);// 获取应用列表
         monitorBatteryState();// 监听电池信息
-        images_upgrade();//更新图像信息
         check_text_size(MainActivity.this);//检查文本大小
+        update_wathers(sharedPreferences);//更新天气
         check_view_hind(MainActivity.this, sharedPreferences);//检查底栏是否隐藏
         check_offline_mode(MainActivity.this, sharedPreferences);//检查离线模式是否打开
-        update_wathers(sharedPreferences);//更新天气
+        images_upgrade();//更新图像信息
         get_applist_number();//获取设定的应用列表列数
+        set_app_setStackFromBottomMode(sharedPreferences);//检查并设置APP列表排列方式
         // 长按弹出APP信息
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -160,7 +171,7 @@ public class MainActivity extends Activity implements OnClickListener {
                         intent = new Intent(MainActivity.this, WeatherActivity.class);
                         startActivity(intent);
                     } else {//出现异常
-                        DeBugDialog.debug_show_dialog(MainActivity.this, "启动APP时出现“Intent”为空的情况");
+                        DeBugDialog.debug_show_dialog(MainActivity.this, "启动APP时出现“Intent”相关的异常");
                     }
                 } catch (Exception e) {
                     DeBugDialog.debug_show_dialog(MainActivity.this, e.toString());
@@ -183,6 +194,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 }
             }
         });
+
 //        //长按弹出菜单选择城市
 //        line_wather.setOnLongClickListener(new OnLongClickListener() {
 //
@@ -210,6 +222,81 @@ public class MainActivity extends Activity implements OnClickListener {
                 setNotification();
             }
         }, 50);
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+        check_view_hind(MainActivity.this, sharedPreferences);//检查底栏是否隐藏
+        check_offline_mode(MainActivity.this, sharedPreferences);//检查离线模式是否打开
+        images_upgrade();//更新图像信息
+        get_applist_number();//获取设定的应用列表列数
+        set_app_setStackFromBottomMode(sharedPreferences);//检查并设置APP列表排列方式
+    }
+
+    public static void initSkinMode(Context context, String s) {
+        try {
+            // 获取壁纸管理器
+            WallpaperManager wallpaperManager = WallpaperManager.getInstance(context);
+            // 获取当前壁纸
+            BitmapDrawable wallpaperDrawable = (BitmapDrawable) wallpaperManager.getDrawable();
+            // 将Drawable,转成Bitmap
+            Bitmap bitmap = Bitmap.createBitmap(wallpaperDrawable.getBitmap());
+//        val bm = (wallpaperDrawable as BitmapDrawable).bitmap
+            // 设置 背景
+//        .background = (BitmapDrawable(bm))
+            if (s.equals("app_wallpaper")) {
+                MainActivity.iv_index_back.setVisibility(View.VISIBLE);
+                MainActivity.mListView.setVisibility(View.INVISIBLE);
+                MainActivity.iv_index_back.setImageBitmap(bitmap);
+                MainActivity.tg_apps_state.setVisibility(View.VISIBLE);
+                tg_apps_state.setChecked(false);
+            }
+            if (s.equals("app_wallpaper_applist")) {
+                MainActivity.iv_index_back.setVisibility(View.VISIBLE);
+                MainActivity.mListView.setVisibility(View.VISIBLE);
+                MainActivity.iv_index_back.setImageBitmap(bitmap);
+                MainActivity.tg_apps_state.setVisibility(View.GONE);
+            }
+        } catch (Exception e) {
+            /**
+             * 创建纯白bitmap
+             */
+            Bitmap bitmap = Bitmap.createBitmap(400, 400, Bitmap.Config.ARGB_8888); // 创建画布
+            drawCanvas(bitmap);
+            MainActivity.iv_index_back.setVisibility(View.VISIBLE);
+            MainActivity.mListView.setVisibility(View.VISIBLE);
+            MainActivity.iv_index_back.setImageBitmap(bitmap);
+            MainActivity.tg_apps_state.setVisibility(View.GONE);
+//            DiyToast.showToast(context, "系统壁纸出错，重置为白色", true);
+            DeBugDialog.debug_show_dialog(context, "系统壁纸获取出错 \n 请更改其他壁纸设置 \n 错误信息：" + e.toString());
+        }
+    }
+
+    public static void drawCanvas(Bitmap bitmap) {
+        bitmap.eraseColor(Color.parseColor("#ff0000")); // 填充颜色
+        Log.d("getWidth", "getWidth(): " + bitmap.getWidth());
+        Log.d("getHeight", "getHeight(): " + bitmap.getHeight());
+        Canvas canvas = new Canvas(bitmap);
+        Paint paint = new Paint();
+        paint.setTextSize(100);
+        paint.setColor(Color.DKGRAY);
+        paint.setFlags(100);
+        paint.setStyle(Paint.Style.STROKE); //用于设置字体填充的类型
+//        canvas.drawText("Ken", 100, 100, paint);
+        //最后通过Imageview显示出来
+        MainActivity.iv_index_back.setImageBitmap(bitmap);
+    }
+
+
+    private void set_app_setStackFromBottomMode(SharedPreferences sharedPreferences) {
+        if (sharedPreferences.getBoolean("app_setStackFromBottomMode", true) == false) {
+            mListView.setStackFromBottom(false);
+        } else {
+            mListView.setStackFromBottom(true);
+        }
     }
 
     private void check_first_user() {
@@ -229,6 +316,7 @@ public class MainActivity extends Activity implements OnClickListener {
             editor.putString("datetext_size", "16");//日期文本大小
             editor.putString("setting_ico_hind", "false");//隐藏底栏
             editor.putString("offline", "false");//离线模式
+            editor.putBoolean("app_setStackFromBottomMode", false);//默认显示内容
             editor.apply();
             //更新桌面信息
             images_upgrade();
@@ -236,10 +324,17 @@ public class MainActivity extends Activity implements OnClickListener {
             ArrayList<String> arrayList = new ArrayList<String>();
             arrayList.add("frist");
             SaveArrayListUtil.saveArrayList(MainActivity.this, arrayList, "start");//存储在本地
+            //第一次安装给出提示
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setTitle("说明书 QwQ ");
-            builder.setMessage("设置中可设置“离线模式”和“关闭底栏”，\n长按时间部分的“小时”可以打开桌面设置，\n可以通过长按“天气”部分更换天气地区，\n出现图标、文本错位问题，请在列表设置中，设置为“仅显示一行”\n更多说明持续补充中");
+            builder.setTitle("欢迎使用");
+            builder.setMessage("您是第一次安装，强烈建议您查看 桌面设置-说明书 相关条目");
             builder.setPositiveButton("确定", null);
+            builder.setNeutralButton("查看说明书", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    startActivity(new Intent(MainActivity.this, InstructionsActivity.class));
+                }
+            });
             builder.show();
             initAppList(MainActivity.this);
         }
@@ -326,54 +421,76 @@ public class MainActivity extends Activity implements OnClickListener {
         if (images_mode.equals("ql")) {
             iv_index_back.setImageResource(R.drawable.mi_haole);
             iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.INVISIBLE);
+            mListView.setVisibility(View.GONE);
+            tg_apps_state.setVisibility(View.VISIBLE);
+            tg_apps_state.setChecked(false);
         }
         if (images_mode.equals("ej")) {
             iv_index_back.setImageResource(R.drawable.mi_erji);
             iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.INVISIBLE);
+            mListView.setVisibility(View.GONE);
+            tg_apps_state.setVisibility(View.VISIBLE);
+            tg_apps_state.setChecked(false);
         }
         if (images_mode.equals("mz")) {
             iv_index_back.setImageResource(R.drawable.mi_meizi);
             iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.INVISIBLE);
+            mListView.setVisibility(View.GONE);
+            tg_apps_state.setVisibility(View.VISIBLE);
+            tg_apps_state.setChecked(false);
         }
         if (images_mode.equals("ch")) {
             iv_index_back.setImageResource(R.drawable.mi_chahua);
             iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.INVISIBLE);
+            mListView.setVisibility(View.GONE);
+            tg_apps_state.setVisibility(View.VISIBLE);
+            tg_apps_state.setChecked(false);
         }
         if (images_mode.equals("ll")) {
             iv_index_back.setImageResource(R.drawable.mi_luoli);
             iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.INVISIBLE);
+            mListView.setVisibility(View.GONE);
+            tg_apps_state.setVisibility(View.VISIBLE);
+            tg_apps_state.setChecked(false);
         }
         if (images_mode.equals("yl")) {
             iv_index_back.setImageResource(R.drawable.mi_yali);
             iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.INVISIBLE);
+            mListView.setVisibility(View.GONE);
+            tg_apps_state.setVisibility(View.VISIBLE);
+            tg_apps_state.setChecked(false);
         }
         if (images_mode.equals("pb")) {
             iv_index_back.setImageResource(R.drawable.mi_pinbo);
             iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.INVISIBLE);
+            mListView.setVisibility(View.GONE);
+            tg_apps_state.setVisibility(View.VISIBLE);
+            tg_apps_state.setChecked(false);
         }
         if (images_mode.equals("zy")) {
             iv_index_back.setImageResource(R.drawable.mi_zhiyu);
             iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.INVISIBLE);
+            mListView.setVisibility(View.GONE);
+            tg_apps_state.setVisibility(View.VISIBLE);
+            tg_apps_state.setChecked(false);
         }
         if (images_mode.equals("applist")) {
             iv_index_back.setImageResource(R.drawable.mi_haole);
-            iv_index_back.setVisibility(View.INVISIBLE);
+            iv_index_back.setVisibility(View.GONE);
             mListView.setVisibility(View.VISIBLE);
-            tg_apps_state.setChecked(true);
+            tg_apps_state.setVisibility(View.GONE);
         }
         if (images_mode.equals("")) {
             iv_index_back.setImageResource(R.drawable.mi_haole);
             iv_index_back.setVisibility(View.INVISIBLE);
             mListView.setVisibility(View.VISIBLE);
             DiyToast.showToast(this, "请选择壁纸或者应用列表（设置-壁纸设置）", false);
+        }
+        if (images_mode.equals("app_wallpaper")) {
+            initSkinMode(MainActivity.this, images_mode);
+        }
+        if (images_mode.equals("app_wallpaper_applist")) {
+            initSkinMode(MainActivity.this, images_mode);
         }
     }
 
@@ -457,6 +574,10 @@ public class MainActivity extends Activity implements OnClickListener {
                         "HH");
                 SimpleDateFormat simpleDateFormat_min = new SimpleDateFormat(
                         "mm");
+                SimpleDateFormat simpleDateFormat_date = new SimpleDateFormat(
+                        "yyyy年MM月dd日");
+                tv_main_nowdate.setText(simpleDateFormat_date
+                        .format(new java.util.Date()));
                 tv_time_hour.setText(simpleDateFormat_hour
                         .format(new java.util.Date()));
                 tv_time_min.setText(simpleDateFormat_min
@@ -471,6 +592,7 @@ public class MainActivity extends Activity implements OnClickListener {
      * 绑定控件
      */
     private void initView() {
+        tv_main_nowdate = (TextView) findViewById(R.id.tv_main_nowdate);
         iv_setting_rss = (ImageView) findViewById(R.id.iv_setting_rss);
         iv_setting_refresh = (ImageView) findViewById(R.id.iv_setting_refresh);
         view_buttom = (View) findViewById(R.id.view_buttom);
@@ -742,7 +864,7 @@ public class MainActivity extends Activity implements OnClickListener {
         switch (v.getId()) {
             //设置
             case R.id.iv_setting_button:
-                startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                startActivity(new Intent(getApplicationContext(), SettingActivity.class));
                 break;
             //天气
             case R.id.line_wather:
@@ -759,6 +881,8 @@ public class MainActivity extends Activity implements OnClickListener {
                         sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
                         update_wathers(sharedPreferences);
                     }
+                } else {
+                    DiyToast.showToast(getApplicationContext(), "当前处于离线模式", true);
                 }
                 break;
             //音量
@@ -776,7 +900,7 @@ public class MainActivity extends Activity implements OnClickListener {
             //锁屏
             case R.id.iv_setting_lock:
                 startActivity(new Intent(MainActivity.this, FakerLockedActivity.class));
-                finish();//这一次要结束当前Activity，但是要确保用户返回的时候不会出错（屏蔽返回按键）
+                finish();//结束当前Activity，但是要确保用户返回的时候不会出错（屏蔽返回按键）
                 break;
             //RSS订阅
             case R.id.iv_setting_rss:
@@ -831,31 +955,6 @@ public class MainActivity extends Activity implements OnClickListener {
         Notification notification = builder.build();
         notification.flags |= Notification.FLAG_ONGOING_EVENT;
         manager.notify(channelId, notification);
-    }
-
-    /**
-     * 检查是否拥有存储权限
-     */
-    public void check_save_permission() {
-        boolean isGranted = true;
-        if (android.os.Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                //如果没有写sd卡权限
-                isGranted = false;
-            }
-            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                isGranted = false;
-            }
-            Log.i("cbs", "isGranted == " + isGranted);
-            if (!isGranted) {
-                requestPermissions(
-                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission
-                                .ACCESS_FINE_LOCATION,
-                                Manifest.permission.READ_EXTERNAL_STORAGE,
-                                Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        102);
-            }
-        }
     }
 
     /**

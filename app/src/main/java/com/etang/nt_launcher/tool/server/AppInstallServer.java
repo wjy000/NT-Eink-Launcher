@@ -4,9 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.etang.nt_launcher.launcher.MainActivity;
 import com.etang.nt_launcher.tool.toast.DiyToast;
@@ -29,7 +27,7 @@ public class AppInstallServer extends BroadcastReceiver {
         //接收安装广播
         if (intent.getAction().equals(Intent.ACTION_PACKAGE_ADDED)) {
             String packageName = intent.getData().getSchemeSpecificPart();
-            DiyToast.showToast(context, "安装了包名为：" + packageName + "的应用", true);
+            DiyToast.showToast(context, "安装了" + packageName, true);
             Log.e("ETANG_APP", "install app packageName = " + packageName);
             MainActivity.initAppList(context);
         }
@@ -39,14 +37,14 @@ public class AppInstallServer extends BroadcastReceiver {
             Log.e("ETANG_APP", "uninstall app packageName = " + packageName);
             boolean isReplace = intent.getBooleanExtra(Intent.EXTRA_REPLACING, false);
             Log.e("ETANG_APP", "isReplace = " + isReplace);
-            DiyToast.showToast(context, "卸载了包名为：" + packageName + "的应用", true);
+            DiyToast.showToast(context, "卸载了" + packageName, true);
             MainActivity.initAppList(context);
         }
         //接收升级更新广播
         if (intent.getAction().equals(Intent.ACTION_PACKAGE_REPLACED)) {
             String packageName = intent.getData().getSchemeSpecificPart();
             Log.e("ETANG_APP", "upgrade app packageName = " + packageName);
-            DiyToast.showToast(context, "更新了包名为：" + packageName + "的应用", true);
+            DiyToast.showToast(context, "更新了" + packageName, true);
             MainActivity.initAppList(context);
         }
     }

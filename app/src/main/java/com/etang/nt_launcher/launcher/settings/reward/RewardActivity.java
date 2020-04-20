@@ -1,4 +1,4 @@
-package com.etang.nt_launcher.launcher.settings.about;
+package com.etang.nt_launcher.launcher.settings.reward;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -13,12 +13,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.etang.nt_launcher.BuildConfig;
 import com.etang.nt_launcher.R;
-import com.etang.nt_launcher.launcher.settings.SettingActivity;
+import com.etang.nt_launcher.launcher.settings.about.AboutActivity;
 import com.etang.nt_launcher.tool.dialog.CheckUpdateDialog;
 
-public class AboutActivity extends AppCompatActivity {
+public class RewardActivity extends AppCompatActivity {
     private ImageView iv_about_logo;
 
     @Override
@@ -30,7 +29,7 @@ public class AboutActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.
                 FLAG_KEEP_SCREEN_ON);//应用运行时，保持屏幕高亮，不锁屏
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
-        setContentView(R.layout.setting_about);
+        setContentView(R.layout.activity_reward);
         setTitle("关于");
         //返回按钮（整个顶栏LinearLayout）
         ((ImageView) findViewById(R.id.iv_title_back)).setOnClickListener(new View.OnClickListener() {
@@ -40,20 +39,8 @@ public class AboutActivity extends AppCompatActivity {
             }
         });
         //标题
-        String version = BuildConfig.VERSION_NAME;
-        ((TextView) findViewById(R.id.tv_title_text)).setText("关于  " + version);
-        iv_about_logo = (ImageView) findViewById(R.id.iv_about_logo);
-        iv_about_logo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ProgressDialog progressDialog = new ProgressDialog(AboutActivity.this);
-                progressDialog.setTitle("加载中，请稍后");
-                progressDialog.setMessage("正在从“naiyouhuameitang.club”获取最新版本信息");
-                progressDialog.show();
-                CheckUpdateDialog.check_update(AboutActivity.this, progressDialog);
-            }
-        });
-        ((TextView) findViewById(R.id.tv_title_imagetext)).setText("当前版本");
+        ((TextView) findViewById(R.id.tv_title_text)).setText("打赏");
+        ((TextView) findViewById(R.id.tv_title_imagetext)).setText("如何打赏");
         ((TextView) findViewById(R.id.tv_title_imagetext)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,9 +56,8 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     private void show_dialog() {
-        String version = BuildConfig.VERSION_NAME;
-        AlertDialog.Builder builder = new AlertDialog.Builder(AboutActivity.this);
-        builder.setMessage("当前版本\n" + version);
+        AlertDialog.Builder builder = new AlertDialog.Builder(RewardActivity.this);
+        builder.setMessage("您可以扫描图片上的二维码或者登陆网址：afdian.net/@naiyouhuameitang");
         builder.setPositiveButton("我知道了", null);
         builder.show();
     }

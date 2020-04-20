@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.launcher.MainActivity;
+import com.etang.nt_launcher.tool.permission.SavePermission;
 import com.etang.nt_launcher.tool.savearrayutil.SaveArrayImageUtil;
 import com.etang.nt_launcher.tool.savearrayutil.SaveArrayListUtil;
 import com.etang.nt_launcher.tool.toast.DiyToast;
@@ -72,7 +73,7 @@ public class UnInstallDialog {
             btn_ico.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    show_ico_dialog(context);
+                    show_ico_dialog(context, activity);
                     builder.dismiss();
                 }
             });
@@ -109,8 +110,9 @@ public class UnInstallDialog {
     }
 
 
-    private static void show_ico_dialog(final Context context) {
+    private static void show_ico_dialog(final Context context, final Activity activity) {
         try {
+            SavePermission.check_save_permission(context, activity);//检查存取权限
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             View view = LayoutInflater.from(context).inflate(R.layout.dialog_load_ico, null, false);
             builder.setView(view);
@@ -120,7 +122,7 @@ public class UnInstallDialog {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     if (et_load_ico_uri.getText().toString().isEmpty()) {
-                        show_ico_dialog(context);
+                        show_ico_dialog(context, activity);
                         DiyToast.showToast(context, "请输入文件名", true);
                     } else {
                         ArrayList<String> arrayList = new ArrayList<>();

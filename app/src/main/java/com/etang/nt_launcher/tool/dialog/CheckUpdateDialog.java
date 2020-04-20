@@ -121,12 +121,12 @@ public class CheckUpdateDialog {
         if (!version.equals(version_web)) {
             builder.setMessage("当前版本：" + "\n" + version + "\n" + "现有版本：" + "\n" + version_web + "\n" + "有更新，请到“酷安”进行更新，或登录博客在电脑端或者浏览器内下载后自行安装，软件内更新功能即将上线");
             DiyToast.showToast(context, "有更新，请到“酷安”进行更新，或登录博客在电脑端或者浏览器内下载后自行安装，软件内更新功能即将上线", true);
-            builder.setNeutralButton("下载", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    downLoadFile("http://naiyouhuameitang.club/apk/Launcher_project/NaiTang/update.apk",context);
-                }
-            });
+//            builder.setNeutralButton("下载", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    downLoadFile("http://naiyouhuameitang.club/apk/Launcher_project/NaiTang/update.apk", context);
+//                }
+//            });
         } else {
             builder.setMessage("当前版本：" + "\n" + version + "\n" + "现有版本：" + "\n" + version_web + "\n" + "你已经是最新版本了");
             DiyToast.showToast(context, "你已经是最新版本了", true);

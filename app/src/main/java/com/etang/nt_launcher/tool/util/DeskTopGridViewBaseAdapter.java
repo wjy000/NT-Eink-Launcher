@@ -69,10 +69,15 @@ public class DeskTopGridViewBaseAdapter extends BaseAdapter {
                 holder.ico.setImageURI(Uri.fromFile(new File("sdcard/ntlauncher/" + all[1])));
             }
         }
-        get_appname_info(holder);
+        get_appname_info(holder);//读取APP名称和边框大小设置
         return convertView;
     }
 
+    /**
+     * 读取APP名称和边框大小设置
+     *
+     * @param holder
+     */
     private void get_appname_info(Holder holder) {
         SharedPreferences sharedPreferences;
         sharedPreferences = context.getSharedPreferences("info_app_list_state", context.MODE_PRIVATE);
@@ -102,6 +107,9 @@ public class DeskTopGridViewBaseAdapter extends BaseAdapter {
                     holder.line_appinfo.setBackground(null);
                 }
                 if (appblok_state.equals("show_blok")) {
+                    holder.line_appinfo.setBackgroundResource(R.drawable.shaper_desk_top_colorwhite_show);
+                }
+                if (appblok_state.equals("show_nocolor_blok")) {
                     holder.line_appinfo.setBackgroundResource(R.drawable.shaper_desk_top_show);
                 }
             }

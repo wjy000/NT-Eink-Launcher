@@ -21,11 +21,14 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.etang.nt_launcher.BuildConfig;
 import com.etang.nt_launcher.launcher.MainActivity;
 import com.etang.nt_launcher.launcher.settings.about.AboutActivity;
 import com.etang.nt_launcher.launcher.settings.desktopsetting.DeskTopSettingActivity;
 import com.etang.nt_launcher.launcher.settings.hindapp.HindAppSetting;
+import com.etang.nt_launcher.launcher.settings.instructions.InstructionsActivity;
 import com.etang.nt_launcher.launcher.settings.launcherimage.ChoseImagesActivity;
+import com.etang.nt_launcher.launcher.settings.reward.RewardActivity;
 import com.etang.nt_launcher.launcher.settings.textsizesetting.TextSizeSetting;
 import com.etang.nt_launcher.launcher.settings.weather.WeatherSettingActivity;
 import com.etang.nt_launcher.R;
@@ -35,7 +38,7 @@ import com.etang.nt_launcher.tool.toast.DiyToast;
 
 public class SettingActivity extends Activity {
 
-    LinearLayout lv_weather_gone_setting, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting, lv_exit_setting, lv_hindapp_setting, lv_name_setting, lv_uninstall_setting;
+    LinearLayout lv_weather_gone_setting, lv_reward_activity, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting, lv_exit_setting, lv_hindapp_setting, lv_name_setting, lv_uninstall_setting;
     private TextView tv_title_text;
     private CheckBox cb_hind_setting_ico, cb_setting_offlinemode;
     private ImageView iv_title_back;
@@ -61,8 +64,8 @@ public class SettingActivity extends Activity {
             }
         });
         //隐藏暂时无用的选项
-        if (!Build.BRAND.toString().equals("Allwinner")) {
-        }
+//        if (!Build.BRAND.toString().equals("Allwinner")) {
+//        }
         //打开关于界面
         lv_about_activity.setOnClickListener(new OnClickListener() {
             @Override
@@ -119,7 +122,6 @@ public class SettingActivity extends Activity {
             }
         });
         //退出“奶糖桌面”
-        lv_exit_setting.setVisibility(View.GONE);
         lv_exit_setting.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +132,13 @@ public class SettingActivity extends Activity {
         lv_uninstall_setting.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                UnInstallDialog.UninstallApk(SettingActivity.this, SettingActivity.this, "com.etang.nt_launcher");
+                UnInstallDialog.UninstallApk(SettingActivity.this, SettingActivity.this, getPackageName());
+            }
+        });
+        lv_reward_activity.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingActivity.this, RewardActivity.class));
             }
         });
         //昵称设置
@@ -140,17 +148,16 @@ public class SettingActivity extends Activity {
                 show_name_dialog();
             }
         });
-        SharedPreferences sharedPreferences;
-        sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
         String ico_info = sharedPreferences.getString("setting_ico_hind", null);
         String offline_info = sharedPreferences.getString("offline", null);
         try {
             if (ico_info.equals("true")) {
                 cb_hind_setting_ico.setChecked(true);
-                MainActivity.check_view_hind(SettingActivity.this, sharedPreferences);
+//                MainActivity.check_view_hind(SettingActivity.this, sharedPreferences);
             } else {
                 cb_hind_setting_ico.setChecked(false);
-                MainActivity.check_view_hind(SettingActivity.this, sharedPreferences);
+//                MainActivity.check_view_hind(SettingActivity.this, sharedPreferences);
             }
             if (offline_info.equals("true")) {
                 cb_setting_offlinemode.setChecked(true);
@@ -170,11 +177,15 @@ public class SettingActivity extends Activity {
                     editor.putString("setting_ico_hind", "true");//日期文本大小
                     editor.apply();
                     DiyToast.showToast(SettingActivity.this, "有时需要重启设备以应用更改，长按桌面中的“小时”可以打开设置", true);
+                    SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+                    MainActivity.check_view_hind(SettingActivity.this, sharedPreferences);
                 } else {
                     SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                     editor.putString("setting_ico_hind", "false");//日期文本大小
                     editor.apply();
                     DiyToast.showToast(SettingActivity.this, "有时需要重启设备以应用更改，点击桌面中的“小时”可以打开设置", true);
+                    SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+                    MainActivity.check_view_hind(SettingActivity.this, sharedPreferences);
                 }
             }
         });
@@ -186,15 +197,40 @@ public class SettingActivity extends Activity {
                     editor.putString("offline", "true");//日期文本大小
                     editor.apply();
                     DiyToast.showToast(SettingActivity.this, "有时需要重启设备以应用更改", true);
+                    SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+                    MainActivity.check_view_hind(SettingActivity.this, sharedPreferences);
                 } else {
                     SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                     editor.putString("offline", "false");//日期文本大小
                     editor.apply();
                     DiyToast.showToast(SettingActivity.this, "有时需要重启设备以应用更改", true);
+                    SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+                    MainActivity.check_view_hind(SettingActivity.this, sharedPreferences);
                 }
             }
         });
+        ((TextView) findViewById(R.id.tv_title_imagetext)).setText("说明书");
+        ((TextView) findViewById(R.id.tv_title_imagetext)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingActivity.this, InstructionsActivity.class));
+            }
+        });
+        ((ImageView) findViewById(R.id.iv_title_imagebutton)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingActivity.this, InstructionsActivity.class));
+            }
+        });
     }
+//
+//    private void show_dialog() {
+//        String version = BuildConfig.VERSION_NAME;
+//        AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
+//        builder.setMessage("当前版本\n" + version);
+//        builder.setPositiveButton("我知道了", null);
+//        builder.show();
+//    }
 
     private void show_name_dialog() {
         final AlertDialog builder = new AlertDialog.Builder(
@@ -236,25 +272,25 @@ public class SettingActivity extends Activity {
                             db.execSQL(
                                     "update name set username = ?",
                                     new String[]{ra_0.getText()
-                                            .toString() + "多看电纸书"});
+                                            .toString() + "电纸书"});
                         }
                         if (ra_1.isChecked()) {
                             db.execSQL(
                                     "update name set username = ?",
                                     new String[]{ra_1.getText()
-                                            .toString() + "多看电纸书"});
+                                            .toString() + "电纸书"});
                         }
                         if (ra_2.isChecked()) {
                             db.execSQL(
                                     "update name set username = ?",
                                     new String[]{ra_2.getText()
-                                            .toString() + "多看电纸书"});
+                                            .toString() + "电纸书"});
                         }
                         if (ra_3.isChecked()) {
                             db.execSQL(
                                     "update name set username = ?",
                                     new String[]{ra_3.getText()
-                                            .toString() + "多看电纸书"});
+                                            .toString() + "电纸书"});
                         }
                     } else {
                         db.execSQL("update name set username = ?",
@@ -271,6 +307,7 @@ public class SettingActivity extends Activity {
 
     private void initView() {
         // TODO Auto-generated method stub
+        lv_reward_activity = (LinearLayout) findViewById(R.id.lv_reward_activity);
         cb_setting_offlinemode = (CheckBox) findViewById(R.id.cb_setting_offlinemode);
         cb_hind_setting_ico = (CheckBox) findViewById(R.id.cb_hind_setting_ico);
         lv_name_setting = (LinearLayout) findViewById(R.id.lv_name_setting);
