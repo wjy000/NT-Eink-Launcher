@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:allowBackup="true"
@@ -44,6 +45,7 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
+
 
         <activity android:name=".launcher.settings.instructions.InstructionsActivity"></activity>
         <activity

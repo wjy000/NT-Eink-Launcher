@@ -1,22 +1,44 @@
 package com.etang.nt_launcher.launcher.settings.about;
 
+import android.Manifest;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Paint;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import com.etang.nt_launcher.BuildConfig;
 import com.etang.nt_launcher.R;
-import com.etang.nt_launcher.launcher.settings.SettingActivity;
 import com.etang.nt_launcher.tool.dialog.CheckUpdateDialog;
+import com.etang.nt_launcher.tool.permission.SavePermission;
+import com.etang.nt_launcher.tool.toast.DiyToast;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class AboutActivity extends AppCompatActivity {
     private ImageView iv_about_logo;
@@ -48,7 +70,8 @@ public class AboutActivity extends AppCompatActivity {
                 progressDialog.setTitle("加载中，请稍后");
                 progressDialog.setMessage("正在从“naiyouhuameitang.club”获取最新版本信息");
                 progressDialog.show();
-                CheckUpdateDialog.check_update(AboutActivity.this, progressDialog);
+                SavePermission.check_save_permission(AboutActivity.this, AboutActivity.this);
+                CheckUpdateDialog.check_update(AboutActivity.this, progressDialog, AboutActivity.this);
             }
         });
         ((TextView) findViewById(R.id.tv_title_imagetext)).setText("当前版本");

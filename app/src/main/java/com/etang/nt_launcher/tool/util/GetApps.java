@@ -41,7 +41,7 @@ public class GetApps {
             mInfo.setIntent(launchIntent);
             list.add(mInfo);
         }
-        add_diary(context,list);
+        add_diary(context, list);
         return list;
     }
 
@@ -66,6 +66,16 @@ public class GetApps {
         Bitmap bmp_weather = BitmapFactory.decodeResource(r_weather, R.drawable.ic_weather);
         mInfo_weather.setIco(Bitmap.createBitmap(bmp_weather));
         list.add(mInfo_weather);
+        /**
+         * 添加“桌面设置”
+         */
+        AppInfo mInfo_launchersetting = new AppInfo();
+        mInfo_launchersetting.setName("桌面设置");
+        mInfo_launchersetting.setPackageName(context.getPackageName() + ".launchersetting");
+        Resources r_launchersetting = context.getResources();
+        Bitmap bmp_launchersetting = BitmapFactory.decodeResource(r_launchersetting, R.drawable.ic_launchersetting);
+        mInfo_launchersetting.setIco(Bitmap.createBitmap(bmp_launchersetting));
+        list.add(mInfo_launchersetting);
     }
 
     /**

@@ -121,6 +121,13 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/iv_clean_button"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_clean" />
+
+            <ImageView
                 android:id="@+id/iv_setting_button"
                 android:layout_width="30sp"
                 android:layout_height="30sp"

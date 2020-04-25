@@ -100,9 +100,9 @@ public class MainActivity extends Activity implements OnClickListener {
     public static TextView tv_user_id, tv_time_hour, tv_time_min,
             tv_main_batterystate, tv_city, tv_wind, tv_temp_state,
             tv_last_updatetime, tv_main_nowdate;
-    public static ImageView iv_setting_button, iv_setting_yinliang, iv_setting_lock, iv_setting_refresh, iv_setting_rss;
+    public static ImageView iv_setting_button, iv_setting_yinliang, iv_setting_lock, iv_setting_refresh, iv_setting_rss, iv_clean_button;
     public static ToggleButton tg_apps_state;
-    public static LinearLayout line_wather;
+    public static LinearLayout line_wather, line_bottom;
     public static String string_app_info = "";
     public static ImageView iv_index_back;
     public static GridView mListView;
@@ -167,6 +167,9 @@ public class MainActivity extends Activity implements OnClickListener {
                         startActivity(intent);
                     } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".weather")) {//点击了“天气”
                         intent = new Intent(MainActivity.this, WeatherActivity.class);
+                        startActivity(intent);
+                    } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".launchersetting")) {//点击了“桌面设置”
+                        intent = new Intent(MainActivity.this, SettingActivity.class);
                         startActivity(intent);
                     } else {//出现异常
                         DeBugDialog.debug_show_dialog(MainActivity.this, "启动APP时出现“Intent”相关的异常");
@@ -357,19 +360,21 @@ public class MainActivity extends Activity implements OnClickListener {
         try {
             String ico_info = sharedPreferences.getString("setting_ico_hind", null);
             if (ico_info.equals("true")) {
-                MainActivity.iv_setting_button.setVisibility(View.GONE);
-                iv_setting_lock.setVisibility(View.GONE);
+                line_bottom.setVisibility(View.GONE);
+//                MainActivity.iv_setting_button.setVisibility(View.GONE);
+//                iv_setting_lock.setVisibility(View.GONE);
 //                iv_setting_yinliang.setVisibility(View.GONE);
-                tg_apps_state.setVisibility(View.GONE);
+//                tg_apps_state.setVisibility(View.GONE);
 //                iv_setting_rss.setVisibility(View.GONE);
-                view_buttom.setVisibility(View.INVISIBLE);
+//                view_buttom.setVisibility(View.INVISIBLE);
             } else {
-                iv_setting_button.setVisibility(View.VISIBLE);
-                iv_setting_lock.setVisibility(View.VISIBLE);
+                line_bottom.setVisibility(View.VISIBLE);
+//                iv_setting_button.setVisibility(View.VISIBLE);
+//                iv_setting_lock.setVisibility(View.VISIBLE);
 //                iv_setting_rss.setVisibility(View.VISIBLE);
 //                iv_setting_yinliang.setVisibility(View.VISIBLE);
-                tg_apps_state.setVisibility(View.VISIBLE);
-                view_buttom.setVisibility(View.VISIBLE);
+//                tg_apps_state.setVisibility(View.VISIBLE);
+//                view_buttom.setVisibility(View.VISIBLE);
             }
         } catch (Exception e) {
             SharedPreferences.Editor editor = context.getSharedPreferences("info", context.MODE_PRIVATE).edit();
@@ -523,8 +528,13 @@ public class MainActivity extends Activity implements OnClickListener {
     public static void initAppList(Context context) {
         appInfos = GetApps.GetAppList1(context);
         ArrayList<String> hind_apparrayList = new ArrayList<String>();
+        String s = Build.BRAND;
         hind_apparrayList.clear();
         hind_apparrayList = SaveArrayListUtil.getSearchArrayList(context);
+//        if (s.equals("Allwinner")) {
+//            hind_apparrayList.add("com.duokan.einkreader");
+//            hind_apparrayList.add("com.android.settings");
+//        }
         for (int j = 0; j < hind_apparrayList.size(); j++) {
             for (int i = 0; i < appInfos.size(); i++) {
                 if (hind_apparrayList.get(j).equals(appInfos.get(i).getPackageName())) {
@@ -590,7 +600,9 @@ public class MainActivity extends Activity implements OnClickListener {
      * 绑定控件
      */
     private void initView() {
+        line_bottom = (LinearLayout) findViewById(R.id.linearLayout2);
         tv_main_nowdate = (TextView) findViewById(R.id.tv_main_nowdate);
+        iv_clean_button = (ImageView) findViewById(R.id.iv_clean_button);
         iv_setting_rss = (ImageView) findViewById(R.id.iv_setting_rss);
         iv_setting_refresh = (ImageView) findViewById(R.id.iv_setting_refresh);
         view_buttom = (View) findViewById(R.id.view_buttom);
@@ -615,6 +627,13 @@ public class MainActivity extends Activity implements OnClickListener {
         iv_setting_lock.setOnClickListener(this);
         iv_setting_rss.setOnClickListener(this);
         iv_setting_refresh.setOnClickListener(this);
+        iv_clean_button.setOnClickListener(this);
+        String s_clean = Build.BRAND;
+        if (s_clean.equals("Allwinner")) {
+            iv_clean_button.setVisibility(View.VISIBLE);
+        } else {
+            iv_clean_button.setVisibility(View.INVISIBLE);
+        }
         //数据库
         dbHelper_name_sql = new MyDataBaseHelper(getApplicationContext(), "info.db",
                 null, 2);
@@ -900,6 +919,16 @@ public class MainActivity extends Activity implements OnClickListener {
                 startActivity(new Intent(MainActivity.this, FakerLockedActivity.class));
                 finish();//结束当前Activity，但是要确保用户返回的时候不会出错（屏蔽返回按键）
                 break;
+            case R.id.iv_clean_button:
+                String s_clean = Build.BRAND;
+                if (s_clean.equals("Allwinner")) {
+                    Intent intent_clear = new Intent("com.mogu.clear_mem");
+                    sendBroadcast(intent_clear);
+//                    Intent intent = new Intent("android.eink.force.refresh");
+//                    sendBroadcast(intent);
+//                    Log.e("MainActivity", "onClick: 1");
+                }
+                break;
             //RSS订阅
             case R.id.iv_setting_rss:
                 DiyToast.showToast(MainActivity.this, "调试中的功能", false);
@@ -908,6 +937,8 @@ public class MainActivity extends Activity implements OnClickListener {
             case R.id.iv_setting_refresh:
                 String s = Build.BRAND;
                 if (s.equals("Allwinner")) {
+//                    Intent intent_clear = new Intent("com.mogu.clear_mem");
+//                    sendBroadcast(intent_clear);
                     Intent intent = new Intent("android.eink.force.refresh");
                     sendBroadcast(intent);
                     Log.e("MainActivity", "onClick: 1");
