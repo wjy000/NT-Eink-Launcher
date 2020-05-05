@@ -171,6 +171,12 @@ public class MainActivity extends Activity implements OnClickListener {
                     } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".launchersetting")) {//点击了“桌面设置”
                         intent = new Intent(MainActivity.this, SettingActivity.class);
                         startActivity(intent);
+                    } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".systemclean")) {//点击了“桌面设置”
+                        String s_clean = Build.BRAND;
+                        if (s_clean.equals("Allwinner")) {
+                            Intent intent_clear = new Intent("com.mogu.clear_mem");
+                            sendBroadcast(intent_clear);
+                        }
                     } else {//出现异常
                         DeBugDialog.debug_show_dialog(MainActivity.this, "启动APP时出现“Intent”相关的异常");
                     }

@@ -38,6 +38,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.net.ssl.HttpsURLConnection;
+
 
 public class CheckUpdateDialog {
     //  上下文
@@ -143,26 +145,17 @@ public class CheckUpdateDialog {
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         //截取之后的字符
         String version_web = s.substring(0, s.indexOf("(" + context.getPackageName() + ")"));
+        String version_web_1 = version_web.substring(s.indexOf("code"));
+        Log.e("VERSION 1", version_web_1);
+        String version_web_5 = version_web_1.substring(version_web_1.indexOf("code"));
+        version_web_5 = version_web_5.replace("code", ""); //得到新的字符串
         String version = BuildConfig.VERSION_NAME;
-        if (!version.equals(version_web)) {
-            builder.setMessage("当前版本：" + "\n" + version + "\n" + "现有版本：" + "\n" + version_web + "\n" + "有更新，请下载或到“酷安”和“博客”进行下载安装更新");
-            DiyToast.showToast(context, "有更新，请下载或到“酷安”和“博客”进行下载安装更新", true);
-            builder.setNeutralButton("下载", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    SavePermission.check_save_permission(context, activity);
-                    startUpdate(context, activity);
-                }
-            });
-//            builder.setNeutralButton("下载", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    downLoadFile("http://naiyouhuameitang.club/apk/Launcher_project/NaiTang/update.apk", context);
-//                }
-//            });
+        int version_code = BuildConfig.VERSION_CODE;
+        int version_web_code = Integer.valueOf(version_web_5);
+        if (version.indexOf("beta") != -1) { //"如果是beta版"
+            check_beta(builder, version_code, version_web_code, context, activity, true);//内测版
         } else {
-            builder.setMessage("当前版本：" + "\n" + version + "\n" + "现有版本：" + "\n" + version_web + "\n" + "你已经是最新版本了");
-            DiyToast.showToast(context, "你已经是最新版本了", true);
+            check_beta(builder, version_code, version_web_code, context, activity, false);//稳定版
         }
         builder.setPositiveButton("博客地址", new DialogInterface.OnClickListener() {
             @Override
@@ -171,8 +164,57 @@ public class CheckUpdateDialog {
                 web_html(context);
             }
         });
+        builder.setTitle(BuildConfig.VERSION_NAME);
         builder.show();
     }
+
+    private static void check_beta(AlertDialog.Builder builder, int version_code, int version_web_code, final Context context, final Activity activity, boolean is_beta) {
+        if (version_code != version_web_code) {
+            if (is_beta) {
+                mVersion_name = mVersion_name + "_beta";
+                builder.setMessage("你是内测版，请前往“爱发电”电圈内查看是否有新版本，或者尝试直接下载。");
+                builder.setNeutralButton("更新", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startUpdate(context, activity);
+                    }
+                });
+            } else {
+                if (version_code > version_web_code) {
+                    mVersion_name = mVersion_name + "_" + String.valueOf(version_web_code);
+                    builder.setMessage("当前版本CODE：\n" + String.valueOf(version_code) + "\n最新版本CODE：\n" + String.valueOf(version_web_code) + "\n\n你的版本比目前发布的稳定版还要高，可能你使用的是内测版或者第三方修改的不稳定版本");
+                    DiyToast.showToast(context, "你的版本比目前发布的稳定版还要高，可能你使用的是内测版或者第三方修改的不稳定版本。", true);
+                    builder.setNeutralButton("更新", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            startUpdate(context, activity);
+                        }
+                    });
+                } else {
+                    mVersion_name = mVersion_name + "_" + String.valueOf(version_web_code);
+                    builder.setMessage("当前版本CODE：\n" + String.valueOf(version_code) + "\n最新版本CODE：\n" + String.valueOf(version_web_code) + "\n\n你的“奶糖桌面”需要更新，请到酷安、博客，或者点击“更新”进行更新。");
+                    DiyToast.showToast(context, "你的“奶糖桌面”需要更新，请到酷安、博客，或者点击“更新”进行更新。", true);
+                    builder.setNeutralButton("更新", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            startUpdate(context, activity);
+                        }
+                    });
+                }
+            }
+        } else {
+            mVersion_name = mVersion_name + "_" + String.valueOf(version_web_code);
+            builder.setMessage("当前版本CODE：" + "\n" + String.valueOf(version_code) + "\n" + "现有版本CODE：" + "\n" + version_web_code + "\n" + "\n你已经是最新版本了");
+            DiyToast.showToast(context, "你已经是最新版本了", true);
+            builder.setNeutralButton("重新下载", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    startUpdate(context, activity);
+                }
+            });
+        }
+    }
+
 
     private static void web_html(Context context) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -295,26 +337,25 @@ public class CheckUpdateDialog {
                             dir.mkdir();
                         }
                         String str = BuildConfig.VERSION_NAME;
-                        String url = null;
+                        String url = "";
                         if (str.indexOf("beta") != -1) { //"123就是你要指百定的字符度或者字符串回"
                             Log.e("version", "测试版");
                             //  内测版请求链接
-                            url = "http://naiyouhuameitang.club/apk/Launcher_project/app_server_update/Launcher/beta/update.apk";
+                            url = "https://www.naiyouhuameitang.club/apk/Launcher_project/app_server_update/Launcher/beta/update.apk";
                         } else {
                             Log.e("version", "稳定版");
                             //  稳定版请求链接
-                            url = "http://naiyouhuameitang.club/apk/Launcher_project/app_server_update/Launcher/rese/update.apk";
+                            url = "https://www.naiyouhuameitang.club/apk/Launcher_project/app_server_update/Launcher/rese/update.apk";
                         }
                         // 下载文件
-                        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+                        HttpsURLConnection conn = (HttpsURLConnection) new URL(url).openConnection();
                         conn.connect();
                         InputStream is = conn.getInputStream();
                         int length = conn.getContentLength();
                         File apkFile = new File(mSavePath, mVersion_name + ".apk");
                         FileOutputStream fos = new FileOutputStream(apkFile);
-
                         int count = 0;
-                        byte[] buffer = new byte[1024];
+                        byte[] buffer = new byte[5120];
                         while (!mIsCancel) {
                             int numread = is.read(buffer);
                             count += numread;
