@@ -27,6 +27,7 @@ public class UireFreshActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.activity_uirefresh);
         uirefresh_id = (View) findViewById(R.id.uirefresh_id);
+        DiyToast.showToast(UireFreshActivity.this, "刷新中", true);
         handler.post(timeRunnable);
     }
 
@@ -39,7 +40,7 @@ public class UireFreshActivity extends AppCompatActivity {
             } else {
                 uirefresh_id.setBackgroundColor(Color.BLACK);
             }
-            handler.postDelayed(timeRunnable, 500);
+            handler.postDelayed(timeRunnable, 300);
         }
     };
     Runnable timeRunnable = new Runnable() {
@@ -48,7 +49,7 @@ public class UireFreshActivity extends AppCompatActivity {
             number++;
             Message message = handler.obtainMessage();
             message.arg1 = number;
-            if (number < 4) {
+            if (number < 8) {
                 handler.sendMessage(message);
             } else {
                 handler.removeCallbacks(timeRunnable);

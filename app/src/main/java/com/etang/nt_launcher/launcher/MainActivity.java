@@ -1,6 +1,5 @@
 package com.etang.nt_launcher.launcher;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
@@ -14,7 +13,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -23,14 +21,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,15 +45,13 @@ import android.widget.ToggleButton;
 import androidx.core.app.NotificationCompat;
 
 import com.etang.nt_launcher.R;
-import com.etang.nt_launcher.launcher.diary.DiaryActivity;
 import com.etang.nt_launcher.launcher.settings.SettingActivity;
 import com.etang.nt_launcher.launcher.settings.instructions.InstructionsActivity;
 import com.etang.nt_launcher.launcher.settings.uirefresh.UireFreshActivity;
 import com.etang.nt_launcher.launcher.settings.weather.WeatherActivity;
-import com.etang.nt_launcher.locked.FakerLockedActivity;
+import com.etang.nt_launcher.tool.dialog.CheckUpdateDialog;
 import com.etang.nt_launcher.tool.dialog.DeBugDialog;
 import com.etang.nt_launcher.tool.dialog.UnInstallDialog;
-import com.etang.nt_launcher.tool.dialog.WeatherDialog;
 import com.etang.nt_launcher.tool.permission.SavePermission;
 import com.etang.nt_launcher.tool.savearrayutil.SaveArrayListUtil;
 import com.etang.nt_launcher.tool.server.AppInstallServer;
@@ -66,7 +60,7 @@ import com.etang.nt_launcher.tool.toast.DiyToast;
 import com.etang.nt_launcher.tool.util.AppInfo;
 import com.etang.nt_launcher.tool.util.DeskTopGridViewBaseAdapter;
 import com.etang.nt_launcher.tool.util.GetApps;
-import com.etang.nt_launcher.tool.util.json.weather.StreamTool;
+import com.etang.nt_launcher.tool.util.StreamTool;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -100,7 +94,7 @@ public class MainActivity extends Activity implements OnClickListener {
     public static TextView tv_user_id, tv_time_hour, tv_time_min,
             tv_main_batterystate, tv_city, tv_wind, tv_temp_state,
             tv_last_updatetime, tv_main_nowdate;
-    public static ImageView iv_setting_button, iv_setting_yinliang, iv_setting_lock, iv_setting_refresh, iv_setting_rss, iv_clean_button;
+    public static ImageView iv_setting_button, iv_setting_yinliang, iv_setting_refresh, iv_setting_rss, iv_clean_button;
     public static ToggleButton tg_apps_state;
     public static LinearLayout line_wather, line_bottom;
     public static String string_app_info = "";
@@ -141,7 +135,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 // TODO Auto-generated method stub
                 try {
                     string_app_info = appInfos.get(position).getPackageName();
-                    UnInstallDialog.uninstall_app(MainActivity.this, MainActivity.this, string_app_info);
+                    UnInstallDialog.uninstall_app(MainActivity.this, MainActivity.this, string_app_info, appInfos.get(position).getName());
                 } catch (Exception e) {
                     DeBugDialog.debug_show_dialog(MainActivity.this, e.toString());//显示错误信息
                 }
@@ -162,16 +156,23 @@ public class MainActivity extends Activity implements OnClickListener {
                         intent.putExtra("type", "110");
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
-                    } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".diary")) {//点击了“日记”
-                        intent = new Intent(MainActivity.this, DiaryActivity.class);
-                        startActivity(intent);
                     } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".weather")) {//点击了“天气”
                         intent = new Intent(MainActivity.this, WeatherActivity.class);
                         startActivity(intent);
+                    } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".systemupdate")) {//点击了“检查更新”
+                        CheckUpdateDialog.check_update(MainActivity.this, MainActivity.this);
                     } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".launchersetting")) {//点击了“桌面设置”
                         intent = new Intent(MainActivity.this, SettingActivity.class);
                         startActivity(intent);
-                    } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".systemclean")) {//点击了“桌面设置”
+                    } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".uirefresh")) {//点击了“刷新屏幕”
+                        String s = Build.BRAND;
+                        if (s.equals("Allwinner")) {
+                            Intent intent_refresh = new Intent("android.eink.force.refresh");
+                            sendBroadcast(intent_refresh);
+                        } else {
+                            startActivity(new Intent(MainActivity.this, UireFreshActivity.class));
+                        }
+                    } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".systemclean")) {//点击了“清理”
                         String s_clean = Build.BRAND;
                         if (s_clean.equals("Allwinner")) {
                             Intent intent_clear = new Intent("com.mogu.clear_mem");
@@ -201,17 +202,6 @@ public class MainActivity extends Activity implements OnClickListener {
                 }
             }
         });
-
-//        //长按弹出菜单选择城市
-//        line_wather.setOnLongClickListener(new OnLongClickListener() {
-//
-//            @Override
-//            public boolean onLongClick(View v) {
-//                // TODO Auto-generated method stub
-//                WeatherDialog.weather_setting(MainActivity.this);
-//                return true;
-//            }
-//        });
         //长按“小时”进入设置
         tv_time_hour.setOnLongClickListener(new OnLongClickListener() {
             @Override
@@ -284,8 +274,6 @@ public class MainActivity extends Activity implements OnClickListener {
 
     public static void drawCanvas(Bitmap bitmap) {
         bitmap.eraseColor(Color.parseColor("#ff0000")); // 填充颜色
-        Log.d("getWidth", "getWidth(): " + bitmap.getWidth());
-        Log.d("getHeight", "getHeight(): " + bitmap.getHeight());
         Canvas canvas = new Canvas(bitmap);
         Paint paint = new Paint();
         paint.setTextSize(100);
@@ -434,13 +422,6 @@ public class MainActivity extends Activity implements OnClickListener {
             tg_apps_state.setVisibility(View.VISIBLE);
             tg_apps_state.setChecked(false);
         }
-        if (images_mode.equals("ej")) {
-            iv_index_back.setImageResource(R.drawable.mi_erji);
-            iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.GONE);
-            tg_apps_state.setVisibility(View.VISIBLE);
-            tg_apps_state.setChecked(false);
-        }
         if (images_mode.equals("mz")) {
             iv_index_back.setImageResource(R.drawable.mi_meizi);
             iv_index_back.setVisibility(View.VISIBLE);
@@ -448,29 +429,8 @@ public class MainActivity extends Activity implements OnClickListener {
             tg_apps_state.setVisibility(View.VISIBLE);
             tg_apps_state.setChecked(false);
         }
-        if (images_mode.equals("ch")) {
-            iv_index_back.setImageResource(R.drawable.mi_chahua);
-            iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.GONE);
-            tg_apps_state.setVisibility(View.VISIBLE);
-            tg_apps_state.setChecked(false);
-        }
         if (images_mode.equals("ll")) {
             iv_index_back.setImageResource(R.drawable.mi_luoli);
-            iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.GONE);
-            tg_apps_state.setVisibility(View.VISIBLE);
-            tg_apps_state.setChecked(false);
-        }
-        if (images_mode.equals("yl")) {
-            iv_index_back.setImageResource(R.drawable.mi_yali);
-            iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.GONE);
-            tg_apps_state.setVisibility(View.VISIBLE);
-            tg_apps_state.setChecked(false);
-        }
-        if (images_mode.equals("pb")) {
-            iv_index_back.setImageResource(R.drawable.mi_pinbo);
             iv_index_back.setVisibility(View.VISIBLE);
             mListView.setVisibility(View.GONE);
             tg_apps_state.setVisibility(View.VISIBLE);
@@ -544,7 +504,6 @@ public class MainActivity extends Activity implements OnClickListener {
         for (int j = 0; j < hind_apparrayList.size(); j++) {
             for (int i = 0; i < appInfos.size(); i++) {
                 if (hind_apparrayList.get(j).equals(appInfos.get(i).getPackageName())) {
-                    Log.e("APPDATA-------", appInfos.get(i).getPackageName());
                     appInfos.remove(i);
 //                    continue;
                 }
@@ -567,9 +526,9 @@ public class MainActivity extends Activity implements OnClickListener {
             MainActivity.tv_user_id.setText(cursor.getString(cursor
                     .getColumnIndex("username")));
             if (MainActivity.tv_user_id.getText().toString().isEmpty()) {
-                MainActivity.tv_user_id.setText("请设置昵称（桌面设置中）");
+                MainActivity.tv_user_id.setText("请设置文本（桌面设置中）");
             } else if (MainActivity.tv_user_id.getText().toString().equals("")) {
-                MainActivity.tv_user_id.setText("请设置昵称（桌面设置中）");
+                MainActivity.tv_user_id.setText("请设置文本（桌面设置中）");
             }
         }
     }
@@ -620,7 +579,6 @@ public class MainActivity extends Activity implements OnClickListener {
         tv_user_id = (TextView) findViewById(R.id.tv_user_id);
         tv_main_batterystate = (TextView) findViewById(R.id.tv_main_batterystate);
         line_wather = (LinearLayout) findViewById(R.id.line_wather);
-        iv_setting_lock = (ImageView) findViewById(R.id.iv_setting_lock);
         tv_city = (TextView) findViewById(R.id.tv_city);
         iv_setting_yinliang = (ImageView) findViewById(R.id.iv_setting_yinliang);
         tv_wind = (TextView) findViewById(R.id.tv_wind);
@@ -630,7 +588,6 @@ public class MainActivity extends Activity implements OnClickListener {
         iv_setting_button.setOnClickListener(this);
         line_wather.setOnClickListener(this);
         iv_setting_yinliang.setOnClickListener(this);
-        iv_setting_lock.setOnClickListener(this);
         iv_setting_rss.setOnClickListener(this);
         iv_setting_refresh.setOnClickListener(this);
         iv_clean_button.setOnClickListener(this);
@@ -798,7 +755,6 @@ public class MainActivity extends Activity implements OnClickListener {
                 } catch (Exception e) {
                     // TODO: handle exception
                     e.printStackTrace();
-                    Log.e("weather", "异常：" + e.toString());
                     Message msg = Message.obtain();
                     msg.what = 2;
                     mHandler.sendMessage(msg);
@@ -855,19 +811,19 @@ public class MainActivity extends Activity implements OnClickListener {
                     sb.append("'s battery feels very hot!");
                 } else {
                     if (status == BatteryManager.BATTERY_STATUS_FULL) {//充电完成
-                        sb.append(String.valueOf(level) + "% " + " 充电完成 ");
+                        sb.append(String.valueOf(level) + "% " + " FULL* ");
                         tv_main_batterystate.setText(sb.toString());
                     }
                     if (status == BatteryManager.BATTERY_STATUS_CHARGING) {//充电
-                        sb.append(String.valueOf(level) + "% " + " 正在充电 ");
+                        sb.append(String.valueOf(level) + "% " + " C+ ");
                         tv_main_batterystate.setText(sb.toString());
                     }
                     if (status == BatteryManager.BATTERY_STATUS_DISCHARGING) {//放电
-                        sb.append(String.valueOf(level) + "% " + " 使用中 ");
+                        sb.append(String.valueOf(level) + "% " + " U- ");
                         tv_main_batterystate.setText(sb.toString());
                     }
                     if (status == BatteryManager.BATTERY_STATUS_NOT_CHARGING) {//未在充电
-                        sb.append(String.valueOf(level) + "% " + " 使用中 ");
+                        sb.append(String.valueOf(level) + "% " + " U- ");
                         tv_main_batterystate.setText(sb.toString());
                     }
                 }
@@ -903,6 +859,7 @@ public class MainActivity extends Activity implements OnClickListener {
                         SharedPreferences sharedPreferences;
                         sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
                         update_wathers(sharedPreferences);
+                        DiyToast.showToast(getApplicationContext(), "正在更新", true);
                     }
                 } else {
                     DiyToast.showToast(getApplicationContext(), "当前处于离线模式", true);
@@ -920,11 +877,6 @@ public class MainActivity extends Activity implements OnClickListener {
                     e.printStackTrace();
                 }
                 break;
-            //锁屏
-            case R.id.iv_setting_lock:
-                startActivity(new Intent(MainActivity.this, FakerLockedActivity.class));
-                finish();//结束当前Activity，但是要确保用户返回的时候不会出错（屏蔽返回按键）
-                break;
             case R.id.iv_clean_button:
                 String s_clean = Build.BRAND;
                 if (s_clean.equals("Allwinner")) {
@@ -932,7 +884,6 @@ public class MainActivity extends Activity implements OnClickListener {
                     sendBroadcast(intent_clear);
 //                    Intent intent = new Intent("android.eink.force.refresh");
 //                    sendBroadcast(intent);
-//                    Log.e("MainActivity", "onClick: 1");
                 }
                 break;
             //RSS订阅
@@ -947,12 +898,9 @@ public class MainActivity extends Activity implements OnClickListener {
 //                    sendBroadcast(intent_clear);
                     Intent intent = new Intent("android.eink.force.refresh");
                     sendBroadcast(intent);
-                    Log.e("MainActivity", "onClick: 1");
                 } else {
                     startActivity(new Intent(MainActivity.this, UireFreshActivity.class));
-                    Log.e("MainActivity", "onClick: 2");
                 }
-                Log.e("MainActivity", "onClick: " + Build.BRAND);
                 break;
             default:
                 break;
@@ -1011,9 +959,9 @@ public class MainActivity extends Activity implements OnClickListener {
              */
             editor.putString("timetext_min_size", "50");
             editor.putString("timetext_hour_size", "70");
-            editor.putString("nametext_size", "16");//昵称文本大小
-            editor.putString("dianchitext_size", "16");//电池文本大小
-            editor.putString("datetext_size", "16");//日期文本大小
+            editor.putString("nametext_size", "17");//昵称文本大小
+            editor.putString("dianchitext_size", "17");//电池文本大小
+            editor.putString("datetext_size", "17");//日期文本大小
             editor.apply();
             check_text_size(context);
         }

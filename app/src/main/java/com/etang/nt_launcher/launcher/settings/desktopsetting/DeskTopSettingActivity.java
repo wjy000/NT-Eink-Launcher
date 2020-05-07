@@ -4,14 +4,6 @@ import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
-
-import com.etang.nt_launcher.launcher.MainActivity;
-import com.etang.nt_launcher.tool.toast.DiyToast;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -23,7 +15,11 @@ import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.etang.nt_launcher.R;
+import com.etang.nt_launcher.launcher.MainActivity;
+import com.etang.nt_launcher.tool.toast.DiyToast;
 
 public class DeskTopSettingActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tv_title_text, tv_gridlist_setting;

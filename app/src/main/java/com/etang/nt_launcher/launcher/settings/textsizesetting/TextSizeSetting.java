@@ -81,9 +81,9 @@ public class TextSizeSetting extends AppCompatActivity {
                  */
                 editor.putString("timetext_min_size", "50");
                 editor.putString("timetext_hour_size", "70");
-                editor.putString("nametext_size", "16");//昵称文本大小
-                editor.putString("dianchitext_size", "16");//电池文本大小
-                editor.putString("datetext_size", "16");//日期文本大小
+                editor.putString("nametext_size", "17");//昵称文本大小
+                editor.putString("dianchitext_size", "17");//电池文本大小
+                editor.putString("datetext_size", "17");//日期文本大小
                 editor.apply();
                 DiyToast.showToast(TextSizeSetting.this, "重置成功", true);
             }

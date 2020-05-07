@@ -22,7 +22,6 @@ public class SavePermission {
             if (context.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 isGranted = false;
             }
-            Log.i("cbs", "isGranted == " + isGranted);
             if (!isGranted) {
                 activity.requestPermissions(
                         new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission

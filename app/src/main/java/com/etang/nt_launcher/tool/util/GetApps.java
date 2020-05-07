@@ -48,16 +48,6 @@ public class GetApps {
 
     private static void add_diary(Context context, List<AppInfo> list) {
         /**
-         * 添加“日记”
-         */
-        AppInfo mInfo_diary = new AppInfo();
-        mInfo_diary.setName("日记");
-        mInfo_diary.setPackageName(context.getPackageName() + ".diary");
-        Resources r_diary = context.getResources();
-        Bitmap bmp_diary = BitmapFactory.decodeResource(r_diary, R.drawable.ic_diary);
-        mInfo_diary.setIco(Bitmap.createBitmap(bmp_diary));
-        list.add(mInfo_diary);
-        /**
          * 添加“天气”
          */
         AppInfo mInfo_weather = new AppInfo();
@@ -74,7 +64,7 @@ public class GetApps {
         mInfo_launchersetting.setName("桌面设置");
         mInfo_launchersetting.setPackageName(context.getPackageName() + ".launchersetting");
         Resources r_launchersetting = context.getResources();
-        Bitmap bmp_launchersetting = BitmapFactory.decodeResource(r_launchersetting, R.drawable.ic_launchersetting);
+        Bitmap bmp_launchersetting = BitmapFactory.decodeResource(r_launchersetting, R.drawable.ic_setting);
         mInfo_launchersetting.setIco(Bitmap.createBitmap(bmp_launchersetting));
         list.add(mInfo_launchersetting);
         /**
@@ -90,6 +80,26 @@ public class GetApps {
             mInfo_systemclean.setIco(Bitmap.createBitmap(bmp_systemclean));
             list.add(mInfo_systemclean);
         }
+        /**
+         * \添加“检查更新”
+         */
+        AppInfo mInfo_systemupdate = new AppInfo();
+        mInfo_systemupdate.setName("检查更新");
+        mInfo_systemupdate.setPackageName(context.getPackageName() + ".systemupdate");
+        Resources r_systemupdate = context.getResources();
+        Bitmap bmp_systemupdate = BitmapFactory.decodeResource(r_systemupdate, R.drawable.ic_systemupdate);
+        mInfo_systemupdate.setIco(Bitmap.createBitmap(bmp_systemupdate));
+        list.add(mInfo_systemupdate);
+        /**
+         * \添加“刷新屏幕”
+         */
+        AppInfo mInfo_uirefresh = new AppInfo();
+        mInfo_uirefresh.setName("刷新屏幕");
+        mInfo_uirefresh.setPackageName(context.getPackageName() + ".uirefresh");
+        Resources r_uirefresh = context.getResources();
+        Bitmap bmp_uirefresh = BitmapFactory.decodeResource(r_uirefresh, R.drawable.ic_update);
+        mInfo_uirefresh.setIco(Bitmap.createBitmap(bmp_uirefresh));
+        list.add(mInfo_uirefresh);
     }
 
     /**

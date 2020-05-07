@@ -24,7 +24,7 @@ public class DiyToast {
         }
         toast.setView(view);
         tv.setText(s);
-        toast.setGravity(Gravity.BOTTOM, 0, 0);
+        toast.setGravity(Gravity.TOP, 0, 0);
         toast.show();
     }
 }

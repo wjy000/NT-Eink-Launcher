@@ -64,7 +64,7 @@
             android:name=".locked.FakerLockedActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".launcher.settings.weather.WeatherSettingActivity"
+            android:name=".launcher.settings.window.WindowSettingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".launcher.settings.desktopsetting.DeskTopSettingActivity"

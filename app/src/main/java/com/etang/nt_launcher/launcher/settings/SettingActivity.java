@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.etang.nt_launcher.BuildConfig;
 import com.etang.nt_launcher.launcher.MainActivity;
 import com.etang.nt_launcher.launcher.settings.about.AboutActivity;
 import com.etang.nt_launcher.launcher.settings.desktopsetting.DeskTopSettingActivity;
@@ -30,7 +28,7 @@ import com.etang.nt_launcher.launcher.settings.instructions.InstructionsActivity
 import com.etang.nt_launcher.launcher.settings.launcherimage.ChoseImagesActivity;
 import com.etang.nt_launcher.launcher.settings.reward.RewardActivity;
 import com.etang.nt_launcher.launcher.settings.textsizesetting.TextSizeSetting;
-import com.etang.nt_launcher.launcher.settings.weather.WeatherSettingActivity;
+import com.etang.nt_launcher.launcher.settings.window.WindowSettingActivity;
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.tool.dialog.UnInstallDialog;
 import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;
@@ -38,7 +36,7 @@ import com.etang.nt_launcher.tool.toast.DiyToast;
 
 public class SettingActivity extends Activity {
 
-    LinearLayout lv_weather_gone_setting, lv_reward_activity, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting, lv_exit_setting, lv_hindapp_setting, lv_name_setting, lv_uninstall_setting;
+    LinearLayout lv_window_setting, lv_reward_activity, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting, lv_exit_setting, lv_hindapp_setting, lv_name_setting, lv_uninstall_setting;
     private TextView tv_title_text;
     private CheckBox cb_hind_setting_ico, cb_setting_offlinemode;
     private ImageView iv_title_back;
@@ -99,10 +97,10 @@ public class SettingActivity extends Activity {
             }
         });
         //天气设置
-        lv_weather_gone_setting.setOnClickListener(new OnClickListener() {
+        lv_window_setting.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SettingActivity.this, WeatherSettingActivity.class));
+                startActivity(new Intent(SettingActivity.this, WindowSettingActivity.class));
             }
         });
         //文本大小设置
@@ -318,7 +316,7 @@ public class SettingActivity extends Activity {
         lv_desktop_setting = (LinearLayout) findViewById(R.id.lv_desktop_setting);
         lv_about_activity = (LinearLayout) findViewById(R.id.lv_about_activity);
         lv_applist_setting = (LinearLayout) findViewById(R.id.lv_applist_setting);
-        lv_weather_gone_setting = (LinearLayout) findViewById(R.id.lv_weather_gone_setting);
+        lv_window_setting = (LinearLayout) findViewById(R.id.lv_window_setting);
         dbHelper_name_sql = new MyDataBaseHelper(getApplicationContext(), "info.db",
                 null, 2);
         db = dbHelper_name_sql.getWritableDatabase();

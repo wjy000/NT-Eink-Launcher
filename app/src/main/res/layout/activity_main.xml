@@ -76,7 +76,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                app:srcCompat="@drawable/mi_erji" />
+                app:srcCompat="@drawable/mi_luoli" />
 
             <include
                 layout="@layout/list_all_apps"
@@ -156,14 +156,6 @@
                 android:layout_margin="5dp"
                 android:src="@drawable/ic_yinliang"
                 android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/iv_setting_lock"
-                android:layout_width="30sp"
-                android:layout_height="30sp"
-                android:layout_margin="5dp"
-                android:paddingBottom="3dp"
-                android:src="@drawable/ic_lock" />
 
             <ToggleButton
                 android:id="@+id/tg_apps_state"

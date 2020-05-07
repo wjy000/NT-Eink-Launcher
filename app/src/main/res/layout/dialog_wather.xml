@@ -72,6 +72,26 @@
                 android:text="关闭"
                 android:textColor="#000" />
         </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/ra_weather_view_vis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="显示" />
+
+            <RadioButton
+                android:id="@+id/ra_weather_view_gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="隐藏" />
+        </RadioGroup>
+
     </LinearLayout>
 
 </LinearLayout>

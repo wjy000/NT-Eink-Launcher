@@ -66,12 +66,8 @@ public class AboutActivity extends AppCompatActivity {
         iv_about_logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressDialog progressDialog = new ProgressDialog(AboutActivity.this);
-                progressDialog.setTitle("加载中，请稍后");
-                progressDialog.setMessage("正在从“naiyouhuameitang.club”获取最新版本信息");
-                progressDialog.show();
                 SavePermission.check_save_permission(AboutActivity.this, AboutActivity.this);
-                CheckUpdateDialog.check_update(AboutActivity.this, progressDialog, AboutActivity.this);
+                CheckUpdateDialog.check_update(AboutActivity.this, AboutActivity.this);
             }
         });
         ((TextView) findViewById(R.id.tv_title_imagetext)).setText("当前版本");

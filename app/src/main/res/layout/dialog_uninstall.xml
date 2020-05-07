@@ -78,7 +78,8 @@
                 android:layout_margin="5dp"
                 android:gravity="center_vertical|center_horizontal"
                 android:text="※ 点击此处打开APP详情 ※"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/textView10"

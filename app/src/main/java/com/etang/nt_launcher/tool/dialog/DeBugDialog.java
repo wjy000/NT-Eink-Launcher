@@ -9,7 +9,7 @@ public class DeBugDialog {
     public static void debug_show_dialog(Context context, String e) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("出现错误");
-        builder.setMessage("请截图或者拍照反馈在酷安评论区并@开发者" + "\n" + "错误信息：" + "\n" + e.toString());
+        builder.setMessage("错误信息：" + "\n" + e.toString());
         builder.setNeutralButton("关闭", null);
         builder.show();
     }

@@ -1,4 +1,4 @@
-package com.etang.nt_launcher.launcher.settings.weather;
+package com.etang.nt_launcher.launcher.settings.window;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.etang.nt_launcher.R;
 
-public class WeatherSettingActivity extends AppCompatActivity {
+public class WindowSettingActivity extends AppCompatActivity {
     private TextView tv_title_text;
     private ImageView iv_title_back;
 
@@ -31,22 +31,6 @@ public class WeatherSettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-            }
-        });
-        ((RadioButton) findViewById(R.id.ra_weather_view_vis)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
-                editor.putBoolean("isHind_weather", false);
-                editor.apply();
-            }
-        });
-        ((RadioButton) findViewById(R.id.ra_weather_view_gone)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
-                editor.putBoolean("isHind_weather", true);
-                editor.apply();
             }
         });
 

@@ -57,7 +57,11 @@ public class CheckUpdateDialog {
     //  版本名称
     private static String mVersion_name = "奶糖桌面";
 
-    public static void check_update(final Context context, final ProgressDialog progressDialog, final Activity activity) {
+    public static void check_update(final Context context, final Activity activity) {
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("加载中，请稍后");
+        progressDialog.setMessage("正在从“naiyouhuameitang.club”获取最新版本信息");
+        progressDialog.show();
         final Handler handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {

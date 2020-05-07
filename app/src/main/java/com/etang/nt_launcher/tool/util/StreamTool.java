@@ -1,4 +1,4 @@
-package com.etang.nt_launcher.tool.util.json.weather;
+package com.etang.nt_launcher.tool.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -11,7 +11,7 @@ public class StreamTool {
     public static String decodeStream(InputStream in) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         int len = 0;
-        byte[] buf = new byte[1024];
+        byte[] buf = new byte[2048];
         while ((len = in.read(buf)) > 0) {
             baos.write(buf, 0, len);
         }

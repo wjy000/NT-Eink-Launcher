@@ -1,26 +1,16 @@
 package com.etang.nt_launcher.tool.dialog;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.etang.nt_launcher.R;
-import com.etang.nt_launcher.launcher.MainActivity;
-import com.etang.nt_launcher.tool.savearrayutil.SaveArrayImageUtil;
-import com.etang.nt_launcher.tool.savearrayutil.SaveArrayListUtil;
 import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;
 import com.etang.nt_launcher.tool.toast.DiyToast;
-
-import java.util.ArrayList;
 
 public class WeatherDialog {
     private static MyDataBaseHelper dbHelper;

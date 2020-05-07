@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -24,10 +23,10 @@ import com.etang.nt_launcher.tool.toast.DiyToast;
 import java.util.ArrayList;
 
 public class UnInstallDialog {
-    public static void uninstall_app(final Context context, final Activity activity, final String pakename) {
+    public static void uninstall_app(final Context context, final Activity activity, final String pakename, final String app_name) {
         try {
             final AlertDialog builder = new AlertDialog.Builder(context).create();
-            builder.setTitle("包名：" + "\n" + pakename);
+            builder.setTitle(app_name);
             View view = LayoutInflater.from(context).inflate(R.layout.dialog_uninstall, null);
             builder.setView(view);
             TextView tv_uninstall_appinfo = (TextView) view.findViewById(R.id.tv_uninstall_appinfo);
@@ -46,7 +45,7 @@ public class UnInstallDialog {
                     } catch (Exception e) {
                         String s = Build.BRAND;
                         if (s.equals("Allwinner")) {
-                            DeBugDialog.debug_show_dialog(context, "此功能不适用多看电纸书，请到酷安下载多看版");
+                            DeBugDialog.debug_show_dialog(context, "此功能不适用于多看电纸书");
                         } else {
                             DeBugDialog.debug_show_dialog(context, e.toString());
                         }
@@ -61,7 +60,6 @@ public class UnInstallDialog {
                         arrayList.clear();
                         arrayList = SaveArrayListUtil.getSearchArrayList(context);
                         arrayList.add(MainActivity.string_app_info);
-                        Log.e("UnInstall_arrayList", arrayList.toString());
                         SaveArrayListUtil.saveArrayList(context, arrayList, "start");//存储在本地
                         builder.dismiss();
                         MainActivity.initAppList(context);
@@ -140,7 +138,6 @@ public class UnInstallDialog {
                     for (int i = 1; i < arrayList.size(); i++) {
                         String str = arrayList.get(i);
                         String[] all = str.split("-");
-                        Log.e("TAG", all[0]);
                         if (MainActivity.string_app_info.equals(all[0])) {
                             arrayList.remove(i);
                             continue;

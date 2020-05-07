@@ -1,24 +1,15 @@
 package com.etang.nt_launcher.launcher.settings.launcherimage;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.app.WallpaperManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Path;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -27,18 +18,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.etang.nt_launcher.launcher.MainActivity;
 import com.etang.nt_launcher.tool.dialog.DeBugDialog;
 import com.etang.nt_launcher.tool.permission.SavePermission;
 import com.etang.nt_launcher.tool.toast.DiyToast;
 import com.etang.nt_launcher.R;
-import com.etang.nt_launcher.tool.util.FileUtils;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 public class ChoseImagesActivity extends AppCompatActivity {
     private RadioButton ra_chahua, ra_erji, ra_meizi, ra_qinglv, ra_applist, ra_luoli, ra_pinbo, ra_yali, ra_zhiyu, ra_wallpaper, ra_wallpaper_and_applist;
@@ -71,34 +58,6 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 DiyToast.showToast(ChoseImagesActivity.this, "已更换：应用列表", true);
             }
         });
-        //插画
-        ra_chahua.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
-                editor.putString("images_info", "ch");
-                editor.apply();
-                MainActivity.iv_index_back.setImageResource(R.drawable.mi_chahua);
-                MainActivity.tg_apps_state.setChecked(false);
-                MainActivity.iv_index_back.setVisibility(View.VISIBLE);
-                MainActivity.mListView.setVisibility(View.INVISIBLE);
-                DiyToast.showToast(ChoseImagesActivity.this, "已更换：插画", true);
-            }
-        });
-        //耳机
-        ra_erji.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
-                editor.putString("images_info", "ej");
-                editor.apply();
-                MainActivity.iv_index_back.setImageResource(R.drawable.mi_erji);
-                MainActivity.tg_apps_state.setChecked(false);
-                MainActivity.iv_index_back.setVisibility(View.VISIBLE);
-                MainActivity.mListView.setVisibility(View.INVISIBLE);
-                DiyToast.showToast(ChoseImagesActivity.this, "已更换：耳机", true);
-            }
-        });
         //妹子
         ra_meizi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,20 +86,6 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 DiyToast.showToast(ChoseImagesActivity.this, "已更换：情侣", true);
             }
         });
-        //压力
-        ra_yali.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
-                editor.putString("images_info", "yl");
-                editor.apply();
-                MainActivity.iv_index_back.setImageResource(R.drawable.mi_yali);
-                MainActivity.tg_apps_state.setChecked(false);
-                MainActivity.iv_index_back.setVisibility(View.VISIBLE);
-                MainActivity.mListView.setVisibility(View.INVISIBLE);
-                DiyToast.showToast(ChoseImagesActivity.this, "已更换：压力", true);
-            }
-        });
         //萝莉
         ra_luoli.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,20 +100,6 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 DiyToast.showToast(ChoseImagesActivity.this, "已更换：萝莉", true);
             }
         });
-        //拼搏
-        ra_pinbo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
-                editor.putString("images_info", "pb");
-                editor.apply();
-                MainActivity.iv_index_back.setImageResource(R.drawable.mi_pinbo);
-                MainActivity.tg_apps_state.setChecked(false);
-                MainActivity.iv_index_back.setVisibility(View.VISIBLE);
-                MainActivity.mListView.setVisibility(View.INVISIBLE);
-                DiyToast.showToast(ChoseImagesActivity.this, "已更换：拼搏", true);
-            }
-        });
         //知遇
         ra_zhiyu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,20 +112,6 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
                 DiyToast.showToast(ChoseImagesActivity.this, "已更换：知遇", true);
-            }
-        });
-        //压力
-        ra_yali.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
-                editor.putString("images_info", "yl");
-                editor.apply();
-                MainActivity.iv_index_back.setImageResource(R.drawable.mi_yali);
-                MainActivity.tg_apps_state.setChecked(false);
-                MainActivity.iv_index_back.setVisibility(View.VISIBLE);
-                MainActivity.mListView.setVisibility(View.INVISIBLE);
-                DiyToast.showToast(ChoseImagesActivity.this, "已更换：压力", true);
             }
         });
         //系统壁纸
@@ -282,23 +199,11 @@ public class ChoseImagesActivity extends AppCompatActivity {
         if (images_mode.equals("ql")) {
             iv_see_image.setImageResource(R.drawable.mi_haole);
         }
-        if (images_mode.equals("ej")) {
-            iv_see_image.setImageResource(R.drawable.mi_erji);
-        }
         if (images_mode.equals("mz")) {
             iv_see_image.setImageResource(R.drawable.mi_meizi);
         }
-        if (images_mode.equals("ch")) {
-            iv_see_image.setImageResource(R.drawable.mi_chahua);
-        }
         if (images_mode.equals("ll")) {
             iv_see_image.setImageResource(R.drawable.mi_luoli);
-        }
-        if (images_mode.equals("yl")) {
-            iv_see_image.setImageResource(R.drawable.mi_yali);
-        }
-        if (images_mode.equals("pb")) {
-            iv_see_image.setImageResource(R.drawable.mi_pinbo);
         }
         if (images_mode.equals("zy")) {
             iv_see_image.setImageResource(R.drawable.mi_zhiyu);

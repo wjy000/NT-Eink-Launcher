@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.etang.nt_launcher.launcher.settings.weather.WeatherSettingActivity">
+    tools:context="com.etang.nt_launcher.launcher.settings.window.WindowSettingActivity">
 
     <include
         android:id="@+id/include3"
@@ -12,26 +12,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></include>
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include3" >
-
-        <RadioButton
-            android:id="@+id/ra_weather_view_vis"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="显示" />
-
-        <RadioButton
-            android:id="@+id/ra_weather_view_gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="隐藏" />
-    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
