@@ -15,7 +15,7 @@ android {
          *  versionCode 131004
          *  versionName "Oasis 1.3 beta4" //测试\体验版最新版本号
          */
-        versionCode 160011
+        versionCode 170000
         versionName "Oasis 1.7" //稳定版最新版本号
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
