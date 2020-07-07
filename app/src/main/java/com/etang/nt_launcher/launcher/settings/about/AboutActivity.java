@@ -66,15 +66,8 @@ public class AboutActivity extends AppCompatActivity {
         iv_about_logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(AboutActivity.this);
-                builder.setTitle("你好");
-                builder.setMessage("需要赞助以解锁这个功能。（其实是假的，桌面不会有任何收费功能，主要原因是开学了，服务器访问人数比较多，要节省资源。但是如果可以的话，还请赞助支持我一下QAQ）");
-                builder.setPositiveButton("我知道了", null);
-                builder.setNegativeButton("我知道了", null);
-                builder.setNeutralButton("我知道了", null);
-                builder.show();
-//                SavePermission.check_save_permission(AboutActivity.this, AboutActivity.this);
-//                CheckUpdateDialog.check_update(AboutActivity.this, AboutActivity.this);
+                SavePermission.check_save_permission(AboutActivity.this, AboutActivity.this);
+                CheckUpdateDialog.check_update(AboutActivity.this, AboutActivity.this);
             }
         });
         ((TextView) findViewById(R.id.tv_title_imagetext)).setText("当前版本");
