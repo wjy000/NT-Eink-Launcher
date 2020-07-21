@@ -83,13 +83,13 @@ public class GetApps {
 //        /**
 //         * \添加“检查更新”
 //         */
-//        AppInfo mInfo_systemupdate = new AppInfo();
-//        mInfo_systemupdate.setName("检查更新");
-//        mInfo_systemupdate.setPackageName(context.getPackageName() + ".systemupdate");
-//        Resources r_systemupdate = context.getResources();
-//        Bitmap bmp_systemupdate = BitmapFactory.decodeResource(r_systemupdate, R.drawable.ic_systemupdate);
-//        mInfo_systemupdate.setIco(Bitmap.createBitmap(bmp_systemupdate));
-//        list.add(mInfo_systemupdate);
+        AppInfo mInfo_systemupdate = new AppInfo();
+        mInfo_systemupdate.setName("检查更新");
+        mInfo_systemupdate.setPackageName(context.getPackageName() + ".systemupdate");
+        Resources r_systemupdate = context.getResources();
+        Bitmap bmp_systemupdate = BitmapFactory.decodeResource(r_systemupdate, R.drawable.ic_systemupdate);
+        mInfo_systemupdate.setIco(Bitmap.createBitmap(bmp_systemupdate));
+        list.add(mInfo_systemupdate);
         /**
          * \添加“刷新屏幕”
          */

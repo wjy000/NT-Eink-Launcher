@@ -172,7 +172,7 @@ public class CheckUpdateDialog {
         builder.show();
     }
 
-    private static void check_beta(AlertDialog.Builder builder, int version_code, int version_web_code, final Context context, final Activity activity, boolean is_beta) {
+    private static void check_beta(final AlertDialog.Builder builder, int version_code, int version_web_code, final Context context, final Activity activity, boolean is_beta) {
         if (version_code != version_web_code) {
             if (is_beta) {
                 mVersion_name = mVersion_name + "_beta";
