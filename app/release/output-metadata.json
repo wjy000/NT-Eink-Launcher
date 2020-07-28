@@ -11,8 +11,8 @@
       "type": "SINGLE",
       "filters": [],
       "properties": [],
-      "versionCode": 180000,
-      "versionName": "180000",
+      "versionCode": 190000,
+      "versionName": "Oasis 1.9",
       "enabled": true,
       "outputFile": "app-release.apk"
     }
