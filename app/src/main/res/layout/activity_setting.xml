@@ -17,21 +17,6 @@
             <include layout="@layout/layout_in_back"></include>
 
             <LinearLayout
-                android:id="@+id/lv_desktop_setting"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/shaper_apks_button_window_show"
-                android:gravity="center_vertical|center_horizontal"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="桌面壁纸" />
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/lv_name_setting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,7 +28,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="左上一句" />
+                    android:layout_margin="5sp"
+                    android:text="顶部文案" />
             </LinearLayout>
 
             <LinearLayout
@@ -58,7 +44,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5sp"
                     android:text="桌面列表" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lv_desktop_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/shaper_apks_button_window_show"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5sp"
+                    android:text="桌面壁纸" />
             </LinearLayout>
 
             <LinearLayout
@@ -83,7 +86,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="@drawable/shaper_apks_button_window_show"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal"
                 android:visibility="gone">
@@ -93,24 +95,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:text="悬浮窗相关" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/lv_hindapp_setting"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/shaper_apks_button_window_show"
-                android:gravity="center_vertical|center_horizontal"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5sp"
-                    android:text="隐藏应用管理" />
 
             </LinearLayout>
 
@@ -127,7 +111,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
-                    android:text="赏口饭吃QAQ" />
+                    android:text="打赏赞助" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lv_hindapp_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/shaper_apks_button_window_show"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5sp"
+                    android:text="管理隐藏应用" />
 
             </LinearLayout>
 
@@ -147,7 +148,6 @@
                     android:text="更新“奶糖桌面”" />
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:id="@+id/lv_uninstall_setting"
@@ -179,7 +179,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
-                    android:text="退出 | 重启“奶糖桌面”" />
+                    android:text="重启“奶糖桌面”" />
 
             </LinearLayout>
 

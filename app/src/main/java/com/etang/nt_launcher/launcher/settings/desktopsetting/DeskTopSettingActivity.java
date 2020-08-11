@@ -21,8 +21,12 @@ import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.launcher.MainActivity;
 import com.etang.nt_launcher.tool.toast.DiyToast;
 
+/**
+ * “桌面列表”设置，用于设置列表显示方式
+ */
 public class DeskTopSettingActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tv_title_text, tv_gridlist_setting;
+    private TextView tv_title_r;
     private ImageView iv_title_back;
     private RadioButton ra_appname_hind;
     private RadioButton ra_appname_one;
@@ -37,9 +41,9 @@ public class DeskTopSettingActivity extends AppCompatActivity implements View.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //全屏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        //全屏
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.setting_activity_desk_top_setting);
         initView();//绑定控件
@@ -99,6 +103,8 @@ public class DeskTopSettingActivity extends AppCompatActivity implements View.On
     }
 
     private void initView() {
+        tv_title_r = (TextView) findViewById(R.id.tv_title_imagetext);
+        tv_title_r.setVisibility(View.INVISIBLE);
         tv_title_text = (TextView) findViewById(R.id.tv_title_text);
         iv_title_back = (ImageView) findViewById(R.id.iv_title_back);
         ra_appname_hind = (RadioButton) findViewById(R.id.ra_appname_hind);

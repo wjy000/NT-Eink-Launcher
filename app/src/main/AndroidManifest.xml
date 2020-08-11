@@ -52,16 +52,10 @@
             android:name=".launcher.settings.reward.RewardActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".launcher.diary.DiaryActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
             android:name=".launcher.settings.uirefresh.UireFreshActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".launcher.settings.hindapp.HindAppSetting"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".locked.FakerLockedActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".launcher.settings.window.WindowSettingActivity"
@@ -81,7 +75,7 @@
         <activity
             android:name=".launcher.settings.weather.WeatherActivity"
             android:label=""
-            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar.MinWidth" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".launcher.settings.textsizesetting.TextSizeSetting"
             android:label=""

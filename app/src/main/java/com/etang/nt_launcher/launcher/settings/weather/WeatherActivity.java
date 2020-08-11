@@ -6,9 +6,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;
 import com.etang.nt_launcher.tool.toast.DiyToast;
@@ -20,11 +24,17 @@ public class WeatherActivity extends Activity {
     private EditText et_city_get;
     private MyDataBaseHelper dbHelper;
     private SQLiteDatabase db;
+    private ImageView iv_title_back, iv_title_imagebutton;
+    private TextView tv_title_imagetext, tv_back_text, tv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_wather);
+        //全屏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
+        setContentView(R.layout.activity_weather);
         initView();
         btn_wather_con.setOnClickListener(new OnClickListener() {
 
@@ -62,10 +72,30 @@ public class WeatherActivity extends Activity {
                 editor.apply();
             }
         });
+        tv_back_text.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        iv_title_back.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        iv_title_imagebutton.setVisibility(View.INVISIBLE);
+        tv_title_imagetext.setVisibility(View.INVISIBLE);
+        tv_title.setText("天气设置");
     }
 
     private void initView() {
         // TODO Auto-generated method stub
+        tv_title = (TextView) findViewById(R.id.tv_title_text);
+        tv_back_text = (TextView) findViewById(R.id.tv_back_text);
+        tv_title_imagetext = (TextView) findViewById(R.id.tv_title_imagetext);
+        iv_title_back = (ImageView) findViewById(R.id.iv_title_back);
+        iv_title_imagebutton = (ImageView) findViewById(R.id.iv_title_imagebutton);
         btn_wather_cls = (Button) findViewById(R.id.btn_wather_cls);
         btn_wather_con = (Button) findViewById(R.id.btn_wather_con);
         et_city_get = (EditText) findViewById(R.id.et_city_get);

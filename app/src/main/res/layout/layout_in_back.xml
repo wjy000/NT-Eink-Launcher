@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp"
     android:background="#00000000"
     android:orientation="vertical">
 
@@ -12,7 +11,7 @@
         android:id="@+id/lv_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#CDCDCD"
+        android:background="#FFFFFF"
         android:gravity="center_horizontal|center_vertical"
         android:orientation="horizontal"
         android:padding="5dp"
@@ -28,9 +27,8 @@
 
             <ImageView
                 android:id="@+id/iv_title_back"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:background="@drawable/shaper_apks_button_window_show"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,31 +36,29 @@
                 android:id="@+id/tv_back_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="&lt; BACK"
+                android:text="&lt; 返回"
                 android:textColor="#000000"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_title_back"
-                app:layout_constraintEnd_toEndOf="@+id/iv_title_back"
                 app:layout_constraintStart_toStartOf="@+id/iv_title_back"
                 app:layout_constraintTop_toTopOf="@+id/iv_title_back" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_title_text"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
                 android:gravity="center_vertical|center_horizontal"
                 android:text="TextView"
-                android:textColor="#000000" />
-        </LinearLayout>
+                android:textColor="#000000"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/iv_title_back"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/tv_back_text"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.454" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -71,9 +67,8 @@
 
             <ImageView
                 android:id="@+id/iv_title_imagebutton"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:background="@drawable/shaper_apks_button_window_show"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -86,11 +81,19 @@
                 android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_title_imagebutton"
                 app:layout_constraintEnd_toEndOf="@+id/iv_title_imagebutton"
-                app:layout_constraintStart_toStartOf="@+id/iv_title_imagebutton"
                 app:layout_constraintTop_toTopOf="@+id/iv_title_imagebutton" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_marginTop="2sp"
+        android:layout_weight="1"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"></View>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

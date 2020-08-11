@@ -109,7 +109,7 @@ public class CheckUpdateDialog {
                 handler.sendMessage(msg_start);
                 try {
                     Log.e("TAG111111111111111", "开始链接");
-                    Document doc = Jsoup.connect(" https://naiyouhuameitang.club/index.php/24.html").get();
+                    Document doc = Jsoup.connect(" https://naiyouhuameitang.club/24").get();
                     /**
                      * 连接成功
                      * */

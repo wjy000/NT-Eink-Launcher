@@ -28,7 +28,6 @@ import com.etang.nt_launcher.launcher.settings.instructions.InstructionsActivity
 import com.etang.nt_launcher.launcher.settings.launcherimage.ChoseImagesActivity;
 import com.etang.nt_launcher.launcher.settings.reward.RewardActivity;
 import com.etang.nt_launcher.launcher.settings.textsizesetting.TextSizeSetting;
-import com.etang.nt_launcher.launcher.settings.window.WindowSettingActivity;
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.tool.dialog.UnInstallDialog;
 import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;
@@ -46,9 +45,9 @@ public class SettingActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //全屏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        //全屏
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.activity_setting);
         initView();
@@ -94,13 +93,6 @@ public class SettingActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SettingActivity.this, DeskTopSettingActivity.class));
-            }
-        });
-        //天气设置
-        lv_window_setting.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SettingActivity.this, WindowSettingActivity.class));
             }
         });
         //文本大小设置
@@ -228,6 +220,9 @@ public class SettingActivity extends Activity {
 //        builder.show();
 //    }
 
+    /**
+     * 设置主界面的顶部文案
+     */
     private void show_name_dialog() {
         final AlertDialog builder = new AlertDialog.Builder(
                 SettingActivity.this).create();

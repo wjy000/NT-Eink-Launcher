@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal|center_vertical"
-            android:text="推荐您到如下网址查看完整的说明书，\n可以通过其他设备访问以下网址来查阅说明书\nnaiyouhuameitang.club/193.html" />
+            android:text=" 推荐您到如下网址查看完整的说明书 \n https://naiyouhuameitang.club/193.html " />
 
         <TextView
             android:layout_width="match_parent"

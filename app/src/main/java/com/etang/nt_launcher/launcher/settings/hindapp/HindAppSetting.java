@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.tool.savearrayutil.SaveArrayListUtil;
+import com.etang.nt_launcher.tool.toast.DiyToast;
 import com.etang.nt_launcher.tool.util.AppInfo;
 import com.etang.nt_launcher.tool.util.DeskTopGridViewBaseAdapter;
 import com.etang.nt_launcher.tool.util.GetApps;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HindAppSetting extends AppCompatActivity {
-    private TextView tv_title;
+    private TextView tv_title, tv_title_image;
     private ImageView iv_title_back;
     private static List<AppInfo> appInfos = new ArrayList<AppInfo>();
     private static List<AppInfo> appHindInfos = new ArrayList<AppInfo>();
@@ -33,9 +34,9 @@ public class HindAppSetting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //全屏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        //全屏
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.setting_hind_app);
         initView();
@@ -51,6 +52,14 @@ public class HindAppSetting extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 show_dialog_helper(appHindInfos.get(position).getPackageName());
+            }
+        });
+        tv_title_image.setText("刷新");
+        tv_title_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DiyToast.showToast(getApplicationContext(), "刷新成功", false);
+                initAppList(getApplicationContext());
             }
         });
     }
@@ -79,6 +88,7 @@ public class HindAppSetting extends AppCompatActivity {
     }
 
     private void initView() {
+        tv_title_image = (TextView) findViewById(R.id.tv_title_imagetext);
         tv_title = (TextView) findViewById(R.id.tv_title_text);
         iv_title_back = (ImageView) findViewById(R.id.iv_title_back);
         mHindGridView = (GridView) findViewById(R.id.mHindGridView);

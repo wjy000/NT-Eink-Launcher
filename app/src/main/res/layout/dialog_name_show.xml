@@ -67,7 +67,7 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="一键命名：选择的内容+“多看电纸书”"
+        android:text="一键命名：选择的内容+“电纸书”"
         android:textSize="15dp" />
 
     <LinearLayout

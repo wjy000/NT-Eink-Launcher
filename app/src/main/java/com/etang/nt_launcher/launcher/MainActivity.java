@@ -175,6 +175,7 @@ public class MainActivity extends Activity implements OnClickListener {
                     } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".systemclean")) {//点击了“清理”
                         String s_clean = Build.BRAND;
                         if (s_clean.equals("Allwinner")) {
+                            //唤醒广播
                             Intent intent_clear = new Intent("com.mogu.clear_mem");
                             sendBroadcast(intent_clear);
                         }
@@ -926,15 +927,15 @@ public class MainActivity extends Activity implements OnClickListener {
         intent.addCategory(Intent.CATEGORY_HOME);// 设置Intent种类
 //        startActivity(intent);// 将Intent传递给Activity
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
-        builder.setContentTitle("点击回到桌面")//指定通知栏的标题内容
-                .setContentText("后台运行中")//通知的正文内容
+        builder.setContentTitle("点击此条通知回到桌面")//指定通知栏的标题内容
+                .setContentText("软件后台运行中")//通知的正文内容
                 .setWhen(0)//通知创建的时间
                 .setAutoCancel(false)//点击通知后，自动取消
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(""))
                 .setSmallIcon(R.drawable.title_back_alpha)//通知显示的小图标，只能用alpha图层的图片进行设置
                 .setPriority(NotificationCompat.PRIORITY_MAX)//通知重要程度
                 .setContentIntent(pi)//点击跳转
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher));
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.title_back_alpha));
         Notification notification = builder.build();
         notification.flags |= Notification.FLAG_ONGOING_EVENT;
         manager.notify(channelId, notification);
