@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -220,7 +221,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 setNotification();
             }
         }, 50);
-
+        Log.i("初次见面", "欢迎来到这个世界");
     }
 
     @Override
