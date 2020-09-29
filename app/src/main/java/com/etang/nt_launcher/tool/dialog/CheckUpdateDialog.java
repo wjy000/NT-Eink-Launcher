@@ -60,7 +60,7 @@ public class CheckUpdateDialog {
     public static void check_update(final Context context, final Activity activity) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("加载中，请稍后");
-        progressDialog.setMessage("正在从“naiyouhuameitang.club”获取最新版本信息");
+        progressDialog.setMessage("正在从“blog.nyanon.online”获取最新版本信息");
         progressDialog.show();
         final Handler handler = new Handler() {
             @Override
@@ -109,7 +109,7 @@ public class CheckUpdateDialog {
                 handler.sendMessage(msg_start);
                 try {
                     Log.e("TAG111111111111111", "开始链接");
-                    Document doc = Jsoup.connect(" https://naiyouhuameitang.club/24").get();
+                    Document doc = Jsoup.connect(" https://blog.nyanon.online/24").get();
                     /**
                      * 连接成功
                      * */
@@ -164,7 +164,7 @@ public class CheckUpdateDialog {
         builder.setPositiveButton("博客地址", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                DiyToast.showToast(context, "https://naiyouhuameitang.club/nt_launcher.html", true);
+                DiyToast.showToast(context, "https://blog.nyanon.online/nt_launcher", true);
                 web_html(context);
             }
         });
@@ -222,7 +222,7 @@ public class CheckUpdateDialog {
 
     private static void web_html(Context context) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("在浏览器内输入：\n https://naiyouhuameitang.club/nt_launcher.html");
+        builder.setMessage("在浏览器内输入：\n https://blog.nyanon.online/nt_launcher.html");
         builder.setPositiveButton("关闭", null);
         builder.show();
     }
@@ -345,11 +345,11 @@ public class CheckUpdateDialog {
                         if (str.indexOf("beta") != -1) { //"123就是你要指百定的字符度或者字符串回"
                             Log.e("version", "测试版");
                             //  内测版请求链接
-                            url = "https://www.naiyouhuameitang.club/apk/Launcher_project/app_server_update/Launcher/beta/update.apk";
+                            url = "https://www.blog.nyanon.online/apk/Launcher_project/app_server_update/Launcher/beta/update.apk";
                         } else {
                             Log.e("version", "稳定版");
                             //  稳定版请求链接
-                            url = "https://www.naiyouhuameitang.club/apk/Launcher_project/app_server_update/Launcher/rese/update.apk";
+                            url = "https://www.blog.nyanon.online/apk/Launcher_project/app_server_update/Launcher/rese/update.apk";
                         }
                         // 下载文件
                         HttpsURLConnection conn = (HttpsURLConnection) new URL(url).openConnection();
