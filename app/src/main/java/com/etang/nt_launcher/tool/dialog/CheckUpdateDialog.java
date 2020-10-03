@@ -220,7 +220,7 @@ public class CheckUpdateDialog {
 
     private static void web_html(Context context) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("在浏览器内输入：\n https://blog.nyanon.online/nt_launcher.html");
+        builder.setMessage("在浏览器内输入：\n https://blog.nyanon.online/nt_launcher");
         builder.setPositiveButton("关闭", null);
         builder.show();
     }
@@ -347,7 +347,7 @@ public class CheckUpdateDialog {
                         } else {
                             Log.e("version", "稳定版");
                             //  稳定版请求链接
-                            url = "https://www.blog.nyanon.online/apk/Launcher_project/app_server_update/Launcher/rese/update.apk";
+                            url = "https://yp.nyanon.online/index.php?user/publicLink&fid=d081WUjdK2VnYLjeGG9baXcgwvJ5WHc3Fdky7C3uDoU_GhXEw039mcGc4vWk0jhXSI_eDXS7919DzMagWFfCK_Zl2Qx5t0qj_GaW5xR0_Ur4K9xMmTjoTWlRkpCWMS2t4gMSEnMahxByXv8poY4&file_name=/app-release.apk";
                         }
                         // 下载文件
                         HttpsURLConnection conn = (HttpsURLConnection) new URL(url).openConnection();
