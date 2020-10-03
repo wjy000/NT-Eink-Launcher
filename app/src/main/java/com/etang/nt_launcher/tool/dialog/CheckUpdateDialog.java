@@ -18,11 +18,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.etang.nt_launcher.BuildConfig;
 import com.etang.nt_launcher.R;
-import com.etang.nt_launcher.launcher.settings.about.AboutActivity;
 import com.etang.nt_launcher.tool.permission.SavePermission;
 import com.etang.nt_launcher.tool.toast.DiyToast;
 

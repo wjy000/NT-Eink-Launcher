@@ -96,7 +96,7 @@ public class DeskTopGridViewBaseAdapter extends BaseAdapter {
                     holder.Name.setVisibility(View.GONE);
                 }
                 if (appname_state.isEmpty()) {
-                    holder.Name.setSingleLine(false);
+                    holder.Name.setSingleLine(true);
                     holder.Name.setVisibility(View.VISIBLE);
                 }
                 if (appblok_state.isEmpty()) {

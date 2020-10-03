@@ -20,13 +20,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal|center_vertical"
-            android:text=" 推荐您到如下网址查看完整的说明书 \n https://naiyouhuameitang.club/193.html " />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="卸载“奶糖桌面”"
+            android:text="@string/uninstall_naitang"
             android:textColor="#000"
             android:textSize="15dp" />
 
@@ -123,7 +117,7 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="10dp"
         android:layout_weight="8"
-        android:text="关闭"
+        android:text="@string/button_close"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
