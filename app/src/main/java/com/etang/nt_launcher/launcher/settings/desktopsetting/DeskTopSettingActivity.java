@@ -36,6 +36,8 @@ public class DeskTopSettingActivity extends AppCompatActivity implements View.On
     private RadioButton ra_app_bottommode_bottom;
     private RadioButton ra_app_bottommode_top;
     private RadioButton ra_app_show_nocolor_blok;
+    private SeekBar sk_gridlist_iconsize;
+    private TextView tv_gridlist_iconsize;
 
 
     @Override
@@ -59,6 +61,30 @@ public class DeskTopSettingActivity extends AppCompatActivity implements View.On
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        /**
+         * 获取icon大小
+         */
+        final SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+        int size = Integer.valueOf(sharedPreferences.getString("icon_size", null));
+        sk_gridlist_iconsize.setProgress(size);
+        sk_gridlist_iconsize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                sharedPreferences.edit().putString("icon_size", String.valueOf(seekBar.getProgress())).commit();
+                tv_gridlist_iconsize.setText(String.valueOf(seekBar.getProgress()));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                MainActivity.initAppList(DeskTopSettingActivity.this);
             }
         });
     }
@@ -103,6 +129,8 @@ public class DeskTopSettingActivity extends AppCompatActivity implements View.On
     }
 
     private void initView() {
+        sk_gridlist_iconsize = (SeekBar) findViewById(R.id.sk_gridlist_iconsize);
+        tv_gridlist_iconsize = (TextView) findViewById(R.id.tv_gridlist_iconsize);
         tv_title_r = (TextView) findViewById(R.id.tv_title_imagetext);
         tv_title_r.setVisibility(View.INVISIBLE);
         tv_title_text = (TextView) findViewById(R.id.tv_title_text);

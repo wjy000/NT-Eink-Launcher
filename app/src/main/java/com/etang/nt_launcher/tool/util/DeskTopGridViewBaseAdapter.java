@@ -58,6 +58,7 @@ public class DeskTopGridViewBaseAdapter extends BaseAdapter {
             holder = (Holder) convertView.getTag();
         }
         holder.ico.setImageBitmap(appInfos.get(position).getIco());
+        get_iconsize(context, holder);
         holder.Name.setText(appInfos.get(position).getName());
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList = SaveArrayImageUtil.getSearchArrayList(context);
@@ -70,6 +71,21 @@ public class DeskTopGridViewBaseAdapter extends BaseAdapter {
         }
         get_appname_info(holder);//读取APP名称和边框大小设置
         return convertView;
+    }
+
+    private void get_iconsize(Context context, Holder holder) {
+        try {
+            SharedPreferences sharedPreferences = context.getSharedPreferences("info", context.MODE_PRIVATE);
+            int size = Integer.valueOf(sharedPreferences.getString("icon_size", null));
+            ViewGroup.LayoutParams params = holder.ico.getLayoutParams();
+            params.height = size;
+            params.width = size;
+            holder.ico.setLayoutParams(params);
+        } catch (Exception e) {
+            SharedPreferences sharedPreferences = context.getSharedPreferences("info", context.MODE_PRIVATE);
+            sharedPreferences.edit().putString("icon_size", "30").commit();
+            get_iconsize(context, holder);
+        }
     }
 
     /**

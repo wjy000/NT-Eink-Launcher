@@ -15,18 +15,22 @@ import android.widget.TextView;
 
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.launcher.MainActivity;
+import com.etang.nt_launcher.launcher.settings.SettingActivity;
+import com.etang.nt_launcher.launcher.settings.uirefresh.UireFreshActivity;
+import com.etang.nt_launcher.launcher.settings.weather.WeatherActivity;
 import com.etang.nt_launcher.tool.permission.SavePermission;
 import com.etang.nt_launcher.tool.savearrayutil.SaveArrayImageUtil;
 import com.etang.nt_launcher.tool.savearrayutil.SaveArrayListUtil;
 import com.etang.nt_launcher.tool.toast.DiyToast;
+import com.etang.nt_launcher.tool.util.AppInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UnInstallDialog {
-    public static void uninstall_app(final Context context, final Activity activity, final String pakename, final String app_name) {
+    public static void uninstall_app(final int position, final List<AppInfo> appInfos, final Context context, final Activity activity, final String pakename, final String app_name) {
         try {
             final AlertDialog builder = new AlertDialog.Builder(context).create();
-            builder.setTitle(app_name);
             View view = LayoutInflater.from(context).inflate(R.layout.dialog_uninstall, null);
             builder.setView(view);
             TextView tv_uninstall_appinfo = (TextView) view.findViewById(R.id.tv_uninstall_appinfo);
@@ -34,21 +38,53 @@ public class UnInstallDialog {
             Button btn_cls = (Button) view.findViewById(R.id.btn_uninstall_cls);
             Button btn_hind = (Button) view.findViewById(R.id.btn_hind_con);
             Button btn_ico = (Button) view.findViewById(R.id.btn_load_ico);
-            tv_uninstall_appinfo.setOnClickListener(new View.OnClickListener() {
+            Button btn_openapp = (Button) view
+                    .findViewById(R.id.btn_uninstall_openapp);
+            Button btn_appname = (Button) view
+                    .findViewById(R.id.btn_uninstall_appname);
+            btn_appname.setText(app_name);
+            tv_uninstall_appinfo.setText(pakename);
+            btn_openapp.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View view) {
                     try {
-                        Intent intent = new Intent();
-                        intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-                        intent.setData(Uri.parse("package:" + pakename));
-                        context.startActivity(intent);
-                    } catch (Exception e) {
-                        String s = Build.BRAND;
-                        if (s.equals("Allwinner")) {
-                            DeBugDialog.debug_show_dialog(context, "此功能不适用于多看电纸书");
-                        } else {
-                            DeBugDialog.debug_show_dialog(context, e.toString());
+                        builder.dismiss();
+                        // Intent intent=appInfos.get(position).getIntent();
+                        // startActivity(intent);
+                        Intent intent = context.getPackageManager().getLaunchIntentForPackage(
+                                appInfos.get(position).getPackageName());
+                        if (intent != null) {//点击的APP无异常
+                            intent.putExtra("type", "110");
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(intent);
+                        } else if (appInfos.get(position).getPackageName().equals(context.getPackageName() + ".weather")) {//点击了“天气”
+                            intent = new Intent(context, WeatherActivity.class);
+                            context.startActivity(intent);
+                        } else if (appInfos.get(position).getPackageName().equals(context.getPackageName() + ".systemupdate")) {//点击了“检查更新”
+                            CheckUpdateDialog.check_update(context, activity);
+                        } else if (appInfos.get(position).getPackageName().equals(context.getPackageName() + ".launchersetting")) {//点击了“桌面设置”
+                            intent = new Intent(context, SettingActivity.class);
+                            context.startActivity(intent);
+                        } else if (appInfos.get(position).getPackageName().equals(context.getPackageName() + ".uirefresh")) {//点击了“刷新屏幕”
+                            String s = Build.BRAND;
+                            if (s.equals("Allwinner")) {
+                                Intent intent_refresh = new Intent("android.eink.force.refresh");
+                                context.sendBroadcast(intent_refresh);
+                            } else {
+                                context.startActivity(new Intent(context, UireFreshActivity.class));
+                            }
+                        } else if (appInfos.get(position).getPackageName().equals(context.getPackageName() + ".systemclean")) {//点击了“清理”
+                            String s_clean = Build.BRAND;
+                            if (s_clean.equals("Allwinner")) {
+                                //唤醒广播
+                                Intent intent_clear = new Intent("com.mogu.clear_mem");
+                                context.sendBroadcast(intent_clear);
+                            }
+                        } else {//出现异常
+                            DeBugDialog.debug_show_dialog(context, "启动APP时出现“Intent”相关的异常");
                         }
+                    } catch (Exception e) {
+                        DeBugDialog.debug_show_dialog(context, e.toString());
                     }
                 }
             });

@@ -27,7 +27,7 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
         //存放天气地理位置
         db.execSQL("create table wather_city(_id integer primary key autoincrement,city text)");
         db.execSQL("insert into wather_city(city)values(?)",
-                new String[]{"北京"});
+                new String[]{"上海"});
     }
 
     @Override

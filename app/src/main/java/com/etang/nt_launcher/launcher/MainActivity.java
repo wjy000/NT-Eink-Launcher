@@ -136,7 +136,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 // TODO Auto-generated method stub
                 try {
                     string_app_info = appInfos.get(position).getPackageName();
-                    UnInstallDialog.uninstall_app(MainActivity.this, MainActivity.this, string_app_info, appInfos.get(position).getName());
+                    UnInstallDialog.uninstall_app(position, appInfos, MainActivity.this, MainActivity.this, string_app_info, appInfos.get(position).getName());
                 } catch (Exception e) {
                     DeBugDialog.debug_show_dialog(MainActivity.this, e.toString());//显示错误信息
                 }
@@ -148,6 +148,12 @@ public class MainActivity extends Activity implements OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+//                try {
+//                    string_app_info = appInfos.get(position).getPackageName();
+//                    UnInstallDialog.uninstall_app(position, appInfos, MainActivity.this, MainActivity.this, string_app_info, appInfos.get(position).getName());
+//                } catch (Exception e) {
+//                    DeBugDialog.debug_show_dialog(MainActivity.this, e.toString());//显示错误信息
+//                }
                 try {
                     // Intent intent=appInfos.get(position).getIntent();
                     // startActivity(intent);
@@ -304,7 +310,7 @@ public class MainActivity extends Activity implements OnClickListener {
             SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
             editor.putString("images_info", "applist");//默认显示内容
             editor.putString("images_app_listifo", "true");
-            editor.putString("appname_state", "nope");//是否显示APP名称
+            editor.putString("appname_state", "one");//是否显示APP名称
             editor.putString("applist_number", "auto");//默认APP列表大小
             editor.putString("timetext_min_size", "50");//分钟时间大小
             editor.putString("timetext_hour_size", "70");//小时时间大小
@@ -314,6 +320,7 @@ public class MainActivity extends Activity implements OnClickListener {
             editor.putString("setting_ico_hind", "false");//隐藏底栏
             editor.putString("offline", "false");//离线模式
             editor.putBoolean("app_setStackFromBottomMode", false);//默认显示内容
+            editor.putString("icon_size","30");//图标大小
             editor.apply();
             //更新桌面信息
             images_upgrade();
@@ -685,9 +692,9 @@ public class MainActivity extends Activity implements OnClickListener {
                     }
                     break;
                 case 1:
-                    DiyToast.showToast(getApplicationContext(), "城市无效（已重置为北京）", true);
+                    DiyToast.showToast(getApplicationContext(), "城市无效（已重置为上海）", true);
                     db.execSQL("update wather_city set city = ? ",
-                            new String[]{"北京"});
+                            new String[]{"上海"});
                     break;
                 case 2:
                     SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();

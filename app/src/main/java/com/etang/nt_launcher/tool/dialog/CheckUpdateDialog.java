@@ -274,9 +274,9 @@ public class CheckUpdateDialog {
         }
         return file;
     }
-//打开APK程序代码
 
-    private void openFile(File file, Context context) {
+    //打开APK程序代码
+    private static void openFile(File file, Context context) {
         // TODO Auto-generated method stub
         Log.e("OpenFile", file.getName());
         Intent intent = new Intent();
@@ -340,14 +340,14 @@ public class CheckUpdateDialog {
                         }
                         String str = BuildConfig.VERSION_NAME;
                         String url = "";
-                        if (str.indexOf("beta") != -1) { //"123就是你要指百定的字符度或者字符串回"
+                        if (str.indexOf("beta") != -1) {
                             Log.e("version", "测试版");
                             //  内测版请求链接
-                            url = "https://www.blog.nyanon.online/apk/Launcher_project/app_server_update/Launcher/beta/update.apk";
+                            url = "https://yp.nyanon.online/data/User/admin/home/NaiYouApks/Launcher/app-release.apk";
                         } else {
                             Log.e("version", "稳定版");
                             //  稳定版请求链接
-                            url = "https://yp.nyanon.online/index.php?user/publicLink&fid=d081WUjdK2VnYLjeGG9baXcgwvJ5WHc3Fdky7C3uDoU_GhXEw039mcGc4vWk0jhXSI_eDXS7919DzMagWFfCK_Zl2Qx5t0qj_GaW5xR0_Ur4K9xMmTjoTWlRkpCWMS2t4gMSEnMahxByXv8poY4&file_name=/app-release.apk";
+                            url = "https://yp.nyanon.online/data/User/admin/home/NaiYouApks/Launcher/app-release.apk";
                         }
                         // 下载文件
                         HttpsURLConnection conn = (HttpsURLConnection) new URL(url).openConnection();
@@ -365,10 +365,13 @@ public class CheckUpdateDialog {
                             mProgress = (int) (((float) count / length) * 100);
                             // 更新进度条
                             mUpdateProgressHandler.sendEmptyMessage(1);
-
                             // 下载完成
                             if (numread < 0) {
-                                mUpdateProgressHandler.sendEmptyMessage(2);
+                                try {
+                                    openFile(apkFile, context);
+                                } catch (Exception e) {
+                                    mUpdateProgressHandler.sendEmptyMessage(2);
+                                }
                                 break;
                             }
                             fos.write(buffer, 0, numread);

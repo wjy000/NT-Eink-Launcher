@@ -103,11 +103,28 @@
             android:layout_height="wrap_content"
             android:text="从顶部开始"
             android:textColor="#90000000" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="滑动设置图标大小" />
+
+        <TextView
+            android:id="@+id/tv_gridlist_iconsize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="30" />
+
+        <SeekBar
+            android:id="@+id/sk_gridlist_iconsize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/tv_gridlist_setting"
-        android:layout_width="match_parent"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
