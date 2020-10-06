@@ -7,8 +7,8 @@ android {
         applicationId "com.etang.nt_launcher"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 310000
-        versionName "3.1" //稳定版最新版本号
+        versionCode 320000
+        versionName "3.2" //稳定版最新版本号
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
