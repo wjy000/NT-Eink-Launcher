@@ -7,8 +7,8 @@ android {
         applicationId "com.etang.nt_launcher"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 330001
-        versionName "3.3 fix1" //稳定版最新版本号
+        versionCode 330002
+        versionName "3.3 fix2" //稳定版最新版本号
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -30,7 +30,7 @@ android {
             zipAlignEnabled true
             debuggable true
             minifyEnabled false //是否混淆
-            shrinkResources false //是否去除无效的资源文件
+            shrinkResources true //是否去除无效的资源文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
         }
