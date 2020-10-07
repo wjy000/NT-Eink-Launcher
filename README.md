@@ -1,4 +1,9 @@
-# NT_Launcher_DK
+# English
+The main update locations are ：[https://gitee.com/rabbitTang_admin/NT-Eink-Launcher](https://gitee.com/rabbitTang_admin/NT-Eink-Launcher)
+# 中文
+最新更新在：[https://gitee.com/rabbitTang_admin/NT-Eink-Launcher](https://gitee.com/rabbitTang_admin/NT-Eink-Launcher)
+
+## NT_Launcher
 你可以通过[爱发电](https://afdian.net/@naiyouhuameitang)向我投食，<del>用金钱催更</del>。
 #### 介绍
 
