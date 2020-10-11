@@ -11,8 +11,8 @@
       "type": "SINGLE",
       "filters": [],
       "properties": [],
-      "versionCode": 330002,
-      "versionName": "3.3 fix2",
+      "versionCode": 330003,
+      "versionName": "3.3 fix3",
       "enabled": true,
       "outputFile": "app-release.apk"
     }
