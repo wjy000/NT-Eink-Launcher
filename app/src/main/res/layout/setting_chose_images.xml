@@ -9,9 +9,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:background="@drawable/shaper_desk_top_show"
         android:gravity="center_vertical|center_horizontal|left"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="15dp">
 
 
         <RadioGroup
@@ -112,5 +114,6 @@
         android:id="@+id/btn_set_wallpaperimage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="设置系统壁纸" />
+        android:background="#ffffff"
+        android:text="点此设置系统壁纸" />
 </LinearLayout>

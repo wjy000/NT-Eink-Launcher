@@ -11,8 +11,8 @@
       "type": "SINGLE",
       "filters": [],
       "properties": [],
-      "versionCode": 330006,
-      "versionName": "3.3 fixpack 6",
+      "versionCode": 340000,
+      "versionName": "3.4",
       "enabled": true,
       "outputFile": "app-release.apk"
     }

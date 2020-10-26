@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#ffffff"
     android:orientation="vertical">
 
     <EditText
@@ -17,5 +18,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:text="注意：您需要在电纸书的根目录（sdcard）创建一个名为“ntlauncher”的文件夹，在此文件夹内放置图标文件（PNG格式）。然后在下面的输入框内输入文件名称（请加上后缀名）" />
+        android:text="注意：您需要在电纸书的根目录（sdcard）创建一个名为“ntlauncher”的文件夹，在此文件夹内放置图标文件（PNG格式）。然后在下面的输入框内输入文件名称（请加上后缀名）"
+        android:textColor="#000" />
 </LinearLayout>

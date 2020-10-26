@@ -36,11 +36,11 @@ public class UireFreshActivity extends AppCompatActivity {
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             if (msg.arg1 % 2 == 0) {
-                uirefresh_id.setBackgroundColor(Color.WHITE);
-            } else {
                 uirefresh_id.setBackgroundColor(Color.BLACK);
+            } else {
+                uirefresh_id.setBackgroundColor(Color.WHITE);
             }
-            handler.postDelayed(timeRunnable, 300);
+            handler.postDelayed(timeRunnable, 100);
         }
     };
     Runnable timeRunnable = new Runnable() {
@@ -49,7 +49,7 @@ public class UireFreshActivity extends AppCompatActivity {
             number++;
             Message message = handler.obtainMessage();
             message.arg1 = number;
-            if (number < 8) {
+            if (number < 16) {
                 handler.sendMessage(message);
             } else {
                 handler.removeCallbacks(timeRunnable);
