@@ -117,7 +117,7 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="10dp"
         android:layout_weight="8"
-        android:text="@string/button_close"
+        android:text="激活设备并关闭"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

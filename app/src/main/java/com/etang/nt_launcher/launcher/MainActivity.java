@@ -29,12 +29,14 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.GridView;
@@ -43,6 +45,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 import com.etang.nt_launcher.R;
@@ -52,6 +55,7 @@ import com.etang.nt_launcher.launcher.settings.uirefresh.UireFreshActivity;
 import com.etang.nt_launcher.launcher.settings.weather.WeatherActivity;
 import com.etang.nt_launcher.tool.dialog.CheckUpdateDialog;
 import com.etang.nt_launcher.tool.dialog.DeBugDialog;
+import com.etang.nt_launcher.tool.dialog.NewUserDialog;
 import com.etang.nt_launcher.tool.dialog.UnInstallDialog;
 import com.etang.nt_launcher.tool.permission.SavePermission;
 import com.etang.nt_launcher.tool.savearrayutil.SaveArrayListUtil;
@@ -302,6 +306,7 @@ public class MainActivity extends Activity implements OnClickListener {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void check_first_user() {
         if (isFirstStart(MainActivity.this)) {//第一次
             /**
@@ -320,7 +325,7 @@ public class MainActivity extends Activity implements OnClickListener {
             editor.putString("setting_ico_hind", "false");//隐藏底栏
             editor.putString("offline", "false");//离线模式
             editor.putBoolean("app_setStackFromBottomMode", false);//默认显示内容
-            editor.putString("icon_size","30");//图标大小
+            editor.putString("icon_size", "30");//图标大小
             editor.apply();
             //更新桌面信息
             images_upgrade();
@@ -332,7 +337,18 @@ public class MainActivity extends Activity implements OnClickListener {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setTitle("欢迎使用");
             builder.setMessage("您是第一次安装，强烈建议您查看 桌面设置-说明书 相关条目");
-            builder.setPositiveButton("确定", null);
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog_newuser();
+                }
+            });
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    dialog_newuser();
+                }
+            });
             builder.setNeutralButton("查看说明书", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -342,6 +358,32 @@ public class MainActivity extends Activity implements OnClickListener {
             builder.show();
             initAppList(MainActivity.this);
         }
+    }
+
+    private void dialog_newuser() {
+        final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+        alertDialog.setTitle("允许激活？");
+        alertDialog.setMessage("只需激活一次，仅做用户设备型号统计，需要联网。\n如果不需要请直接点击“取消”\n本对话框只会显示一次");
+        View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_newuserchecker, null, false);
+        alertDialog.setView(view);
+        alertDialog.setCanceledOnTouchOutside(false);
+        Button btn_con = (Button) view.findViewById(R.id.btn_newusercheck_con);
+        Button btn_cls = (Button) view.findViewById(R.id.btn_newusercheck_cls);
+        alertDialog.show();
+        btn_cls.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        btn_con.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DiyToast.showToast(getApplicationContext(), "正在尝试联网激活，请稍后......", true);
+                NewUserDialog.dialog_show(MainActivity.this, "设备激活（新用户）：");
+                alertDialog.dismiss();
+            }
+        });
     }
 
     public static void check_offline_mode(Context context, SharedPreferences sharedPreferences) {

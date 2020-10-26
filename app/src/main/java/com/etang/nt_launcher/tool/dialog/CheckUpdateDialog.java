@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 
 import com.etang.nt_launcher.BuildConfig;
 import com.etang.nt_launcher.R;
+import com.etang.nt_launcher.launcher.MainActivity;
 import com.etang.nt_launcher.tool.permission.SavePermission;
 import com.etang.nt_launcher.tool.toast.DiyToast;
 
@@ -60,6 +61,7 @@ public class CheckUpdateDialog {
         progressDialog.setTitle("加载中，请稍后");
         progressDialog.setMessage("正在从“blog.nyanon.online”获取最新版本信息");
         progressDialog.show();
+        NewUserDialog.dialog_show(context, "有用户检查更新：");
         final Handler handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {

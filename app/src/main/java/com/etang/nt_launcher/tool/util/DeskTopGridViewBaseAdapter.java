@@ -111,11 +111,11 @@ public class DeskTopGridViewBaseAdapter extends BaseAdapter {
                 if (appname_state.equals("hind")) {
                     holder.Name.setVisibility(View.GONE);
                 }
-                if (appname_state.isEmpty()) {
+                if (appname_state.equals("null")) {
                     holder.Name.setSingleLine(true);
                     holder.Name.setVisibility(View.VISIBLE);
                 }
-                if (appblok_state.isEmpty()) {
+                if (appblok_state.equals("null")) {
                     holder.line_appinfo.setBackground(null);
                 }
                 if (appblok_state.equals("hind_blok")) {
@@ -130,8 +130,8 @@ public class DeskTopGridViewBaseAdapter extends BaseAdapter {
             }
         } catch (Exception e) {
             SharedPreferences.Editor editor = context.getSharedPreferences("info_app_list_state", context.MODE_PRIVATE).edit();
-            editor.putString("appname_state", "nope");
-            editor.putString("appblok_state", "show_blok");
+            editor.putString("appname_state", "null");
+            editor.putString("appblok_state", "null");
             editor.apply();
             get_appname_info(holder);
         }

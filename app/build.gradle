@@ -5,7 +5,7 @@ android {
     buildToolsVersion '30.0.2'
     defaultConfig {
         applicationId "com.etang.nt_launcher"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 30
         versionCode 330006
         versionName "3.3 fixpack 6" //稳定版最新版本号
