@@ -15,9 +15,9 @@ The main update locations are ：[https://gitee.com/rabbitTang_admin/NT-Eink-Lau
 
 壁纸来自多看官方群文件
 
-"多看电纸书"如何安装第三方APP：https://naiyouhuameitang.club/archives/81/
+"多看电纸书"如何安装第三方APP：https://blog.nyanon.online/archives/81/
 
-博客关于“奶糖桌面”地址：https://naiyouhuameitang.club/nt_launcher.html
+博客关于“奶糖桌面”地址：https://blog.nyanon.online/nt_launcher
 
 你可以在博客内找到：
 
