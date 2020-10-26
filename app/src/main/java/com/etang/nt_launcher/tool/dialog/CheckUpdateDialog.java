@@ -267,7 +267,8 @@ public class CheckUpdateDialog {
 
                 e.printStackTrace();
             }
-        } catch (MalformedURLException e) {
+        } catch (
+                MalformedURLException e) {
             // TODO Auto-generated catch block
 
             e.printStackTrace();
