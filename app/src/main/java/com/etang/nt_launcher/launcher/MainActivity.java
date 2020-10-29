@@ -231,7 +231,6 @@ public class MainActivity extends Activity implements OnClickListener {
                 setNotification();
             }
         }, 50);
-        Log.i("初次见面", "欢迎来到这个世界");
     }
 
     @Override

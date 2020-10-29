@@ -1,19 +1,17 @@
 {
-  "version": 1,
+  "version": 2,
   "artifactType": {
     "type": "APK",
     "kind": "Directory"
   },
   "applicationId": "com.etang.nt_launcher",
-  "variantName": "release",
+  "variantName": "processReleaseResources",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
-      "properties": [],
-      "versionCode": 340002,
-      "versionName": "3.4 fixpack 2",
-      "enabled": true,
+      "versionCode": 340003,
+      "versionName": "3.4 fixpack 3",
       "outputFile": "app-release.apk"
     }
   ]
