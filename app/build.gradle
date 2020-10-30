@@ -50,9 +50,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:${appcompatVersion}"
     implementation 'ru.alexbykov:nopermission:1.1.2'
-    implementation "androidx.constraintlayout:constraintlayout:${constraintlayoutVersion}"
+    implementation "androidx.constraintlayout:constraintlayout:${constraintlayoutVersion1}"
     implementation "com.google.android.material:material:${materialVersion}"
-    testImplementation 'junit:junit:4.13'
+    testImplementation "junit:junit:${junitVersion1}"
     androidTestImplementation "androidx.test.ext:junit:${junitVersion}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${espressoCoreVersion}"
     implementation 'androidx.recyclerview:recyclerview:1.1.0'

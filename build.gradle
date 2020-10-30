@@ -6,6 +6,8 @@ ext {
     okhttpVersion = '4.9.0'
     materialVersion = '1.2.1'
     junitVersion = '1.1.2'
+    constraintlayoutVersion1 = '2.0.3'
+    junitVersion1 = '4.13.1'
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
