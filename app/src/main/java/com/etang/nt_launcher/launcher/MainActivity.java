@@ -308,7 +308,7 @@ public class MainActivity extends Activity implements OnClickListener {
             editor.putString("images_app_listifo", "true");
             editor.putString("appname_state", "one");//是否显示APP名称
             editor.putString("applist_number", "5");//默认APP列表大小
-            editor.putString("timetext_min_size", "50");//分钟时间大小
+            editor.putString("timetext_min_size", "40");//分钟时间大小
             editor.putString("timetext_hour_size", "70");//小时时间大小
             editor.putString("nametext_size", "16");//昵称文本大小
             editor.putString("dianchitext_size", "16");//电池文本大小
@@ -596,7 +596,7 @@ public class MainActivity extends Activity implements OnClickListener {
         sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
         line_bottom = (LinearLayout) findViewById(R.id.line_bottom);
         tv_main_nowdate = (TextView) findViewById(R.id.tv_main_nowdate);
-        iv_clean_button = (ImageView) findViewById(R.id.iv_clean_button);
+        iv_clean_button = (ImageView) findViewById(R.id.iv_setting_clear);
         iv_setting_rss = (ImageView) findViewById(R.id.iv_setting_rss);
         iv_setting_refresh = (ImageView) findViewById(R.id.iv_setting_refresh);
         mListView = (GridView) findViewById(R.id.mAppGridView);
@@ -905,7 +905,7 @@ public class MainActivity extends Activity implements OnClickListener {
                     e.printStackTrace();
                 }
                 break;
-            case R.id.iv_clean_button:
+            case R.id.iv_setting_clear:
                 String s_clean = Build.BRAND;
                 if (s_clean.equals("Allwinner")) {
                     Intent intent_clear = new Intent("com.mogu.clear_mem");
@@ -985,7 +985,7 @@ public class MainActivity extends Activity implements OnClickListener {
             /**
              * 设定文本大小预填充
              */
-            editor.putString("timetext_min_size", "50");
+            editor.putString("timetext_min_size", "40");
             editor.putString("timetext_hour_size", "70");
             editor.putString("nametext_size", "17");//昵称文本大小
             editor.putString("dianchitext_size", "17");//电池文本大小
