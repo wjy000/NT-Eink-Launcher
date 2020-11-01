@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="1"
     android:background="#00000000"
     android:gravity="center_vertical|center_horizontal"
     android:orientation="vertical">
@@ -9,6 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="3dp"
+        android:layout_weight="1"
         android:gravity="center_vertical|center_horizontal"
         android:orientation="horizontal">
 
@@ -16,30 +19,28 @@
             android:id="@+id/line_appinfo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shaper_desk_top_show"
             android:gravity="center_vertical|center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <ImageView
-                android:id="@+id/iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/iv_gridview_app_icon"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_margin="10dp"
                 android:src="@drawable/ic_launcher" />
 
             <TextView
-                android:id="@+id/tv"
+                android:id="@+id/tv_gridview_app_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
                 android:gravity="center_vertical|center_horizontal"
                 android:singleLine="false"
-                android:text="TextView"
+                android:text="梅糖桌面 标准版"
                 android:textColor="#000"
-                android:textSize="13dp" />
+                android:textSize="12dp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
