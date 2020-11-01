@@ -10,8 +10,8 @@
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 340005,
-      "versionName": "3.4 fixpack 5",
+      "versionCode": 350000,
+      "versionName": "3.5",
       "outputFile": "app-release.apk"
     }
   ]
