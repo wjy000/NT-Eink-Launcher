@@ -21,50 +21,83 @@
             android:id="@+id/include"
             layout="@layout/layout_in_back"></include>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:background="@drawable/shaper_desk_top_show"
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <Button
                 android:id="@+id/btn_timetext_hour_size"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="时间大小（小时）" />
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/shaper_zhijiao_lins_show"
+                android:text="时间大小（小时）"
+                app:layout_constraintEnd_toEndOf="@+id/btn_dianchitext_size"
+                app:layout_constraintStart_toStartOf="@+id/btn_dianchitext_size"
+                app:layout_constraintTop_toBottomOf="@+id/btn_dianchitext_size" />
+
 
             <Button
                 android:id="@+id/btn_timetext_min_size"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="时间大小（分钟）" />
-
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/shaper_zhijiao_lins_show"
+                android:text="时间大小（分钟）"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btn_nametext_size"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="昵称大小" />
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/shaper_zhijiao_lins_show"
+                android:text="昵称大小"
+                app:layout_constraintEnd_toEndOf="@+id/btn_datetext_size"
+                app:layout_constraintStart_toStartOf="@+id/btn_datetext_size"
+                app:layout_constraintTop_toBottomOf="@+id/btn_datetext_size" />
 
             <Button
                 android:id="@+id/btn_datetext_size"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="日期大小" />
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/shaper_zhijiao_lins_show"
+                android:text="日期大小"
+                app:layout_constraintEnd_toEndOf="@+id/btn_timetext_hour_size"
+                app:layout_constraintStart_toStartOf="@+id/btn_timetext_hour_size"
+                app:layout_constraintTop_toBottomOf="@+id/btn_timetext_hour_size" />
 
             <Button
                 android:id="@+id/btn_dianchitext_size"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="电量大小" />
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/shaper_zhijiao_lins_show"
+                android:text="电量大小"
+                app:layout_constraintEnd_toEndOf="@+id/btn_timetext_min_size"
+                app:layout_constraintStart_toStartOf="@+id/btn_timetext_min_size"
+                app:layout_constraintTop_toBottomOf="@+id/btn_timetext_min_size" />
 
             <Button
                 android:id="@+id/btn_textsize_resert"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="文本大小重置" />
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/shaper_zhijiao_lins_show"
+                android:text="重置"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
 

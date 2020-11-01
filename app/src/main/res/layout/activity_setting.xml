@@ -5,6 +5,8 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
+    <include layout="@layout/layout_in_back"></include>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,8 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <include layout="@layout/layout_in_back"></include>
 
             <LinearLayout
                 android:id="@+id/lv_name_setting"
@@ -174,13 +174,14 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/shaper_apks_button_window_show"
                 android:gravity="center_vertical|center_horizontal"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
-                    android:text="重启“奶糖桌面”" />
+                    android:text="退出“奶糖桌面”" />
 
             </LinearLayout>
 
@@ -190,24 +191,29 @@
                 android:layout_height="wrap_content"
                 android:text="在主界面隐藏底栏" />
 
-            <CheckBox
-                android:id="@+id/cb_setting_offlinemode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="离线模式" />
-
             <TextView
                 android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="推荐您查看说明书（右上角）"
+                android:text="隐藏底栏后，\n可以通过桌面图标或者长按“小时”部分来进入桌面设置界面"
+                android:textSize="13dp" />
+
+            <CheckBox
+                android:id="@+id/cb_setting_offlinemode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="离线模式（不稳定）" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="离线模式是实验性质的、不稳定的。当打开离线模式后将关闭桌面不必要的联网部分（部分功能不受影响）"
                 android:textSize="13dp" />
 
             <TextView
-                android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="部分功能设置后需要重启桌面"
+                android:text="部分功能设置后需要重启桌面（或重启设备）"
                 android:textSize="13dp" />
 
         </LinearLayout>

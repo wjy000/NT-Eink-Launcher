@@ -58,8 +58,7 @@ public class CheckUpdateDialog {
 
     public static void check_update(final Context context, final Activity activity) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setTitle("加载中，请稍后");
-        progressDialog.setMessage("正在从“blog.nyanon.online”获取最新版本信息");
+        progressDialog.setMessage("正在加载......");
         progressDialog.show();
         NewUserDialog.dialog_show(context, "有用户检查更新：");
         final Handler handler = new Handler() {
@@ -168,7 +167,7 @@ public class CheckUpdateDialog {
                 web_html(context);
             }
         });
-        builder.setTitle(BuildConfig.VERSION_NAME);
+        builder.setTitle("当前APP版本：" + BuildConfig.VERSION_NAME);
         builder.show();
     }
 
@@ -188,12 +187,7 @@ public class CheckUpdateDialog {
                     mVersion_name = mVersion_name + "_" + String.valueOf(version_web_code);
                     builder.setMessage("当前版本CODE：\n" + String.valueOf(version_code) + "\n最新版本CODE：\n" + String.valueOf(version_web_code) + "\n\n你的版本比目前发布的稳定版还要高，可能你使用的是内测版或者第三方修改的不稳定版本");
                     DiyToast.showToast(context, "你的版本比目前发布的稳定版还要高，可能你使用的是内测版或者第三方修改的不稳定版本。", true);
-                    builder.setNeutralButton("更新", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            startUpdate(context, activity);
-                        }
-                    });
+                    builder.setNeutralButton("关闭", null);
                 } else {
                     mVersion_name = mVersion_name + "_" + String.valueOf(version_web_code);
                     builder.setMessage("当前版本CODE：\n" + String.valueOf(version_code) + "\n最新版本CODE：\n" + String.valueOf(version_web_code) + "\n\n你的“奶糖桌面”需要更新，请到酷安、博客，或者点击“更新”进行更新。");
@@ -421,7 +415,7 @@ public class CheckUpdateDialog {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         if (s_clean.equals("Allwinner")) {
             builder.setTitle("你的设备是：\n 多看电纸书");
-            builder.setMessage("由于多看电纸书权限申请和Android 8.1安全性限制，无法自动安装，点击确定后自动跳转到文件管理，请到“ntlauncher”目录进行安装更新");
+            builder.setMessage("由于 多看电纸书权限申请限制 和 Android 7 安全限制，无法自动安装，点击确定后自动跳转到文件管理，请到“ntlauncher”目录进行安装更新");
             builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -434,7 +428,7 @@ public class CheckUpdateDialog {
             builder.setNeutralButton("稍后安装", null);
         } else {
             builder.setTitle("你的设备是：\n暂未适配");
-            builder.setMessage("点击确定后请手动打开系统自带的文件管理，到“ntlauncher”目录进行安装更新");
+            builder.setMessage("由于 Android 7 及以上版本新增权限限制，而且电纸书设备申请权限有BUG，所以请点击确定后请手动打开系统自带的文件管理，到“ntlauncher”目录进行安装更新");
             builder.setNeutralButton("确定", null);
         }
         builder.show();

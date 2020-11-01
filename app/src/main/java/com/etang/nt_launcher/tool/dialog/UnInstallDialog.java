@@ -43,7 +43,7 @@ public class UnInstallDialog {
             Button btn_appname = (Button) view
                     .findViewById(R.id.btn_uninstall_appname);
             btn_appname.setText(app_name);
-            tv_uninstall_appinfo.setText(pakename);
+            builder.setTitle("包名：" + pakename);
             btn_openapp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -7,130 +7,145 @@
 
     <include layout="@layout/layout_in_back"></include>
 
-
-    <RadioGroup
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+        android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="应用名称显隐设置"
-            android:textColor="#000"
-            android:textSize="15dp" />
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:background="@drawable/shaper_desk_top_show"
+            android:orientation="vertical"
+            android:padding="5dp">
 
-        <RadioButton
-            android:id="@+id/ra_appname_hind"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="隐藏"
-            android:textColor="#90000000" />
 
-        <RadioButton
-            android:id="@+id/ra_appname_nope"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="显示"
-            android:textColor="#90000000" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp">
 
-        <RadioButton
-            android:id="@+id/ra_appname_one"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="限制为一行"
-            android:textColor="#90000000" />
-    </RadioGroup>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="应用名称显隐设置"
+                    android:textColor="#000"
+                    android:textSize="15dp" />
 
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+                <RadioButton
+                    android:id="@+id/ra_appname_hind"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="隐藏"
+                    android:textColor="#90000000" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="应用列表边框设置"
-            android:textColor="#000"
-            android:textSize="15dp" />
+                <RadioButton
+                    android:id="@+id/ra_appname_nope"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="显示"
+                    android:textColor="#90000000" />
 
-        <RadioButton
-            android:id="@+id/ra_app_show_blok"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="显示"
-            android:textColor="#90000000" />
+                <RadioButton
+                    android:id="@+id/ra_appname_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="限制为一行"
+                    android:textColor="#90000000" />
+            </RadioGroup>
 
-        <RadioButton
-            android:id="@+id/ra_app_hind_blok"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="隐藏"
-            android:textColor="#90000000" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp">
 
-        <RadioButton
-            android:id="@+id/ra_app_show_nocolor_blok"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="透明边框"
-            android:textColor="#90000000" />
-    </RadioGroup>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="应用列表边框设置"
+                    android:textColor="#000"
+                    android:textSize="15dp" />
 
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+                <RadioButton
+                    android:id="@+id/ra_app_show_blok"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="显示"
+                    android:textColor="#90000000" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="应用排列方式设置"
-            android:textColor="#000"
-            android:textSize="15dp" />
+                <RadioButton
+                    android:id="@+id/ra_app_hind_blok"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="隐藏"
+                    android:textColor="#90000000" />
 
-        <RadioButton
-            android:id="@+id/ra_app_bottommode_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="从底部开始"
-            android:textColor="#90000000" />
+                <RadioButton
+                    android:id="@+id/ra_app_show_nocolor_blok"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="透明边框"
+                    android:textColor="#90000000" />
+            </RadioGroup>
 
-        <RadioButton
-            android:id="@+id/ra_app_bottommode_top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="从顶部开始"
-            android:textColor="#90000000" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="滑动设置图标大小" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="应用排列方式设置"
+                    android:textColor="#000"
+                    android:textSize="15dp" />
 
-        <TextView
-            android:id="@+id/tv_gridlist_iconsize"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="30" />
+                <RadioButton
+                    android:id="@+id/ra_app_bottommode_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="从底部开始"
+                    android:textColor="#90000000" />
 
-        <SeekBar
-            android:id="@+id/sk_gridlist_iconsize"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </RadioGroup>
+                <RadioButton
+                    android:id="@+id/ra_app_bottommode_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="从顶部开始"
+                    android:textColor="#90000000" />
 
-    <TextView
-        android:id="@+id/tv_gridlist_setting"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:text="点击进行应用列数设置"
-        android:textColor="#000000"
-        android:textSize="17dp" />
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="滑动设置图标大小" />
 
+                <TextView
+                    android:id="@+id/tv_gridlist_iconsize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="30" />
+
+                <SeekBar
+                    android:id="@+id/sk_gridlist_iconsize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv_gridlist_setting"
+                android:layout_width="411dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="15dp"
+                android:text="点击进行应用列数设置"
+                android:textColor="#000000"
+                android:textSize="17dp" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

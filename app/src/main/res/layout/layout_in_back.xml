@@ -29,6 +29,7 @@
                 android:id="@+id/iv_title_back"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
+                android:background="@drawable/shaper_desk_top_show"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,6 +37,8 @@
                 android:id="@+id/tv_back_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center|center_horizontal|center_vertical"
                 android:text="&lt; 返回"
                 android:textColor="#000000"
                 android:textSize="15dp"
@@ -86,14 +89,5 @@
 
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1sp"
-        android:layout_marginTop="2sp"
-        android:layout_weight="1"
-        android:background="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"></View>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

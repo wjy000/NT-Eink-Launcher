@@ -83,7 +83,7 @@ public class DeskTopGridViewBaseAdapter extends BaseAdapter {
             holder.ico.setLayoutParams(params);
         } catch (Exception e) {
             SharedPreferences sharedPreferences = context.getSharedPreferences("info", context.MODE_PRIVATE);
-            sharedPreferences.edit().putString("icon_size", "30").commit();
+            sharedPreferences.edit().putString("icon_size", "45").commit();
             get_iconsize(context, holder);
         }
     }

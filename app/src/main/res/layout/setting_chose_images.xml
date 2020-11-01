@@ -6,114 +6,119 @@
 
     <include layout="@layout/layout_in_back"></include>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="@drawable/shaper_desk_top_show"
-        android:gravity="center_vertical|center_horizontal|left"
-        android:orientation="vertical"
-        android:padding="15dp">
+        android:layout_height="match_parent">
 
-
-        <RadioGroup
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/shaper_desk_top_show"
+            android:gravity="center_vertical|center_horizontal|left"
+            android:orientation="vertical"
+            android:padding="15dp">
 
-            <RadioButton
-                android:id="@+id/ra_chose_chahua"
-                android:layout_width="wrap_content"
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:id="@+id/ra_chose_chahua"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="插画" />
+
+                <RadioButton
+                    android:id="@+id/ra_chose_erji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="耳机" />
+
+                <RadioButton
+                    android:id="@+id/ra_chose_qinglv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="情侣" />
+
+                <RadioButton
+                    android:id="@+id/ra_chose_meizi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="妹子" />
+
+                <RadioButton
+                    android:id="@+id/ra_chose_luoli"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="萝莉" />
+
+                <RadioButton
+                    android:id="@+id/ra_chose_pinbo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="拼搏" />
+
+                <RadioButton
+                    android:id="@+id/ra_chose_yali"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="压力" />
+
+                <RadioButton
+                    android:id="@+id/ra_chose_zhiyu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="知遇" />
+
+                <RadioButton
+                    android:id="@+id/ra_chose_applist_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="应用列表" />
+
+                <RadioButton
+                    android:id="@+id/ra_wallpaper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="显示当前设置的系统壁纸" />
+
+                <RadioButton
+                    android:id="@+id/ra_wallpaper_and_applist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="显示系统壁纸和应用列表" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:text="新桌面（正在做了--10%）" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/btn_set_wallpaperimage"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="插画" />
-
-            <RadioButton
-                android:id="@+id/ra_chose_erji"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="耳机" />
-
-            <RadioButton
-                android:id="@+id/ra_chose_qinglv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="情侣" />
-
-            <RadioButton
-                android:id="@+id/ra_chose_meizi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="妹子" />
-
-            <RadioButton
-                android:id="@+id/ra_chose_luoli"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="萝莉" />
-
-            <RadioButton
-                android:id="@+id/ra_chose_pinbo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="拼搏" />
-
-            <RadioButton
-                android:id="@+id/ra_chose_yali"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="压力" />
-
-            <RadioButton
-                android:id="@+id/ra_chose_zhiyu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="知遇" />
-
-            <RadioButton
-                android:id="@+id/ra_chose_applist_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="应用列表" />
-
-            <RadioButton
-                android:id="@+id/ra_wallpaper"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="显示当前设置的系统壁纸" />
-
-            <RadioButton
-                android:id="@+id/ra_wallpaper_and_applist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="显示系统壁纸和应用列表" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="false"
-                android:clickable="false"
-                android:enabled="false"
-                android:focusable="false"
-                android:text="新桌面（正在做了--10%）" />
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_set_wallpaperimage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:text="点此设置系统壁纸" />
+                android:layout_margin="15dp"
+                android:background="@drawable/shaper_zhijiao_lins_show"
+                android:text="点此设置系统壁纸" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -7,7 +7,7 @@ import android.graphics.Bitmap;
  * 获取APP信息JavaBean
  */
 public class AppInfo {
-    
+
     private String packageName;
     private Bitmap ico;
     private String Name;

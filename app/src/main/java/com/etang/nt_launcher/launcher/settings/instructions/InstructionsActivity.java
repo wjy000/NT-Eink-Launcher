@@ -23,7 +23,7 @@ public class InstructionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DiyToast.showToast(getApplicationContext(), "正在尝试联网激活，请稍后......", true);
-                NewUserDialog.dialog_show(InstructionsActivity.this, "设备激活（老用户）：");
+                NewUserDialog.dialog_show(InstructionsActivity.this, "设备激活（从说明书点击）：");
                 finish();
             }
         });
