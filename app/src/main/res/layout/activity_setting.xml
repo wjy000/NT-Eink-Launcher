@@ -15,14 +15,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_margin="5dp"
+            android:background="@drawable/shaper_desk_top_show"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <LinearLayout
                 android:id="@+id/lv_name_setting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="@drawable/shaper_apks_button_window_show"
+                android:background="@drawable/shaper_zhijiao_lins_nocolor"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal">
 
@@ -30,7 +33,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
-                    android:text="顶部文案" />
+                    android:text="顶部文案"
+                    android:textColor="#000000" />
             </LinearLayout>
 
             <LinearLayout
@@ -38,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="@drawable/shaper_apks_button_window_show"
+                android:background="@drawable/shaper_zhijiao_lins_nocolor"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal">
 
@@ -46,7 +50,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
-                    android:text="桌面列表" />
+                    android:text="桌面列表"
+                    android:textColor="#000000" />
             </LinearLayout>
 
             <LinearLayout
@@ -54,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="@drawable/shaper_apks_button_window_show"
+                android:background="@drawable/shaper_zhijiao_lins_nocolor"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal">
 
@@ -62,7 +67,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
-                    android:text="桌面壁纸" />
+                    android:text="桌面壁纸"
+                    android:textColor="#000000" />
             </LinearLayout>
 
             <LinearLayout
@@ -70,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="@drawable/shaper_apks_button_window_show"
+                android:background="@drawable/shaper_zhijiao_lins_nocolor"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal">
 
@@ -78,7 +84,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
-                    android:text="文本大小" />
+                    android:text="文本大小"
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -104,7 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="@drawable/shaper_apks_button_window_show"
+                android:background="@drawable/shaper_zhijiao_lins_nocolor"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal">
 
@@ -112,7 +119,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
-                    android:text="打赏赞助" />
+                    android:text="打赏赞助"
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -121,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="@drawable/shaper_apks_button_window_show"
+                android:background="@drawable/shaper_zhijiao_lins_nocolor"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal">
 
@@ -129,7 +137,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
-                    android:text="管理隐藏应用" />
+                    android:text="管理隐藏应用"
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -138,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="@drawable/shaper_apks_button_window_show"
+                android:background="@drawable/shaper_zhijiao_lins_nocolor"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal">
 
@@ -146,7 +155,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
-                    android:text="更新“奶糖桌面”" />
+                    android:text="更新“奶糖桌面”"
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -155,7 +165,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="@drawable/shaper_apks_button_window_show"
+                android:background="@drawable/shaper_zhijiao_lins_nocolor"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal">
 
@@ -163,7 +173,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
-                    android:text="卸载“奶糖桌面”" />
+                    android:text="卸载“奶糖桌面”"
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
