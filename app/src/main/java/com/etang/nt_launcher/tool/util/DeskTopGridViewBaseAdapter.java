@@ -131,7 +131,7 @@ public class DeskTopGridViewBaseAdapter extends BaseAdapter {
         } catch (Exception e) {
             SharedPreferences.Editor editor = context.getSharedPreferences("info_app_list_state", context.MODE_PRIVATE).edit();
             editor.putString("appname_state", "null");
-            editor.putString("appblok_state", "null");
+            editor.putString("appblok_state", "show_nocolor_blok");
             editor.apply();
             get_appname_info(holder);
         }
