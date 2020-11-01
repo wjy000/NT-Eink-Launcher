@@ -122,10 +122,10 @@ public class DeskTopGridViewBaseAdapter extends BaseAdapter {
                     holder.line_appinfo.setBackground(null);
                 }
                 if (appblok_state.equals("show_blok")) {
-                    holder.line_appinfo.setBackgroundResource(R.drawable.shaper_desk_top_colorwhite_show);
+                    holder.line_appinfo.setBackgroundResource(R.drawable.shaper_zhijiao_lins_show);
                 }
                 if (appblok_state.equals("show_nocolor_blok")) {
-                    holder.line_appinfo.setBackgroundResource(R.drawable.shaper_desk_top_show);
+                    holder.line_appinfo.setBackgroundResource(R.drawable.shaper_zhijiao_lins_nocolor);
                 }
             }
         } catch (Exception e) {

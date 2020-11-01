@@ -69,6 +69,7 @@ public class DeskTopSettingActivity extends AppCompatActivity implements View.On
          */
         final SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
         int size = Integer.valueOf(sharedPreferences.getString("icon_size", null));
+        tv_gridlist_iconsize.setText(String.valueOf(size));
         sk_gridlist_iconsize.setProgress(size);
         sk_gridlist_iconsize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

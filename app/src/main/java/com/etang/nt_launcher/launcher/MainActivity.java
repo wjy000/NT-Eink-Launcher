@@ -95,7 +95,6 @@ public class MainActivity extends Activity implements OnClickListener {
     private Runnable runnable;
     private static MyDataBaseHelper dbHelper_name_sql;
     private static SQLiteDatabase db;
-    public static View view_buttom;
     public static TextView tv_user_id, tv_time_hour, tv_time_min,
             tv_main_batterystate, tv_city, tv_wind, tv_temp_state,
             tv_last_updatetime, tv_main_nowdate;
@@ -308,7 +307,7 @@ public class MainActivity extends Activity implements OnClickListener {
             editor.putString("images_info", "applist");//默认显示内容
             editor.putString("images_app_listifo", "true");
             editor.putString("appname_state", "one");//是否显示APP名称
-            editor.putString("applist_number", "auto");//默认APP列表大小
+            editor.putString("applist_number", "5");//默认APP列表大小
             editor.putString("timetext_min_size", "50");//分钟时间大小
             editor.putString("timetext_hour_size", "70");//小时时间大小
             editor.putString("nametext_size", "16");//昵称文本大小
@@ -600,7 +599,6 @@ public class MainActivity extends Activity implements OnClickListener {
         iv_clean_button = (ImageView) findViewById(R.id.iv_clean_button);
         iv_setting_rss = (ImageView) findViewById(R.id.iv_setting_rss);
         iv_setting_refresh = (ImageView) findViewById(R.id.iv_setting_refresh);
-        view_buttom = (View) findViewById(R.id.view_buttom);
         mListView = (GridView) findViewById(R.id.mAppGridView);
         iv_setting_button = (ImageView) findViewById(R.id.iv_setting_button);
         tv_time_hour = (TextView) findViewById(R.id.tv_time_hour);
