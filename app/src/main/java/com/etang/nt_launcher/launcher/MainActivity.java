@@ -334,12 +334,6 @@ public class MainActivity extends Activity implements OnClickListener {
                     dialog_newuser();
                 }
             });
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    dialog_newuser();
-                }
-            });
             builder.setNeutralButton("查看说明书", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -547,7 +541,7 @@ public class MainActivity extends Activity implements OnClickListener {
      * <p>
      * SQLite
      */
-    public static void rember_name(Context context) {
+    public static void rember_name(Context c) {
         Cursor cursor = MainActivity.db.rawQuery("select * from name", null);
         if (cursor.getCount() != 0) {
             cursor.moveToFirst();
@@ -576,7 +570,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 SimpleDateFormat simpleDateFormat_min = new SimpleDateFormat(
                         "mm");
                 SimpleDateFormat simpleDateFormat_date = new SimpleDateFormat(
-                        "yyyy年MM月dd日");
+                        "yyyy/MM/dd/");
                 tv_main_nowdate.setText(simpleDateFormat_date
                         .format(new java.util.Date()));
                 tv_time_hour.setText(simpleDateFormat_hour

@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/uninstall_naitang"
+            android:text="如何卸载"
             android:textColor="#000"
             android:textSize="15dp" />
 

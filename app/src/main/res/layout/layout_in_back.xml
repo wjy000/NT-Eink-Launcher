@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="center|center_horizontal|center_vertical"
-                android:text="&lt; 返回"
+                android:text="@string/title_back"
                 android:textColor="#000000"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_title_back"
