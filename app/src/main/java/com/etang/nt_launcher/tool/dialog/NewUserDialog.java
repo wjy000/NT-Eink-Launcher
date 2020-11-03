@@ -24,6 +24,6 @@ public class NewUserDialog {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_newuser, null, false);
         WebView wv = (WebView) view.findViewById(R.id.webview_newuser);
         wv.loadUrl("https://" + web_index + "/" + SKEY
-                + ".send?text=【奶糖桌面】" + "-------" + info + model);
+                + ".send?text=【奶糖桌面-多看版】" + "-------" + info + "(设备型号：" + model + ")");
     }
 }
