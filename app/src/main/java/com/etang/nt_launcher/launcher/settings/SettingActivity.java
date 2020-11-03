@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -20,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.launcher.MainActivity;
 import com.etang.nt_launcher.launcher.settings.about.AboutActivity;
 import com.etang.nt_launcher.launcher.settings.desktopsetting.DeskTopSettingActivity;
@@ -28,16 +28,15 @@ import com.etang.nt_launcher.launcher.settings.instructions.InstructionsActivity
 import com.etang.nt_launcher.launcher.settings.launcherimage.ChoseImagesActivity;
 import com.etang.nt_launcher.launcher.settings.reward.RewardActivity;
 import com.etang.nt_launcher.launcher.settings.textsizesetting.TextSizeSetting;
-import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.tool.dialog.UnInstallDialog;
 import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;
 import com.etang.nt_launcher.tool.toast.DiyToast;
 
 public class SettingActivity extends Activity {
 
-    LinearLayout lv_window_setting, lv_reward_activity, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting, lv_exit_setting, lv_hindapp_setting, lv_name_setting, lv_uninstall_setting;
+    LinearLayout lv_window_setting, lv_restart_setting, lv_inforeback_activity, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting, lv_exit_setting, lv_hindapp_setting, lv_name_setting, lv_uninstall_setting;
     private TextView tv_title_text;
-    private CheckBox cb_hind_setting_ico, cb_setting_offlinemode;
+    private CheckBox cb_hind_setting_ico, cb_setting_offlinemode, cb_setting_oldmanmode;
     private ImageView iv_title_back;
     private MyDataBaseHelper dbHelper_name_sql;
     private SQLiteDatabase db;
@@ -123,10 +122,16 @@ public class SettingActivity extends Activity {
                 UnInstallDialog.UninstallApk(SettingActivity.this, SettingActivity.this, getPackageName());
             }
         });
-        lv_reward_activity.setOnClickListener(new OnClickListener() {
+        lv_inforeback_activity.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SettingActivity.this, RewardActivity.class));
+
+            }
+        });
+        lv_restart_setting.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.exit(0);
             }
         });
         //昵称设置
@@ -139,6 +144,7 @@ public class SettingActivity extends Activity {
         SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
         String ico_info = sharedPreferences.getString("setting_ico_hind", null);
         String offline_info = sharedPreferences.getString("offline", null);
+        String oldman_info = sharedPreferences.getString("oldman", null);
         try {
             if (ico_info.equals("true")) {
                 cb_hind_setting_ico.setChecked(true);
@@ -152,11 +158,40 @@ public class SettingActivity extends Activity {
             } else {
                 cb_setting_offlinemode.setChecked(false);
             }
+            if (oldman_info.equals("true")) {
+                cb_setting_oldmanmode.setChecked(true);
+            } else {
+                cb_setting_oldmanmode.setChecked(false);
+            }
         } catch (Exception e) {
             SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
-            editor.putString("setting_ico_hind", "false");//日期文本大小
+            editor.putString("setting_ico_hind", "false");//关闭隐藏底栏
+            editor.putString("offline", "false");//关闭离线模式
+            editor.putString("oldman", "false");//关闭老年模式
             editor.apply();
         }
+        cb_setting_oldmanmode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    cb_setting_offlinemode.setChecked(true);
+                    SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
+                    editor.putString("oldman", "true");//日期文本大小
+                    editor.apply();
+                    DiyToast.showToast(SettingActivity.this, "有时需要重启设备以应用更改", true);
+                    SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+                    MainActivity.check_oldman_mode(SettingActivity.this, sharedPreferences);
+                } else {
+                    cb_setting_offlinemode.setChecked(false);
+                    SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
+                    editor.putString("oldman", "false");//日期文本大小
+                    editor.apply();
+                    DiyToast.showToast(SettingActivity.this, "有时需要重启设备以应用更改", true);
+                    SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+                    MainActivity.check_oldman_mode(SettingActivity.this, sharedPreferences);
+                }
+            }
+        });
         cb_hind_setting_ico.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -181,19 +216,21 @@ public class SettingActivity extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    cb_setting_oldmanmode.setChecked(true);
                     SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                     editor.putString("offline", "true");//日期文本大小
                     editor.apply();
                     DiyToast.showToast(SettingActivity.this, "有时需要重启设备以应用更改", true);
                     SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-                    MainActivity.check_view_hind(SettingActivity.this, sharedPreferences);
+                    MainActivity.check_offline_mode(SettingActivity.this, sharedPreferences);
                 } else {
+                    cb_setting_oldmanmode.setChecked(false);
                     SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
                     editor.putString("offline", "false");//日期文本大小
                     editor.apply();
                     DiyToast.showToast(SettingActivity.this, "有时需要重启设备以应用更改", true);
                     SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-                    MainActivity.check_view_hind(SettingActivity.this, sharedPreferences);
+                    MainActivity.check_offline_mode(SettingActivity.this, sharedPreferences);
                 }
             }
         });
@@ -298,9 +335,11 @@ public class SettingActivity extends Activity {
 
     private void initView() {
         // TODO Auto-generated method stub
-        lv_reward_activity = (LinearLayout) findViewById(R.id.lv_reward_activity);
+        lv_restart_setting = (LinearLayout) findViewById(R.id.lv_restart_setting);
+        lv_inforeback_activity = (LinearLayout) findViewById(R.id.lv_inforeback_activity);
         cb_setting_offlinemode = (CheckBox) findViewById(R.id.cb_setting_offlinemode);
         cb_hind_setting_ico = (CheckBox) findViewById(R.id.cb_hind_setting_ico);
+        cb_setting_oldmanmode = (CheckBox) findViewById(R.id.cb_setting_oldmanmode);
         lv_name_setting = (LinearLayout) findViewById(R.id.lv_name_setting);
         lv_uninstall_setting = (LinearLayout) findViewById(R.id.lv_uninstall_setting);
         lv_hindapp_setting = (LinearLayout) findViewById(R.id.lv_hindapp_setting);

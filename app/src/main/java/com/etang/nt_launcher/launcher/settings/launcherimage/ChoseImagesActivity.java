@@ -28,7 +28,7 @@ import com.etang.nt_launcher.R;
 import java.io.IOException;
 
 public class ChoseImagesActivity extends AppCompatActivity {
-    private RadioButton ra_chahua, ra_erji, ra_meizi, ra_qinglv, ra_applist, ra_luoli, ra_pinbo, ra_yali, ra_zhiyu, ra_wallpaper, ra_wallpaper_and_applist;
+    private RadioButton ra_meizi, ra_qinglv, ra_applist, ra_luoli, ra_zhiyu, ra_wallpaper, ra_wallpaper_and_applist;
     private Button btn_set_wallpaperimage;
     private ImageView iv_back, iv_title_imagebutton;
     private TextView tv_title, tv_title_imagetext;
@@ -260,23 +260,11 @@ public class ChoseImagesActivity extends AppCompatActivity {
         if (images_mode.equals("ql")) {
             ra_qinglv.setChecked(true);
         }
-        if (images_mode.equals("ej")) {
-            ra_erji.setChecked(true);
-        }
         if (images_mode.equals("mz")) {
             ra_meizi.setChecked(true);
         }
-        if (images_mode.equals("ch")) {
-            ra_chahua.setChecked(true);
-        }
         if (images_mode.equals("ll")) {
             ra_luoli.setChecked(true);
-        }
-        if (images_mode.equals("yl")) {
-            ra_yali.setChecked(true);
-        }
-        if (images_mode.equals("pb")) {
-            ra_pinbo.setChecked(true);
         }
         if (images_mode.equals("zy")) {
             ra_zhiyu.setChecked(true);
@@ -303,13 +291,9 @@ public class ChoseImagesActivity extends AppCompatActivity {
         iv_back = (ImageView) findViewById(R.id.iv_title_back);
         tv_title = (TextView) findViewById(R.id.tv_title_text);
         ra_applist = (RadioButton) findViewById(R.id.ra_chose_applist_info);
-        ra_chahua = (RadioButton) findViewById(R.id.ra_chose_chahua);
-        ra_erji = (RadioButton) findViewById(R.id.ra_chose_erji);
         ra_meizi = (RadioButton) findViewById(R.id.ra_chose_meizi);
         ra_qinglv = (RadioButton) findViewById(R.id.ra_chose_qinglv);
         ra_luoli = (RadioButton) findViewById(R.id.ra_chose_luoli);
-        ra_pinbo = (RadioButton) findViewById(R.id.ra_chose_pinbo);
-        ra_yali = (RadioButton) findViewById(R.id.ra_chose_yali);
         ra_zhiyu = (RadioButton) findViewById(R.id.ra_chose_zhiyu);
         ra_wallpaper_and_applist = (RadioButton) findViewById(R.id.ra_wallpaper_and_applist);
         ra_wallpaper = (RadioButton) findViewById(R.id.ra_wallpaper);

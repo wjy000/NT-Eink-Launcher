@@ -2,7 +2,7 @@
     <string name="app_name">NT Launcher</string>
     <string name="info_for_oldmanmode">老人模式（不稳定），开启后会在口袋阅等手机电纸书上有较好的体验，会增大、加粗字体显示，屏蔽不必要的APP桌面图标（主要提升学生\老年用户的体验），开启后会提示设置PIN码，关闭时需要输入PIN码验证身份</string>
     <string name="info_for_offlinemode">离线模式（不稳定），开启后将关闭部分无用联网功能</string>
-    <string name="info_for_hindbottom">隐藏桌面中的底栏。隐藏之后可以通过桌面图标或长按时钟“小时”部分来进入桌面设置</string>
+    <string name="info_for_hindbottom">隐藏桌面中的底栏。隐藏之后可以通过桌面图标或长按时钟“小时”部分来进入桌面设置，此功能不建议和“桌面壁纸”中内设预置的壁纸使用，也不建议和“显示当前设置的壁纸”一起使用，因为会无法切换壁纸界面和APP界面</string>
     <string name="need_reboot">部分功能设置后需要重启桌面（或重启设备）</string>
     <string name="title_back">&lt; | 返回</string>
 </resources>

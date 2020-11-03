@@ -24,6 +24,12 @@
             android:gravity="center_horizontal|center_vertical"
             android:text="已隐藏APP" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="点击图标可以取消隐藏" />
+
         <GridView
             android:id="@+id/mHindGridView"
             android:layout_width="match_parent"
@@ -36,6 +42,7 @@
             android:numColumns="auto_fit"
             android:stretchMode="columnWidth"
             android:verticalSpacing="10dp" />
+
     </LinearLayout>
 
 </LinearLayout>

@@ -122,16 +122,7 @@ public class MainActivity extends Activity implements OnClickListener {
         check_first_user();//检查是不是第一次使用
         SavePermission.check_save_permission(MainActivity.this, MainActivity.this);//检查存取权限
         new_time_Thread();// 启用更新时间进程
-        rember_name(MainActivity.this);// 读取昵称
-        initAppList(this);// 获取应用列表
-        monitorBatteryState();// 监听电池信息
-        check_text_size(MainActivity.this);//检查文本大小
-        update_wathers(sharedPreferences);//更新天气
-        check_view_hind(MainActivity.this, sharedPreferences);//检查底栏是否隐藏
-        check_offline_mode(MainActivity.this, sharedPreferences);//检查离线模式是否打开
-        images_upgrade();//更新图像信息
-        get_applist_number();//获取设定的应用列表列数
-        set_app_setStackFromBottomMode(sharedPreferences);//检查并设置APP列表排列方式
+        read_info_help(MainActivity.this, sharedPreferences);//集中存放读取信息相关方法
         // 长按弹出APP信息
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -226,14 +217,28 @@ public class MainActivity extends Activity implements OnClickListener {
         }, 50);
     }
 
+    private void read_info_help(Context c, SharedPreferences sharedPreferences) {
+        rember_name(c);// 读取昵称
+        initAppList(c);// 获取应用列表
+        monitorBatteryState();// 监听电池信息
+        check_text_size(c);//检查文本大小
+        update_wathers(sharedPreferences);//更新天气
+        check_view_hind(c, sharedPreferences);//检查底栏是否隐藏
+        check_offline_mode(c, sharedPreferences);//检查离线模式是否打开
+        check_oldman_mode(c, sharedPreferences);//检查老年模式是否打开
+        get_applist_number(c, sharedPreferences);//获取设定的应用列表列数
+        images_upgrade(c, sharedPreferences);//更新图像信息
+        set_app_setStackFromBottomMode(sharedPreferences);//检查并设置APP列表排列方式
+    }
+
     @Override
     protected void onRestart() {
         super.onRestart();
         SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
         check_view_hind(MainActivity.this, sharedPreferences);//检查底栏是否隐藏
         check_offline_mode(MainActivity.this, sharedPreferences);//检查离线模式是否打开
-        images_upgrade();//更新图像信息
-        get_applist_number();//获取设定的应用列表列数
+        get_applist_number(MainActivity.this, sharedPreferences);//获取设定的应用列表列数
+        images_upgrade(MainActivity.this, sharedPreferences);//更新图像信息
         set_app_setStackFromBottomMode(sharedPreferences);//检查并设置APP列表排列方式
     }
 
@@ -315,11 +320,12 @@ public class MainActivity extends Activity implements OnClickListener {
             editor.putString("datetext_size", "16");//日期文本大小
             editor.putString("setting_ico_hind", "false");//隐藏底栏
             editor.putString("offline", "false");//离线模式
+            editor.putString("oldman", "false");//老年模式
             editor.putBoolean("app_setStackFromBottomMode", false);//默认显示内容
             editor.putString("icon_size", "45");//图标大小
             editor.apply();
             //更新桌面信息
-            images_upgrade();
+            images_upgrade(MainActivity.this, sharedPreferences);
             //填充预设隐藏应用包名
             ArrayList<String> arrayList = new ArrayList<String>();
             arrayList.add("frist");
@@ -371,6 +377,21 @@ public class MainActivity extends Activity implements OnClickListener {
         });
     }
 
+    public static void check_oldman_mode(Context context, SharedPreferences sharedPreferences) {
+        try {
+            String offline = sharedPreferences.getString("offline", null);
+            if (offline.equals("true")) {
+                offline_mode = true;
+            } else {
+                offline_mode = false;
+            }
+        } catch (Exception e) {
+            SharedPreferences.Editor editor = context.getSharedPreferences("info", context.MODE_PRIVATE).edit();
+            editor.putString("oldman", "false");//日期文本大小
+            editor.apply();
+        }
+    }
+
     public static void check_offline_mode(Context context, SharedPreferences sharedPreferences) {
         try {
             String offline = sharedPreferences.getString("offline", null);
@@ -404,10 +425,8 @@ public class MainActivity extends Activity implements OnClickListener {
         }
     }
 
-    private void get_applist_number() {
+    private void get_applist_number(Context context, SharedPreferences sharedPreferences) {
         try {
-            SharedPreferences sharedPreferences;
-            sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
             String applist_number = sharedPreferences.getString("applist_number", null);
             if (applist_number.equals("auto")) {
                 mListView.setNumColumns(GridView.AUTO_FIT);
@@ -438,55 +457,58 @@ public class MainActivity extends Activity implements OnClickListener {
     /**
      * 检查图片
      */
-    private void images_upgrade() {
-        SharedPreferences sharedPreferences;
-        sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-        String images_mode = sharedPreferences.getString("images_info", null);
-        if (images_mode.equals("ql")) {
-            iv_index_back.setImageResource(R.drawable.mi_haole);
-            iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.GONE);
-            tg_apps_state.setVisibility(View.VISIBLE);
-            tg_apps_state.setChecked(false);
-        }
-        if (images_mode.equals("mz")) {
-            iv_index_back.setImageResource(R.drawable.mi_meizi);
-            iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.GONE);
-            tg_apps_state.setVisibility(View.VISIBLE);
-            tg_apps_state.setChecked(false);
-        }
-        if (images_mode.equals("ll")) {
-            iv_index_back.setImageResource(R.drawable.mi_luoli);
-            iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.GONE);
-            tg_apps_state.setVisibility(View.VISIBLE);
-            tg_apps_state.setChecked(false);
-        }
-        if (images_mode.equals("zy")) {
-            iv_index_back.setImageResource(R.drawable.mi_zhiyu);
-            iv_index_back.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.GONE);
-            tg_apps_state.setVisibility(View.VISIBLE);
-            tg_apps_state.setChecked(false);
-        }
-        if (images_mode.equals("applist")) {
-            iv_index_back.setImageResource(R.drawable.mi_haole);
-            iv_index_back.setVisibility(View.GONE);
-            mListView.setVisibility(View.VISIBLE);
-            tg_apps_state.setVisibility(View.GONE);
-        }
-        if (images_mode.equals("")) {
-            iv_index_back.setImageResource(R.drawable.mi_haole);
-            iv_index_back.setVisibility(View.INVISIBLE);
-            mListView.setVisibility(View.VISIBLE);
-            DiyToast.showToast(this, "请选择壁纸或者应用列表（设置-壁纸设置）", false);
-        }
-        if (images_mode.equals("app_wallpaper")) {
-            initSkinMode(MainActivity.this, images_mode);
-        }
-        if (images_mode.equals("app_wallpaper_applist")) {
-            initSkinMode(MainActivity.this, images_mode);
+    private void images_upgrade(Context c, SharedPreferences sharedPreferences) {
+        try {
+            String images_mode = sharedPreferences.getString("images_info", null);
+            if (images_mode.equals("ql")) {
+                iv_index_back.setImageResource(R.drawable.mi_haole);
+                iv_index_back.setVisibility(View.VISIBLE);
+                mListView.setVisibility(View.GONE);
+                tg_apps_state.setVisibility(View.VISIBLE);
+                tg_apps_state.setChecked(false);
+            }
+            if (images_mode.equals("mz")) {
+                iv_index_back.setImageResource(R.drawable.mi_meizi);
+                iv_index_back.setVisibility(View.VISIBLE);
+                mListView.setVisibility(View.GONE);
+                tg_apps_state.setVisibility(View.VISIBLE);
+                tg_apps_state.setChecked(false);
+            }
+            if (images_mode.equals("ll")) {
+                iv_index_back.setImageResource(R.drawable.mi_luoli);
+                iv_index_back.setVisibility(View.VISIBLE);
+                mListView.setVisibility(View.GONE);
+                tg_apps_state.setVisibility(View.VISIBLE);
+                tg_apps_state.setChecked(false);
+            }
+            if (images_mode.equals("zy")) {
+                iv_index_back.setImageResource(R.drawable.mi_zhiyu);
+                iv_index_back.setVisibility(View.VISIBLE);
+                mListView.setVisibility(View.GONE);
+                tg_apps_state.setVisibility(View.VISIBLE);
+                tg_apps_state.setChecked(false);
+            }
+            if (images_mode.equals("applist")) {
+                iv_index_back.setImageResource(R.drawable.mi_haole);
+                iv_index_back.setVisibility(View.GONE);
+                mListView.setVisibility(View.VISIBLE);
+                tg_apps_state.setVisibility(View.GONE);
+            }
+            if (images_mode.equals("")) {
+                iv_index_back.setImageResource(R.drawable.mi_haole);
+                iv_index_back.setVisibility(View.INVISIBLE);
+                mListView.setVisibility(View.VISIBLE);
+                DiyToast.showToast(this, "请选择壁纸或者应用列表（设置-壁纸设置）", false);
+            }
+            if (images_mode.equals("app_wallpaper")) {
+                initSkinMode(MainActivity.this, images_mode);
+            }
+            if (images_mode.equals("app_wallpaper_applist")) {
+                initSkinMode(MainActivity.this, images_mode);
+            }
+        } catch (Exception e) {
+            DeBugDialog.debug_show_dialog(c, "桌面壁纸出现错误，已重置为默认");
+            sharedPreferences.edit().putString("images_info", "applist").apply();
         }
     }
 
@@ -570,7 +592,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 SimpleDateFormat simpleDateFormat_min = new SimpleDateFormat(
                         "mm");
                 SimpleDateFormat simpleDateFormat_date = new SimpleDateFormat(
-                        "yyyy/MM/dd/");
+                        "yyyy/MM/dd");
                 tv_main_nowdate.setText(simpleDateFormat_date
                         .format(new java.util.Date()));
                 tv_time_hour.setText(simpleDateFormat_hour

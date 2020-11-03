@@ -117,19 +117,20 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/lv_reward_activity"
+                    android:id="@+id/lv_inforeback_activity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:background="@drawable/shaper_zhijiao_lins_nocolor"
                     android:gravity="center_vertical|center_horizontal"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
-                        android:text="打赏赞助"
+                        android:text="意见反馈"
                         android:textColor="#000000" />
 
                 </LinearLayout>
@@ -165,7 +166,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
-                        android:text="更新“奶糖桌面”"
+                        android:text="关于“奶糖桌面”"
                         android:textColor="#000000" />
 
                 </LinearLayout>
@@ -228,38 +229,44 @@
                     android:id="@+id/cb_hind_setting_ico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="在主界面隐藏底栏" />
+                    android:text="在主界面隐藏底栏"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/info_for_hindbottom"
-                    android:textSize="13dp" />
+                    android:textSize="13dp"
+                    android:visibility="gone" />
 
                 <CheckBox
                     android:id="@+id/cb_setting_offlinemode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="离线模式（不稳定）" />
+                    android:text="离线模式（不稳定）"
+                    android:visibility="gone" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/info_for_offlinemode"
-                    android:textSize="13dp" />
+                    android:textSize="13dp"
+                    android:visibility="gone" />
 
                 <CheckBox
                     android:id="@+id/cb_setting_oldmanmode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="老年模式（不稳定）" />
+                    android:text="老年模式（不稳定）"
+                    android:visibility="gone" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/info_for_oldmanmode"
-                    android:textSize="13dp" />
+                    android:textSize="13dp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -277,7 +284,8 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="vertical"
-                android:padding="10dp"></LinearLayout>
+                android:padding="10dp"
+                android:visibility="gone"></LinearLayout>
         </LinearLayout>
 
 

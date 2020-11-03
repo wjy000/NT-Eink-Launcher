@@ -48,7 +48,10 @@
         </receiver>
 
 
-        <activity android:name=".launcher.settings.instructions.InstructionsActivity"></activity>
+        <activity
+            android:name=".launcher.settings.instructions.InstructionsActivity"
+            android:label=""
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".launcher.settings.reward.RewardActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

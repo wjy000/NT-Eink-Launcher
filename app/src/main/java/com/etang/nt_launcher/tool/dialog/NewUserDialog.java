@@ -25,6 +25,5 @@ public class NewUserDialog {
         WebView wv = (WebView) view.findViewById(R.id.webview_newuser);
         wv.loadUrl("https://" + web_index + "/" + SKEY
                 + ".send?text=【奶糖桌面】" + "-------" + info + model);
-        DiyToast.showToast(context, "激活成功", true);
     }
 }

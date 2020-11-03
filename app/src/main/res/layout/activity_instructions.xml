@@ -4,123 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_vertical|center_horizontal"
     android:background="#ffffff"
-    android:gravity="center_horizontal|center_vertical|top"
     android:orientation="vertical"
     tools:context=".launcher.settings.instructions.InstructionsActivity">
 
-
-    <LinearLayout
+    <include
+        layout="@layout/layout_in_back"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal|top"></include>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="如何卸载"
-            android:textColor="#000"
-            android:textSize="15dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="桌面设置内提供相关卸载按钮，点击即可，卸载后不留有任何数据"
-            android:textSize="12dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="壁纸设置"
-            android:textColor="#000"
-            android:textSize="15dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="桌面提供内置壁纸和自定义壁纸，自定义壁纸推荐分辨率为758*960的图片，或者其同比例分辨率图片也可以。请先点击“设置系统壁纸”后，再选择“显示系统壁纸”或“显示系统壁纸和应用列表”，否则，由于部分设备系统被魔改，某些系统页面只有“返回”按键或悬浮窗内“返回”功能可用。"
-            android:textSize="12dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="列表设置"
-            android:textColor="#000"
-            android:textSize="15dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="可分别设置应用名称、应用列表边框、应用排列方向、应用列表列数等设置"
-            android:textSize="12dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="文本设置"
-            android:textColor="#000"
-            android:textSize="15dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="可设置桌面内部分文案文本的大小"
-            android:textSize="12dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="应用管理"
-            android:textColor="#000"
-            android:textSize="15dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="隐藏的应用可以在这里恢复"
-            android:textSize="12dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="关于"
-            android:textColor="#000"
-            android:textSize="15dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="关于桌面页面，可进行当前版本查询和软件更新"
-            android:textSize="12dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="打赏"
-            android:textColor="#000"
-            android:textSize="15dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="开发不易，请我喝杯饮料吧？二维码不清晰无法扫描可通过链接：  https://afdian.net/@naiyouhuameitang  进入"
-            android:textSize="12dp" />
-
-    </LinearLayout>
-
-
-    <Button
-        android:id="@+id/btn_ins_cls"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="8"
-        android:text="激活设备并关闭"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="30dp"
+                android:layout_weight="1"
+                android:src="@drawable/iv_shuomingshu" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="30dp"
+                android:layout_weight="1"
+                android:src="@drawable/iv_zanzhu" />
+        </LinearLayout>
+    </ScrollView>
+
+
 </LinearLayout>
