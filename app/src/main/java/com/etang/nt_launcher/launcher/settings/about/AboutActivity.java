@@ -44,7 +44,7 @@ public class AboutActivity extends AppCompatActivity {
         iv_about_logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SavePermission.check_save_permission(AboutActivity.this, AboutActivity.this);
+                SavePermission.check_save_permission(AboutActivity.this);
                 CheckUpdateDialog.check_update(AboutActivity.this, AboutActivity.this);
             }
         });

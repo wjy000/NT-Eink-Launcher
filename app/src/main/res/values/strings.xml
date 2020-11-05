@@ -5,4 +5,15 @@
     <string name="info_for_hindbottom">隐藏桌面中的底栏。隐藏之后可以通过桌面图标或长按时钟“小时”部分来进入桌面设置，此功能不建议和“桌面壁纸”中内设预置的壁纸使用，也不建议和“显示当前设置的壁纸”一起使用，因为会无法切换壁纸界面和APP界面</string>
     <string name="need_reboot">部分功能设置后需要重启桌面（或重启设备）</string>
     <string name="title_back">&lt; | 返回</string>
+    <string name="quanxian_intent">网络权限，需要用在“天气”和“检查更新”中，桌面出现BUG时会有返回报错信息的功能，桌面内拥有离线模式，可关闭部分联网功能（后续将更新完整的离线模式）</string>
+    <string name="quanxian_webname">访问网络连接管理器需要，主要可查询当前连接的网络（用于检查当前是否连接WIFI）</string>
+    <string name="quanxian_wifiname">访问WIFI连接管理器需要，主要可查询当前连接的WIFI（用于检查当前是否连接WIFI）</string>
+    <string name="quanxian_wifichanger">申请更改WIFI的权限（弃用状态）</string>
+    <string name="quanxian_cunchu">本地存取权限，用于下载更新和设置图标</string>
+    <string name="quanxian_chongqi">申请重启APP权限（点击“重载”时，不是退出APP而是重新启动APP）</string>
+    <string name="quanxian_systemstart">开机广播权限，用于“开机自启”（暂时弃用功能）</string>
+    <string name="quanxian_shezhibizhi">设置读取壁纸权限</string>
+    <string name="quanxian_tanchuduihuakuang">全局弹出式对话框权限（本来用于悬浮球功能，但是现在处于暂时弃用状态）</string>
+    <string name="quanxian_sdcardreader">SD卡读取权限（Android一些版本本地存储权限和SD卡读取权限是分开的，万一有的设备有SD卡就很尴尬了，所以需要添加权限进行适配，同样是下载更新功能和设置图标功能需要）</string>
+    <string name="quanxian_installerq">申请安装apk的权限（没适配好，所以也是暂时弃用功能，如何安装更新在桌面内已经给出了一个弹窗提示，很方便QWQ）</string>
 </resources>

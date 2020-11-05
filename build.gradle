@@ -1,5 +1,5 @@
 ext {
-    constraintlayoutVersion = '2.0.1'
+    constraintlayoutVersion = '2.0.4'
     espressoCoreVersion = '3.3.0'
     cardviewVersion = '1.0.0'
     appcompatVersion = '1.2.0'
@@ -27,7 +27,6 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-
 allprojects {
     repositories {
         mavenCentral()

@@ -285,7 +285,7 @@ public class CheckUpdateDialog {
     }
 
     private static void startUpdate(Context context, Activity activity) {
-        SavePermission.check_save_permission(context, activity);
+        SavePermission.check_save_permission(activity);
         mIsCancel = false;
 //              展示对话框
         mContext = context;

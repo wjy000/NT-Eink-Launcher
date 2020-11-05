@@ -146,7 +146,7 @@ public class UnInstallDialog {
 
     private static void show_ico_dialog(final Context context, final Activity activity) {
         try {
-            SavePermission.check_save_permission(context, activity);//检查存取权限
+            SavePermission.check_save_permission(activity);//检查存取权限
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             View view = LayoutInflater.from(context).inflate(R.layout.dialog_load_ico, null, false);
             builder.setView(view);

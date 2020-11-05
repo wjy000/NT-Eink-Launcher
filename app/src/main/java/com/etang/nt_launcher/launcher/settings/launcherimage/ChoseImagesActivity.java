@@ -164,21 +164,21 @@ public class ChoseImagesActivity extends AppCompatActivity {
         tv_title_imagetext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SavePermission.check_save_permission(ChoseImagesActivity.this, ChoseImagesActivity.this);//检查存取权限
+                SavePermission.check_save_permission(ChoseImagesActivity.this);//检查存取权限
                 show_dialog();
             }
         });
         iv_title_imagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SavePermission.check_save_permission(ChoseImagesActivity.this, ChoseImagesActivity.this);//检查存取权限
+                SavePermission.check_save_permission(ChoseImagesActivity.this);//检查存取权限
                 show_dialog();
             }
         });
         btn_set_wallpaperimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SavePermission.check_save_permission(ChoseImagesActivity.this, ChoseImagesActivity.this);//检查存取权限
+                SavePermission.check_save_permission(ChoseImagesActivity.this);//检查存取权限
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
                 startActivityForResult(intent, IMAGE_PICK);

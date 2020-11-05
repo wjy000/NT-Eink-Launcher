@@ -9,7 +9,6 @@ import android.app.PendingIntent;
 import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -27,7 +26,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,14 +43,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.launcher.settings.SettingActivity;
-import com.etang.nt_launcher.launcher.settings.instructions.InstructionsActivity;
 import com.etang.nt_launcher.launcher.settings.uirefresh.UireFreshActivity;
 import com.etang.nt_launcher.launcher.settings.weather.WeatherActivity;
+import com.etang.nt_launcher.launcher.welecome.WelecomeActivity;
 import com.etang.nt_launcher.tool.dialog.CheckUpdateDialog;
 import com.etang.nt_launcher.tool.dialog.DeBugDialog;
 import com.etang.nt_launcher.tool.dialog.NewUserDialog;
@@ -120,7 +117,7 @@ public class MainActivity extends Activity implements OnClickListener {
         //绑定各类
         initView();// 绑定控件
         check_first_user();//检查是不是第一次使用
-        SavePermission.check_save_permission(MainActivity.this, MainActivity.this);//检查存取权限
+        SavePermission.check_save_permission(MainActivity.this);//检查存取权限
         new_time_Thread();// 启用更新时间进程
         read_info_help(MainActivity.this, sharedPreferences);//集中存放读取信息相关方法
         // 长按弹出APP信息
@@ -330,52 +327,13 @@ public class MainActivity extends Activity implements OnClickListener {
             ArrayList<String> arrayList = new ArrayList<String>();
             arrayList.add("frist");
             SaveArrayListUtil.saveArrayList(MainActivity.this, arrayList, "start");//存储在本地
-            //第一次安装给出提示
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setTitle("欢迎使用");
-            builder.setMessage("您是第一次安装，强烈建议您查看 桌面设置-说明书 相关条目");
-            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog_newuser();
-                }
-            });
-            builder.setNeutralButton("查看说明书", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    startActivity(new Intent(MainActivity.this, InstructionsActivity.class));
-                }
-            });
-            builder.show();
-            initAppList(MainActivity.this);
+            //第一次启动预填充数据，并且跳转至欢迎界面
+            startActivity(new Intent(getApplicationContext(), WelecomeActivity.class));
+            finish();
+//            initAppList(MainActivity.this);
         }
     }
 
-    private void dialog_newuser() {
-        final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-        alertDialog.setTitle("允许激活？");
-        alertDialog.setMessage("只需激活一次，仅做用户设备型号统计，需要联网。\n如果不需要请直接点击“取消”\n本对话框只会显示一次");
-        View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_newuserchecker, null, false);
-        alertDialog.setView(view);
-        alertDialog.setCanceledOnTouchOutside(false);
-        Button btn_con = (Button) view.findViewById(R.id.btn_newusercheck_con);
-        Button btn_cls = (Button) view.findViewById(R.id.btn_newusercheck_cls);
-        alertDialog.show();
-        btn_cls.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialog.dismiss();
-            }
-        });
-        btn_con.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DiyToast.showToast(getApplicationContext(), "正在尝试联网激活，请稍后......", true);
-                NewUserDialog.dialog_show(MainActivity.this, "设备激活（新用户）：");
-                alertDialog.dismiss();
-            }
-        });
-    }
 
     public static void check_oldman_mode(Context context, SharedPreferences sharedPreferences) {
         try {

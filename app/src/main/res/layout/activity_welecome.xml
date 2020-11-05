@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context=".launcher.welecome.WelecomeActivity">
+
+    <include
+        layout="@layout/layout_in_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager_welecome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_welecome_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="30dp"
+            android:src="@drawable/select_apps_state"
+            app:backgroundTint="#F8F7F7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击下一步"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/fab_welecome_pass"
+            app:layout_constraintEnd_toEndOf="@+id/fab_welecome_pass"
+            app:layout_constraintStart_toStartOf="@+id/fab_welecome_pass" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

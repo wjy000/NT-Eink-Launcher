@@ -5,14 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:orientation="vertical"
-    tools:context=".launcher.settings.instructions.InstructionsActivity">
+    android:orientation="vertical">
 
-    <include
-        layout="@layout/layout_in_back"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal|top"></include>
 
     <ScrollView
         android:layout_width="match_parent"

@@ -24,10 +24,9 @@ import com.etang.nt_launcher.launcher.MainActivity;
 import com.etang.nt_launcher.launcher.settings.about.AboutActivity;
 import com.etang.nt_launcher.launcher.settings.desktopsetting.DeskTopSettingActivity;
 import com.etang.nt_launcher.launcher.settings.hindapp.HindAppSetting;
-import com.etang.nt_launcher.launcher.settings.instructions.InstructionsActivity;
 import com.etang.nt_launcher.launcher.settings.launcherimage.ChoseImagesActivity;
-import com.etang.nt_launcher.launcher.settings.reward.RewardActivity;
 import com.etang.nt_launcher.launcher.settings.textsizesetting.TextSizeSetting;
+import com.etang.nt_launcher.launcher.welecome.WelecomeActivity;
 import com.etang.nt_launcher.tool.dialog.UnInstallDialog;
 import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;
 import com.etang.nt_launcher.tool.toast.DiyToast;
@@ -234,17 +233,17 @@ public class SettingActivity extends Activity {
                 }
             }
         });
-        ((TextView) findViewById(R.id.tv_title_imagetext)).setText("说明书");
+        ((TextView) findViewById(R.id.tv_title_imagetext)).setText("权限声明 | APP说明书");
         ((TextView) findViewById(R.id.tv_title_imagetext)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SettingActivity.this, InstructionsActivity.class));
+                startActivity(new Intent(SettingActivity.this, WelecomeActivity.class));
             }
         });
         ((ImageView) findViewById(R.id.iv_title_imagebutton)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SettingActivity.this, InstructionsActivity.class));
+                startActivity(new Intent(SettingActivity.this, WelecomeActivity.class));
             }
         });
     }

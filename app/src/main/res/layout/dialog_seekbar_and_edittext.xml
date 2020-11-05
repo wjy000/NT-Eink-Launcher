@@ -2,8 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp"
-    android:background="#ffffff"
     android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical">
 
@@ -11,19 +9,21 @@
         android:id="@+id/dialog_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_margin="20dp"
+        android:textColor="#000"
         android:gravity="center_horizontal|center_vertical"
         android:text="请滑动设置文本大小" />
 
     <SeekBar
         android:id="@+id/dialog_seekbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:gravity="center_horizontal|center_vertical"
-        android:max="100" />
+        android:max="100"
+        android:progressDrawable="@drawable/layer_list_progressbarback"
+        android:thumb="@null" />
 
 
 </LinearLayout>
