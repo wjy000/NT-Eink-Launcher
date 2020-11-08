@@ -30,10 +30,9 @@ import java.io.IOException;
 public class ChoseImagesActivity extends AppCompatActivity {
     private RadioButton ra_meizi, ra_qinglv, ra_applist, ra_luoli, ra_zhiyu, ra_wallpaper, ra_wallpaper_and_applist;
     private Button btn_set_wallpaperimage;
-    private ImageView iv_back, iv_title_imagebutton;
-    private TextView tv_title, tv_title_imagetext;
     private static final int IMAGE_PICK = 2654;
     Bitmap bitmap = null;
+    private TextView tv_back, tv_button, tv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,22 +152,15 @@ public class ChoseImagesActivity extends AppCompatActivity {
                 MainActivity.initSkinMode(ChoseImagesActivity.this, "app_wallpaper_applist");
             }
         });
-        iv_back.setOnClickListener(new View.OnClickListener() {
+        tv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
         tv_title.setText("壁纸设置");
-        tv_title_imagetext.setText("预览壁纸");
-        tv_title_imagetext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SavePermission.check_save_permission(ChoseImagesActivity.this);//检查存取权限
-                show_dialog();
-            }
-        });
-        iv_title_imagebutton.setOnClickListener(new View.OnClickListener() {
+        tv_button.setText("预览壁纸");
+        tv_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SavePermission.check_save_permission(ChoseImagesActivity.this);//检查存取权限
@@ -287,9 +279,10 @@ public class ChoseImagesActivity extends AppCompatActivity {
      * 绑定控件
      */
     private void initView() {
-        btn_set_wallpaperimage = (Button) findViewById(R.id.btn_set_wallpaperimage);
-        iv_back = (ImageView) findViewById(R.id.iv_title_back);
+        tv_back = (TextView) findViewById(R.id.tv_title_back);
+        tv_button = (TextView) findViewById(R.id.tv_title_button);
         tv_title = (TextView) findViewById(R.id.tv_title_text);
+        btn_set_wallpaperimage = (Button) findViewById(R.id.btn_set_wallpaperimage);
         ra_applist = (RadioButton) findViewById(R.id.ra_chose_applist_info);
         ra_meizi = (RadioButton) findViewById(R.id.ra_chose_meizi);
         ra_qinglv = (RadioButton) findViewById(R.id.ra_chose_qinglv);
@@ -297,7 +290,5 @@ public class ChoseImagesActivity extends AppCompatActivity {
         ra_zhiyu = (RadioButton) findViewById(R.id.ra_chose_zhiyu);
         ra_wallpaper_and_applist = (RadioButton) findViewById(R.id.ra_wallpaper_and_applist);
         ra_wallpaper = (RadioButton) findViewById(R.id.ra_wallpaper);
-        iv_title_imagebutton = (ImageView) findViewById(R.id.iv_title_imagebutton);
-        tv_title_imagetext = (TextView) findViewById(R.id.tv_title_imagetext);
     }
 }

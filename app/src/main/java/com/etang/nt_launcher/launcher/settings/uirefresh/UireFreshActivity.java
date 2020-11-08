@@ -22,8 +22,8 @@ public class UireFreshActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        //全屏
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.activity_uirefresh);
         uirefresh_id = (View) findViewById(R.id.uirefresh_id);
@@ -49,7 +49,7 @@ public class UireFreshActivity extends AppCompatActivity {
             number++;
             Message message = handler.obtainMessage();
             message.arg1 = number;
-            if (number < 16) {
+            if (number < 6) {
                 handler.sendMessage(message);
             } else {
                 handler.removeCallbacks(timeRunnable);

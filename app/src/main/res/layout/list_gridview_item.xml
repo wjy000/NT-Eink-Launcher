@@ -39,8 +39,8 @@
                 android:id="@+id/tv_gridview_app_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
                 android:gravity="center_vertical|center_horizontal"
-                android:singleLine="false"
                 android:text="梅糖桌面 标准版"
                 android:textColor="#000"
                 android:textSize="12dp" />

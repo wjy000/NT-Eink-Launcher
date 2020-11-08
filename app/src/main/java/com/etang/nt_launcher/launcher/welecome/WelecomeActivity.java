@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -33,8 +34,8 @@ public class WelecomeActivity extends FragmentActivity {
     PagerAdapter pagerAdapter;
     List<Fragment> list_fragment = new ArrayList<Fragment>();
     FloatingActionButton fab_welecome_pass;
-    ImageView iv_title_back, iv_title_imagebutton;
-    TextView tv_title_text, tv_back_text, tv_title_imagetext;
+    String state = "";
+    private TextView tv_back, tv_button, tv_title;
 
     private class PagerAdapter extends FragmentPagerAdapter {
 
@@ -60,12 +61,23 @@ public class WelecomeActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welecome);
         initView();
-        show_dialog();
+        try {
+            Intent intent = getIntent();
+            state = intent.getStringExtra("state");
+            if (!state.equals("false")) {
+                show_dialog();
+            }
+        } catch (Exception e) {
+            state = "true";
+            show_dialog();
+        }
         fab_welecome_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (viewPager.getCurrentItem() == 1) {
-                    dialog_newuser();
+                if (viewPager.getCurrentItem() == 1 && !state.equals("false")) {
+                    dialog_newuser(true);
+                } else if (viewPager.getCurrentItem() == 1 && state.equals("false")) {
+                    dialog_newuser(false);
                 }
                 viewPager.setCurrentItem(1);
             }
@@ -75,12 +87,12 @@ public class WelecomeActivity extends FragmentActivity {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 switch (position) {
                     case 0:
-                        tv_title_text.setText("使用向导");
-                        tv_title_imagetext.setText("欢迎使用");
+                        tv_title.setText("使用向导");
+                        tv_button.setText("欢迎使用");
                         break;
                     case 1:
-                        tv_title_text.setText("说明书");
-                        tv_title_imagetext.setText("请扫码查阅说明书");
+                        tv_title.setText("说明书");
+                        tv_button.setText("请扫码查阅说明书");
                         break;
                 }
             }
@@ -89,12 +101,12 @@ public class WelecomeActivity extends FragmentActivity {
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        tv_title_text.setText("使用向导");
-                        tv_title_imagetext.setText("欢迎使用");
+                        tv_title.setText("使用向导");
+                        tv_button.setText("欢迎使用");
                         break;
                     case 1:
-                        tv_title_text.setText("说明书");
-                        tv_title_imagetext.setText("请扫码查阅说明书");
+                        tv_title.setText("说明书");
+                        tv_button.setText("请扫码查阅说明书");
                         break;
                 }
             }
@@ -103,9 +115,9 @@ public class WelecomeActivity extends FragmentActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
-        tv_back_text.setText("MT-Project | ");
-        tv_title_text.setText("使用向导");
-        tv_title_imagetext.setText("欢迎使用");
+        tv_back.setText("MT-Project | ");
+        tv_title.setText("使用向导");
+        tv_button.setText("欢迎使用");
     }
 
     private void show_dialog() {
@@ -137,11 +149,9 @@ public class WelecomeActivity extends FragmentActivity {
     }
 
     private void initView() {
-        tv_title_imagetext = (TextView) findViewById(R.id.tv_title_imagetext);
-        iv_title_back = (ImageView) findViewById(R.id.iv_title_back);
-        iv_title_imagebutton = (ImageView) findViewById(R.id.iv_title_imagebutton);
-        tv_back_text = (TextView) findViewById(R.id.tv_back_text);
-        tv_title_text = (TextView) findViewById(R.id.tv_title_text);
+        tv_back = (TextView) findViewById(R.id.tv_title_back);
+        tv_button = (TextView) findViewById(R.id.tv_title_button);
+        tv_title = (TextView) findViewById(R.id.tv_title_text);
         fab_welecome_pass = findViewById(R.id.fab_welecome_pass);
         viewPager = (ViewPager) findViewById(R.id.pager_welecome);
         list_fragment.add(new OneFragment());
@@ -150,7 +160,7 @@ public class WelecomeActivity extends FragmentActivity {
         viewPager.setAdapter(pagerAdapter);
     }
 
-    private void dialog_newuser() {
+    private void dialog_newuser(final boolean show_or_notshow) {
         final AlertDialog alertDialog = new AlertDialog.Builder(WelecomeActivity.this).create();
         alertDialog.setTitle("允许激活？");
         alertDialog.setMessage("只需激活一次，仅做用户设备型号统计，需要联网。\n如果不需要请直接点击“取消”\n本对话框只会显示一次");
@@ -159,7 +169,12 @@ public class WelecomeActivity extends FragmentActivity {
         alertDialog.setCanceledOnTouchOutside(false);
         Button btn_con = (Button) view.findViewById(R.id.btn_newusercheck_con);
         Button btn_cls = (Button) view.findViewById(R.id.btn_newusercheck_cls);
-        alertDialog.show();
+        if (show_or_notshow) {
+            alertDialog.show();
+        } else {
+            startActivity(new Intent(WelecomeActivity.this, MainActivity.class));
+            finish();
+        }
         btn_cls.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -171,11 +186,6 @@ public class WelecomeActivity extends FragmentActivity {
             public void onClick(View v) {
                 NewUserDialog.dialog_show(WelecomeActivity.this, "设备激活（新用户）：");
                 alertDialog.dismiss();
-                try {
-                    Thread.sleep(500);
-                } catch (Exception e) {
-
-                }
                 startActivity(new Intent(WelecomeActivity.this, MainActivity.class));
                 finish();
             }

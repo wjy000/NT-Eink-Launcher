@@ -25,20 +25,9 @@ import com.etang.nt_launcher.tool.toast.DiyToast;
  * “桌面列表”设置，用于设置列表显示方式
  */
 public class DeskTopSettingActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView tv_title_text, tv_gridlist_setting;
-    private TextView tv_title_r;
-    private ImageView iv_title_back;
-    private RadioButton ra_appname_hind;
-    private RadioButton ra_appname_one;
-    private RadioButton ra_appname_nope;
-    private RadioButton ra_app_show_blok;
-    private RadioButton ra_app_hind_blok;
-    private RadioButton ra_app_bottommode_bottom;
-    private RadioButton ra_app_bottommode_top;
-    private RadioButton ra_app_show_nocolor_blok;
+    private RadioButton ra_appname_hind, ra_appname_one, ra_appname_nope, ra_app_show_blok, ra_app_hind_blok, ra_app_bottommode_bottom, ra_app_bottommode_top, ra_app_show_nocolor_blok;
     private SeekBar sk_gridlist_iconsize;
-    private TextView tv_gridlist_iconsize;
-
+    private TextView tv_back, tv_button, tv_title, tv_gridlist_setting, tv_gridlist_iconsize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +45,13 @@ public class DeskTopSettingActivity extends AppCompatActivity implements View.On
         /**
          * 设置title
          */
-        tv_title_text.setText("应用列表设置");
-        iv_title_back.setOnClickListener(new View.OnClickListener() {
+        tv_title.setText("应用列表设置");
+        tv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
         /**
          * 获取icon大小
          */
@@ -130,12 +118,11 @@ public class DeskTopSettingActivity extends AppCompatActivity implements View.On
     }
 
     private void initView() {
+        tv_back = (TextView) findViewById(R.id.tv_title_back);
+        tv_button = (TextView) findViewById(R.id.tv_title_button);
+        tv_title = (TextView) findViewById(R.id.tv_title_text);
         sk_gridlist_iconsize = (SeekBar) findViewById(R.id.sk_gridlist_iconsize);
         tv_gridlist_iconsize = (TextView) findViewById(R.id.tv_gridlist_iconsize);
-        tv_title_r = (TextView) findViewById(R.id.tv_title_imagetext);
-        tv_title_r.setVisibility(View.INVISIBLE);
-        tv_title_text = (TextView) findViewById(R.id.tv_title_text);
-        iv_title_back = (ImageView) findViewById(R.id.iv_title_back);
         ra_appname_hind = (RadioButton) findViewById(R.id.ra_appname_hind);
         ra_appname_hind.setOnClickListener(this);
         ra_appname_one = (RadioButton) findViewById(R.id.ra_appname_one);

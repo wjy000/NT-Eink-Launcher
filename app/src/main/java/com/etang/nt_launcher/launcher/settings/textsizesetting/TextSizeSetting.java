@@ -20,11 +20,9 @@ import com.etang.nt_launcher.launcher.MainActivity;
 import com.etang.nt_launcher.tool.toast.DiyToast;
 
 public class TextSizeSetting extends AppCompatActivity {
-    private TextView tv_title_text;
-    private ImageView iv_title_back;
-    private TextView tv_title_imagetext;
     private Button btn_timetext_hour_size, btn_timetext_min_size, btn_datetext_size, btn_nametext_size, btn_dianchitext_size, btn_textsize_resert;
     private SharedPreferences sharedPreferences;
+    private TextView tv_back, tv_button, tv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +34,8 @@ public class TextSizeSetting extends AppCompatActivity {
         setContentView(R.layout.setting_textsize);
         initView();
         sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-        tv_title_text.setText("文本设置");
-        iv_title_back.setOnClickListener(new View.OnClickListener() {
+        tv_title.setText("文本设置");
+        tv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -73,8 +71,8 @@ public class TextSizeSetting extends AppCompatActivity {
                 show_size_dialog("datetext_size", sharedPreferences.getString("datetext_size", null));
             }
         });
-        tv_title_imagetext.setText("重置文本大小");
-        tv_title_imagetext.setOnClickListener(new View.OnClickListener() {
+        tv_button.setText("重置文本大小");
+        tv_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
@@ -150,7 +148,6 @@ public class TextSizeSetting extends AppCompatActivity {
 
     private void initView() {
         // TODO Auto-generated method stub
-        tv_title_imagetext = (TextView) findViewById(R.id.tv_title_imagetext);
         btn_textsize_resert = (Button) findViewById(R.id.btn_textsize_resert);
         btn_textsize_resert.setVisibility(View.INVISIBLE);
         btn_timetext_min_size = (Button) findViewById(R.id.btn_timetext_min_size);
@@ -158,7 +155,8 @@ public class TextSizeSetting extends AppCompatActivity {
         btn_dianchitext_size = (Button) findViewById(R.id.btn_dianchitext_size);
         btn_nametext_size = (Button) findViewById(R.id.btn_nametext_size);
         btn_datetext_size = (Button) findViewById(R.id.btn_datetext_size);
-        tv_title_text = (TextView) findViewById(R.id.tv_title_text);
-        iv_title_back = (ImageView) findViewById(R.id.iv_title_back);
+        tv_back = (TextView) findViewById(R.id.tv_title_back);
+        tv_button = (TextView) findViewById(R.id.tv_title_button);
+        tv_title = (TextView) findViewById(R.id.tv_title_text);
     }
 }

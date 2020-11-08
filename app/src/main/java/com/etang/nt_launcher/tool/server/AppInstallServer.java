@@ -51,7 +51,6 @@ public class AppInstallServer extends BroadcastReceiver {
             }
         } catch (Exception e) {
             Log.e("服务出现错误", "onReceive: " + e.toString());
-            DeBugDialog.debug_show_dialog(context, e.toString());
         }
     }
 

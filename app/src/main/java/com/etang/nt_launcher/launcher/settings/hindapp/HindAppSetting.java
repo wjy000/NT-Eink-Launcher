@@ -25,11 +25,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HindAppSetting extends AppCompatActivity {
-    private TextView tv_title, tv_title_image;
-    private ImageView iv_title_back;
     private static List<AppInfo> appInfos = new ArrayList<AppInfo>();
     private static List<AppInfo> appHindInfos = new ArrayList<AppInfo>();
     private static GridView mHindGridView;
+    private TextView tv_back, tv_button, tv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class HindAppSetting extends AppCompatActivity {
         initView();
         initAppList(HindAppSetting.this);
         tv_title.setText("应用管理");
-        iv_title_back.setOnClickListener(new View.OnClickListener() {
+        tv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -54,8 +53,8 @@ public class HindAppSetting extends AppCompatActivity {
                 show_dialog_helper(appHindInfos.get(position).getPackageName());
             }
         });
-        tv_title_image.setText("刷新");
-        tv_title_image.setOnClickListener(new View.OnClickListener() {
+        tv_button.setText("刷新");
+        tv_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DiyToast.showToast(getApplicationContext(), "刷新成功", false);
@@ -88,9 +87,9 @@ public class HindAppSetting extends AppCompatActivity {
     }
 
     private void initView() {
-        tv_title_image = (TextView) findViewById(R.id.tv_title_imagetext);
+        tv_back = (TextView) findViewById(R.id.tv_title_back);
+        tv_button = (TextView) findViewById(R.id.tv_title_button);
         tv_title = (TextView) findViewById(R.id.tv_title_text);
-        iv_title_back = (ImageView) findViewById(R.id.iv_title_back);
         mHindGridView = (GridView) findViewById(R.id.mHindGridView);
     }
 

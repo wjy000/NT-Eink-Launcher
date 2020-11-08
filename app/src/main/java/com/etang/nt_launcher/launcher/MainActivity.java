@@ -95,11 +95,10 @@ public class MainActivity extends Activity implements OnClickListener {
     public static TextView tv_user_id, tv_time_hour, tv_time_min,
             tv_main_batterystate, tv_city, tv_wind, tv_temp_state,
             tv_last_updatetime, tv_main_nowdate;
-    public static ImageView iv_setting_button, iv_setting_yinliang, iv_setting_refresh, iv_setting_rss, iv_clean_button;
+    public static ImageView iv_setting_button, iv_setting_yinliang, iv_setting_refresh, iv_setting_rss, iv_clean_button, iv_index_back;
     public static ToggleButton tg_apps_state;
     public static LinearLayout line_wather, line_bottom;
     public static String string_app_info = "";
-    public static ImageView iv_index_back;
     public static GridView mListView;
     public static List<AppInfo> appInfos = new ArrayList<AppInfo>();
     public static boolean offline_mode = false;

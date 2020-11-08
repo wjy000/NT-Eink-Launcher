@@ -19,6 +19,7 @@ import com.etang.nt_launcher.tool.dialog.CheckUpdateDialog;
 
 public class RewardActivity extends AppCompatActivity {
     private ImageView iv_about_logo;
+    private TextView tv_back, tv_button, tv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,24 +29,20 @@ public class RewardActivity extends AppCompatActivity {
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.activity_reward);
-        setTitle("关于");
+        tv_back = (TextView) findViewById(R.id.tv_title_back);
+        tv_button = (TextView) findViewById(R.id.tv_title_button);
+        tv_title = (TextView) findViewById(R.id.tv_title_text);
         //返回按钮（整个顶栏LinearLayout）
-        ((ImageView) findViewById(R.id.iv_title_back)).setOnClickListener(new View.OnClickListener() {
+        tv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
         //标题
-        ((TextView) findViewById(R.id.tv_title_text)).setText("打赏");
-        ((TextView) findViewById(R.id.tv_title_imagetext)).setText("如何打赏");
-        ((TextView) findViewById(R.id.tv_title_imagetext)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                show_dialog();
-            }
-        });
-        ((ImageView) findViewById(R.id.iv_title_imagebutton)).setOnClickListener(new View.OnClickListener() {
+        tv_title.setText("打赏");
+        tv_button.setText("如何打赏");
+        tv_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 show_dialog();

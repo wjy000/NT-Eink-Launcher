@@ -60,7 +60,6 @@ public class CheckUpdateDialog {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("正在加载......");
         progressDialog.show();
-        NewUserDialog.dialog_show(context, "有用户检查更新：");
         final Handler handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
