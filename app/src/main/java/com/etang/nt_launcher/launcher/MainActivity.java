@@ -147,14 +147,17 @@ public class MainActivity extends Activity implements OnClickListener {
                         intent.putExtra("type", "110");
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
+                        overridePendingTransition(0, 0);
                     } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".weather")) {//点击了“天气”
                         intent = new Intent(MainActivity.this, WeatherActivity.class);
                         startActivity(intent);
+                        overridePendingTransition(0, 0);
                     } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".systemupdate")) {//点击了“检查更新”
                         CheckUpdateDialog.check_update(MainActivity.this, MainActivity.this);
                     } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".launchersetting")) {//点击了“桌面设置”
                         intent = new Intent(MainActivity.this, SettingActivity.class);
                         startActivity(intent);
+                        overridePendingTransition(0, 0);
                     } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".uirefresh")) {//点击了“刷新屏幕”
                         String s = Build.BRAND;
                         if (s.equals("Allwinner")) {
@@ -162,6 +165,7 @@ public class MainActivity extends Activity implements OnClickListener {
                             sendBroadcast(intent_refresh);
                         } else {
                             startActivity(new Intent(MainActivity.this, UireFreshActivity.class));
+                            overridePendingTransition(0, 0);
                         }
                     } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".systemclean")) {//点击了“清理”
                         String s_clean = Build.BRAND;
@@ -199,6 +203,7 @@ public class MainActivity extends Activity implements OnClickListener {
             @Override
             public boolean onLongClick(View v) {
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                overridePendingTransition(0, 0);
                 return true;
             }
         });
@@ -328,6 +333,7 @@ public class MainActivity extends Activity implements OnClickListener {
             SaveArrayListUtil.saveArrayList(MainActivity.this, arrayList, "start");//存储在本地
             //第一次启动预填充数据，并且跳转至欢迎界面
             startActivity(new Intent(getApplicationContext(), WelecomeActivity.class));
+            overridePendingTransition(0, 0);
             finish();
 //            initAppList(MainActivity.this);
         }
@@ -845,6 +851,7 @@ public class MainActivity extends Activity implements OnClickListener {
             //设置
             case R.id.iv_setting_button:
                 startActivity(new Intent(getApplicationContext(), SettingActivity.class));
+                overridePendingTransition(0, 0);
                 break;
             //天气
             case R.id.line_wather:
@@ -901,6 +908,7 @@ public class MainActivity extends Activity implements OnClickListener {
                     sendBroadcast(intent);
                 } else {
                     startActivity(new Intent(MainActivity.this, UireFreshActivity.class));
+                    overridePendingTransition(0, 0);
                 }
                 break;
             default:
@@ -932,7 +940,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 .setWhen(0)//通知创建的时间
                 .setAutoCancel(false)//点击通知后，自动取消
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(""))
-                .setSmallIcon(R.drawable.title_back_alpha)//通知显示的小图标，只能用alpha图层的图片进行设置
+                .setSmallIcon(R.drawable.ic_launcher)//通知显示的小图标，只能用alpha图层的图片进行设置
                 .setPriority(NotificationCompat.PRIORITY_MAX)//通知重要程度
                 .setContentIntent(pi)//点击跳转
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.title_back_alpha));
@@ -967,4 +975,11 @@ public class MainActivity extends Activity implements OnClickListener {
             check_text_size(context);
         }
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, 0);
+    }
+
 }

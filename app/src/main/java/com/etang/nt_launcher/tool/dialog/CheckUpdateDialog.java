@@ -54,7 +54,7 @@ public class CheckUpdateDialog {
     //  文件保存路径
     private static String mSavePath;
     //  版本名称
-    private static String mVersion_name = "奶糖桌面";
+    private static String mVersion_name = "梅糖桌面";
 
     public static void check_update(final Context context, final Activity activity) {
         final ProgressDialog progressDialog = new ProgressDialog(context);

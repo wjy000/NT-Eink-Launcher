@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -43,8 +44,8 @@ public class SettingActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        //全屏
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.activity_setting);
         initView();
@@ -78,11 +79,23 @@ public class SettingActivity extends Activity {
 //                finish();
 //            }
 //        });
+        tv_button.setText("权限声明 | APP说明书");
+        tv_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), WelecomeActivity.class);
+                intent.putExtra("state", "false");
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                finish();
+            }
+        });
         //壁纸设置
         lv_desktop_setting.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SettingActivity.this, ChoseImagesActivity.class));
+                overridePendingTransition(0, 0);
             }
         });
         //桌面应用列表设置
@@ -90,6 +103,7 @@ public class SettingActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SettingActivity.this, DeskTopSettingActivity.class));
+                overridePendingTransition(0, 0);
             }
         });
         //文本大小设置
@@ -97,6 +111,7 @@ public class SettingActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SettingActivity.this, TextSizeSetting.class));
+                overridePendingTransition(0, 0);
             }
         });
         //应用管理设置
@@ -104,6 +119,7 @@ public class SettingActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SettingActivity.this, HindAppSetting.class));
+                overridePendingTransition(0, 0);
             }
         });
         //退出“奶糖桌面”
@@ -231,16 +247,6 @@ public class SettingActivity extends Activity {
                 }
             }
         });
-        tv_button.setText("权限声明 | APP说明书");
-        tv_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), WelecomeActivity.class);
-                intent.putExtra("state", "false");
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 //
 //    private void show_dialog() {
@@ -350,4 +356,11 @@ public class SettingActivity extends Activity {
                 null, 2);
         db = dbHelper_name_sql.getWritableDatabase();
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, 0);
+    }
+
 }

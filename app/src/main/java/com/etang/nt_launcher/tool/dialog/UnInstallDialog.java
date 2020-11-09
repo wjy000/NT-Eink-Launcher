@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -125,6 +127,10 @@ public class UnInstallDialog {
                 }
             });
             builder.show();
+            Window window = builder.getWindow();
+            WindowManager.LayoutParams lp = window.getAttributes();
+            lp.dimAmount = 0f;
+            window.setAttributes(lp);
         } catch (Exception e) {
             DeBugDialog.debug_show_dialog(context, e.toString());
         }
