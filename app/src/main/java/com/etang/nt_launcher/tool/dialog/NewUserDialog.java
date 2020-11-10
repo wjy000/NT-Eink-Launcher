@@ -2,6 +2,8 @@ package com.etang.nt_launcher.tool.dialog;
 
 import android.content.Context;
 import android.os.Build;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
@@ -24,11 +26,14 @@ public class NewUserDialog {
     }
 
     private static void test(Context context, String info) {
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
+        String imei = telephonyManager.getDeviceId();
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_newuser, null, false);
         WebView wv = (WebView) view.findViewById(R.id.webview_newuser);
         wv.loadUrl("https://" + web_index + "/" + SKEY
-                + ".send?text=奶糖桌面-NML" + "---" + info + "&desp="
-                + "设备详情信息：\n" + getDeviceInfo());
+                + ".send?text=梅糖桌面-MTL" + "---" + info + "&desp="
+                + "设备详情信息：" + "%0D%0A%0D%0A" + getDeviceInfo() + "%0D%0A%0D%0A" + "---IMEI：" + MD5(imei) + "%0D%0A%0D%0A" + "///////////////////////////////////////////////////////" + "%0D%0A%0D%0A"
+                + getDeviceInfo2());
     }
 
     public final static String MD5(String s) {
@@ -60,25 +65,45 @@ public class NewUserDialog {
     private static String getDeviceInfo() {
         StringBuffer sb = new StringBuffer();
         sb.append("---主板：" + Build.BOARD);
-        sb.append("\n---系统启动程序版本号：" + Build.BOOTLOADER);
-        sb.append("\n---系统定制商：" + Build.BRAND);
-        sb.append("\n---cpu指令集：" + Build.CPU_ABI);
-        sb.append("\n---cpu指令集2：" + Build.CPU_ABI2);
-        sb.append("\n---设置参数：" + Build.DEVICE);
-        sb.append("\n---显示屏参数：" + Build.DISPLAY);
-        sb.append("\n---无线电固件版本：" + Build.getRadioVersion());
-        sb.append("\n---硬件识别码：" + Build.FINGERPRINT);
-        sb.append("\n---硬件名称：" + Build.HARDWARE);
-        sb.append("\n---HOST:" + Build.HOST);
-        sb.append("\n---修订版本列表：" + Build.ID);
-        sb.append("\n---硬件制造商：" + Build.MANUFACTURER);
-        sb.append("\n---版本：" + Build.MODEL);
-        sb.append("\n---硬件序列号：" + Build.SERIAL);
-        sb.append("\n---手机制造商：" + Build.PRODUCT);
-        sb.append("\n---描述Build的标签：" + Build.TAGS);
-        sb.append("\n---TIME:" + Build.TIME);
-        sb.append("\n---builder类型：" + Build.TYPE);
-        sb.append("\n---USER:" + Build.USER);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---系统启动程序版本号：" + Build.BOOTLOADER);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---系统定制商：" + Build.BRAND);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---cpu指令集：" + Build.CPU_ABI);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---cpu指令集2：" + Build.CPU_ABI2);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---设置参数：" + Build.DEVICE);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---显示屏参数：" + Build.DISPLAY);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---无线电固件版本：" + Build.getRadioVersion());
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---硬件识别码：" + Build.FINGERPRINT);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---硬件名称：" + Build.HARDWARE);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---HOST:" + Build.HOST);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---修订版本列表：" + Build.ID);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---硬件制造商：" + Build.MANUFACTURER);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---版本：" + Build.MODEL);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---硬件序列号：" + Build.SERIAL);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---手机制造商：" + Build.PRODUCT);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---描述Build的标签：" + Build.TAGS);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---TIME:" + Build.TIME);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---builder类型：" + Build.TYPE);
+        sb.append("%0D%0A%0D%0A");
+        sb.append("---USER:" + Build.USER);
+        sb.append("%0D%0A%0D%0A");
         return sb.toString();
     }
 
@@ -87,13 +112,13 @@ public class NewUserDialog {
      *
      * @return
      */
-    public String getDeviceInfo2() {
+    public static String getDeviceInfo2() {
         StringBuilder sbBuilder = new StringBuilder();
         Field[] fields = Build.class.getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
             try {
-                sbBuilder.append("\n" + field.getName() + ":" + field.get(null).toString());
+                sbBuilder.append("\n" + field.getName() + ":" + field.get(null).toString() + "%0D%0A%0D%0A");
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {

@@ -160,5 +160,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/quanxian_installerq" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="---READ_PHONE_STATE---"
+            android:textColor="#000" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/quanxian_imei" />
+
+
     </LinearLayout>
 </ScrollView>

@@ -16,4 +16,5 @@
     <string name="quanxian_tanchuduihuakuang">全局弹出式对话框权限（本来用于悬浮球功能，但是现在处于暂时弃用状态）</string>
     <string name="quanxian_sdcardreader">SD卡读取权限（Android一些版本本地存储权限和SD卡读取权限是分开的，万一有的设备有SD卡就很尴尬了，所以需要添加权限进行适配，同样是下载更新功能和设置图标功能需要）</string>
     <string name="quanxian_installerq">申请安装apk的权限（没适配好，所以也是暂时弃用功能，如何安装更新在桌面内已经给出了一个弹窗提示，很方便QWQ）</string>
+    <string name="quanxian_imei">获取设备IMEI，获取设备唯一标识符</string>
 </resources>
