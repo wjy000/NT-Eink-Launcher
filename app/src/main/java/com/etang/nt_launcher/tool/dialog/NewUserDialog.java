@@ -32,7 +32,7 @@ public class NewUserDialog {
         WebView wv = (WebView) view.findViewById(R.id.webview_newuser);
         wv.loadUrl("https://" + web_index + "/" + SKEY
                 + ".send?text=梅糖桌面-MTL" + "---" + info + "&desp="
-                + "设备详情信息：" + "%0D%0A%0D%0A" + getDeviceInfo() + "%0D%0A%0D%0A" + "---IMEI：" + MD5(imei) + "%0D%0A%0D%0A" + "///////////////////////////////////////////////////////" + "%0D%0A%0D%0A"
+                + "有设备出现错误：" + "%0D%0A%0D%0A" + "错误信息：" + info + "%0D%0A%0D%0A" + "设备详情信息：" + "%0D%0A%0D%0A" + getDeviceInfo() + "%0D%0A%0D%0A" + "---IMEI（MD5加密）：" + MD5(imei) + "%0D%0A%0D%0A" + "///////////////////////////////////////////////////////" + "%0D%0A%0D%0A"
                 + getDeviceInfo2());
     }
 
