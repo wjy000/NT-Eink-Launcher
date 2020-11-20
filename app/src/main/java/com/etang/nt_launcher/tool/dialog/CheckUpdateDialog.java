@@ -327,7 +327,7 @@ public class CheckUpdateDialog {
             public void run() {
                 try {
                     if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                        String sdPath = Environment.getExternalStorageDirectory() + "/";
+                        String sdPath = context.getExternalCacheDir() + "/";
 //                      文件保存路径
                         mSavePath = sdPath + "ntlauncher";
                         File dir = new File(mSavePath);
