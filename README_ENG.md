@@ -16,9 +16,9 @@
 
 | 语言\|言語\|Language | 链接\|リンク\|Link                                           | 版本\|バージョン\|Version |
 | -------------------- | ------------------------------------------------------------ | ------------------------- |
-| English              | [English VERSION](https://gitee.com/rabbitTang_admin/S.H.Test/blob/master/README_ENG.md) | v1.0                      |
-| 中文                 | [中文 VERSION](https://gitee.com/rabbitTang_admin/S.H.Test/blob/master/README.md) | v1.0                      |
-| 日本語               | [日本語 VERSION](https://gitee.com/rabbitTang_admin/S.H.Test/blob/master/README_JPN.md) | v1.0                      |
+| English              | [English VERSION](https://gitee.com/rabbitTang_admin/NT-Eink-Launcher/blob/master/README_ENG.md) | v1.0                      |
+| 中文                 | [中文 VERSION](https://gitee.com/rabbitTang_admin/NT-Eink-Launcher/blob/master/README.md) | v1.0                      |
+| 日本語               | [日本語 VERSION](https://gitee.com/rabbitTang_admin/NT-Eink-Launcher/blob/master/README_JPN.md) | v1.0                      |
 
 #### 最新更新地址 | 最新の更新アドレス | Latest update address
 
@@ -54,4 +54,4 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![微信](https://yp.nyanon.online/index.php?user/publicLink&fid=2de0cWutSBNLwAHf2wKj9jTu1p7CdgvG7frqYDYx5hxy0-olktzX-pqFUu_ERrtigTfFQjOA_v5-DVtk-XrE9aiIZfLKXOIVys5HDdhstpaNSyzMXOPdMC4fJ9QMaESHcnjusI71vhlwO-Zcn2a4&file_name=/wechatpay.jpg) | ![支付宝](https://yp.nyanon.online/index.php?user/publicLink&fid=fbc5CTYExmGz2jwK5RCh_7AH_VBreib4I37_naefmWF-PijPGScnC933sBCbb8IG8t7hjKBiFyj6Ej74mk6dyu5ZrrzqRzyOXmmQKEzesejamTV9YZm62xS9TstSW0t2iPwyQGPJeJMXgGXA&file_name=/alipay.jpg) |
 
-
+ 
