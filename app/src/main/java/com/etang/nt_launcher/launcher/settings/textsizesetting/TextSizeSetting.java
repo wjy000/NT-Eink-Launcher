@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class TextSizeSetting extends AppCompatActivity {
     private Button btn_timetext_hour_size, btn_timetext_min_size, btn_datetext_size, btn_nametext_size, btn_dianchitext_size, btn_textsize_resert;
     private SharedPreferences sharedPreferences;
     private TextView tv_back, tv_button, tv_title;
+    private LinearLayout lv_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,12 @@ public class TextSizeSetting extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
         tv_title.setText("文本设置");
         tv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        lv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -148,6 +156,7 @@ public class TextSizeSetting extends AppCompatActivity {
 
     private void initView() {
         // TODO Auto-generated method stub
+        lv_back = (LinearLayout) findViewById(R.id.lv_back);
         btn_textsize_resert = (Button) findViewById(R.id.btn_textsize_resert);
         btn_textsize_resert.setVisibility(View.INVISIBLE);
         btn_timetext_min_size = (Button) findViewById(R.id.btn_timetext_min_size);

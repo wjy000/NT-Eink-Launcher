@@ -34,7 +34,7 @@ import com.etang.nt_launcher.tool.toast.DiyToast;
 
 public class SettingActivity extends Activity {
 
-    LinearLayout lv_window_setting, lv_restart_setting, lv_inforeback_activity, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting, lv_exit_setting, lv_hindapp_setting, lv_name_setting, lv_uninstall_setting;
+    LinearLayout lv_back, lv_window_setting, lv_restart_setting, lv_inforeback_activity, lv_textsize_setting, lv_applist_setting, lv_about_activity, lv_desktop_setting, lv_exit_setting, lv_hindapp_setting, lv_name_setting, lv_uninstall_setting;
     private CheckBox cb_hind_setting_ico, cb_setting_offlinemode, cb_setting_oldmanmode;
     private MyDataBaseHelper dbHelper_name_sql;
     private SQLiteDatabase db;
@@ -51,6 +51,12 @@ public class SettingActivity extends Activity {
         initView();
         tv_title.setText("桌面设置");
         tv_back.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        lv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -335,6 +341,7 @@ public class SettingActivity extends Activity {
 
     private void initView() {
         // TODO Auto-generated method stub
+        lv_back = (LinearLayout) findViewById(R.id.lv_back);
         tv_back = (TextView) findViewById(R.id.tv_title_back);
         tv_button = (TextView) findViewById(R.id.tv_title_button);
         tv_title = (TextView) findViewById(R.id.tv_title_text);

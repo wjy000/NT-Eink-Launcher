@@ -20,10 +20,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/shaper_desk_top_show"
                 android:orientation="vertical"
                 android:padding="10dp">
@@ -42,7 +40,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
-                        android:text="顶部文案"
+                        android:text="@string/setting_toptext"
                         android:textColor="#000000" />
                 </LinearLayout>
 
@@ -60,7 +58,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
-                        android:text="桌面列表"
+                        android:text="@string/setting_desktoplist"
                         android:textColor="#000000" />
                 </LinearLayout>
 
@@ -77,7 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
-                        android:text="桌面壁纸"
+                        android:text="@string/setting_desktopimage"
                         android:textColor="#000000" />
                 </LinearLayout>
 
@@ -94,7 +92,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
-                        android:text="文本大小"
+                        android:text="@string/steeing_textsize"
                         android:textColor="#000000" />
 
                 </LinearLayout>
@@ -148,7 +146,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
-                        android:text="管理隐藏应用"
+                        android:text="@string/setting_hindapp"
                         android:textColor="#000000" />
 
                 </LinearLayout>
@@ -166,7 +164,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
-                        android:text="关于“奶糖桌面”"
+                        android:text="@string/setting_about"
                         android:textColor="#000000" />
 
                 </LinearLayout>
@@ -184,7 +182,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
-                        android:text="卸载“奶糖桌面”"
+                        android:text="@string/setting_uninstalllacunher"
                         android:textColor="#000000" />
 
                 </LinearLayout>
@@ -202,7 +200,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
-                        android:text="重载“奶糖桌面”"
+                        android:text="@string/setting_restartlauncher"
                         android:textColor="#000000" />
 
                 </LinearLayout>
@@ -229,30 +227,26 @@
                     android:id="@+id/cb_hind_setting_ico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="在主界面隐藏底栏"
-                    android:visibility="gone" />
+                    android:text="在主界面隐藏底栏" />
 
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/info_for_hindbottom"
-                    android:textSize="13dp"
-                    android:visibility="gone" />
+                    android:textSize="13dp" />
 
                 <CheckBox
                     android:id="@+id/cb_setting_offlinemode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="离线模式（不稳定）"
-                    android:visibility="gone" />
+                    android:text="离线模式（不稳定）" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/info_for_offlinemode"
-                    android:textSize="13dp"
-                    android:visibility="gone" />
+                    android:textSize="13dp" />
 
                 <CheckBox
                     android:id="@+id/cb_setting_oldmanmode"

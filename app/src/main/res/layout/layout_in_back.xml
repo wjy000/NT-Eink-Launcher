@@ -14,7 +14,7 @@
         android:background="#FFFFFF"
         android:gravity="center_horizontal|center_vertical"
         android:orientation="horizontal"
-        android:padding="5dp"
+        android:padding="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,9 +61,10 @@
 
             <TextView
                 android:id="@+id/tv_title_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
+                android:gravity="center_horizontal|center_vertical|right"
                 android:text="功能按钮"
                 android:textSize="15dp" />
         </LinearLayout>

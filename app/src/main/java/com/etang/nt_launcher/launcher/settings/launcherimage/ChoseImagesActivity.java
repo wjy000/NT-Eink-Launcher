@@ -16,6 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -33,6 +34,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
     private static final int IMAGE_PICK = 2654;
     Bitmap bitmap = null;
     private TextView tv_back, tv_button, tv_title;
+    private LinearLayout lv_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,6 +162,12 @@ public class ChoseImagesActivity extends AppCompatActivity {
         });
         tv_title.setText("壁纸设置");
         tv_button.setText("预览壁纸");
+        lv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         tv_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -279,6 +287,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
      * 绑定控件
      */
     private void initView() {
+        lv_back = (LinearLayout) findViewById(R.id.lv_back);
         tv_back = (TextView) findViewById(R.id.tv_title_back);
         tv_button = (TextView) findViewById(R.id.tv_title_button);
         tv_title = (TextView) findViewById(R.id.tv_title_text);

@@ -185,6 +185,8 @@ public class WelecomeActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
+                startActivity(new Intent(WelecomeActivity.this, MainActivity.class));
+                finish();
             }
         });
         btn_con.setOnClickListener(new View.OnClickListener() {

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import com.etang.nt_launcher.tool.permission.SavePermission;
 public class AboutActivity extends AppCompatActivity {
     private ImageView iv_about_logo;
     private TextView tv_back, tv_title, tv_button;
+    private LinearLayout lv_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class AboutActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.setting_about);
+        lv_back = (LinearLayout) findViewById(R.id.lv_back);
         iv_about_logo = (ImageView) findViewById(R.id.iv_about_logo);
         tv_back = (TextView) findViewById(R.id.tv_title_back);
         tv_button = (TextView) findViewById(R.id.tv_title_button);
@@ -38,6 +41,12 @@ public class AboutActivity extends AppCompatActivity {
         tv_title.setText("关于");
         tv_button.setText("版本：" + version);
         tv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        lv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

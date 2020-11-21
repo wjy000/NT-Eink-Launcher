@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MT-Eink-Launcher</string>
+    <string name="info_for_oldmanmode">Elderly mode (unstable), after opening, it will have a better experience on mobile e-mail books such as reading in pocket, increase and bold font display, shield unnecessary APP desktop icons (mainly enhance the experience of students / elderly users), and prompt to set PIN code after opening. When closed, you need to enter PIN code to verify your identity.</string>
+    <string name="info_for_offlinemode">Offline mode (unstable). When enabled, some useless networking functions will be turned off.</string>
+    <string name="info_for_hindbottom">Hide the bottom bar in the desktop. After hiding, you can enter the desktop settings through the desktop icon or the \"hour\" section of the clock. This feature is not recommended to be used with the preset wallpaper in \"Desktop wallpaper\" or with \"Show the wallpaper of current settings\", because you will not be able to switch between the wallpaper interface and the APP interface.</string>
+    <string name="need_reboot">After some functions are set, you need to restart the desktop (or restart the device).</string>
+    <string name="title_back">&lt; | Back</string>
+    <string name="quanxian_intent">Network permissions, which need to be used in \"Weather\" and \"check updates\". When BUG appears on the desktop, it will return error messages. There is an offline mode in the desktop, and some networking functions can be turned off (the complete offline mode will be updated later).</string>
+    <string name="quanxian_webname">To access the network connection manager, you can mainly query the currently connected network (used to check whether the WIFI is currently connected)</string>
+    <string name="quanxian_wifiname">Access to the WIFI connection manager is required. You can mainly query the WIFI of the current connection (used to check whether the WIFI is currently connected)</string>
+    <string name="quanxian_wifichanger">Apply for permission to change WIFI (deprecation status)</string>
+    <string name="quanxian_cunchu">Local access for downloading updates and setting icons</string>
+    <string name="quanxian_chongqi">Apply for permission to restart APP (when you click \"reload\", instead of quitting APP but restarting APP)</string>
+    <string name="quanxian_systemstart">Boot broadcast permission for \"boot self-boot\" (temporarily deprecated function)</string>
+    <string name="quanxian_shezhibizhi">Set the permission to read wallpaper</string>
+    <string name="quanxian_tanchuduihuakuang">Global pop-up dialog box permissions (originally used for the floating ball function, but now temporarily deprecated)</string>
+    <string name="quanxian_sdcardreader">SD card read permission (some versions of Android local storage permission and SD card read permission are separated, in case some devices have SD card, it is very embarrassing, so you need to add permission to adapt, also download update function and set icon function)</string>
+    <string name="quanxian_installerq">Apply for the permission to install apk (it is not well adapted, so it is also temporarily abandoned. How to install updates has been given a pop-up window prompt in the desktop, which is very convenient for QWQ)</string>
+    <string name="quanxian_imei">Get device IMEI, get device unique identifier</string>
+    <string name="setting_toptext">Top Text</string>
+    <string name="setting_desktoplist">Desktop List</string>
+    <string name="setting_desktopimage">Desktop Wallpaper</string>
+    <string name="steeing_textsize">Text Size</string>
+    <string name="setting_hindapp">Hide application management</string>
+    <string name="setting_about">About \"MT Launcher\"</string>
+    <string name="setting_restartlauncher">Restart \"MT Launcher\"</string>
+    <string name="setting_uninstalllacunher">UnInstall \"MT Launcher\"</string>
+    <string name="title_setting">Setting</string>
+    <string name="app_desktopreforces">Refresh</string>
+    <string name="app_desktopupdate">Update</string>
+    <string name="app_desktopsetting">Desktop Setting</string>
+    <string name="app_desktopweather">Weather</string>
+</resources>

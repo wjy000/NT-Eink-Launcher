@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -29,6 +30,7 @@ public class HindAppSetting extends AppCompatActivity {
     private static List<AppInfo> appHindInfos = new ArrayList<AppInfo>();
     private static GridView mHindGridView;
     private TextView tv_back, tv_button, tv_title;
+    private LinearLayout lv_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,12 @@ public class HindAppSetting extends AppCompatActivity {
         initAppList(HindAppSetting.this);
         tv_title.setText("应用管理");
         tv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        lv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -87,6 +95,7 @@ public class HindAppSetting extends AppCompatActivity {
     }
 
     private void initView() {
+        lv_back = (LinearLayout) findViewById(R.id.lv_back);
         tv_back = (TextView) findViewById(R.id.tv_title_back);
         tv_button = (TextView) findViewById(R.id.tv_title_button);
         tv_title = (TextView) findViewById(R.id.tv_title_text);

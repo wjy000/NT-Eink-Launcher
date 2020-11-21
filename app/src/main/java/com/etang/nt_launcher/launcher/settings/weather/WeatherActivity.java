@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ public class WeatherActivity extends Activity {
     private MyDataBaseHelper dbHelper;
     private SQLiteDatabase db;
     private TextView tv_back, tv_button, tv_title;
+    private LinearLayout lv_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,10 +81,17 @@ public class WeatherActivity extends Activity {
         });
         tv_button.setVisibility(View.INVISIBLE);
         tv_title.setText("天气设置");
+        lv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void initView() {
         // TODO Auto-generated method stub
+        lv_back = (LinearLayout) findViewById(R.id.lv_back);
         tv_back = (TextView) findViewById(R.id.tv_title_back);
         tv_button = (TextView) findViewById(R.id.tv_title_button);
         tv_title = (TextView) findViewById(R.id.tv_title_text);

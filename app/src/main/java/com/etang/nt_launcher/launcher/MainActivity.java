@@ -943,7 +943,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 .setSmallIcon(R.drawable.ic_launcher)//通知显示的小图标，只能用alpha图层的图片进行设置
                 .setPriority(NotificationCompat.PRIORITY_MAX)//通知重要程度
                 .setContentIntent(pi)//点击跳转
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.title_back_alpha));
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher));
         Notification notification = builder.build();
         notification.flags |= Notification.FLAG_ONGOING_EVENT;
         manager.notify(channelId, notification);

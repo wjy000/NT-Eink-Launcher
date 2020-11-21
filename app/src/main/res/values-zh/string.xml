@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">梅糖桌面</string>
     <string name="info_for_oldmanmode">老人模式（不稳定），开启后会在口袋阅等手机Eink设备上有较好的体验，会增大、加粗字体显示，屏蔽不必要的APP桌面图标（主要提升学生\老年用户的体验），开启后会提示设置PIN码，关闭时需要输入PIN码验证身份</string>
@@ -23,8 +24,8 @@
     <string name="steeing_textsize">文本大小</string>
     <string name="setting_hindapp">隐藏应用管理</string>
     <string name="setting_about">关于“梅糖桌面”</string>
-    <string name="setting_uninstalllacunher">卸载“梅糖桌面”</string>
     <string name="setting_restartlauncher">重载“梅糖桌面”</string>
+    <string name="setting_uninstalllacunher">卸载“梅糖桌面”</string>
     <string name="title_setting">设置</string>
     <string name="app_desktopsetting">桌面设置</string>
     <string name="app_desktopupdate">检查更新</string>
