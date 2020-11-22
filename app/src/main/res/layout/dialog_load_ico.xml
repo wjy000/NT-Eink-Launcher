@@ -6,12 +6,11 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:text="注意：您需要在电纸书的根目录（sdcard）创建一个名为“ntlauncher”的文件夹，在此文件夹内放置图标文件（PNG格式）。然后在下面的输入框内输入文件名称（请加上后缀名）"
+        android:text="@string/icon_setting_tirps"
         android:textColor="#000" />
 
     <EditText

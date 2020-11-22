@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="#ffffff"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:text="欢迎使用！"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:text="Welcome！"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:text="ご利用ください！"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:text="오신 것을 환영합니다！"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:text="Bienvenue à utiliser！"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="请选择你的语言"
+            android:textSize="17dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Please choose your language"
+            android:textSize="17dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="あなたの言語を選んでください"
+            android:textSize="17dp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/ra_welecome_auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Auto | 自动选择 | 自動選択" />
+
+            <RadioButton
+                android:id="@+id/ra_welecome_china"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chinese | 中文 | 中国語." />
+
+            <RadioButton
+                android:id="@+id/ra_welecome_english"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="English | 英语 | 英語." />
+
+
+            <RadioButton
+                android:id="@+id/ra_welecome_japanese"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Japanese | 日语 | 日本語" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|center_vertical|center_horizontal"
+                android:text="After setting up, you need to restart APP.\n设置后需要重启APP\n設置後はアプリを再起動する必要があります" />
+
+            <Button
+                android:id="@+id/btn_welecome_resart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirm and restart\n确定并重启\n再起動を確定する." />
+        </RadioGroup>
+    </LinearLayout>
+</ScrollView>

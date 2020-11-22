@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal|center_vertical|center"
     android:background="#ffffff"
     android:gravity="center_vertical|center_horizontal">
 
@@ -36,7 +37,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical|center_horizontal"
                     android:text="※ 点击此处打开APP详情 ※"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout
@@ -53,7 +55,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/shaper_apks_button_window_show"
-                    android:text="卸载" />
+                    android:text="@string/uninstall" />
 
                 <Button
                     android:id="@+id/btn_hind_con"
@@ -62,7 +64,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/shaper_apks_button_window_show"
-                    android:text="隐藏" />
+                    android:text="@string/hinddin" />
 
             </LinearLayout>
 
@@ -80,7 +82,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/shaper_apks_button_window_show"
-                    android:text="更换图标" />
+                    android:text="@string/update_icon" />
 
                 <Button
                     android:id="@+id/btn_uninstall_cls"
@@ -89,7 +91,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/shaper_apks_button_window_show"
-                    android:text="关闭" />
+                    android:text="@string/dialog_cls" />
             </LinearLayout>
 
             <Button
@@ -106,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="隐藏后的应用可以在桌面设置-应用管理中恢复"
+                android:text="@string/hind_tips"
                 android:textSize="12dp" />
 
 

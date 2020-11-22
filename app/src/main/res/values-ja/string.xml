@@ -28,7 +28,7 @@
     <string name="setting_uninstalllacunher">アンインストール梅砂糖のテーブル.</string>
     <string name="title_setting">設定</string>
     <string name="app_desktopsetting">設定</string>
-    <string name="app_desktopupdate">更新</string>
-    <string name="app_desktopreforces">刷新</string>
+    <string name="app_desktopupdate">更新APP</string>
+    <string name="app_desktopreforces">刷新屏幕</string>
     <string name="app_desktopweather">天気</string>
 </resources>

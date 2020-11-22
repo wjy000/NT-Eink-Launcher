@@ -12,6 +12,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -26,6 +28,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +46,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 import com.etang.nt_launcher.R;
@@ -75,6 +79,7 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Administrator
@@ -105,6 +110,7 @@ public class MainActivity extends Activity implements OnClickListener {
     private AppInstallServer appinstallserver;
     SharedPreferences sharedPreferences;
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -218,6 +224,7 @@ public class MainActivity extends Activity implements OnClickListener {
         }, 50);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void read_info_help(Context c, SharedPreferences sharedPreferences) {
         rember_name(c);// 读取昵称
         initAppList(c);// 获取应用列表
@@ -227,10 +234,49 @@ public class MainActivity extends Activity implements OnClickListener {
         check_view_hind(c, sharedPreferences);//检查底栏是否隐藏
         check_offline_mode(c, sharedPreferences);//检查离线模式是否打开
         check_oldman_mode(c, sharedPreferences);//检查老年模式是否打开
+        check_Language(c, sharedPreferences);
         get_applist_number(c, sharedPreferences);//获取设定的应用列表列数
         images_upgrade(c, sharedPreferences);//更新图像信息
         set_app_setStackFromBottomMode(sharedPreferences);//检查并设置APP列表排列方式
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void check_Language(Context context, SharedPreferences sharedPreferences) {
+        int language = 0;
+        try {
+            //读取SharedPreferences数据，默认选中第一项
+            language = Integer.valueOf(sharedPreferences.getString("language", null));
+        } catch (Exception e) {
+            sharedPreferences.edit().putString("language", "0").commit();
+            check_Language(context, sharedPreferences);
+        }
+        //根据读取到的数据，进行设置
+        Resources resources = getResources();
+        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+        Configuration configuration = resources.getConfiguration();
+        switch (language) {
+            case 0:
+                //自动获取
+                configuration.setLocale(Locale.getDefault());
+                break;
+            case 1:
+                //中文
+                configuration.setLocale(Locale.CHINESE);
+                break;
+            case 2:
+                //英文
+                configuration.setLocale(Locale.ENGLISH);
+                break;
+            case 3:
+                //日文
+                configuration.setLocale(Locale.JAPANESE);
+                break;
+            default:
+                break;
+        }
+        resources.updateConfiguration(configuration, displayMetrics);
+    }
+
 
     @Override
     protected void onRestart() {
@@ -324,6 +370,7 @@ public class MainActivity extends Activity implements OnClickListener {
             editor.putString("oldman", "false");//老年模式
             editor.putBoolean("app_setStackFromBottomMode", false);//默认显示内容
             editor.putString("icon_size", "45");//图标大小
+            editor.putString("language", "0");//设置语言
             editor.apply();
             //更新桌面信息
             images_upgrade(MainActivity.this, sharedPreferences);

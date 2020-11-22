@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dialog_con">OK</string>
+    <string name="dialog_cls">Cancel</string>
+    <string name="dialog_auto">Auto</string>
+    <string name="dialog_dimiss">Close</string>
+    <string name="list_number">Enter any number manually</string>
+    <string name="list_seekbar">Please swipe to determine the quantity :</string>
+    <string name="icon_setting_tirps">Note: you need to create a folder called \"ntlauncher\" in the root directory of the e-book, (sdcard), and place the icon file (in PNG format) in this folder. Then enter the file name in the input box below (please add a suffix name)</string>
+    <string name="enter_name">Please enter the nickname you want to change</string>
+    <string name="quck_setname">One-click naming</string>
+    <string name="enter_name_r1">It\'s from my girlfriend.</string>
+    <string name="enter_name_r2">It\'s from my boyfriend.</string>
+    <string name="enter_name_r3">From a friend.</string>
+    <string name="enter_name_r4">Bought it myself.</string>
+    <string name="enter_shoudongshuru">Manual input: display the input directly</string>
+    <string name="enter_autoseet">One-click naming: selected content + \"e-book\"</string>
+    <string name="dialog_newuser_title">Is applying to you to activate the device.</string>
+    <string name="dialog_newuser_message">Only need to activate once, only do user equipment model statistics, need to be connected to the Internet. If you don\'t need it, just click cancel. This dialog box is displayed only once.</string>
+    <string name="dialog_textsize_tips">Please swipe to set the text size</string>
+    <string name="uninstall">Uninstall</string>
+    <string name="hinddin">Hide</string>
+    <string name="update_icon">Change icon</string>
+    <string name="hind_tips">Hidden applications can be restored in Desktop Settings-Application Management</string>
+    <string name="weather_city">Please enter the city where you live:</string>
+    <string name="weather_olay_somewhere">Chinese mainland area only</string>
+    <string name="weather_citylist">For example: Zaozhuang City or: Yicheng District</string>
+    <string name="weather_show_or_hind">Sets whether the Weather module is displayed on the desktop</string>
+    <string name="hind">Hide</string>
+    <string name="show">Display</string>
+    <string name="click_to_next">Next</string>
+    <string name="name_ebook">E-paper book</string>
+</resources>

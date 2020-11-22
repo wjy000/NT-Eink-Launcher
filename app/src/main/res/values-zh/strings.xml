@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dialog_con">确定</string>
+    <string name="dialog_cls">取消</string>
+    <string name="dialog_dimiss">关闭</string>
+    <string name="dialog_auto">自动</string>
+    <string name="list_number">手动输入任何数字</string>
+    <string name="list_seekbar">请滑动来确定数量：</string>
+    <string name="icon_setting_tirps">注意：您需要在电纸书的根目录（sdcard）创建一个名为“ntlauncher”的文件夹，在此文件夹内放置图标文件（PNG格式）。然后在下面的输入框内输入文件名称（请加上后缀名）</string>
+    <string name="enter_name">请输入要更改的昵称</string>
+    <string name="quck_setname">一键命名</string>
+    <string name="enter_name_r1">女朋友送的</string>
+    <string name="enter_name_r2">男朋友送的</string>
+    <string name="enter_name_r3">朋友送的</string>
+    <string name="enter_name_r4">自己买的</string>
+    <string name="enter_shoudongshuru">手动输入：直接显示输入的内容</string>
+    <string name="enter_autoseet">一键命名：选择的内容+“电纸书”</string>
+    <string name="dialog_newuser_title">正在向您申请激活设备</string>
+    <string name="dialog_newuser_message">只需激活一次，仅做用户设备型号统计，需要联网。如果不需要请直接点击取消即可。本对话框只会显示一次。</string>
+    <string name="dialog_textsize_tips">请滑动设置文本大小</string>
+    <string name="update_icon">更换图标</string>
+    <string name="hinddin">隐藏</string>
+    <string name="uninstall">卸载</string>
+    <string name="hind_tips">隐藏后的应用可以在桌面设置-应用管理中恢复</string>
+    <string name="weather_city">请输入您居住的城市：</string>
+    <string name="weather_olay_somewhere">仅限中国大陆地区</string>
+    <string name="weather_citylist">例：枣庄市 或：峄城区</string>
+    <string name="weather_show_or_hind">设置“天气”模块是否显示在桌面上</string>
+    <string name="show">显示</string>
+    <string name="hind">隐藏</string>
+    <string name="click_to_next">下一步</string>
+    <string name="name_ebook">电纸书</string>
+</resources>

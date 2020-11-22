@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dialog_cls">キャンセル</string>
+    <string name="dialog_con">確定</string>
+    <string name="dialog_dimiss">閉じる</string>
+    <string name="dialog_auto">自動的に</string>
+    <string name="list_number">どんな数字も手動で入力します</string>
+    <string name="list_seekbar">スライドして数量を決定してください。</string>
+    <string name="icon_setting_tirps">注意：電子ペーパーブックのルートディレクトリ(Sdcard)に“ntlauncher”というフォルダを作成し、このフォルダ内にアイコンファイル(PNGフォーマット)を配置する必要があります。そして次の入力枠にファイル名(接尾辞名をつけてください)を入力する</string>
+    <string name="enter_name">変更するニックネームを入力してください</string>
+    <string name="quck_setname">1キーの命名.</string>
+    <string name="enter_name_r1">彼女からもらった</string>
+    <string name="enter_name_r2">彼氏からもらった</string>
+    <string name="enter_name_r3">友達からもらった</string>
+    <string name="enter_name_r4">自分で買ったの</string>
+    <string name="enter_shoudongshuru">手動入力：入力内容を直接表示する</string>
+    <string name="enter_autoseet">ワンクリック命名：選択された内容+“電紙本”</string>
+    <string name="dialog_newuser_title">設備の活性化をお申し込みしております</string>
+    <string name="dialog_newuser_message">一度だけ活性化するだけで、ユーザー設備のモデル統計だけをして、ネットに接続する必要があります。必要がなければ直接クリックしてキャンセルすればいいです。本ダイアログは一度だけ表示される.</string>
+    <string name="dialog_textsize_tips">テキストサイズをスライドで設定してください</string>
+    <string name="uninstall">削除</string>
+    <string name="update_icon">アイコン.</string>
+    <string name="hinddin">隠す</string>
+    <string name="hind_tips">隠蔽されたアプリケーションは、デスクトップ設定-アプリケーション管理で回復することができます</string>
+    <string name="weather_city">あなたが住んでいる都市を入力してください。</string>
+    <string name="weather_olay_somewhere">中国大陸部に限る</string>
+    <string name="weather_citylist">例えば、棗荘市や：棗城区</string>
+    <string name="weather_show_or_hind">“天気”モジュールがデスクトップに表示されているかどうかを設定する</string>
+    <string name="hind">隠す</string>
+    <string name="show">表示</string>
+    <string name="click_to_next">次のステップ</string>
+    <string name="name_ebook">電紙本.</string>
+</resources>

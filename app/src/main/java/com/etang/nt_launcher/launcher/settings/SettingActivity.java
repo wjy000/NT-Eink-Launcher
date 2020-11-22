@@ -284,7 +284,6 @@ public class SettingActivity extends Activity {
                 .findViewById(R.id.radio3);
         final Button btn_con = (Button) view.findViewById(R.id.btn_dialog_rename_con);
         final Button btn_cls = (Button) view.findViewById(R.id.btn_dialog_rename_cls);
-        builder.setTitle("请输入你的要显示的内容");
         btn_cls.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -306,25 +305,25 @@ public class SettingActivity extends Activity {
                             db.execSQL(
                                     "update name set username = ?",
                                     new String[]{ra_0.getText()
-                                            .toString() + "电纸书"});
+                                            .toString() + getString(R.string.name_ebook)});
                         }
                         if (ra_1.isChecked()) {
                             db.execSQL(
                                     "update name set username = ?",
                                     new String[]{ra_1.getText()
-                                            .toString() + "电纸书"});
+                                            .toString() + getString(R.string.name_ebook)});
                         }
                         if (ra_2.isChecked()) {
                             db.execSQL(
                                     "update name set username = ?",
                                     new String[]{ra_2.getText()
-                                            .toString() + "电纸书"});
+                                            .toString() + getString(R.string.name_ebook)});
                         }
                         if (ra_3.isChecked()) {
                             db.execSQL(
                                     "update name set username = ?",
                                     new String[]{ra_3.getText()
-                                            .toString() + "电纸书"});
+                                            .toString() + getString(R.string.name_ebook)});
                         }
                     } else {
                         db.execSQL("update name set username = ?",

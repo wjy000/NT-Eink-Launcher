@@ -17,14 +17,14 @@
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="手动输入任何数字，可能会导致BUG"
+        android:text="@string/list_number"
         android:textSize="15dp" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="请滑动："
+        android:text="@string/list_seekbar"
         android:textSize="15dp" />
 
     <SeekBar
@@ -54,7 +54,7 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/shaper_apks_button_window_show"
-            android:text="确定" />
+            android:text="@string/dialog_con" />
 
         <Button
             android:id="@+id/btn_dialog_listnumber_auto"
@@ -63,7 +63,7 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/shaper_apks_button_window_show"
-            android:text="自动" />
+            android:text="@string/dialog_auto" />
 
         <Button
             android:id="@+id/btn_dialog_listnumber_cls"
@@ -72,6 +72,6 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/shaper_apks_button_window_show"
-            android:text="关闭" />
+            android:text="@string/dialog_cls" />
     </LinearLayout>
 </LinearLayout>

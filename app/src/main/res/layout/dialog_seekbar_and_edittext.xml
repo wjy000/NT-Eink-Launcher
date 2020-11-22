@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="请滑动设置文本大小"
+        android:text="@string/dialog_textsize_tips"
         android:textColor="#000" />
 
     <SeekBar

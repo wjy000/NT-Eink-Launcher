@@ -3,6 +3,7 @@ package com.etang.nt_launcher.tool.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.tool.savearrayutil.SaveArrayImageUtil;
@@ -43,6 +46,7 @@ public class DeskTopGridViewBaseAdapter extends BaseAdapter {
         return position;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         Holder holder = null;
@@ -93,6 +97,7 @@ public class DeskTopGridViewBaseAdapter extends BaseAdapter {
      *
      * @param holder
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void get_appname_info(Holder holder) {
         SharedPreferences sharedPreferences;
         sharedPreferences = context.getSharedPreferences("info_app_list_state", context.MODE_PRIVATE);

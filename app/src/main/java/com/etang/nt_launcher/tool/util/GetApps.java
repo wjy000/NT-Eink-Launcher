@@ -51,7 +51,7 @@ public class GetApps {
          * 添加“天气”
          */
         AppInfo mInfo_weather = new AppInfo();
-        mInfo_weather.setName("天气");
+        mInfo_weather.setName(context.getString(R.string.app_desktopweather));
         mInfo_weather.setPackageName(context.getPackageName() + ".weather");
         Resources r_weather = context.getResources();
         Bitmap bmp_weather = BitmapFactory.decodeResource(r_weather, R.drawable.ic_weather);
@@ -61,7 +61,7 @@ public class GetApps {
          * 添加“桌面设置”
          */
         AppInfo mInfo_launchersetting = new AppInfo();
-        mInfo_launchersetting.setName("桌面设置");
+        mInfo_launchersetting.setName(context.getString(R.string.app_desktopsetting));
         mInfo_launchersetting.setPackageName(context.getPackageName() + ".launchersetting");
         Resources r_launchersetting = context.getResources();
         Bitmap bmp_launchersetting = BitmapFactory.decodeResource(r_launchersetting, R.drawable.ic_setting);
@@ -84,7 +84,7 @@ public class GetApps {
 //         * \添加“检查更新”
 //         */
         AppInfo mInfo_systemupdate = new AppInfo();
-        mInfo_systemupdate.setName("检查更新");
+        mInfo_systemupdate.setName(context.getString(R.string.app_desktopupdate));
         mInfo_systemupdate.setPackageName(context.getPackageName() + ".systemupdate");
         Resources r_systemupdate = context.getResources();
         Bitmap bmp_systemupdate = BitmapFactory.decodeResource(r_systemupdate, R.drawable.ic_systemupdate);
@@ -94,7 +94,7 @@ public class GetApps {
          * \添加“刷新屏幕”
          */
         AppInfo mInfo_uirefresh = new AppInfo();
-        mInfo_uirefresh.setName("刷新屏幕");
+        mInfo_uirefresh.setName(context.getString(R.string.app_desktopreforces));
         mInfo_uirefresh.setPackageName(context.getPackageName() + ".uirefresh");
         Resources r_uirefresh = context.getResources();
         Bitmap bmp_uirefresh = BitmapFactory.decodeResource(r_uirefresh, R.drawable.ic_update);
