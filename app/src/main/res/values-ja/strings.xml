@@ -30,4 +30,7 @@
     <string name="show">表示</string>
     <string name="click_to_next">次のステップ</string>
     <string name="name_ebook">電紙本.</string>
+    <string name="string_about">について</string>
+    <string name="string_weather">天気</string>
+    <string name="string_wallpaper">壁紙設置</string>
 </resources>

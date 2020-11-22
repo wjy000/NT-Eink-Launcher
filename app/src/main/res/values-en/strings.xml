@@ -30,4 +30,7 @@
     <string name="show">Display</string>
     <string name="click_to_next">Next</string>
     <string name="name_ebook">E-paper book</string>
+    <string name="string_about">About</string>
+    <string name="string_weather">Weather</string>
+    <string name="string_wallpaper">Wallpaper Settings</string>
 </resources>

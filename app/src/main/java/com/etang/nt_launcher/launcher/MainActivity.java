@@ -240,6 +240,12 @@ public class MainActivity extends Activity implements OnClickListener {
         set_app_setStackFromBottomMode(sharedPreferences);//检查并设置APP列表排列方式
     }
 
+    /**
+     * 设置中文
+     *
+     * @param context
+     * @param sharedPreferences
+     */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void check_Language(Context context, SharedPreferences sharedPreferences) {
         int language = 0;
