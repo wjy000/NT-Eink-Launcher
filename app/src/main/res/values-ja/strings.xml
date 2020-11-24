@@ -33,4 +33,5 @@
     <string name="string_about">について</string>
     <string name="string_weather">天気</string>
     <string name="string_wallpaper">壁紙設置</string>
+    <string name="string_version">バージョン</string>
 </resources>

@@ -63,4 +63,5 @@
     <string name="string_about">关于</string>
     <string name="string_weather">天气</string>
     <string name="string_wallpaper">壁纸设置</string>
+    <string name="string_version">版本</string>
 </resources>

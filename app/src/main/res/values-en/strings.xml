@@ -33,4 +33,5 @@
     <string name="string_about">About</string>
     <string name="string_weather">Weather</string>
     <string name="string_wallpaper">Wallpaper Settings</string>
+    <string name="string_version">Version</string>
 </resources>

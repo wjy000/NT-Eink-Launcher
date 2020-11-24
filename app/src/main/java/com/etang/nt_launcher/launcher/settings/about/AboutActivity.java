@@ -38,8 +38,8 @@ public class AboutActivity extends AppCompatActivity {
         tv_title = (TextView) findViewById(R.id.tv_title_text);
         //标题
         String version = BuildConfig.VERSION_NAME;
-        tv_title.setText("关于");
-        tv_button.setText("版本：" + version);
+        tv_title.setText(getString(R.string.string_about));
+        tv_button.setText(getString(R.string.string_version) + "：" + version);
         tv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
