@@ -1,75 +1,65 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff"
-    android:orientation="vertical">
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp">
 
 
     <LinearLayout
-        android:id="@+id/lv_back"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:gravity="center_horizontal|center_vertical"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/shaper_desk_top_show"
+        android:gravity="center_vertical|start"
         android:orientation="horizontal"
-        android:padding="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="5dp">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:text="@string/title_back"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/inback_title"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical|start"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_title_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/shaper_desk_top_show"
-            android:gravity="center_horizontal|center_vertical|left"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <TextView
-                android:id="@+id/tv_title_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_marginLeft="10dp"
-                android:gravity="center|center_horizontal|center_vertical"
-                android:text="@string/title_back"
-                android:textColor="#000000"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/tv_title_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical|center_horizontal"
-                android:text="TextView"
-                android:textColor="#000000"
-                android:textSize="15dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|center_vertical|right"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_title_button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
-                android:gravity="center_horizontal|center_vertical|right"
-                android:text="Button"
-                android:textSize="15dp" />
-        </LinearLayout>
-
-
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center_vertical|end"
+            android:text="@string/inback_button"
+            android:textSize="15sp" />
     </LinearLayout>
 
 </LinearLayout>

@@ -70,4 +70,7 @@
     <string name="setting_exit_launcher">退出“奶糖桌面”</string>
     <string name="setting_yijian">意见反馈</string>
     <string name="setting_xuanfuqiu">悬浮窗相关</string>
+    <string name="inback_title">TextView</string>
+    <string name="inback_button">Button</string>
+    <string name="setting_textsize_time_hour">时间大小（小时）</string>
 </resources>

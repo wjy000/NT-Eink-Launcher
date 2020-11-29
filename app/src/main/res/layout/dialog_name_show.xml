@@ -9,8 +9,10 @@
         android:id="@+id/et_title_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/enter_name"
+        android:inputType="none"
         android:textColor="#000">
 
         <requestFocus />
@@ -60,15 +62,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/enter_shoudongshuru"
-        android:textSize="15dp" />
+        android:textSize="15sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/enter_autoseet"
-        android:textSize="15dp" />
+        android:textSize="15sp" />
 
     <LinearLayout
+        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -76,6 +79,7 @@
 
         <Button
             android:id="@+id/btn_dialog_rename_con"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -85,6 +89,7 @@
 
         <Button
             android:id="@+id/btn_dialog_rename_cls"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"

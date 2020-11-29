@@ -100,4 +100,24 @@
     <string name="welecome_huanying_riyuyuyan">Japanese | 日语 | 日本語</string>
     <string name="welecome_huanying_needreboot">After setting up, you need to restart APP. 设置后需要重启APP 設置後はアプリを再起動する必要があります</string>
     <string name="welecome_huanying_quedingandreboot">Confirm and restart---确定并重启---再起動を確定する.</string>
+    <string name="dialog_uninstall_app_name">APP NAME</string>
+    <string name="dialog_uninstall_openapp">※ 点击此处打开APP详情 ※</string>
+    <string name="dialog_uninstall_open_app">打开APP</string>
+    <string name="inback_title">TextView</string>
+    <string name="inback_button">Button</string>
+    <string name="setting_textsize_time_hour">时间大小（小时）</string>
+    <string name="setting_textsize_time_min">时间大小（分钟）</string>
+    <string name="setting_textsize_time_name">昵称大小</string>
+    <string name="setting_textsize_time_date">日期大小</string>
+    <string name="setting_textsize_time_dianliang">电量大小</string>
+    <string name="setting_textsize_time_resert">重置</string>
+    <string name="setting_imagesetting_name_qinglv">情侣</string>
+    <string name="setting_imagesetting_name_meizi">妹子</string>
+    <string name="setting_imagesetting_name_luoli">萝莉</string>
+    <string name="setting_imagesetting_name_zihyu">知遇</string>
+    <string name="setting_imagesetting_name_applist">应用列表</string>
+    <string name="setting_imagesetting_name_nowsystemback">显示当前设置的系统壁纸</string>
+    <string name="setting_imagesetting_name_nowsystemback_and_applist">显示系统壁纸和应用列表</string>
+    <string name="setting_imagesetting_name_newlauncher">新桌面（正在做了--10%）</string>
+    <string name="setting_imagesetting_name_clickthis_settingback">点此设置系统壁纸</string>
 </resources>

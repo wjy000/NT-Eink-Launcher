@@ -5,115 +5,106 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal|center_vertical|center"
     android:background="#ffffff"
-    android:gravity="center_vertical|center_horizontal">
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btn_uninstall_appname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:text="@string/dialog_uninstall_app_name" />
+
+        <TextView
+            android:id="@+id/tv_uninstall_appinfo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|center_horizontal"
-            android:orientation="vertical">
+            android:text="@string/dialog_uninstall_openapp"
+            android:textSize="12sp"
+            android:visibility="gone" />
+    </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5sp"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btn_uninstall_appname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#00000000"
-                    android:text="APP NAME" />
+        <Button
+            android:id="@+id/btn_uninstall_con"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shaper_apks_button_window_show"
+            android:text="@string/uninstall" />
 
-                <TextView
-                    android:id="@+id/tv_uninstall_appinfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:text="※ 点击此处打开APP详情 ※"
-                    android:textSize="12dp"
-                    android:visibility="gone" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5sp"
-                android:gravity="center_vertical|center_horizontal"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_uninstall_con"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/shaper_apks_button_window_show"
-                    android:text="@string/uninstall" />
-
-                <Button
-                    android:id="@+id/btn_hind_con"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/shaper_apks_button_window_show"
-                    android:text="@string/hinddin" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5sp"
-                android:gravity="center_vertical|center_horizontal"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_load_ico"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/shaper_apks_button_window_show"
-                    android:text="@string/update_icon" />
-
-                <Button
-                    android:id="@+id/btn_uninstall_cls"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/shaper_apks_button_window_show"
-                    android:text="@string/dialog_cls" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btn_uninstall_openapp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5sp"
-                android:background="@drawable/shaper_apks_button_window_show"
-                android:text="打开APP"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/hind_tips"
-                android:textSize="12dp" />
-
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/btn_hind_con"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shaper_apks_button_window_show"
+            android:text="@string/hinddin" />
 
     </LinearLayout>
+
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5sp"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_load_ico"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shaper_apks_button_window_show"
+            android:text="@string/update_icon" />
+
+        <Button
+            android:id="@+id/btn_uninstall_cls"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shaper_apks_button_window_show"
+            android:text="@string/dialog_cls" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_uninstall_openapp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5sp"
+        android:background="@drawable/shaper_apks_button_window_show"
+        android:text="@string/dialog_uninstall_open_app"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@string/hind_tips"
+        android:textSize="12sp" />
+
 
 </LinearLayout>

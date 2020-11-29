@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:text="应用名称显隐设置"
                     android:textColor="#000"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:id="@+id/ra_appname_hind"
@@ -69,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:text="应用列表边框设置"
                     android:textColor="#000"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:id="@+id/ra_app_show_blok"
@@ -104,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:text="应用排列方式设置"
                     android:textColor="#000"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:id="@+id/ra_app_bottommode_bottom"
@@ -140,14 +140,14 @@
 
             <TextView
                 android:id="@+id/tv_gridlist_setting"
-                android:layout_width="411dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="15dp"
                 android:text="点击进行应用列数设置"
                 android:textColor="#000000"
-                android:textSize="17dp" />
+                android:textSize="17sp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -17,7 +17,6 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/shaper_desk_top_show"
-            android:gravity="center_vertical|center_horizontal|left"
             android:orientation="vertical"
             android:padding="15dp">
 
@@ -32,21 +31,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="情侣" />
+                    android:text="@string/setting_imagesetting_name_qinglv" />
 
                 <RadioButton
                     android:id="@+id/ra_chose_meizi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="妹子" />
+                    android:text="@string/setting_imagesetting_name_meizi" />
 
                 <RadioButton
                     android:id="@+id/ra_chose_luoli"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="萝莉" />
+                    android:text="@string/setting_imagesetting_name_luoli" />
 
 
                 <RadioButton
@@ -54,28 +53,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="知遇" />
+                    android:text="@string/setting_imagesetting_name_zihyu" />
 
                 <RadioButton
                     android:id="@+id/ra_chose_applist_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="应用列表" />
+                    android:text="@string/setting_imagesetting_name_applist" />
 
                 <RadioButton
                     android:id="@+id/ra_wallpaper"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="显示当前设置的系统壁纸" />
+                    android:text="@string/setting_imagesetting_name_nowsystemback" />
 
                 <RadioButton
                     android:id="@+id/ra_wallpaper_and_applist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="显示系统壁纸和应用列表" />
+                    android:text="@string/setting_imagesetting_name_nowsystemback_and_applist" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -85,7 +84,7 @@
                     android:clickable="false"
                     android:enabled="false"
                     android:focusable="false"
-                    android:text="新桌面（正在做了--10%）" />
+                    android:text="@string/setting_imagesetting_name_newlauncher" />
             </RadioGroup>
 
             <Button
@@ -94,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:background="@drawable/shaper_zhijiao_lins_show"
-                android:text="点此设置系统壁纸" />
+                android:text="@string/setting_imagesetting_name_clickthis_settingback" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

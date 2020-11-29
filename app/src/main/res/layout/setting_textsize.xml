@@ -23,7 +23,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -37,7 +37,7 @@
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/shaper_zhijiao_lins_show"
-                android:text="时间大小（小时）"
+                android:text="@string/setting_textsize_time_hour"
                 app:layout_constraintEnd_toEndOf="@+id/btn_dianchitext_size"
                 app:layout_constraintStart_toStartOf="@+id/btn_dianchitext_size"
                 app:layout_constraintTop_toBottomOf="@+id/btn_dianchitext_size" />
@@ -49,7 +49,7 @@
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/shaper_zhijiao_lins_show"
-                android:text="时间大小（分钟）"
+                android:text="@string/setting_textsize_time_min"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -60,7 +60,7 @@
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/shaper_zhijiao_lins_show"
-                android:text="昵称大小"
+                android:text="@string/setting_textsize_time_name"
                 app:layout_constraintEnd_toEndOf="@+id/btn_datetext_size"
                 app:layout_constraintStart_toStartOf="@+id/btn_datetext_size"
                 app:layout_constraintTop_toBottomOf="@+id/btn_datetext_size" />
@@ -71,7 +71,7 @@
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/shaper_zhijiao_lins_show"
-                android:text="日期大小"
+                android:text="@string/setting_textsize_time_date"
                 app:layout_constraintEnd_toEndOf="@+id/btn_timetext_hour_size"
                 app:layout_constraintStart_toStartOf="@+id/btn_timetext_hour_size"
                 app:layout_constraintTop_toBottomOf="@+id/btn_timetext_hour_size" />
@@ -82,7 +82,7 @@
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/shaper_zhijiao_lins_show"
-                android:text="电量大小"
+                android:text="@string/setting_textsize_time_dianliang"
                 app:layout_constraintEnd_toEndOf="@+id/btn_timetext_min_size"
                 app:layout_constraintStart_toStartOf="@+id/btn_timetext_min_size"
                 app:layout_constraintTop_toBottomOf="@+id/btn_timetext_min_size" />
@@ -93,7 +93,7 @@
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/shaper_zhijiao_lins_show"
-                android:text="重置"
+                android:text="@string/setting_textsize_time_resert"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

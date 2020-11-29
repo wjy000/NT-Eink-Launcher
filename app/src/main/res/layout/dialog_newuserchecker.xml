@@ -6,51 +6,50 @@
     android:layout_margin="15dp"
     android:background="#ffffff"
     android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical"
     android:padding="15dp">
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/shaper_desk_top_show"
+        android:padding="5dp"
+        android:text="@string/dialog_newuser_title"
+        android:textSize="25sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@string/dialog_newuser_message" />
+
     <LinearLayout
+        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btn_newusercheck_con"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:layout_weight="1"
             android:background="@drawable/shaper_desk_top_show"
-            android:padding="5dp"
-            android:text="@string/dialog_newuser_title"
-            android:textSize="25dp" />
+            android:text="@string/dialog_con" />
 
-        <TextView
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btn_newusercheck_cls"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="@string/dialog_newuser_message" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_newusercheck_con"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/shaper_desk_top_show"
-                android:text="@string/dialog_con" />
-
-            <Button
-                android:id="@+id/btn_newusercheck_cls"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/shaper_desk_top_show"
-                android:text="@string/dialog_cls" />
-        </LinearLayout>
+            android:layout_weight="1"
+            android:background="@drawable/shaper_desk_top_show"
+            android:text="@string/dialog_cls" />
     </LinearLayout>
 
 
