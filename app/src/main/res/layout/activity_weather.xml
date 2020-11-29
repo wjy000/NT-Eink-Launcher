@@ -27,8 +27,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:text="@string/weather_city"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#000" />
@@ -36,16 +34,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:text="@string/weather_olay_somewhere"
             android:textColor="#90000000" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView1"
-            android:layout_alignParentLeft="true"
             android:text="@string/weather_citylist"
             android:textColor="#000" />
 
@@ -53,20 +47,15 @@
             android:id="@+id/et_city_get"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView2"
-            android:layout_alignParentLeft="true"
+            android:autofillHints=""
             android:ems="10"
+            android:hint="@string/weather_city"
+            android:importantForAutofill="no"
+            android:inputType="none"
             android:textColor="#000">
 
             <requestFocus />
         </EditText>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-        </LinearLayout>
 
         <RadioGroup
             android:layout_width="wrap_content"
@@ -77,8 +66,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textView1"
-                android:layout_alignParentLeft="true"
                 android:text="@string/weather_show_or_hind"
                 android:textColor="#000" />
 
@@ -101,6 +88,7 @@
         android:id="@+id/btn_wather_cls"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="16dp"
         android:background="@drawable/shaper_apks_button_window_show"
@@ -115,6 +103,7 @@
         android:id="@+id/btn_wather_con"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:background="@drawable/shaper_apks_button_window_show"
         android:text="@string/dialog_con"

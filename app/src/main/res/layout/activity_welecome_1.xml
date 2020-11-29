@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
@@ -17,25 +17,25 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="欢迎使用“梅糖桌面”"
+            android:text="@string/welecome_string_welecome"
             android:textColor="#000000" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="权限需求："
-            android:textSize="19dp" />
+            android:text="@string/welecome_string_quanxian"
+            android:textSize="19sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="“梅糖桌面”需要以下权限：" />
+            android:text="@string/welecome_string_needquanxian" />
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="---INTERNET---"
+            android:text="@string/welecome_string_internet"
             android:textColor="#000" />
 
         <TextView
@@ -46,7 +46,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="---ACCESS_NETWORK_STATE---"
+            android:text="@string/welecome_string_access_network_state"
             android:textColor="#000" />
 
         <TextView
@@ -57,7 +57,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="---CHANGE_WIFI_STATE---"
+            android:text="@string/welecome_string_change_wifi_state"
             android:textColor="#000" />
 
         <TextView
@@ -68,7 +68,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="---ACCESS_WIFI_STATE---"
+            android:text="@string/welecome_string_access_wifi_state"
             android:textColor="#000" />
 
         <TextView
@@ -79,7 +79,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="---READ_EXTERNAL_STORAGE---"
+            android:text="@string/welecome_string_read_external_storage"
             android:textColor="#000" />
 
         <TextView
@@ -90,7 +90,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="---RESTART_PACKAGES---"
+            android:text="@string/welecome_string_restart_packages"
             android:textColor="#000" />
 
         <TextView
@@ -101,7 +101,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="---RECEIVE_BOOT_COMPLETED---"
+            android:text="@string/welecome_string_receive_boot_completed"
             android:textColor="#000" />
 
         <TextView
@@ -112,7 +112,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="---SET_WALLPAPER---"
+            android:text="@string/welecome_string_set_wallpaper"
             android:textColor="#000" />
 
         <TextView
@@ -123,7 +123,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="---SYSTEM_ALERT_WINDOW---"
+            android:text="@string/welecome_string_system_alert_window"
             android:textColor="#000" />
 
         <TextView
@@ -134,7 +134,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="---SYSTEM_OVERLAY_WINDOW---"
+            android:text="@string/welecome_string_system_overlay_window"
             android:textColor="#000" />
 
         <TextView
@@ -145,7 +145,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="---WRITE_EXTERNAL_STORAGE---"
+            android:text="@string/welecome_string_write_external_storage"
             android:textColor="#000" />
 
         <TextView
@@ -156,7 +156,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="---REQUEST_INSTALL_PACKAGES---"
+            android:text="@string/welecome_string_request_install_packages"
             android:textColor="#000" />
 
         <TextView
@@ -167,7 +167,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="---READ_PHONE_STATE---"
+            android:text="@string/welecome_string_read_phone_state"
             android:textColor="#000" />
 
         <TextView

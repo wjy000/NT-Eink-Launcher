@@ -2,78 +2,78 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:layout_margin="10sp"
     android:background="#ffffff"
-    android:padding="10dp">
+    android:padding="10sp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="5sp"
             android:gravity="center|center_vertical|center_horizontal"
-            android:text="欢迎使用！"
+            android:text="@string/welecome_huanying1"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="5sp"
             android:gravity="center|center_vertical|center_horizontal"
-            android:text="Welcome！"
+            android:text="@string/welecome_huanying2"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="5sp"
             android:gravity="center|center_vertical|center_horizontal"
-            android:text="ご利用ください！"
+            android:text="@string/welecome_huanying3"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="5sp"
             android:gravity="center|center_vertical|center_horizontal"
-            android:text="오신 것을 환영합니다！"
+            android:text="@string/welecome_huanying4"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="5sp"
             android:gravity="center|center_vertical|center_horizontal"
-            android:text="Bienvenue à utiliser！"
+            android:text="@string/welecome_huanying5"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="请选择你的语言"
-            android:textSize="17dp" />
+            android:layout_marginTop="10sp"
+            android:text="@string/welecome_huanying_choseyuyan1"
+            android:textSize="17sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Please choose your language"
-            android:textSize="17dp" />
+            android:text="@string/welecome_huanying_choseyuyan2"
+            android:textSize="17sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="あなたの言語を選んでください"
-            android:textSize="17dp" />
+            android:text="@string/welecome_huanying_choseyuyan3"
+            android:textSize="17sp" />
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -84,38 +84,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Auto | 自动选择 | 自動選択" />
+                android:text="@string/welecome_huanying_autochose" />
 
             <RadioButton
                 android:id="@+id/ra_welecome_china"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chinese | 中文 | 中国語." />
+                android:text="@string/welecome_huanying_chineseyuyan" />
 
             <RadioButton
                 android:id="@+id/ra_welecome_english"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="English | 英语 | 英語." />
+                android:text="@string/welecome_huanying_yingyuyuyan" />
 
 
             <RadioButton
                 android:id="@+id/ra_welecome_japanese"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Japanese | 日语 | 日本語" />
+                android:text="@string/welecome_huanying_riyuyuyan" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|center_vertical|center_horizontal"
-                android:text="After setting up, you need to restart APP.\n设置后需要重启APP\n設置後はアプリを再起動する必要があります" />
+                android:text="@string/welecome_huanying_needreboot" />
 
             <Button
                 android:id="@+id/btn_welecome_resart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Confirm and restart\n确定并重启\n再起動を確定する." />
+                android:text="@string/welecome_huanying_quedingandreboot" />
         </RadioGroup>
     </LinearLayout>
 </ScrollView>

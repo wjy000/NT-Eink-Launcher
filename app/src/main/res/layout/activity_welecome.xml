@@ -29,13 +29,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom|end"
             android:layout_margin="30dp"
+            android:contentDescription="@null"
             android:src="@drawable/select_apps_state"
             app:backgroundTint="#F8F7F7"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/pager_welecome"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:layout_width="wrap_content"

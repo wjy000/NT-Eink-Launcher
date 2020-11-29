@@ -5,16 +5,19 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_in_back"></include>
+    <include
+        layout="@layout/layout_in_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></include>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -110,7 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
-                        android:text="悬浮窗相关" />
+                        android:text="@string/setting_xuanfuqiu" />
 
                 </LinearLayout>
 
@@ -128,7 +131,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
-                        android:text="意见反馈"
+                        android:text="@string/setting_yijian"
                         android:textColor="#000000" />
 
                 </LinearLayout>
@@ -219,7 +222,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
-                        android:text="退出“奶糖桌面”" />
+                        android:text="@string/setting_exit_launcher" />
 
                 </LinearLayout>
 
@@ -227,59 +230,49 @@
                     android:id="@+id/cb_hind_setting_ico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="在主界面隐藏底栏" />
+                    android:text="@string/setting_checkbox_hindbar" />
 
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/info_for_hindbottom"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
 
                 <CheckBox
                     android:id="@+id/cb_setting_offlinemode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="离线模式（不稳定）" />
+                    android:text="@string/setting_offlinemode" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/info_for_offlinemode"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
 
                 <CheckBox
                     android:id="@+id/cb_setting_oldmanmode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="老年模式（不稳定）"
+                    android:text="@string/setting_oldmanmode"
                     android:visibility="gone" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/info_for_oldmanmode"
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     android:visibility="gone" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/need_reboot"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="20dp"
-                android:orientation="vertical"
-                android:padding="10dp"
-                android:visibility="gone"></LinearLayout>
         </LinearLayout>
 
 
