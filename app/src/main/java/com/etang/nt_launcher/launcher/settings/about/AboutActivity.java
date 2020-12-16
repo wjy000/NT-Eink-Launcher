@@ -1,6 +1,5 @@
 package com.etang.nt_launcher.launcher.settings.about;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,10 +10,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.etang.nt_launcher.BuildConfig;
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.tool.dialog.CheckUpdateDialog;
 import com.etang.nt_launcher.tool.permission.SavePermission;
+
+import ru.alexbykov.nopermission.BuildConfig;
 
 /**
  * “关于”界面，用于显示APP相关信息和软件更新
