@@ -4,8 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal|center_vertical"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
     android:fadingEdge="none"
     android:gravity="center_vertical|center_horizontal"
     android:listSelector="#00000000"
