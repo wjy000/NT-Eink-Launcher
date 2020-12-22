@@ -1,5 +1,6 @@
 package com.etang.nt_launcher.launcher.settings.about;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -13,8 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.tool.dialog.CheckUpdateDialog;
 import com.etang.nt_launcher.tool.permission.SavePermission;
-
-import ru.alexbykov.nopermission.BuildConfig;
 
 /**
  * “关于”界面，用于显示APP相关信息和软件更新
@@ -37,9 +36,14 @@ public class AboutActivity extends AppCompatActivity {
         tv_button = (TextView) findViewById(R.id.tv_title_button);
         tv_title = (TextView) findViewById(R.id.tv_title_text);
         //标题
-        String version = BuildConfig.VERSION_NAME;
         tv_title.setText(getString(R.string.string_about));
-        tv_button.setText(getString(R.string.string_version) + "：" + version);
+        tv_button.setText(getString(R.string.string_version));
+        tv_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(AboutActivity.this).setTitle("部分图片来自：iconfont.cn").setMessage("图标（launcher icon）：小白熊_猫草君 | \"糖果\"icon").setNegativeButton("关闭", null).show();
+            }
+        });
         tv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

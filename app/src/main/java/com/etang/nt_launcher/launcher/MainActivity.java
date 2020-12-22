@@ -51,6 +51,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.launcher.settings.SettingActivity;
+import com.etang.nt_launcher.launcher.settings.about.AboutActivity;
 import com.etang.nt_launcher.launcher.settings.uirefresh.UireFreshActivity;
 import com.etang.nt_launcher.launcher.settings.weather.WeatherActivity;
 import com.etang.nt_launcher.launcher.welecome.WelecomeActivity;
@@ -159,7 +160,10 @@ public class MainActivity extends Activity implements OnClickListener {
                         startActivity(intent);
                         overridePendingTransition(0, 0);
                     } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".systemupdate")) {//点击了“检查更新”
-                        CheckUpdateDialog.check_update(MainActivity.this, MainActivity.this);
+                        intent = new Intent(MainActivity.this, AboutActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(0, 0);
+//                        CheckUpdateDialog.check_update(MainActivity.this, MainActivity.this);
                     } else if (appInfos.get(position).getPackageName().equals(getPackageName() + ".launchersetting")) {//点击了“桌面设置”
                         intent = new Intent(MainActivity.this, SettingActivity.class);
                         startActivity(intent);

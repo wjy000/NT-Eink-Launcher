@@ -10,8 +10,8 @@
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 379000000,
-      "versionName": "3.7.9 Multilingual",
+      "versionCode": 386000000,
+      "versionName": "3.8.6 Nebula",
       "outputFile": "app-release.apk"
     }
   ]
