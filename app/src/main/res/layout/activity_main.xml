@@ -80,10 +80,18 @@
                 android:layout_alignParentRight="true"
                 app:srcCompat="@drawable/mi_luoli" />
 
-            <include
-                layout="@layout/list_all_apps"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal">
+
+                <include
+                    layout="@layout/list_all_apps"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 
@@ -99,8 +107,8 @@
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/shaper_desk_top_show"
         android:gravity="center_vertical|center_horizontal"

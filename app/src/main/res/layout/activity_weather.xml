@@ -15,6 +15,7 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -52,10 +53,7 @@
             android:hint="@string/weather_city"
             android:importantForAutofill="no"
             android:inputType="none"
-            android:textColor="#000">
-
-            <requestFocus />
-        </EditText>
+            android:textColor="#000"></EditText>
 
         <RadioGroup
             android:layout_width="wrap_content"
@@ -90,14 +88,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/shaper_apks_button_window_show"
         android:text="@string/dialog_cls"
         android:textColor="#000"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <Button
         android:id="@+id/btn_wather_con"

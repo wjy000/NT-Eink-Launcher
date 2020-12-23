@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.etang.nt_launcher.BuildConfig;
 import com.etang.nt_launcher.R;
 import com.etang.nt_launcher.tool.dialog.CheckUpdateDialog;
 import com.etang.nt_launcher.tool.permission.SavePermission;
@@ -20,8 +22,9 @@ import com.etang.nt_launcher.tool.permission.SavePermission;
  */
 public class AboutActivity extends AppCompatActivity {
     private ImageView iv_about_logo;
-    private TextView tv_back, tv_title, tv_button;
+    private TextView tv_back, tv_title, tv_button, tv_about_appversion;
     private LinearLayout lv_back;
+    private Button btn_about_checkup_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +33,11 @@ public class AboutActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.setting_about);
-        lv_back = (LinearLayout) findViewById(R.id.lv_back);
-        iv_about_logo = (ImageView) findViewById(R.id.iv_about_logo);
-        tv_back = (TextView) findViewById(R.id.tv_title_back);
-        tv_button = (TextView) findViewById(R.id.tv_title_button);
-        tv_title = (TextView) findViewById(R.id.tv_title_text);
+        initView();
         //标题
         tv_title.setText(getString(R.string.string_about));
         tv_button.setText(getString(R.string.string_version));
+        tv_about_appversion.setText(BuildConfig.VERSION_NAME);
         tv_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +63,23 @@ public class AboutActivity extends AppCompatActivity {
                 CheckUpdateDialog.check_update(AboutActivity.this, AboutActivity.this);
             }
         });
+        btn_about_checkup_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SavePermission.check_save_permission(AboutActivity.this);
+                CheckUpdateDialog.check_update(AboutActivity.this, AboutActivity.this);
+            }
+        });
+    }
+
+    private void initView() {
+        lv_back = (LinearLayout) findViewById(R.id.lv_back);
+        iv_about_logo = (ImageView) findViewById(R.id.iv_about_logo);
+        tv_back = (TextView) findViewById(R.id.tv_title_back);
+        tv_button = (TextView) findViewById(R.id.tv_title_button);
+        tv_title = (TextView) findViewById(R.id.tv_title_text);
+        btn_about_checkup_button = (Button) findViewById(R.id.btn_about_checkup_button);
+        tv_about_appversion = (TextView) findViewById(R.id.tv_about_appversion);
     }
 
     @Override

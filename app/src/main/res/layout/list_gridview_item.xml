@@ -13,11 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
-        android:layout_weight="1"
-        android:background="@drawable/shaper_desk_top_show"
+        android:background="@drawable/shaper_zhijiao_lins_show"
         android:gravity="center_vertical|center_horizontal"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/iv_gridview_app_icon"

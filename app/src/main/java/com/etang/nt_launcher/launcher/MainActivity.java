@@ -230,10 +230,10 @@ public class MainActivity extends Activity implements OnClickListener {
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void read_info_help(Context c, SharedPreferences sharedPreferences) {
-        rember_name(c);// 读取昵称
         initAppList(c);// 获取应用列表
         monitorBatteryState();// 监听电池信息
         check_text_size(c);//检查文本大小
+        rember_name(c);// 读取昵称
         update_wathers(sharedPreferences);//更新天气
         check_view_hind(c, sharedPreferences);//检查底栏是否隐藏
         check_offline_mode(c, sharedPreferences);//检查离线模式是否打开

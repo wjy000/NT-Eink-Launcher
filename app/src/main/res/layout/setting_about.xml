@@ -10,68 +10,66 @@
         android:id="@+id/include"
         layout="@layout/layout_in_back"></include>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MT_Launcher 梅糖桌面"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include"
-        app:layout_constraintVertical_bias="0.022" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="图标作者：小白熊_猫草君"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+    <com.etang.nt_launcher.launcher.settings.about.AboutView
+        android:id="@+id/about_view"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_about_logo"
+        app:layout_constraintEnd_toEndOf="@+id/iv_about_logo"
+        app:layout_constraintStart_toStartOf="@+id/iv_about_logo"
+        app:layout_constraintTop_toTopOf="@+id/iv_about_logo">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="图标来源：www.iconfont.cn"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+    </com.etang.nt_launcher.launcher.settings.about.AboutView>
 
     <ImageView
         android:id="@+id/iv_about_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="40dp"
         android:contentDescription="@null"
+        android:src="@drawable/iv_update_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_launcher" />
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.209" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="点击图标检查更新"
-        app:layout_constraintBottom_toTopOf="@+id/iv_about_logo"
-        app:layout_constraintEnd_toEndOf="@+id/iv_about_logo"
-        app:layout_constraintHorizontal_bias="0.538"
-        app:layout_constraintStart_toStartOf="@+id/iv_about_logo" />
+        android:gravity="center|center_horizontal|center_vertical"
+        android:text="当前版本代号：天生要强"
+        android:textColor="#70000000"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/about_view"
+        app:layout_constraintStart_toStartOf="@+id/about_view"
+        app:layout_constraintTop_toBottomOf="@+id/about_view" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tv_about_appversion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="交流群：635057835"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        android:gravity="center|center_horizontal|center_vertical"
+        android:text="版本号："
+        android:textColor="#70000000"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+    <Button
+        android:id="@+id/btn_about_checkup_button"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/shaper_apks_button_window_show"
+        android:text="检查更新"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
