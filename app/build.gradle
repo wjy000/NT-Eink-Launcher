@@ -7,8 +7,8 @@ android {
         applicationId "com.etang.nt_launcher"
         minSdkVersion 15
         targetSdkVersion 30
-        versionCode 387000000
-        versionName "3.8.7 Nebula"
+        versionCode 388000000
+        versionName "3.8.8 Nebula"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {

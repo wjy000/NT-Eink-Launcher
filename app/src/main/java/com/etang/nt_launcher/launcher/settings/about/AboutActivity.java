@@ -41,7 +41,10 @@ public class AboutActivity extends AppCompatActivity {
         tv_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(AboutActivity.this).setTitle("部分图片来自：iconfont.cn").setMessage("图标（launcher icon）：小白熊_猫草君 | \"糖果\"icon").setNegativeButton("关闭", null).show();
+                new AlertDialog.Builder(AboutActivity.this)
+                        .setTitle("部分图片来自：iconfont.cn")
+                        .setMessage("图标（launcher icon）：小白熊_猫草君 | \"糖果\"icon")
+                        .setNegativeButton("关闭", null).show();
             }
         });
         tv_back.setOnClickListener(new View.OnClickListener() {

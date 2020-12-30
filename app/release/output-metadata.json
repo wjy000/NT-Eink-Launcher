@@ -10,8 +10,8 @@
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 387000000,
-      "versionName": "3.8.7 Nebula",
+      "versionCode": 388000000,
+      "versionName": "3.8.8 Nebula",
       "outputFile": "app-release.apk"
     }
   ]
