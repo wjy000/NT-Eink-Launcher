@@ -307,9 +307,7 @@ public class MainActivity extends Activity implements OnClickListener {
             BitmapDrawable wallpaperDrawable = (BitmapDrawable) wallpaperManager.getDrawable();
             // 将Drawable,转成Bitmap
             Bitmap bitmap = Bitmap.createBitmap(wallpaperDrawable.getBitmap());
-//        val bm = (wallpaperDrawable as BitmapDrawable).bitmap
             // 设置 背景
-//        .background = (BitmapDrawable(bm))
             if (s.equals("app_wallpaper")) {
                 MainActivity.iv_index_back.setVisibility(View.VISIBLE);
                 MainActivity.mListView.setVisibility(View.INVISIBLE);
