@@ -23,6 +23,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/real_layout_main_top"
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:layout_marginLeft="5dp"

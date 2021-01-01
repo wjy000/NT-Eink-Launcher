@@ -879,15 +879,15 @@ public class MainActivity extends Activity implements OnClickListener {
                         tv_main_batterystate.setText(sb.toString());
                     }
                     if (status == BatteryManager.BATTERY_STATUS_CHARGING) {//充电
-                        sb.append(String.valueOf(level) + "% " + " C+ ");
+                        sb.append(String.valueOf(level) + "% " + " C + ");
                         tv_main_batterystate.setText(sb.toString());
                     }
                     if (status == BatteryManager.BATTERY_STATUS_DISCHARGING) {//放电
-                        sb.append(String.valueOf(level) + "% " + " U- ");
+                        sb.append(String.valueOf(level) + "% " + " U - ");
                         tv_main_batterystate.setText(sb.toString());
                     }
                     if (status == BatteryManager.BATTERY_STATUS_NOT_CHARGING) {//未在充电
-                        sb.append(String.valueOf(level) + "% " + " U- ");
+                        sb.append(String.valueOf(level) + "% " + " U - ");
                         tv_main_batterystate.setText(sb.toString());
                     }
                 }

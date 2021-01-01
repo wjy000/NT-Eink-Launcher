@@ -41,24 +41,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5sp"
-            android:gravity="center|center_vertical|center_horizontal"
-            android:text="@string/welecome_huanying4"
-            android:textColor="#000000"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5sp"
-            android:gravity="center|center_vertical|center_horizontal"
-            android:text="@string/welecome_huanying5"
-            android:textColor="#000000"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginTop="10sp"
             android:text="@string/welecome_huanying_choseyuyan1"
             android:textSize="17sp" />
@@ -110,6 +92,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center|center_vertical|center_horizontal"
                 android:text="@string/welecome_huanying_needreboot" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="警告：有些设备并不支持多语言！有些设备需要重启后才能看到设置效果！" />
 
             <Button
                 android:id="@+id/btn_welecome_resart"

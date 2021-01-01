@@ -11,7 +11,7 @@ public class StreamTool {
     public static String decodeStream(InputStream in) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         int len = 0;
-        byte[] buf = new byte[2048];
+        byte[] buf = new byte[3072];
         while ((len = in.read(buf)) > 0) {
             baos.write(buf, 0, len);
         }

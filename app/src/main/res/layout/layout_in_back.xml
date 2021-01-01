@@ -30,7 +30,7 @@
             android:gravity="center|center_horizontal|center_vertical"
             android:text="@string/title_back"
             android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/tv_title_text"
@@ -42,7 +42,7 @@
             android:gravity="center_vertical|center_horizontal"
             android:text="@string/inback_title"
             android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textSize="18dp" />
     </LinearLayout>
 
     <LinearLayout
