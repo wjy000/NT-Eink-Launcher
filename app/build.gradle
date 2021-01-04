@@ -7,8 +7,8 @@ android {
         applicationId "com.etang.nt_launcher"
         minSdkVersion 15
         targetSdkVersion 30
-        versionCode 388000000
-        versionName "3.8.8 Nebula"
+        versionCode 389000000
+        versionName "3.8.9 Dove"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -28,7 +28,7 @@ android {
     buildTypes {
         debug {
             zipAlignEnabled true
-            debuggable true
+            debuggable true// 是否开启DEBUG
             minifyEnabled false //是否混淆
             shrinkResources false //是否去除无效的资源文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -36,7 +36,7 @@ android {
         }
         release {
             zipAlignEnabled true
-            debuggable false
+            debuggable false// 是否开启DEBUG
             minifyEnabled true //是否混淆
             shrinkResources true //是否去除无效的资源文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
