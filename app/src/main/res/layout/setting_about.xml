@@ -70,6 +70,7 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/shaper_apks_button_window_show"
         android:text="检查更新"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -80,6 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="点击此捐赠|支持开发"
+        android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_about_checkup_button"
         app:layout_constraintEnd_toEndOf="@+id/btn_about_checkup_button"
         app:layout_constraintStart_toStartOf="@+id/btn_about_checkup_button" />

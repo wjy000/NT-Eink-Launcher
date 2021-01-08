@@ -10,8 +10,8 @@
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 389000000,
-      "versionName": "3.8.9 Dove",
+      "versionCode": 390000000,
+      "versionName": "3.9.0 Dove",
       "outputFile": "app-release.apk"
     }
   ]

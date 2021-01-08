@@ -96,6 +96,22 @@ public class TextSizeSetting extends AppCompatActivity {
                 DiyToast.showToast(TextSizeSetting.this, "重置成功", true);
             }
         });
+        btn_textsize_resert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = getSharedPreferences("info", MODE_PRIVATE).edit();
+                /**
+                 * 设定文本大小预填充
+                 */
+                editor.putString("timetext_min_size", "50");
+                editor.putString("timetext_hour_size", "70");
+                editor.putString("nametext_size", "17");//昵称文本大小
+                editor.putString("dianchitext_size", "17");//电池文本大小
+                editor.putString("datetext_size", "17");//日期文本大小
+                editor.apply();
+                DiyToast.showToast(TextSizeSetting.this, "重置成功", true);
+            }
+        });
     }
 
     private void show_size_dialog(final String name, String textSize) {
@@ -158,7 +174,6 @@ public class TextSizeSetting extends AppCompatActivity {
         // TODO Auto-generated method stub
         lv_back = (LinearLayout) findViewById(R.id.lv_back);
         btn_textsize_resert = (Button) findViewById(R.id.btn_textsize_resert);
-        btn_textsize_resert.setVisibility(View.INVISIBLE);
         btn_timetext_min_size = (Button) findViewById(R.id.btn_timetext_min_size);
         btn_timetext_hour_size = (Button) findViewById(R.id.btn_timetext_hour_size);
         btn_dianchitext_size = (Button) findViewById(R.id.btn_dianchitext_size);

@@ -66,6 +66,7 @@ import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;
 import com.etang.nt_launcher.tool.toast.DiyToast;
 import com.etang.nt_launcher.tool.util.AppInfo;
 import com.etang.nt_launcher.tool.util.DeskTopGridViewBaseAdapter;
+import com.etang.nt_launcher.tool.util.Dood;
 import com.etang.nt_launcher.tool.util.GetApps;
 import com.etang.nt_launcher.tool.util.StreamTool;
 
@@ -126,6 +127,8 @@ public class MainActivity extends Activity implements OnClickListener {
         SavePermission.check_save_permission(MainActivity.this);//检查存取权限
         new_time_Thread();// 启用更新时间进程
         read_info_help(MainActivity.this, sharedPreferences);//集中存放读取信息相关方法
+        //很好，你的英语很好（向系统输出当前版本名台词）
+        Dood.your_english_is_very_dood();
         // 长按弹出APP信息
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override

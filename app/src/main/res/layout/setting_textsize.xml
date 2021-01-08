@@ -50,6 +50,7 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/shaper_zhijiao_lins_show"
                 android:text="@string/setting_textsize_time_min"
+                android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -61,6 +62,7 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/shaper_zhijiao_lins_show"
                 android:text="@string/setting_textsize_time_name"
+                android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="@+id/btn_datetext_size"
                 app:layout_constraintStart_toStartOf="@+id/btn_datetext_size"
                 app:layout_constraintTop_toBottomOf="@+id/btn_datetext_size" />
@@ -72,6 +74,7 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/shaper_zhijiao_lins_show"
                 android:text="@string/setting_textsize_time_date"
+                android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="@+id/btn_timetext_hour_size"
                 app:layout_constraintStart_toStartOf="@+id/btn_timetext_hour_size"
                 app:layout_constraintTop_toBottomOf="@+id/btn_timetext_hour_size" />
@@ -83,6 +86,7 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/shaper_zhijiao_lins_show"
                 android:text="@string/setting_textsize_time_dianliang"
+                android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="@+id/btn_timetext_min_size"
                 app:layout_constraintStart_toStartOf="@+id/btn_timetext_min_size"
                 app:layout_constraintTop_toBottomOf="@+id/btn_timetext_min_size" />
@@ -94,6 +98,7 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/shaper_zhijiao_lins_show"
                 android:text="@string/setting_textsize_time_resert"
+                android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

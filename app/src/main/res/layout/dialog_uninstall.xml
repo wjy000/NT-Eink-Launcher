@@ -18,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00000000"
-            android:text="@string/dialog_uninstall_app_name" />
+            android:text="@string/dialog_uninstall_app_name"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/tv_uninstall_appinfo"
@@ -46,7 +47,8 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/shaper_apks_button_window_show"
-            android:text="@string/uninstall" />
+            android:text="@string/uninstall"
+            android:textSize="15dp" />
 
         <Button
             android:id="@+id/btn_hind_con"
@@ -56,7 +58,8 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/shaper_apks_button_window_show"
-            android:text="@string/hinddin" />
+            android:text="@string/hinddin"
+            android:textSize="15dp" />
 
     </LinearLayout>
 
@@ -76,7 +79,8 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/shaper_apks_button_window_show"
-            android:text="@string/update_icon" />
+            android:text="@string/update_icon"
+            android:textSize="15dp" />
 
         <Button
             android:id="@+id/btn_uninstall_cls"
@@ -86,7 +90,8 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/shaper_apks_button_window_show"
-            android:text="@string/dialog_cls" />
+            android:text="@string/dialog_cls"
+            android:textSize="15dp" />
     </LinearLayout>
 
     <Button
@@ -103,6 +108,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:gravity="center_horizontal|center_vertical"
         android:text="@string/hind_tips"
         android:textSize="12sp" />
 
