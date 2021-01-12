@@ -1,7 +1,6 @@
 package com.etang.nt_launcher.launcher;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -30,14 +29,12 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.GridView;
@@ -55,9 +52,7 @@ import com.etang.nt_launcher.launcher.settings.about.AboutActivity;
 import com.etang.nt_launcher.launcher.settings.uirefresh.UireFreshActivity;
 import com.etang.nt_launcher.launcher.settings.weather.WeatherActivity;
 import com.etang.nt_launcher.launcher.welecome.WelecomeActivity;
-import com.etang.nt_launcher.tool.dialog.CheckUpdateDialog;
 import com.etang.nt_launcher.tool.dialog.DeBugDialog;
-import com.etang.nt_launcher.tool.dialog.NewUserDialog;
 import com.etang.nt_launcher.tool.dialog.UnInstallDialog;
 import com.etang.nt_launcher.tool.permission.SavePermission;
 import com.etang.nt_launcher.tool.savearrayutil.SaveArrayListUtil;
@@ -66,7 +61,6 @@ import com.etang.nt_launcher.tool.sql.MyDataBaseHelper;
 import com.etang.nt_launcher.tool.toast.DiyToast;
 import com.etang.nt_launcher.tool.util.AppInfo;
 import com.etang.nt_launcher.tool.util.DeskTopGridViewBaseAdapter;
-import com.etang.nt_launcher.tool.util.Dood;
 import com.etang.nt_launcher.tool.util.GetApps;
 import com.etang.nt_launcher.tool.util.StreamTool;
 
@@ -127,8 +121,6 @@ public class MainActivity extends Activity implements OnClickListener {
         SavePermission.check_save_permission(MainActivity.this);//检查存取权限
         new_time_Thread();// 启用更新时间进程
         read_info_help(MainActivity.this, sharedPreferences);//集中存放读取信息相关方法
-        //很好，你的英语很好（向系统输出当前版本名台词）
-        Dood.your_english_is_very_dood();
         // 长按弹出APP信息
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -876,19 +868,19 @@ public class MainActivity extends Activity implements OnClickListener {
                     sb.append("'s battery feels very hot!");
                 } else {
                     if (status == BatteryManager.BATTERY_STATUS_FULL) {//充电完成
-                        sb.append(String.valueOf(level) + "% " + " FULL* ");
+                        sb.append(String.valueOf(level) + "%已充满 ");
                         tv_main_batterystate.setText(sb.toString());
                     }
                     if (status == BatteryManager.BATTERY_STATUS_CHARGING) {//充电
-                        sb.append(String.valueOf(level) + "% " + " C + ");
+                        sb.append(String.valueOf(level) + "%充电中 ");
                         tv_main_batterystate.setText(sb.toString());
                     }
                     if (status == BatteryManager.BATTERY_STATUS_DISCHARGING) {//放电
-                        sb.append(String.valueOf(level) + "% " + " U - ");
+                        sb.append(String.valueOf(level) + "% ");
                         tv_main_batterystate.setText(sb.toString());
                     }
                     if (status == BatteryManager.BATTERY_STATUS_NOT_CHARGING) {//未在充电
-                        sb.append(String.valueOf(level) + "% " + " U - ");
+                        sb.append(String.valueOf(level) + "% ");
                         tv_main_batterystate.setText(sb.toString());
                     }
                 }

@@ -7,8 +7,8 @@ android {
         applicationId "com.etang.nt_launcher"
         minSdkVersion 15
         targetSdkVersion 30
-        versionCode 390000000
-        versionName "3.9.0 Dove"
+        versionCode 392000715
+        versionName "3.9.2 Galaxy"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {

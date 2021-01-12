@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:gravity="center|center_horizontal|center_vertical"
-        android:text="当前版本代号：Dove"
+        android:text="版本代号：Galaxy | 银河"
         android:textColor="#70000000"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="@+id/about_view"
