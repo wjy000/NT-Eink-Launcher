@@ -25,6 +25,7 @@ import com.etang.nt_launcher.launcher.MainActivity;
 import com.etang.nt_launcher.launcher.settings.about.AboutActivity;
 import com.etang.nt_launcher.launcher.settings.desktopsetting.DeskTopSettingActivity;
 import com.etang.nt_launcher.launcher.settings.hindapp.HindAppSetting;
+import com.etang.nt_launcher.launcher.settings.inforeback.InfoRebackActivity;
 import com.etang.nt_launcher.launcher.settings.launcherimage.ChoseImagesActivity;
 import com.etang.nt_launcher.launcher.settings.textsizesetting.TextSizeSetting;
 import com.etang.nt_launcher.launcher.welecome.WelecomeActivity;
@@ -47,7 +48,7 @@ public class SettingActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_setting_new);
         initView();
         tv_title.setText("桌面设置");
         tv_back.setOnClickListener(new OnClickListener() {
@@ -128,13 +129,13 @@ public class SettingActivity extends Activity {
                 overridePendingTransition(0, 0);
             }
         });
-        //退出“奶糖桌面”
-        lv_exit_setting.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.exit(0);
-            }
-        });
+//        //退出“奶糖桌面”
+//        lv_exit_setting.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                System.exit(0);
+//            }
+//        });
         //卸载“奶糖桌面”
         lv_uninstall_setting.setOnClickListener(new OnClickListener() {
             @Override
@@ -145,6 +146,9 @@ public class SettingActivity extends Activity {
         lv_inforeback_activity.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                DiyToast.showToast(SettingActivity.this, "未完成功能，暂未开放，请期待后续版本", true);
+//                startActivity(new Intent(SettingActivity.this, InfoRebackActivity.class));
+//                overridePendingTransition(0, 0);
             }
         });
         lv_restart_setting.setOnClickListener(new OnClickListener() {

@@ -39,7 +39,9 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-
+/**
+ * 用于展示软件更新信息的弹出框
+ */
 public class CheckUpdateDialog {
     //  上下文
     private static Context mContext;
@@ -55,6 +57,8 @@ public class CheckUpdateDialog {
     private static String mSavePath;
     //  版本名称
     private static String mVersion_name = "梅糖桌面";
+    //当前TAG
+    private static String TAG = "CheckUpdateDialog";
 
     public static void check_update(final Context context, final Activity activity) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
@@ -74,7 +78,7 @@ public class CheckUpdateDialog {
                         DiyToast.showToast(context, "出现错误，请重试！", true);
                         Bundle data_error = msg.getData();
                         String error_message = data_error.getString("error_message");
-                        DeBugDialog.debug_show_dialog(context, error_message);
+                        DeBugDialog.debug_show_dialog(context, error_message, TAG);
                         progressDialog.dismiss();
                         break;
                     case "3":

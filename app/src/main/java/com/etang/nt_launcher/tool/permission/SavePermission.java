@@ -8,6 +8,9 @@ import android.util.Log;
 
 import com.etang.nt_launcher.tool.toast.DiyToast;
 
+/**
+ * 用于检查应用权限的方法
+ */
 public class SavePermission {
     /**
      * 检查是否拥有存储权限

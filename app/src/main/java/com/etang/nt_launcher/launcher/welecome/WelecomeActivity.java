@@ -228,7 +228,7 @@ public class WelecomeActivity extends FragmentActivity {
         btn_con.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewUserDialog.dialog_show(WelecomeActivity.this, "设备激活（新用户）：");
+                NewUserDialog.dialog_show(WelecomeActivity.this, "设备激活（新用户）：", true);
                 alertDialog.dismiss();
                 startActivity(new Intent(WelecomeActivity.this, MainActivity.class));
                 finish();

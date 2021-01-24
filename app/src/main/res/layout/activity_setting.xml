@@ -45,7 +45,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
                         android:text="@string/setting_toptext"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
                 </LinearLayout>
 
                 <View
@@ -66,7 +67,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
                         android:text="@string/setting_desktoplist"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
                 </LinearLayout>
 
                 <View
@@ -87,7 +89,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
                         android:text="@string/setting_desktopimage"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
                 </LinearLayout>
 
                 <View
@@ -108,7 +111,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
                         android:text="@string/steeing_textsize"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
@@ -152,7 +156,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
                         android:text="@string/setting_yijian"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
@@ -174,7 +179,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
                         android:text="@string/setting_hindapp"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
@@ -197,7 +203,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
                         android:text="@string/setting_about"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
@@ -219,7 +226,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
                         android:text="@string/setting_uninstalllacunher"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
@@ -241,7 +249,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
                         android:text="@string/setting_restartlauncher"
-                        android:textColor="#000000" />
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 

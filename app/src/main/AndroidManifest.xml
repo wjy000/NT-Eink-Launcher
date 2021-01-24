@@ -79,6 +79,9 @@
         <activity
             android:name=".launcher.settings.textsizesetting.TextSizeSetting"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".launcher.settings.inforeback.InfoRebackActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

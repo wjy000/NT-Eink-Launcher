@@ -8,6 +8,9 @@ import android.view.View;
 
 import com.etang.nt_launcher.R;
 
+/**
+ * 用于展示赞赏支付方式的弹出框
+ */
 public class PayMeDialog {
     public static void show_dialog(final Activity activity, String number) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);

@@ -41,11 +41,11 @@ public class AboutView extends View {
         paint.setAntiAlias(true);
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);// 画笔线条
-        paint.setStrokeWidth(3);// 画笔宽
+        paint.setStrokeWidth(4);// 画笔宽
         radius = height - 3;
-        for (int i = 0; i < 60; i++) {
+        for (int i = 0; i < 100; i++) {
             canvas.save();// 保存画布
-            canvas.rotate(i * 6, width, height);// 旋转画布
+            canvas.rotate(i * 10, width, height);// 旋转画布
             // 绘制线条
             canvas.drawLine(width, height - radius, width,
                     height - radius + 10, paint);

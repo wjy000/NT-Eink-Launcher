@@ -28,6 +28,9 @@ import com.etang.nt_launcher.R;
 
 import java.io.IOException;
 
+/**
+ * 设置中桌面壁纸设置项
+ */
 public class ChoseImagesActivity extends AppCompatActivity {
     private RadioButton ra_meizi, ra_qinglv, ra_applist, ra_luoli, ra_zhiyu, ra_wallpaper, ra_wallpaper_and_applist;
     private Button btn_set_wallpaperimage;
@@ -35,6 +38,7 @@ public class ChoseImagesActivity extends AppCompatActivity {
     Bitmap bitmap = null;
     private TextView tv_back, tv_button, tv_title;
     private LinearLayout lv_back;
+    private static String TAG = "ChoseImagesActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -238,11 +242,11 @@ public class ChoseImagesActivity extends AppCompatActivity {
                             setWallpaper(bitmap);
                         } catch (IOException e) {
                             e.printStackTrace();
-                            DeBugDialog.debug_show_dialog(ChoseImagesActivity.this, "设置壁纸时出现错误：" + e.toString());
+                            DeBugDialog.debug_show_dialog(ChoseImagesActivity.this, "设置壁纸时出现错误：" + e.toString(), TAG);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
-                        DeBugDialog.debug_show_dialog(ChoseImagesActivity.this, "获取图片时出现错误：" + e.toString());
+                        DeBugDialog.debug_show_dialog(ChoseImagesActivity.this, "获取图片时出现错误：" + e.toString(), TAG);
                     }
                 }
                 DiyToast.showToast(getApplicationContext(), "选择成功，可点击右上角进行预览。\n路径：", true);

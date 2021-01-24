@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UnInstallDialog {
+    private static String TAG = "UnInstallDialog";
+
     public static void uninstall_app(final int position, final List<AppInfo> appInfos, final Context context, final Activity activity, final String pakename, final String app_name) {
         try {
             final AlertDialog builder = new AlertDialog.Builder(context).create();
@@ -45,7 +47,7 @@ public class UnInstallDialog {
             Button btn_appname = (Button) view
                     .findViewById(R.id.btn_uninstall_appname);
             btn_appname.setText(app_name);
-            builder.setTitle("包名：" + pakename);
+            tv_uninstall_appinfo.setText(pakename);
             btn_openapp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -83,10 +85,10 @@ public class UnInstallDialog {
                                 context.sendBroadcast(intent_clear);
                             }
                         } else {//出现异常
-                            DeBugDialog.debug_show_dialog(context, "启动APP时出现“Intent”相关的异常");
+                            DeBugDialog.debug_show_dialog(context, "启动APP时出现“Intent”相关的异常", TAG);
                         }
                     } catch (Exception e) {
-                        DeBugDialog.debug_show_dialog(context, e.toString());
+                        DeBugDialog.debug_show_dialog(context, e.toString(), TAG);
                     }
                 }
             });
@@ -102,7 +104,7 @@ public class UnInstallDialog {
                         builder.dismiss();
                         MainActivity.initAppList(context);
                     } catch (Exception e) {
-                        DeBugDialog.debug_show_dialog(context, e.toString());
+                        DeBugDialog.debug_show_dialog(context, e.toString(), TAG);
                     }
                 }
             });
@@ -132,7 +134,7 @@ public class UnInstallDialog {
             lp.dimAmount = 0f;
             window.setAttributes(lp);
         } catch (Exception e) {
-            DeBugDialog.debug_show_dialog(context, e.toString());
+            DeBugDialog.debug_show_dialog(context, e.toString(), TAG);
         }
     }
 
@@ -145,7 +147,7 @@ public class UnInstallDialog {
             Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
             activity.startActivityForResult(uninstallIntent, 1);
         } catch (Exception e) {
-            DeBugDialog.debug_show_dialog(context, e.toString());
+            DeBugDialog.debug_show_dialog(context, e.toString(), TAG);
         }
     }
 
@@ -191,7 +193,7 @@ public class UnInstallDialog {
             builder.setNegativeButton("取消", null);
             builder.show();
         } catch (Exception e) {
-            DeBugDialog.debug_show_dialog(context, e.toString());
+            DeBugDialog.debug_show_dialog(context, e.toString(), TAG);
         }
     }
 }

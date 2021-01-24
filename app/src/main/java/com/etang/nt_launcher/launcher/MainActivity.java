@@ -28,6 +28,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -105,6 +106,7 @@ public class MainActivity extends Activity implements OnClickListener {
     public static boolean offline_mode = false;
     private AppInstallServer appinstallserver;
     SharedPreferences sharedPreferences;
+    private static String TAG = "MainActivity";
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
@@ -130,7 +132,7 @@ public class MainActivity extends Activity implements OnClickListener {
                     string_app_info = appInfos.get(position).getPackageName();
                     UnInstallDialog.uninstall_app(position, appInfos, MainActivity.this, MainActivity.this, string_app_info, appInfos.get(position).getName());
                 } catch (Exception e) {
-                    DeBugDialog.debug_show_dialog(MainActivity.this, e.toString());//显示错误信息
+                    DeBugDialog.debug_show_dialog(MainActivity.this, e.toString(), TAG);//显示错误信息
                 }
                 return true;
             }
@@ -180,10 +182,10 @@ public class MainActivity extends Activity implements OnClickListener {
                             sendBroadcast(intent_clear);
                         }
                     } else {//出现异常
-                        DeBugDialog.debug_show_dialog(MainActivity.this, "启动APP时出现“Intent”相关的异常");
+                        DeBugDialog.debug_show_dialog(MainActivity.this, "启动APP时出现“Intent”相关的异常", TAG);
                     }
                 } catch (Exception e) {
-                    DeBugDialog.debug_show_dialog(MainActivity.this, e.toString());
+                    DeBugDialog.debug_show_dialog(MainActivity.this, e.toString(), TAG);
                 }
             }
         });
@@ -327,7 +329,7 @@ public class MainActivity extends Activity implements OnClickListener {
             MainActivity.iv_index_back.setImageBitmap(bitmap);
             MainActivity.tg_apps_state.setVisibility(View.GONE);
 //            DiyToast.showToast(context, "系统壁纸出错，重置为白色", true);
-            DeBugDialog.debug_show_dialog(context, "系统壁纸获取出错 \n 请更改其他壁纸设置 \n 错误信息：" + e.toString());
+            DeBugDialog.debug_show_dialog(context, "系统壁纸获取出错 \n 请更改其他壁纸设置 \n 错误信息：" + e.toString(), TAG);
         }
     }
 
@@ -520,7 +522,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 initSkinMode(MainActivity.this, images_mode);
             }
         } catch (Exception e) {
-            DeBugDialog.debug_show_dialog(c, "桌面壁纸出现错误，已重置为默认");
+            DeBugDialog.debug_show_dialog(c, "桌面壁纸出现错误，已重置为默认", TAG);
             sharedPreferences.edit().putString("images_info", "applist").apply();
         }
     }
@@ -533,15 +535,17 @@ public class MainActivity extends Activity implements OnClickListener {
          * 更新天气信息
          */
         if (!offline_mode) {
-            Cursor cursor = db.rawQuery("select * from wather_city", null);
-            if (cursor.getCount() != 0) {
-                cursor.moveToFirst();
-                update_wather(MainActivity.this,
-                        cursor.getString(cursor.getColumnIndex("city")));
+            if (tv_time_min.getText().toString().equals("00") || tv_time_min.getText().toString().equals("30")) {
+                Cursor cursor = db.rawQuery("select * from wather_city", null);
+                if (cursor.getCount() != 0) {
+                    cursor.moveToFirst();
+                    update_wather(MainActivity.this,
+                            cursor.getString(cursor.getColumnIndex("city")));
+                }
+                SharedPreferences sharedPreferences;
+                sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+                update_wathers(sharedPreferences);
             }
-            SharedPreferences sharedPreferences;
-            sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-            update_wathers(sharedPreferences);
         } else {
             line_wather.setVisibility(View.INVISIBLE);
         }
@@ -556,9 +560,12 @@ public class MainActivity extends Activity implements OnClickListener {
     public static void initAppList(Context context) {
         appInfos = GetApps.GetAppList1(context);
         ArrayList<String> hind_apparrayList = new ArrayList<String>();
-        String s = Build.BRAND;
         hind_apparrayList.clear();
         hind_apparrayList = SaveArrayListUtil.getSearchArrayList(context);
+        String s = Build.BRAND;
+        if (s.equals("Allwinner")) {
+//            hind_apparrayList.add("com.android.settings");
+        }
         for (int j = 0; j < hind_apparrayList.size(); j++) {
             for (int i = 0; i < appInfos.size(); i++) {
                 if (hind_apparrayList.get(j).equals(appInfos.get(i).getPackageName())) {
@@ -917,7 +924,7 @@ public class MainActivity extends Activity implements OnClickListener {
                         SharedPreferences sharedPreferences;
                         sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
                         update_wathers(sharedPreferences);
-                        DiyToast.showToast(getApplicationContext(), "正在更新", true);
+                        DiyToast.showToast(getApplicationContext(), "已刷新", true);
                     }
                 } else {
                     DiyToast.showToast(getApplicationContext(), "当前处于离线模式", true);

@@ -25,6 +25,9 @@ import com.etang.nt_launcher.tool.util.GetApps;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 设置中的桌面列表设置项
+ */
 public class HindAppSetting extends AppCompatActivity {
     private static List<AppInfo> appInfos = new ArrayList<AppInfo>();
     private static List<AppInfo> appHindInfos = new ArrayList<AppInfo>();

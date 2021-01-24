@@ -18,7 +18,9 @@ import com.etang.nt_launcher.R;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * 获取设备内APP信息并装在进List中
+ */
 public class GetApps {
     public static List<AppInfo> GetAppList1(Context context) {
         List<AppInfo> list = new ArrayList<AppInfo>();

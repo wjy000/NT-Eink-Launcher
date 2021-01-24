@@ -11,7 +11,8 @@
         android:layout_margin="10dp"
         android:layout_weight="1"
         android:text="@string/icon_setting_tirps"
-        android:textColor="#000" />
+        android:textColor="#000"
+        android:textSize="15dp" />
 
     <EditText
         android:id="@+id/et_load_ico_uri"

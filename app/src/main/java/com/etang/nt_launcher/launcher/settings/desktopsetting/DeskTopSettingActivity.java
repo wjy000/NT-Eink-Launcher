@@ -23,7 +23,7 @@ import com.etang.nt_launcher.launcher.MainActivity;
 import com.etang.nt_launcher.tool.toast.DiyToast;
 
 /**
- * “桌面列表”设置，用于设置列表显示方式
+ * 设置中桌面设置设置项
  */
 public class DeskTopSettingActivity extends AppCompatActivity implements View.OnClickListener {
     private RadioButton ra_appname_hind, ra_appname_one, ra_appname_nope, ra_app_show_blok, ra_app_hind_blok, ra_app_bottommode_bottom, ra_app_bottommode_top, ra_app_show_nocolor_blok;
@@ -40,8 +40,8 @@ public class DeskTopSettingActivity extends AppCompatActivity implements View.On
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title
         setContentView(R.layout.setting_activity_desk_top_setting);
         initView();//绑定控件
-        check_app_list();
-        check_app_bottom();
+        check_app_list();//检查APP列表显示方式
+        check_app_bottom();//检查APP按钮显示方式
         tv_gridlist_setting.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
         tv_gridlist_setting.getPaint().setAntiAlias(true);//抗锯齿
         /**

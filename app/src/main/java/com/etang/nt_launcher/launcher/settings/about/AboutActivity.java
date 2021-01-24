@@ -20,10 +20,11 @@ import com.etang.nt_launcher.tool.dialog.PayMeDialog;
 import com.etang.nt_launcher.tool.permission.SavePermission;
 
 /**
- * “关于”界面，用于显示APP相关信息和软件更新
+ * 关于界面，用于显示软件更新
  */
 public class AboutActivity extends AppCompatActivity {
-    private ImageView iv_about_logo;
+    private ImageView iv_about_logo;//关于 LOGO
+    //文本，分别是文本_返回，文本_标题，文本_按钮，文本_关于APP版本，文本_关于捐赠我
     private TextView tv_back, tv_title, tv_button, tv_about_appversion, tv_about_juanzeng;
     private LinearLayout lv_back;
     private Button btn_about_checkup_button;
@@ -31,6 +32,7 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //设置填充屏幕
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);// 无Title

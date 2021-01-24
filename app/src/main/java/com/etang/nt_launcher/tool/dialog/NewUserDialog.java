@@ -16,24 +16,49 @@ import com.etang.nt_launcher.tool.toast.DiyToast;
 import java.lang.reflect.Field;
 import java.security.MessageDigest;
 
+/**
+ * 用于给服务器发送新用户激活信息、设备信息的弹出框（无View）
+ */
 public class NewUserDialog {
     private static String SKEY = "SCU66788Tac2bf7385575174e067c917d471e25365dd3983cec5ee";
     private static String web_index = "sc.ftqq.com";
 
 
-    public static void dialog_show(Context context, String info) {
-        test(context, info);
+    public static void dialog_show(Context context, String info, boolean newuser_or_debug) {
+        if (newuser_or_debug) {
+            test(context, info, newuser_or_debug);
+        } else {
+            test(context, info, newuser_or_debug);
+        }
     }
 
-    private static void test(Context context, String info) {
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
-        String imei = telephonyManager.getDeviceId();
+    private static void test(Context context, String info, boolean newuser_or_debug) {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_newuser, null, false);
         WebView wv = (WebView) view.findViewById(R.id.webview_newuser);
-        wv.loadUrl("https://" + web_index + "/" + SKEY
-                + ".send?text=梅糖桌面-MTL" + "---" + info + "&desp="
-                + "有设备出现错误：" + "%0D%0A%0D%0A" + "错误信息：" + info + "%0D%0A%0D%0A" + "设备详情信息：" + "%0D%0A%0D%0A" + getDeviceInfo() + "%0D%0A%0D%0A" + "---IMEI（MD5加密）：" + MD5(imei) + "%0D%0A%0D%0A" + "///////////////////////////////////////////////////////" + "%0D%0A%0D%0A"
-                + getDeviceInfo2());
+        StringBuffer stringBuffer = new StringBuffer();
+        //第一段
+        stringBuffer.append("https://" + web_index + "/" + SKEY + ".send?text=梅糖桌面-MTL" + "---");
+        //第二段
+        stringBuffer.append("&desp=");
+        //判断激活的属性
+        if (newuser_or_debug) {
+            stringBuffer.append(info);
+            stringBuffer.append("设备激活");
+            stringBuffer.append("%0D%0A%0D%0A");
+            stringBuffer.append("设备信息：");
+            stringBuffer.append("%0D%0A%0D%0A");
+            stringBuffer.append(getDeviceInfo());
+        } else {
+            stringBuffer.append("设备报错");
+            stringBuffer.append("%0D%0A%0D%0A");
+            stringBuffer.append("报错信息：");
+            stringBuffer.append(info);
+            stringBuffer.append("%0D%0A%0D%0A");
+            stringBuffer.append("设备信息：");
+            stringBuffer.append("%0D%0A%0D%0A");
+            stringBuffer.append(getDeviceInfo());
+        }
+        wv.loadUrl(stringBuffer.toString());
     }
 
     public final static String MD5(String s) {

@@ -39,7 +39,8 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/shaper_desk_top_show"
-            android:text="@string/dialog_con" />
+            android:text="@string/dialog_con"
+            android:textSize="15dp" />
 
         <Button
             android:id="@+id/btn_newusercheck_cls"
@@ -49,7 +50,8 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/shaper_desk_top_show"
-            android:text="@string/dialog_cls" />
+            android:text="@string/dialog_cls"
+            android:textSize="15dp" />
     </LinearLayout>
 
 

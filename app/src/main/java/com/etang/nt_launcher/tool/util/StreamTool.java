@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * 数据流（我也不知道具体原理和作用）
+ * 一种数据流（我也不知道具体原理和作用）
  */
 public class StreamTool {
     public static String decodeStream(InputStream in) throws IOException {
